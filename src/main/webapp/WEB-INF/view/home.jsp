@@ -31,10 +31,12 @@
 	</sec:authorize>
 	
 	<!-- show login for guest -->
-	<sec:authorize access="isAnonymous()">
-		<a href="${pageContext.request.contextPath}/login">Login</a>
-	</sec:authorize>
-		<a href="${pageContext.request.contextPath}/user">View user login required</a>
+	<%--<sec:authorize access="isAnonymous()">--%>
+		<a href="${pageContext.request.contextPath}/login">Login</a><br>
+		<a href="${pageContext.request.contextPath}/register">Register</a><br>
+		<a href="${pageContext.request.contextPath}/account">List account</a><br>
+		<a href="${pageContext.request.contextPath}/account/search">Search account</a><br>
+	<%--</sec:authorize>--%>
 	<hr>
 	
 	<!-- show logout when user logged -->

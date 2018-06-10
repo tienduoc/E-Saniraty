@@ -39,16 +39,22 @@ public class AccountDAOImpl implements AccountDAO {
 
     @Override
     public void update(Account account) {
-
+        Session session = sessionFactory.getCurrentSession();
+        session.saveOrUpdate(account);
     }
 
     @Override
     public void delete(Account account) {
-
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(account);
     }
 
     @Override
     public List<Account> search(String keyword) {
-        return null;
+        Session session = sessionFactory.getCurrentSession();
+        Query<Account> query = session.createQuery("from Account where username like :keyword", Account.class);
+        query.setParameter("keyword", "%" + keyword + "%");
+        List<Account> accounts = query.getResultList();
+        return accounts;
     }
 }
