@@ -15,20 +15,21 @@
 <body>
     SEARCH ACCOUNT
 
-    <form:form action="${pageContext.request.contextPath}/account/search" method="POST">
-        <input type="text" name="keyword" placeholder="Search" required=""
+    <form:form action="${pageContext.request.contextPath}/account/search" method="get">
+        <input type="text" name="q" placeholder="Search" required=""
                oninvalid="this.setCustomValidity('Please Enter keyword')"
                oninput="setCustomValidity('')">
         <button type="submit">Search</button>
     </form:form>
 
     <%-- Not found message--%>
-    <div style="color: red; font-style: italic">${emptyResult}</div>
+    <div style="color: red; font-style: italic">${notFound}</div>
 
     <c:if test="${accSearchResult.size() > 0}">
     <table>
         <thead>
             <tr>
+                <td>STT</td>
                 <td>Username</td>
                 <td>Fullname</td>
                 <td>Phone</td>
@@ -39,8 +40,11 @@
             </tr>
         </thead>
         <tbody>
+            <c:set var="count" value="0" scope="page" />
             <c:forEach var="acc" items="${accSearchResult}">
+                <c:set var="count" value="${count + 1}" scope="page"/>
                 <tr>
+                    <td>${count}</td>
                     <td>${acc.username}</td>
                     <td>${acc.fullname}</td>
                     <td>${acc.phone}</td>
@@ -53,5 +57,6 @@
         </tbody>
     </table>
     </c:if>
+    <a href="http://localhost:8080/">Back to homepage</a>
 </body>
 </html>

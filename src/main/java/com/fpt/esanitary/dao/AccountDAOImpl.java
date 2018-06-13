@@ -18,16 +18,14 @@ public class AccountDAOImpl implements AccountDAO {
     @Override
     public List<Account> findAll() {
         Session session = sessionFactory.getCurrentSession();
-        List<Account> accounts = session.createQuery("from Account", Account.class).getResultList();
+        List<Account> accounts = session.createQuery("from Account order by username", Account.class).getResultList();
         return accounts;
     }
 
     @Override
     public Account find(String username) {
         Session session = sessionFactory.getCurrentSession();
-        Query<Account> query = session.createQuery("from Account where username=:username");
-        query.setParameter("username", username);
-        Account account = query.uniqueResult();
+        Account account = session.get(Account.class, username);
         return account;
     }
 
@@ -40,7 +38,7 @@ public class AccountDAOImpl implements AccountDAO {
     @Override
     public void update(Account account) {
         Session session = sessionFactory.getCurrentSession();
-        session.saveOrUpdate(account);
+        session.update(account);
     }
 
     @Override

@@ -7,99 +7,99 @@ import java.util.Objects;
 @Table(name = "deal_history_detail", schema = "dbo", catalog = "esanitary")
 @IdClass(DealHistoryDetailPK.class)
 public class DealHistoryDetail {
-    private int dealHistoryId;
-    private String productId;
-    private double originalPrice;
-    private double contractorPrice;
-    private double newPrice;
-    private DealHistory dealHistoryByDealHistoryId;
-    private Product productByProductId;
+  private int dealHistoryId;
+  private String productId;
+  private double originalPrice;
+  private double contractorPrice;
+  private double newPrice;
+  private DealHistory dealHistoryByDealHistoryId;
+  private Product productByProductId;
 
-    @Id
-    @Column(name = "DealHistoryID", nullable = false)
-    public int getDealHistoryId() {
-        return dealHistoryId;
-    }
+  @Id
+  @Column(name = "DealHistoryID", nullable = false)
+  public int getDealHistoryId() {
+    return dealHistoryId;
+  }
 
-    public void setDealHistoryId(int dealHistoryId) {
-        this.dealHistoryId = dealHistoryId;
-    }
+  public void setDealHistoryId(int dealHistoryId) {
+    this.dealHistoryId = dealHistoryId;
+  }
 
-    @Id
-    @Column(name = "ProductID", nullable = false, length = 50)
-    public String getProductId() {
-        return productId;
-    }
+  @Id
+  @Column(name = "ProductID", nullable = false, length = 50)
+  public String getProductId() {
+    return productId;
+  }
 
-    public void setProductId(String productId) {
-        this.productId = productId;
-    }
+  public void setProductId(String productId) {
+    this.productId = productId;
+  }
 
-    @Basic
-    @Column(name = "OriginalPrice", nullable = false, precision = 0)
-    public double getOriginalPrice() {
-        return originalPrice;
-    }
+  @Basic
+  @Column(name = "OriginalPrice", nullable = false, precision = 0)
+  public double getOriginalPrice() {
+    return originalPrice;
+  }
 
-    public void setOriginalPrice(double originalPrice) {
-        this.originalPrice = originalPrice;
-    }
+  public void setOriginalPrice(double originalPrice) {
+    this.originalPrice = originalPrice;
+  }
 
-    @Basic
-    @Column(name = "ContractorPrice", nullable = false, precision = 0)
-    public double getContractorPrice() {
-        return contractorPrice;
-    }
+  @Basic
+  @Column(name = "ContractorPrice", nullable = false, precision = 0)
+  public double getContractorPrice() {
+    return contractorPrice;
+  }
 
-    public void setContractorPrice(double contractorPrice) {
-        this.contractorPrice = contractorPrice;
-    }
+  public void setContractorPrice(double contractorPrice) {
+    this.contractorPrice = contractorPrice;
+  }
 
-    @Basic
-    @Column(name = "NewPrice", nullable = false, precision = 0)
-    public double getNewPrice() {
-        return newPrice;
-    }
+  @Basic
+  @Column(name = "NewPrice", nullable = false, precision = 0)
+  public double getNewPrice() {
+    return newPrice;
+  }
 
-    public void setNewPrice(double newPrice) {
-        this.newPrice = newPrice;
-    }
+  public void setNewPrice(double newPrice) {
+    this.newPrice = newPrice;
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DealHistoryDetail that = (DealHistoryDetail) o;
-        return dealHistoryId == that.dealHistoryId &&
-                Double.compare(that.originalPrice, originalPrice) == 0 &&
-                Double.compare(that.contractorPrice, contractorPrice) == 0 &&
-                Double.compare(that.newPrice, newPrice) == 0 &&
-                Objects.equals(productId, that.productId);
-    }
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    DealHistoryDetail that = (DealHistoryDetail) o;
+    return dealHistoryId == that.dealHistoryId &&
+            Double.compare(that.originalPrice, originalPrice) == 0 &&
+            Double.compare(that.contractorPrice, contractorPrice) == 0 &&
+            Double.compare(that.newPrice, newPrice) == 0 &&
+            Objects.equals(productId, that.productId);
+  }
 
-    @Override
-    public int hashCode() {
+  @Override
+  public int hashCode() {
 
-        return Objects.hash(dealHistoryId, productId, originalPrice, contractorPrice, newPrice);
-    }
+    return Objects.hash(dealHistoryId, productId, originalPrice, contractorPrice, newPrice);
+  }
 
-    @ManyToOne
-    @JoinColumn(name = "DealHistoryID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
-    public DealHistory getDealHistoryByDealHistoryId() {
-        return dealHistoryByDealHistoryId;
-    }
+  @ManyToOne
+  @JoinColumn(name = "DealHistoryID", referencedColumnName = "Id", nullable = false, insertable=false, updatable=false)
+  public DealHistory getDealHistoryByDealHistoryId() {
+    return dealHistoryByDealHistoryId;
+  }
 
-    public void setDealHistoryByDealHistoryId(DealHistory dealHistoryByDealHistoryId) {
-        this.dealHistoryByDealHistoryId = dealHistoryByDealHistoryId;
-    }
+  public void setDealHistoryByDealHistoryId(DealHistory dealHistoryByDealHistoryId) {
+    this.dealHistoryByDealHistoryId = dealHistoryByDealHistoryId;
+  }
 
-    @ManyToOne
-    @JoinColumn(name = "ProductID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
-    public Product getProductByProductId() {
-        return productByProductId;
-    }
+  @ManyToOne
+  @JoinColumn(name = "ProductID", referencedColumnName = "Id", nullable = false, insertable=false, updatable=false)
+  public Product getProductByProductId() {
+    return productByProductId;
+  }
 
-    public void setProductByProductId(Product productByProductId) {
-        this.productByProductId = productByProductId;
-    }
+  public void setProductByProductId(Product productByProductId) {
+    this.productByProductId = productByProductId;
+  }
 }

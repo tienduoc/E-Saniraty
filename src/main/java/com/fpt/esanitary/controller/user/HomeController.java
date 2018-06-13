@@ -22,7 +22,7 @@ public class HomeController {
 
     @RequestMapping("/")
     public String showHome() {
-        return "home";
+        return "index";
     }
 
     @GetMapping("/login")
