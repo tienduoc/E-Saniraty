@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,6 +15,9 @@ public class AccountDAOImpl implements AccountDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<Account> findAll() {
@@ -32,6 +36,7 @@ public class AccountDAOImpl implements AccountDAO {
     @Override
     public void create(Account account) {
         Session session = sessionFactory.getCurrentSession();
+        account.setPassword(passwordEncoder.encode(account.getPassword()));
         session.save(account);
     }
 

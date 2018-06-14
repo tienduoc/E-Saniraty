@@ -40,7 +40,7 @@
                     <td>${acc.email}</td>
                     <td>${acc.address}</td>
                     <td>${acc.enabled}</td>
-                    <td>${acc.roleId}</td>
+                    <td>${acc.roleByRoleId.name}</td>
                 </tr>
             </tbody>
         </c:forEach>

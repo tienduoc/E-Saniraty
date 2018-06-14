@@ -45,6 +45,8 @@ public class CategoryController {
   }
 
 
+
+
   @RequestMapping("/search")
   public String searchCategory(@RequestParam(value = "q", required=false) String keyword, Model model) {
     if (keyword != null) {

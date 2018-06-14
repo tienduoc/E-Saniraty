@@ -59,6 +59,7 @@
 			<td>
 				<a href="${pageContext.request.contextPath}/account">Account managerment</a><br>
 				<a href="${pageContext.request.contextPath}/account/search">Account: search</a><br>
+				<a href="${pageContext.request.contextPath}/account/create">Account: create</a><br>
 				<hr>
 				<a href="${pageContext.request.contextPath}/category">Category managerment</a><br>
 				<a href="${pageContext.request.contextPath}/category/search">Category: search</a><br>
