@@ -1,4 +1,4 @@
-package com.fpt.esanitary.controller.admin;
+package com.fpt.esanitary.controller.boss;
 
 import com.fpt.esanitary.entities.Account;
 import com.fpt.esanitary.service.AccountService;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping("/account")
+@RequestMapping("account")
 public class AccountController {
 
   @Autowired
@@ -27,14 +27,24 @@ public class AccountController {
   @Autowired
   private PasswordEncoder passwordEncoder;
 
-  @GetMapping
-  public String getAllAccount(Model model, HttpServletRequest request){
+  @GetMapping("forBoss")
+  public String getAccountsForBoss(Model model, HttpServletRequest request){
     PagedListHolder pagedListHolder = new PagedListHolder(accountService.findAll());
     int page = ServletRequestUtils.getIntParameter(request, "p", 0);
     pagedListHolder.setPage(page);
     pagedListHolder.setPageSize(10);
     model.addAttribute("pagedListHolder", pagedListHolder);
     return "account";
+  }
+
+  @GetMapping("forAdmin")
+  public String getAccountsForAdmin(Model model, HttpServletRequest request){
+    PagedListHolder pagedListHolder = new PagedListHolder(accountService.findAllCustomer());
+    int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+    pagedListHolder.setPage(page);
+    pagedListHolder.setPageSize(10);
+    model.addAttribute("pagedListHolder", pagedListHolder);
+    return "account-customer";
   }
 
   @GetMapping("create")
@@ -46,11 +56,34 @@ public class AccountController {
 
   @PostMapping("create")
   public String createAccount(@ModelAttribute("account") Account account) {
+    account.setPassword(passwordEncoder.encode(account.getPassword()));
     accountService.create(account);
-    return "redirect:/account";
+    return "account";
   }
 
-  @RequestMapping("/search")
+  @GetMapping("detail/{username}")
+  public String showAccountDetail(@PathVariable("username") String username, @ModelAttribute("roleId") String roleId, Model model) {
+    model.addAttribute("account", accountService.find(username));
+    model.addAttribute("role", roleService.find(roleId));
+    return "account-detail";
+  }
+
+  @GetMapping("update")
+  public String showFormUpdate(@RequestParam("username") String username, Model model) {
+    model.addAttribute("account", accountService.find(username));
+    model.addAttribute("roles", roleService.findAll());
+    return "account-update";
+  }
+
+  @PostMapping("update")
+  public String updateAccount(@ModelAttribute("account") Account account) {
+    String extPassword = accountService.find(account.getUsername()).getPassword();
+    account.setPassword(extPassword);
+    accountService.update(account);
+    return "redirect:/account/forBoss";
+  }
+
+  @RequestMapping("search")
   public String searchAccount(@RequestParam(value = "q", required=false) String keyword, Model model) {
     if (keyword != null) {
       List<Account> accSearchResult = accountService.search(keyword);

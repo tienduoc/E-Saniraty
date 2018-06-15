@@ -21,6 +21,11 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
+    public List<Account> findAllCustomer() {
+        return accountDAO.findAllCustomer();
+    }
+
+    @Override
     public Account find(String username) {
         return accountDAO.find(username);
     }
@@ -33,11 +38,6 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public void update(Account account) {
         accountDAO.update(account);
-    }
-
-    @Override
-    public void delete(Account account) {
-        accountDAO.delete(account);
     }
 
     @Override

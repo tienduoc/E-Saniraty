@@ -8,13 +8,13 @@ public interface AccountService {
 
     List<Account> findAll();
 
+    List<Account> findAllCustomer();
+
     Account find(String username);
 
     void create(Account account);
 
     void update(Account account);
-
-    void delete(Account account);
 
     List<Account> search(String keyword);
 }

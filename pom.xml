@@ -10,7 +10,7 @@
     <packaging>war</packaging>
 
     <properties>
-        <springframework.version>5.0.6.RELEASE</springframework.version>
+        <springframework.version>5.0.7.RELEASE</springframework.version>
         <springsecurity.version>5.0.5.RELEASE</springsecurity.version>
         <hibernate.version>5.3.1.Final</hibernate.version>
         <slf4j.version>1.7.25</slf4j.version>
@@ -33,7 +33,7 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
-            <version>2.0.6.RELEASE</version>
+            <version>2.0.8.RELEASE</version>
         </dependency>
 
         <!-- Spring Security -->
@@ -82,17 +82,11 @@
             <version>6.4.0.jre8</version>
         </dependency>
 
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.11</version>
-        </dependency>
-
         <!-- Servlet, JSP and JSTL support -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <version>4.0.1</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp</groupId>

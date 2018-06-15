@@ -55,16 +55,25 @@
 					        </div>
 					    </div>
 
-						<!-- User name -->
 						<div style="margin-bottom: 25px" class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
- 								<form:input path="username" placeholder="Username" class="form-control" />
+ 								<form:input path="username" placeholder="Username*" class="form-control" required="true" />
 						</div>
-
-						<!-- Password -->
 						<div style="margin-bottom: 25px" class="input-group">
 							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> 
-							<form:password path="password" placeholder="Password" class="form-control" />
+							<form:password path="password" placeholder="Password*" class="form-control" required="true"/>
+						</div>
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							<form:input path="fullname" placeholder="Full name*" class="form-control" required="true"/>
+						</div>
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							<form:input path="phone" placeholder="Phone*" class="form-control" required="true"/>
+						</div>
+						<div style="margin-bottom: 25px" class="input-group">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+							<form:input path="email" placeholder="Email" class="form-control" />
 						</div>
 					
 						<!-- Register Button -->

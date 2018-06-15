@@ -14,7 +14,7 @@ public interface AccountDAO {
 
     void update(Account account);
 
-    void delete(Account account);
-
     List<Account> search(String keyword);
+
+    List<Account> findAllCustomer();
 }

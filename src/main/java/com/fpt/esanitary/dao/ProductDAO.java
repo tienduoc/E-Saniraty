@@ -1,10 +1,10 @@
-package com.fpt.esanitary.service;
+package com.fpt.esanitary.dao;
 
 import com.fpt.esanitary.entities.Product;
 
 import java.util.List;
 
-public interface ProductService {
+public interface ProductDAO {
 
   List<Product> findAll();
 

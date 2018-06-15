@@ -17,7 +17,7 @@
 <body style="width: 80%; margin: 0 auto">
     <p class="display-3">ACCOUNT MANAGEMENT</p>
     <jsp:useBean id="pagedListHolder" scope="request" type="org.springframework.beans.support.PagedListHolder"/>
-    <c:url value="/account/forBoss" var="pagedLink">
+    <c:url value="/account/forAdmin" var="pagedLink">
         <c:param name="p" value="~"/>
     </c:url>
     <table class="table table-responsive-sm">
@@ -35,6 +35,9 @@
         </thead>
         <tbody>
         <c:forEach var="acc" items="${pagedListHolder.pageList}">
+            <c:url var="detailLink" value="/account/detail">
+                <c:param name="username" value="${acc.username}" />
+            </c:url>
             <c:url var="updateLink" value="/account/update">
                 <c:param name="username" value="${acc.username}" />
             </c:url>
@@ -59,7 +62,8 @@
                     </td>
                     <td>${acc.roleByRoleId.name}</td>
                     <td>
-                        <a href="${pageContext.request.contextPath}/account/detail/${acc.username}">Detail</a> |
+                        <a href="${pageContext.request.contextPath}/account/detail/${acc.username}">Detail Path</a>
+                        <a href="${detailLink}">Detail</a> |
                         <a href="${updateLink}">Update</a>
                     </td>
                 </tr>

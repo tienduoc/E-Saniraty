@@ -14,8 +14,8 @@
 		text-decoration: none;
 	}
 </style>
-<div style="max-width: 50%; margin: 0 auto">
 <body>
+<div style="max-width: 60%; margin: 0 auto">
 	<h2>MY HOME PAGE</h2>
 	<!-- show username and role when user logged -->
 	<p>
@@ -38,7 +38,7 @@
 	<%--<sec:authorize access="hasAuthority('Admin')"></sec:authorize>--%>
 	<%--<sec:authorize access="isAnonymous()"></sec:authorize>--%>
 
-	<table style="width: 500px">
+	<table style="width: 100%">
 		<thead>
 		<tr style="font-weight: bold">
 			<td>Customer</td>
@@ -57,16 +57,16 @@
 
 			</td>
 			<td>
-				<a href="${pageContext.request.contextPath}/account">Account managerment</a><br>
-				<a href="${pageContext.request.contextPath}/account/search">Account: search</a><br>
-				<a href="${pageContext.request.contextPath}/account/create">Account: create</a><br>
+				<a href="${pageContext.request.contextPath}/account/forAdmin">Customer account managerment</a><br>
 				<hr>
 				<a href="${pageContext.request.contextPath}/category">Category managerment</a><br>
 				<a href="${pageContext.request.contextPath}/category/search">Category: search</a><br>
 				<a href="${pageContext.request.contextPath}/category/create">Category: create</a><br>
 			</td>
 			<td>
-
+				<a href="${pageContext.request.contextPath}/account/forBoss">Account managerment</a><br>
+				<a href="${pageContext.request.contextPath}/account/search">Account: search</a><br>
+				<a href="${pageContext.request.contextPath}/account/create">Account: create</a><br>
 			</td>
 		</tr>
 		</tbody>

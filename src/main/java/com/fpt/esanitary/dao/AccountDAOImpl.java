@@ -16,13 +16,10 @@ public class AccountDAOImpl implements AccountDAO {
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
     @Override
     public List<Account> findAll() {
         Session session = sessionFactory.getCurrentSession();
-        List<Account> accounts = session.createQuery("from Account order by username", Account.class).getResultList();
+        List<Account> accounts = session.createQuery("from Account order by username", Account.class).setMaxResults(8).getResultList();
         return accounts;
     }
 
@@ -36,7 +33,6 @@ public class AccountDAOImpl implements AccountDAO {
     @Override
     public void create(Account account) {
         Session session = sessionFactory.getCurrentSession();
-        account.setPassword(passwordEncoder.encode(account.getPassword()));
         session.save(account);
     }
 
@@ -47,17 +43,18 @@ public class AccountDAOImpl implements AccountDAO {
     }
 
     @Override
-    public void delete(Account account) {
-        Session session = sessionFactory.getCurrentSession();
-        session.delete(account);
-    }
-
-    @Override
     public List<Account> search(String keyword) {
         Session session = sessionFactory.getCurrentSession();
         Query<Account> query = session.createQuery("from Account where username like :keyword", Account.class);
         query.setParameter("keyword", "%" + keyword + "%");
         List<Account> accounts = query.getResultList();
+        return accounts;
+    }
+
+    @Override
+    public List<Account> findAllCustomer() {
+        Session session = sessionFactory.getCurrentSession();
+        List<Account> accounts = session.createQuery("from Account where roleByRoleId.name = 'Customer' or roleByRoleId.name = 'Contractor'", Account.class).getResultList();
         return accounts;
     }
 }
