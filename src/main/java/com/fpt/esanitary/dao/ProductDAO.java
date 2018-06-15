@@ -19,4 +19,8 @@ public interface ProductDAO {
   Product findByName(String name);
 
   List<Product> search(String keyword);
+
+  List<Product> findByCategory(Integer id);
+
+  List<Product> findByParentCategory(Integer id);
 }

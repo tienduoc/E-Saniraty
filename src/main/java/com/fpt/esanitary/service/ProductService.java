@@ -10,7 +10,9 @@ public interface ProductService {
 
   Product find(Integer id);
 
-  List<Product> getProductByCategory();
+  List<Product> findByCategory(Integer id);
+
+  List<Product> findByParentCategory(Integer id);
 
   void create(Product product);
 

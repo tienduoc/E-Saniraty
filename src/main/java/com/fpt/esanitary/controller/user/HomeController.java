@@ -2,10 +2,13 @@ package com.fpt.esanitary.controller.user;
 
 import com.fpt.esanitary.entities.Account;
 import com.fpt.esanitary.service.AccountService;
+import com.fpt.esanitary.service.CategoryService;
+import com.fpt.esanitary.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,10 +21,20 @@ public class HomeController {
     private AccountService accountService;
 
     @Autowired
+    private ProductService productService;
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @RequestMapping("/")
-    public String showHome() {
+    public String showHome(Model model) {
+        for (int i = 1; i < 5; i++) {
+            model.addAttribute("catName"+i, categoryService.find(i).getName());
+            model.addAttribute("proOfCat"+i, productService.findByParentCategory(i));
+        }
         return "index";
     }
 

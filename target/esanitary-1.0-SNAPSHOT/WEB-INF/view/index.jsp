@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,6 +23,8 @@
 </head>
 
 <body>
+
+
 <!-- NAVBAR -->
 <nav id="navigation-bar" class="navbar navbar-default navbar-inverse">
     <div class="container-fluid">
@@ -352,14 +356,18 @@
     </div>
 </div>
 
+<c:forEach var = "i" begin = "1" end = "4">
+    <c:set var="catName" value="catName${i}" />
+    <c:set var="proOfCat" value="proOfCat${i}" />
 <!-- PRODUCT -->
 <div class="main-product">
-    <div class="container" id="bath">
+    <div class="container">
         <!-- Introducing of products categogies -->
         <div class="row">
             <div class="col-md-12">
                 <div class="centered-title">
-                    <h2 class="text-uppercase">PRODUCT GROUP
+                    ${num}
+                    <h2 class="text-uppercase">${requestScope[catName]}
                         <span class="heading-border"></span> <!-- TODO -->
                     </h2>
                     <div class="clear"></div>
@@ -372,24 +380,26 @@
         <!-- Products -->
         <div class="row">
             <!-- Product item -->
-            <div class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
-                <div class="thumbnail text-center"> <!-- TODO -->
-                    <img src="http://rtlarge.ie/wp-content/uploads/2016/10/maria-toilet-510x600.jpg" alt="Bồn cầu nguyên khối">
-                    <div class="caption">
-                        <h4 class="text-uppercase">PRODUCT TITLE</h4>
-                        <p class="text-justify">PRODUCT SHORT DESCRIPTION</p>
-                        <p class="text-success">
-                            <strong>PRICE</strong>
-                            <del class="text-danger">OLD PRICE</del>
-                        </p>
-                        <a href="details.html" class="label label-primary text-right">Xem chi tiết...</a>
-                    </div>
+            <c:forEach var="p" items="${requestScope[proOfCat]}">
+                <div class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+                        <div class="thumbnail text-center"> <!-- TODO -->
+                            <img src="http://rtlarge.ie/wp-content/uploads/2016/10/maria-toilet-510x600.jpg" alt="Bồn cầu nguyên khối">
+                            <div class="caption">
+                                    <h4 class="text-uppercase"> ${p.name}</h4>
+                                    <p class="text-justify">PRODUCT SHORT DESCRIPTION</p>
+                                    <p class="text-success">
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="5" value="${p.salePrice}" /></strong>
+                                        <del class="text-danger">OLD PRICE</del>
+                                    </p>
+                                    <a href="details.html" class="label label-primary text-right">Xem chi tiết...</a>
+                            </div>
+                        </div>
                 </div>
-
-            </div>
+            </c:forEach>
         </div>
     </div>
 </div>
+</c:forEach>
 
 <!-- FOOTER -->
 <footer>
