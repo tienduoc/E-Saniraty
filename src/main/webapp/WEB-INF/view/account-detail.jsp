@@ -33,7 +33,6 @@
                 <div style="color: red">Disabled</div>
             </c:otherwise>
         </c:choose>
-        <br>
         ${account.roleByRoleId.name}
     </form:form>
 </body>

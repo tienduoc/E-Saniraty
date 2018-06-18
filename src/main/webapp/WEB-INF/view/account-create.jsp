@@ -14,11 +14,6 @@
 </head>
 <body style="margin-left: 3%">
 <form:form action="create" modelAttribute="account" method="post">
-
-    <!-- associate this data with customer id -->
-    <%--<form:hidden path="username" />--%>
-    <form:hidden path="enabled" value="true" />
-
     <table>
         <tbody>
         <tr>
@@ -58,6 +53,7 @@
                 </select>
             </td>
         </tr>
+        <form:hidden path="enabled" value="true" />
         <tr>
             <td><input type="submit" value="Save" class="save"/></td>
         </tr>
