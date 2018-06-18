@@ -33,16 +33,19 @@ public class RoleDAOImpl implements RoleDAO {
 
     @Override
     public void create(Role role) {
-
+        Session session = sessionFactory.getCurrentSession();
+        session.save(role);
     }
 
     @Override
     public void update(Role role) {
-
+      Session session = sessionFactory.getCurrentSession();
+      session.update(role);
     }
 
     @Override
     public void delete(Role role) {
-
+      Session session = sessionFactory.getCurrentSession();
+      session.delete(role);
     }
 }
