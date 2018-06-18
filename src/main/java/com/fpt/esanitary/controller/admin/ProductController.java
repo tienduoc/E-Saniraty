@@ -23,9 +23,6 @@ public class ProductController {
   @Autowired
   private CategoryService categoryService;
 
-  @Autowired
-
-
   @GetMapping
   public String getAllProduct(Model model, HttpServletRequest request) {
     PagedListHolder pagedListHolder = new PagedListHolder(productService.findAll());
