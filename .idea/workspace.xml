@@ -10,7 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="508a1cba-7589-4889-9a37-8278b1d4a4eb" name="Default" comment="Login, Registration with Bcrypt password encoded">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/resources/dist/css/myStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/resources/dist/css/myStyle.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/esanitary-1.0-SNAPSHOT/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/esanitary-1.0-SNAPSHOT/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/esanitary-1.0-SNAPSHOT/WEB-INF/resources/dist/css/myStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/esanitary-1.0-SNAPSHOT/WEB-INF/resources/dist/css/myStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/esanitary-1.0-SNAPSHOT/WEB-INF/view/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/esanitary-1.0-SNAPSHOT/WEB-INF/view/index.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -78,7 +83,7 @@
       <file leaf-file-name="HomeController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/user/HomeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="578">
+            <state relative-caret-position="408">
               <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
             </state>
           </provider>
@@ -87,12 +92,17 @@
       <file leaf-file-name="index.jsp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/index.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="358" selection-start-line="358" selection-end-line="358" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="e#18532#18538#0#HTML" expanded="true" />
-              </folding>
+            <state relative-caret-position="217">
+              <caret line="386" column="70" selection-start-line="386" selection-start-column="70" selection-end-line="386" selection-end-column="70" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="myStyle.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/resources/dist/css/myStyle.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="190" column="9" selection-start-line="190" selection-start-column="1" selection-end-line="190" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -147,14 +157,13 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/config/AppConfig.java" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/AccountService.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/entities/Product.java" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/CategoryDAOImpl.java" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/AccountService.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/CategoryDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/RoleDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/RoleDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/RoleService.java" />
@@ -204,6 +213,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/user/HomeController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/ProductDAOImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/ProductService.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/resources/dist/css/myStyle.css" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/index.jsp" />
       </list>
     </option>
@@ -247,7 +257,7 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="39" />
     <option name="y" value="23" />
     <option name="width" value="1157" />
@@ -263,7 +273,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Course" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -385,6 +394,36 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
               <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="esanitary" type="b2602c69:ProjectViewProjectNode" />
+              <item name="esanitary" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="esanitary" type="b2602c69:ProjectViewProjectNode" />
+              <item name="esanitary" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="esanitary" type="b2602c69:ProjectViewProjectNode" />
+              <item name="esanitary" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="webapp" type="462c0819:PsiDirectoryNode" />
+              <item name="WEB-INF" type="462c0819:PsiDirectoryNode" />
               <item name="view" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -392,6 +431,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Course" />
       <pane id="AndroidView" />
     </panes>
   </component>
@@ -444,44 +484,6 @@
   <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.8">
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <patterns />
-    </configuration>
-    <configuration default="true" type="TestNG" factoryName="TestNG">
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="SUITE_NAME" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="GROUP_NAME" />
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
-      <option name="OUTPUT_DIRECTORY" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <option name="USE_DEFAULT_REPORTERS" value="false" />
-      <option name="PROPERTIES_FILE" />
-      <properties />
-      <listeners />
     </configuration>
     <configuration name="Tomcat 9.0.8" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.8" ALTERNATIVE_JRE_ENABLED="false">
       <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/" />
@@ -598,6 +600,44 @@
         </option>
       </method>
     </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <properties />
+      <listeners />
+    </configuration>
     <list>
       <item itemvalue="Tomcat Server.Tomcat 9.0.8" />
       <item itemvalue="Tomcat Server.account.jsp" />
@@ -653,11 +693,12 @@
       <workItem from="1529052634893" duration="306000" />
       <workItem from="1529052948217" duration="87000" />
       <workItem from="1529053038356" duration="490000" />
+      <workItem from="1529291498932" duration="173000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129919000" />
+    <option name="totallyTimeSpent" value="130092000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -669,74 +710,44 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32794118" />
-      <window_info anchor="bottom" id="Application Servers" order="8" weight="0.32838285" />
-      <window_info anchor="right" id="Maven Projects" order="4" weight="0.3290469" />
-      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info anchor="right" id="Database" internal_type="SLIDING" order="5" type="SLIDING" weight="0.32980332" />
-      <window_info id="Structure" order="1" sideWeight="0.4379562" side_tool="true" weight="0.19515885" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.24962178" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4509804" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3267974" />
       <window_info anchor="bottom" id="Messages" order="10" weight="0.3267974" />
       <window_info anchor="right" id="Palette&#9;" order="6" />
-      <window_info id="Image Layers" order="5" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.32755905" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="12" weight="0.3267974" />
-      <window_info active="true" anchor="bottom" id="Run" order="15" visible="true" weight="0.36764705" />
-      <window_info anchor="bottom" id="Spring" order="13" weight="0.3267974" />
-      <window_info anchor="bottom" id="Terminal" order="14" weight="0.32843137" />
-      <window_info auto_hide="true" id="Persistence" order="8" sideWeight="0.420765" side_tool="true" weight="0.22239032" />
-      <window_info anchor="bottom" id="Database Console" order="0" weight="0.3267974" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5620438" weight="0.21104388" />
-      <window_info anchor="right" id="Bean Validation" order="8" />
-      <window_info id="Web" order="6" side_tool="true" weight="0.32980332" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.3267974" />
-      <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info id="Favorites" order="7" side_tool="true" weight="0.32980332" />
-      <window_info anchor="bottom" id="Message" order="1" />
-      <window_info anchor="bottom" id="Run" order="15" weight="0.36764705" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32794118" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.5620438" visible="true" weight="0.22087745" />
-      <window_info id="Favorites" order="7" side_tool="true" weight="0.32980332" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.32755905" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3267974" />
-      <window_info id="Structure" order="1" sideWeight="0.4379562" side_tool="true" weight="0.19515885" />
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Maven Projects" order="4" weight="0.3290469" />
-      <window_info id="Web" order="6" side_tool="true" weight="0.32980332" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Spring" order="13" weight="0.3267974" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24962178" />
-      <window_info id="Image Layers" order="5" />
-      <window_info anchor="right" id="Theme Preview" order="9" />
-      <window_info auto_hide="true" id="Persistence" order="8" sideWeight="0.420765" side_tool="true" weight="0.22239032" />
-      <window_info anchor="right" id="Database" internal_type="SLIDING" order="5" type="SLIDING" weight="0.32980332" />
-      <window_info id="Capture Tool" order="2" />
+      <window_info active="true" anchor="bottom" id="Run" order="15" visible="true" weight="0.36655948" />
       <window_info anchor="bottom" id="Version Control" order="12" weight="0.32838285" />
-      <window_info anchor="right" id="Capture Analysis" order="7" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3267974" />
-      <window_info anchor="bottom" id="Application Servers" order="8" weight="0.32838285" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Database Console" order="0" weight="0.3267974" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="right" id="Bean Validation" order="8" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.47875816" />
+      <window_info anchor="bottom" id="Spring" order="13" weight="0.3267974" />
       <window_info anchor="bottom" id="Terminal" order="14" weight="0.32843137" />
-      <window_info anchor="bottom" id="Find" order="2" weight="0.3267974" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info auto_hide="true" id="Persistence" order="8" sideWeight="0.420765" side_tool="true" weight="0.22239032" />
       <window_info id="Designer" order="3" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.5620438" visible="true" weight="0.22390318" />
+      <window_info anchor="right" id="Bean Validation" order="8" />
+      <window_info id="Web" order="6" side_tool="true" weight="0.32980332" />
+      <window_info anchor="right" id="Database" internal_type="SLIDING" order="5" type="SLIDING" weight="0.32980332" />
+      <window_info id="Structure" order="1" sideWeight="0.4379562" side_tool="true" weight="0.19515885" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.47875816" />
+      <window_info id="Favorites" order="7" side_tool="true" weight="0.32980332" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info id="Image Layers" order="5" />
+      <window_info anchor="bottom" id="Database Console" order="0" weight="0.3267974" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.3267974" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="right" id="Theme Preview" order="9" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24962178" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="bottom" id="Application Servers" order="8" weight="0.32838285" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
     </layout>
     <layout-to-restore>
       <window_info auto_hide="true" id="Persistence" order="8" sideWeight="0.420765" side_tool="true" weight="0.22239032" />
@@ -826,7 +837,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/config/Filter.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/CategoryServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
@@ -1068,17 +1078,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/resources/img/slideshows/carousel-slide-2.jpg">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/index.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="358" selection-start-line="358" selection-end-line="358" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="e#18532#18538#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/user/ProductController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1088,7 +1087,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/user/HomeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
+        <state relative-caret-position="408">
           <caret line="36" column="9" selection-start-line="36" selection-start-column="9" selection-end-line="36" selection-end-column="9" />
         </state>
       </provider>
@@ -1104,6 +1103,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="12" column="33" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/resources/dist/css/myStyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="190" column="9" selection-start-line="190" selection-start-column="1" selection-end-line="190" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/index.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="386" column="70" selection-start-line="386" selection-start-column="70" selection-end-line="386" selection-end-column="70" />
         </state>
       </provider>
     </entry>

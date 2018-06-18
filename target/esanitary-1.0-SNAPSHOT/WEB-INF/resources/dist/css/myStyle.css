@@ -187,6 +187,12 @@
   height: 1px;
   bottom: -10px;
 }
+
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
 /* FORMAT FOR FOOTER */
 
 footer {
