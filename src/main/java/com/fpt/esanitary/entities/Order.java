@@ -107,7 +107,7 @@ public class Order {
   }
 
   @ManyToOne
-  @JoinColumn(name = "Username", referencedColumnName = "Username", nullable = false, insertable=false, updatable=false)
+  @JoinColumn(name = "Username", referencedColumnName = "Username", nullable = false, insertable = false, updatable = false)
   public Account getAccountByUsername() {
     return accountByUsername;
   }

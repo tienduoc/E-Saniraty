@@ -14,7 +14,6 @@ public class Category {
   private Collection<Product> productsById;
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "Id", nullable = false)
   public int getId() {
     return id;
@@ -61,7 +60,7 @@ public class Category {
   }
 
   @ManyToOne
-  @JoinColumn(name = "ParentID", referencedColumnName = "Id", insertable=false, updatable=false)
+  @JoinColumn(name = "ParentID", referencedColumnName = "Id", insertable = false, updatable = false)
   public Category getCategoryByParentId() {
     return categoryByParentId;
   }

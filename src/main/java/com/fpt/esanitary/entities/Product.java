@@ -72,6 +72,7 @@ public class Product {
   }
 
   @Basic
+
   @Column(name = "CostPrice", nullable = true, precision = 0)
   public Double getCostPrice() {
     return costPrice;
@@ -267,8 +268,8 @@ public class Product {
     this.orderDetailsById = orderDetailsById;
   }
 
-  @ManyToOne
-  @JoinColumn(name = "CategoryID", referencedColumnName = "Id", nullable = false, insertable=false, updatable=false)
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "CategoryID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
   public Category getCategoryByCategoryId() {
     return categoryByCategoryId;
   }
@@ -278,7 +279,7 @@ public class Product {
   }
 
   @ManyToOne
-  @JoinColumn(name = "ManufacturerID", referencedColumnName = "Id", nullable = false, insertable=false, updatable=false)
+  @JoinColumn(name = "ManufacturerID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
   public Manufacturer getManufacturerByManufacturerId() {
     return manufacturerByManufacturerId;
   }
@@ -287,7 +288,7 @@ public class Product {
     this.manufacturerByManufacturerId = manufacturerByManufacturerId;
   }
 
-  @OneToMany(mappedBy = "productByProductId")
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "productByProductId")
   public Collection<ProductImage> getProductImagesById() {
     return productImagesById;
   }

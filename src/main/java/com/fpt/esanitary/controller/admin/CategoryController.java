@@ -31,7 +31,7 @@ public class CategoryController {
   }
 
   @GetMapping("/create")
-  public String showFormForCreate(Model model) {
+  public String showFormCreate(Model model) {
     model.addAttribute("category", new Category());
     model.addAttribute("parents", categoryService.getParent());
     return "category-create";

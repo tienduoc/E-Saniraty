@@ -5,7 +5,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,7 +18,8 @@ public class AccountDAOImpl implements AccountDAO {
     @Override
     public List<Account> findAll() {
         Session session = sessionFactory.getCurrentSession();
-        List<Account> accounts = session.createQuery("from Account order by username", Account.class).setMaxResults(8).getResultList();
+        Query query = session.createQuery("from Account order by username", Account.class);
+        List<Account> accounts = query.getResultList();
         return accounts;
     }
 
@@ -45,8 +45,8 @@ public class AccountDAOImpl implements AccountDAO {
     @Override
     public List<Account> search(String keyword) {
         Session session = sessionFactory.getCurrentSession();
-        Query<Account> query = session.createQuery("from Account where username like :keyword", Account.class);
-        query.setParameter("keyword", "%" + keyword + "%");
+        Query query = session.createQuery("from Account where username like :keyword", Account.class)
+                .setParameter("keyword", "%" + keyword + "%");
         List<Account> accounts = query.getResultList();
         return accounts;
     }

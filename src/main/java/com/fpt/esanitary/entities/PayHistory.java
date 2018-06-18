@@ -71,7 +71,7 @@ public class PayHistory {
   }
 
   @ManyToOne
-  @JoinColumn(name = "OrderID", referencedColumnName = "Id", nullable = false, insertable=false, updatable=false)
+  @JoinColumn(name = "OrderID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
   public Order getOrderByOrderId() {
     return orderByOrderId;
   }

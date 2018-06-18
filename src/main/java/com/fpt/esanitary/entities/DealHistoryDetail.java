@@ -84,7 +84,7 @@ public class DealHistoryDetail {
   }
 
   @ManyToOne
-  @JoinColumn(name = "DealHistoryID", referencedColumnName = "Id", nullable = false, insertable=false, updatable=false)
+  @JoinColumn(name = "DealHistoryID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
   public DealHistory getDealHistoryByDealHistoryId() {
     return dealHistoryByDealHistoryId;
   }
@@ -94,7 +94,7 @@ public class DealHistoryDetail {
   }
 
   @ManyToOne
-  @JoinColumn(name = "ProductID", referencedColumnName = "Id", nullable = false, insertable=false, updatable=false)
+  @JoinColumn(name = "ProductID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
   public Product getProductByProductId() {
     return productByProductId;
   }

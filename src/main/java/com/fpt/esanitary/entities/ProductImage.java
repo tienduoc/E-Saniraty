@@ -8,11 +8,12 @@ import java.util.Objects;
 public class ProductImage {
   private int id;
   private String productId;
-  private String image;
+  private String url;
+  private Boolean mainPhoto;
   private Product productByProductId;
 
   @Id
-  @Column(name = "id", nullable = false)
+  @Column(name = "Id", nullable = false)
   public int getId() {
     return id;
   }
@@ -32,13 +33,23 @@ public class ProductImage {
   }
 
   @Basic
-  @Column(name = "Image", nullable = false, length = 2147483647)
-  public String getImage() {
-    return image;
+  @Column(name = "Url", nullable = false, length = 2147483647)
+  public String getUrl() {
+    return url;
   }
 
-  public void setImage(String image) {
-    this.image = image;
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+  @Basic
+  @Column(name = "MainPhoto", nullable = false)
+  public Boolean getMainPhoto() {
+    return mainPhoto;
+  }
+
+  public void setMainPhoto(Boolean mainPhoto) {
+    this.mainPhoto = mainPhoto;
   }
 
   @Override
@@ -48,17 +59,18 @@ public class ProductImage {
     ProductImage that = (ProductImage) o;
     return id == that.id &&
             Objects.equals(productId, that.productId) &&
-            Objects.equals(image, that.image);
+            Objects.equals(url, that.url) &&
+            Objects.equals(mainPhoto, that.mainPhoto);
   }
 
   @Override
   public int hashCode() {
 
-    return Objects.hash(id, productId, image);
+    return Objects.hash(id, productId, url, mainPhoto);
   }
 
-  @ManyToOne
-  @JoinColumn(name = "ProductID", referencedColumnName = "Id", nullable = false, insertable=false, updatable=false)
+  @ManyToOne(fetch = FetchType.EAGER)
+  @JoinColumn(name = "ProductID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
   public Product getProductByProductId() {
     return productByProductId;
   }

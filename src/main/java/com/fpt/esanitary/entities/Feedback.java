@@ -70,7 +70,7 @@ public class Feedback {
   }
 
   @ManyToOne
-  @JoinColumn(name = "Username", referencedColumnName = "Username", nullable = false, insertable=false, updatable=false)
+  @JoinColumn(name = "Username", referencedColumnName = "Username", nullable = false, insertable = false, updatable = false)
   public Account getAccountByUsername() {
     return accountByUsername;
   }
@@ -80,7 +80,7 @@ public class Feedback {
   }
 
   @ManyToOne
-  @JoinColumn(name = "ProductID", referencedColumnName = "Id", nullable = false, insertable=false, updatable=false)
+  @JoinColumn(name = "ProductID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
   public Product getProductByProductId() {
     return productByProductId;
   }

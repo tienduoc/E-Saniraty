@@ -48,7 +48,7 @@ public class ComboProduct {
   }
 
   @ManyToOne
-  @JoinColumn(name = "ComboID", referencedColumnName = "Id", nullable = false, insertable=false, updatable=false)
+  @JoinColumn(name = "ComboID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
   public Combo getComboByComboId() {
     return comboByComboId;
   }
@@ -58,7 +58,7 @@ public class ComboProduct {
   }
 
   @ManyToOne
-  @JoinColumn(name = "ProductID", referencedColumnName = "Id", nullable = false, insertable=false, updatable=false)
+  @JoinColumn(name = "ProductID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
   public Product getProductByProductId() {
     return productByProductId;
   }

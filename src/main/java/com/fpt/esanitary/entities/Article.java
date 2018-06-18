@@ -82,7 +82,7 @@ public class Article {
   }
 
   @ManyToOne
-  @JoinColumn(name = "ManufacturerID", referencedColumnName = "Id", nullable = false, insertable=false, updatable=false)
+  @JoinColumn(name = "ManufacturerID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
   public Manufacturer getManufacturerByManufacturerId() {
     return manufacturerByManufacturerId;
   }

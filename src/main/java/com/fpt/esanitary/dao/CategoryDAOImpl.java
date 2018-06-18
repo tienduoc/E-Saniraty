@@ -3,6 +3,7 @@ package com.fpt.esanitary.dao;
 import com.fpt.esanitary.entities.Category;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -79,9 +80,9 @@ public class CategoryDAOImpl implements CategoryDAO {
   @Override
   public List<Category> search(String keyword) {
     Session session = sessionFactory.getCurrentSession();
-    List categories = session.createQuery("from Category where name like :keyword", Category.class)
-            .setParameter("keyword", "%" + keyword + "%")
-            .getResultList();
+    Query query = session.createQuery("from Category where name like :keyword", Category.class)
+            .setParameter("keyword", "%" + keyword + "%");
+    List<Category> categories = query.getResultList();
     return categories;
   }
 }

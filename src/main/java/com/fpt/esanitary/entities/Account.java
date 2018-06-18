@@ -120,7 +120,7 @@ public class Account {
   }
 
   @ManyToOne
-  @JoinColumn(name = "RoleID", referencedColumnName = "Id", nullable = false, insertable=false, updatable=false)
+  @JoinColumn(name = "RoleID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
   public Role getRoleByRoleId() {
     return roleByRoleId;
   }

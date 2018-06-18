@@ -16,7 +16,9 @@ public class ProductDAOImpl implements ProductDAO {
 
   @Override
   public List<Product> findAll() {
-    return null;
+    Session session = sessionFactory.getCurrentSession();
+    List<Product> products = session.createQuery("from Product order by name", Product.class).getResultList();
+    return products;
   }
 
   @Override
@@ -58,7 +60,7 @@ public class ProductDAOImpl implements ProductDAO {
   @Override
   public List<Product> findByParentCategory(Integer id) {
     Session session = sessionFactory.getCurrentSession();
-    List<Product> products = session.createQuery("from Product where categoryId =:id", Product.class)
+    List<Product> products = session.createQuery("from Product where categoryId =:id")
             .setParameter("id", id)
             .getResultList();
     return products;
