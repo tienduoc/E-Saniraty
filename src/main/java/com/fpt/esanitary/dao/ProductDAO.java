@@ -8,7 +8,7 @@ public interface ProductDAO {
 
   List<Product> findAll();
 
-  Product find(Integer id);
+  Product findById(String id);
 
   List<Product> getProductByCategory();
 

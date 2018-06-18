@@ -50,7 +50,7 @@
                     <option value="">None</option>
                     <c:forEach var="r" items="${roles}">
                         <c:if test="${!(r.name.equalsIgnoreCase('Boss') || r.name.equalsIgnoreCase('Admin'))}">
-                            <option value="${r.id}">${r.name}</option>
+                            <option value="${r.id}" ${r.id == account.roleByRoleId.id ? 'selected = "selected"' : ''}>${r.name}</option>
                         </c:if>
                     </c:forEach>
                 </select>

@@ -8,7 +8,7 @@ public interface ProductService {
 
   List<Product> findAll();
 
-  Product find(Integer id);
+  Product findById(String id);
 
   List<Product> findByCategory(Integer id);
 

@@ -22,8 +22,10 @@ public class ProductDAOImpl implements ProductDAO {
   }
 
   @Override
-  public Product find(Integer id) {
-    return null;
+  public Product findById(String id) {
+    Session session = sessionFactory.getCurrentSession();
+    Product product = session.find(Product.class, id);
+    return product;
   }
 
   @Override
@@ -34,12 +36,14 @@ public class ProductDAOImpl implements ProductDAO {
 
   @Override
   public void create(Product product) {
-
+    Session session = sessionFactory.getCurrentSession();
+    session.save(product);
   }
 
   @Override
   public void update(Product product) {
-
+    Session session = sessionFactory.getCurrentSession();
+    session.update(product);
   }
 
   @Override

@@ -28,16 +28,11 @@
         <c:choose>
             <c:when test="${account.enabled}">
                 <div style="color: green">Enabled</div>
-                <%--<input type="radio" checked onclick="return false;">--%>
             </c:when>
             <c:otherwise>
                 <div style="color: red">Disabled</div>
-                <%--<input type="radio" onclick="return false;">--%>
             </c:otherwise>
         </c:choose>
-        <%--<label>enabled</label>--%>
-        <%--<form:checkbox value="${account.enabled}" path="enabled" onclick="return false;"></form:checkbox>--%>
-        <%--${account.enabled}--%>
         <br>
         ${account.roleByRoleId.name}
     </form:form>

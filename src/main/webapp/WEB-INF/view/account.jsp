@@ -48,14 +48,11 @@
                         <c:choose>
                             <c:when test="${acc.enabled}">
                                 <p style="color: green">Enabled</p>
-                                <%--<input type="radio" checked onclick="return false;">--%>
                             </c:when>
                             <c:otherwise>
                                 <p style="color: red">Disabled</p>
-                                <%--<input type="radio" onclick="return false;">--%>
                             </c:otherwise>
                         </c:choose>
-
                     </td>
                     <td>${acc.roleByRoleId.name}</td>
                     <td>

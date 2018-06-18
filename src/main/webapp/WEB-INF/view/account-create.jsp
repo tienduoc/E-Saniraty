@@ -13,7 +13,7 @@
     <title>Create Account</title>
 </head>
 <body style="margin-left: 3%">
-<form:form action="create" modelAttribute="account" method="POST">
+<form:form action="create" modelAttribute="account" method="post">
 
     <!-- associate this data with customer id -->
     <%--<form:hidden path="username" />--%>
