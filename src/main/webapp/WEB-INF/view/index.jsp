@@ -366,7 +366,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="centered-title">
-                    <h2 class="text-uppercase >${requestScope[catName]}
+                    <h2 class="text-uppercase">${requestScope[catName]}
                         <span class="heading-border"></span> <!-- TODO -->
                     </h2>
                     <div class="clear"></div>
