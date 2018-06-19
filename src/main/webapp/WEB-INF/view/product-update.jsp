@@ -15,7 +15,7 @@
 <body>
 <form:form action="/product/update" modelAttribute="product" method="post">
     ID: ${product.id}
-    <form:hidden path="id"/>
+    <%--<form:hidden path="id"/>--%>
     <br>
     Name: <form:input path="name"/>
     <br>

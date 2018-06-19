@@ -44,7 +44,7 @@ public class AccountController {
     pagedListHolder.setPage(page);
     pagedListHolder.setPageSize(10);
     model.addAttribute("pagedListHolder", pagedListHolder);
-    return "account-customer";
+    return "account";
   }
 
   @GetMapping("create")
@@ -61,8 +61,8 @@ public class AccountController {
     return "account";
   }
 
-  @GetMapping("detail/{username}")
-  public String showAccountDetail(@PathVariable("username") String username, @ModelAttribute("roleId") String roleId, Model model) {
+  @GetMapping("detail")
+  public String showAccountDetail(@RequestParam("username") String username, @ModelAttribute("roleId") String roleId, Model model) {
     model.addAttribute("account", accountService.find(username));
     model.addAttribute("role", roleService.find(roleId));
     return "account-detail";

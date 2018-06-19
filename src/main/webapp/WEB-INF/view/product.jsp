@@ -79,7 +79,13 @@
         </c:choose>
         </td>
         <td>
-            <a href="/product/detail?id=${p.id}">Detail</a> | <a href="/product/update?id=${p.id}">Update</a>
+            <c:url var="updateLink" value="/product/update">
+                <c:param name="id" value="${p.id}" />
+            </c:url>
+            <c:url var="detailLink" value="/product/detail">
+                <c:param name="id" value="${p.id}"/>
+            </c:url>
+            <a href="${detailLink}">Detail</a> | <a href="${updateLink}">Update</a>
         </td>
     </tr>
     </c:forEach>

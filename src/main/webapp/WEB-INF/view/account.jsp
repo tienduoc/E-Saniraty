@@ -20,6 +20,9 @@
     <c:url value="/account/forBoss" var="pagedLink">
         <c:param name="p" value="~"/>
     </c:url>
+
+    <a style="font-size: x-large" href="/account/create">Create account</a>
+
     <table class="table table-responsive-sm">
         <thead>
             <tr>
@@ -35,31 +38,33 @@
         </thead>
         <tbody>
         <c:forEach var="acc" items="${pagedListHolder.pageList}">
-            <c:url var="updateLink" value="/account/update">
-                <c:param name="username" value="${acc.username}" />
-            </c:url>
-                <tr>
-                    <td>${acc.username}</td>
-                    <td>${acc.fullname}</td>
-                    <td>${acc.phone}</td>
-                    <td>${acc.email}</td>
-                    <td>${acc.address}</td>
-                    <td>
-                        <c:choose>
-                            <c:when test="${acc.enabled}">
-                                <p style="color: green">Enabled</p>
-                            </c:when>
-                            <c:otherwise>
-                                <p style="color: red">Disabled</p>
-                            </c:otherwise>
-                        </c:choose>
-                    </td>
-                    <td>${acc.roleByRoleId.name}</td>
-                    <td>
-                        <a href="${pageContext.request.contextPath}/account/detail/${acc.username}">Detail</a> |
-                        <a href="${updateLink}">Update</a>
-                    </td>
-                </tr>
+            <tr>
+                <td>${acc.username}</td>
+                <td>${acc.fullname}</td>
+                <td>${acc.phone}</td>
+                <td>${acc.email}</td>
+                <td>${acc.address}</td>
+                <td>
+                    <c:choose>
+                        <c:when test="${acc.enabled}">
+                            <p style="color: green">Enabled</p>
+                        </c:when>
+                        <c:otherwise>
+                            <p style="color: red">Disabled</p>
+                        </c:otherwise>
+                    </c:choose>
+                </td>
+                <td>${acc.roleByRoleId.name}</td>
+                <td>
+                    <c:url var="detailLink" value="/account/detail">
+                        <c:param name="username" value="${acc.username}" />
+                    </c:url>
+                    <c:url var="updateLink" value="/account/update">
+                        <c:param name="username" value="${acc.username}" />
+                    </c:url>
+                    <a href="${detailLink}">Detail</a> | <a href="${updateLink}">Update</a>
+                </td>
+            </tr>
         </c:forEach>
         </tbody>
     </table>

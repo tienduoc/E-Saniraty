@@ -47,7 +47,6 @@
             <td><label>Role:</label><td>
             <td>
                 <select name="roleId" required>
-                    <option value="">None</option>
                     <c:forEach var="r" items="${roles}">
                         <c:if test="${!(r.name.equalsIgnoreCase('Boss') || r.name.equalsIgnoreCase('Admin'))}">
                             <option value="${r.id}" ${r.id == account.roleByRoleId.id ? 'selected = "selected"' : ''}>${r.name}</option>
