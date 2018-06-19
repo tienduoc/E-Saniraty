@@ -1,97 +1,88 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
-
-<!doctype html>
+<%--
+  Created by IntelliJ IDEA.
+  User: buunguyenlam
+  Date: 6/19/2018
+  Time: 9:59 AM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-	
-	<title>Register New User Form</title>
-	
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	
-	<!-- Reference Bootstrap files -->
-	<link rel="stylesheet"
-		 href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-	
-	<script	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../resources/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../resources/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../resources/dist/css/myStyle.css">
 
+    <link rel="stylesheet" href="../resources/dist/css/modal.css">
+    <title>Đăng ký</title>
 </head>
 
 <body>
+<section class="page_single">
+    <div class="container">
+        <div class="row">
+            <!--//==Section Heading Start==//-->
+            <div class="col-md-12">
+                <div class="centered-title">
+                    <h2>Đăng ký<span class="heading-border"></span></h2>
+                    <div class="clear"></div>
+                    <em>doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo <br>inventore veritatis et quasi architecto beatae</em>
+                </div>
+            </div>
 
-	<div>
-		
-		<div id="loginbox" style="margin-top: 50px;"
-			class="mainbox col-md-3 col-md-offset-2 col-sm-6 col-sm-offset-2">
-			
-			<div class="panel panel-primary">
+            <div class="clear"></div>
+            <!--//==Login Section Start==//-->
+            <div class="col-md-6 col-sm-8 col-xs-12 col-md-offset-3 col-sm-offset-2 col-xs-offset-0">
 
-				<div class="panel-heading">
-					<div class="panel-title">Register New User</div>
-				</div>
+                <!--//==Form Start==//-->
+                <form action="${pageContext.request.contextPath}/registerProcess" modelAttribute="account" method="POST" class="login-form">
+                    <%--Fullname--%>
+                    <p>
+                        <label for="fullname">Họ tên <span class="required">*</span></label>
+                        <input type="text" name="fullname" id="fullname" class="form-controller">
+                    </p>
+                        <%--Username--%>
+                        <p>
+                        <label for="username">Tên đăng nhập <span class="required">*</span></label>
+                        <input type="text" name="username" id="username" class="form-controller">
+                    </p>
+                        <%--Password--%>
+                    <p>
+                        <label for="password">Mật khẩu <span class="required">*</span></label>
+                        <input type="password" name="password" id="password" class="form-controller">
+                    </p>
+                        <%--Email--%>
+                    <p>
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="email" name="email" id="email" class="form-controller">
+                    </p>
+                        <%--Phone--%>
+                    <p>
+                        <label for="phone">Điện thoại <span class="required">*</span></label>
+                        <input type="text" name="phone" id="phone" class="form-controller">
+                    </p>
+                        <%--Submit button--%>
+                    <p>
+                        <input type="submit" value="Đăng ký" name="register" class="theme-button col-md-12">
+                    </p>
+                        <%--Login page--%>
+                    <p class="pull-right" style="padding-top: 20px;">
+                        <a href="${pageContext.request.contextPath}/login">Đã có tài khoản?</a>
+                    </p>
+                </form>
+                <!--//==Form End==//-->
+            </div>
+            <!--//==Login Section End==//-->
+        </div>
+    </div>
+</section>
 
-				<div style="padding-top: 30px" class="panel-body">
-
-					<!-- Registration Form -->
-					<form:form action="${pageContext.request.contextPath}/registerProcess"
-						  	   modelAttribute="account"
-						  	   class="form-horizontal">
-
-					    <!-- Place for messages: error, alert etc ... -->
-					    <div class="form-group">
-					        <div class="col-xs-15">
-					            <div>
-									<!-- Check for registration error -->
-									<c:if test="${accUsed != null}">
-										<div class="alert alert-danger col-xs-offset-1 col-xs-10">
-											${accUsed}
-										</div>
-									</c:if>
-					            </div>
-					        </div>
-					    </div>
-
-						<div style="margin-bottom: 25px" class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
- 								<form:input path="username" placeholder="Username*" class="form-control" required="true" />
-						</div>
-						<div style="margin-bottom: 25px" class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span> 
-							<form:password path="password" placeholder="Password*" class="form-control" required="true"/>
-						</div>
-						<div style="margin-bottom: 25px" class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							<form:input path="fullname" placeholder="Full name*" class="form-control" required="true"/>
-						</div>
-						<div style="margin-bottom: 25px" class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							<form:input path="phone" placeholder="Phone*" class="form-control" required="true"/>
-						</div>
-						<div style="margin-bottom: 25px" class="input-group">
-							<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-							<form:input path="email" placeholder="Email" class="form-control" />
-						</div>
-					
-						<!-- Register Button -->
-						<div style="margin-top: 10px" class="form-group">						
-							<div class="col-sm-6 controls">
-								<button type="submit" class="btn btn-primary">Register</button>
-							</div>
-						</div>
-						
-					</form:form>
-
-				</div>
-
-			</div>
-
-		</div>
-
-	</div>
-
+<script src="../resources/vendor/jquery/jquery.min.js"></script>
+<script src="../resources/vendor/bootstrap/js/bootstrap.min.js"></script>
 </body>
+
 </html>
