@@ -61,7 +61,8 @@ public class ProductImageDAOImpl implements ProductImageDAO {
 
   @Override
   public void add(ProductImage productImage) {
-
+    Session session = sessionFactory.getCurrentSession();
+    session.save(productImage);
   }
 
   @Override

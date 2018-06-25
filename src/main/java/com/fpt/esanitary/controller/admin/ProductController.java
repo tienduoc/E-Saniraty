@@ -23,9 +23,6 @@ public class ProductController {
   private ProductService productService;
 
   @Autowired
-  private ProductImageService productImageService;
-
-  @Autowired
   private CategoryService categoryService;
 
   @Autowired

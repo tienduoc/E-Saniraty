@@ -13,7 +13,10 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.WebApplicationInitializer;
 
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.util.Properties;
@@ -52,7 +55,6 @@ public class AppConfig {
         dataSource.setMinPoolSize(getIntProperty("connection.pool.minPoolSize"));
         dataSource.setMaxPoolSize(getIntProperty("connection.pool.maxPoolSize"));
         dataSource.setMaxIdleTime(getIntProperty("connection.pool.maxIdleTime"));
-
         return dataSource;
     }
 

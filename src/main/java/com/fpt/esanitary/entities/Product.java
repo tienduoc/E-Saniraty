@@ -11,7 +11,7 @@ public class Product {
   private String manufacturerId;
   private String name;
   private Double costPrice;
-  private double salePrice;
+  private Double salePrice;
   private String material;
   private String description;
   private String review;
@@ -84,11 +84,11 @@ public class Product {
 
   @Basic
   @Column(name = "SalePrice", nullable = false, precision = 0)
-  public double getSalePrice() {
+  public Double getSalePrice() {
     return salePrice;
   }
 
-  public void setSalePrice(double salePrice) {
+  public void setSalePrice(Double salePrice) {
     this.salePrice = salePrice;
   }
 
@@ -295,5 +295,28 @@ public class Product {
 
   public void setProductImagesById(Collection<ProductImage> productImagesById) {
     this.productImagesById = productImagesById;
+  }
+
+  @Override
+  public String toString() {
+    return "Product{" +
+            "id='" + id + '\'' +
+            ", categoryId=" + categoryId +
+            ", manufacturerId='" + manufacturerId + '\'' +
+            ", name='" + name + '\'' +
+            ", costPrice=" + costPrice +
+            ", salePrice=" + salePrice +
+            ", material='" + material + '\'' +
+            ", description='" + description + '\'' +
+            ", review='" + review + '\'' +
+            ", size='" + size + '\'' +
+            ", weight=" + weight +
+            ", unitInStock=" + unitInStock +
+            ", enabled=" + enabled +
+            ", minRatio=" + minRatio +
+            ", raitoForContractor=" + raitoForContractor +
+            ", outlet=" + outlet +
+            ", outletEnable=" + outletEnable +
+            '}';
   }
 }

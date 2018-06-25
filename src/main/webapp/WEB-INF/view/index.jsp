@@ -24,6 +24,15 @@
 
 <body>
 
+<%--TODO dữ liệu cho Navbar--%>
+<c:forEach var="cat" items="${navCat}">
+    <b>${cat.name}</b><br>
+    <c:forEach var="subCat" items="${navSubCat}">
+       <c:if test="${subCat.parentId == cat.id}">
+           <i>${subCat.name}</i><br>
+       </c:if>
+   </c:forEach>
+</c:forEach>
 
 <!-- NAVBAR -->
 <nav id="navigation-bar" class="navbar navbar-default navbar-inverse">
@@ -283,7 +292,7 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <ul class="unstyled">
-                                    <li> <!-- TODO, MANUFACTURER LOGO -->
+                                    <li>
                                         <a><img src="../resources/img/manufactures/kohler.png"  alt="kohler" class="img-thumbnail"></a>
                                     </li>
                                 </ul>
@@ -296,7 +305,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="" data-toggle="modal" data-target="#myModalRegister">
-                        <span class="glyphicon glyphicon-user"></span> Chào, USERNAME <!-- TODO, USERNAME --> </a>
+                        <span class="glyphicon glyphicon-user"></span>Chào, USERNAME</a>
                 </li>
                 <li>
                     <a href="login.html" s>
@@ -319,7 +328,7 @@
 
         <!-- Images for slide -->
         <div class="carousel-inner">
-            <div class="item active"> <!-- TODO, Slide images -->
+            <div class="item active">
                 <img src="../resources/img/slideshows/carousel-slide-1.jpg" alt="carousel-slide-1">
             </div>
             <div class="item">
@@ -348,8 +357,8 @@
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h4>
-                        <span class="glyphicon glyphicon-pawn"></span> FEATURE TITLE</h4> <!-- TODO -->
-                    <p>FEATURE CONTENT</p> <!-- TODO -->
+                        <span class="glyphicon glyphicon-pawn"></span> FEATURE TITLE</h4>
+                    <p>FEATURE CONTENT</p>
                 </div>
             </div>
         </div>
@@ -367,11 +376,11 @@
             <div class="col-md-12">
                 <div class="centered-title">
                     <h2 class="text-uppercase">${requestScope[catName]}
-                        <span class="heading-border"></span> <!-- TODO -->
+                        <span class="heading-border"></span>
                     </h2>
                     <div class="clear"></div>
                     <em>PRODUCT GROUP DESCRIPTION
-                    </em> <!-- TODO -->
+                    </em>
                 </div>
             </div>
         </div>
@@ -381,7 +390,7 @@
             <!-- Product item -->
             <c:forEach var="p" items="${requestScope[proOfCat]}">
                 <div class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
-                        <div class="thumbnail text-center"> <!-- TODO -->
+                        <div class="thumbnail text-center">
                             <img src="http://rtlarge.ie/wp-content/uploads/2016/10/maria-toilet-510x600.jpg" alt="Bồn cầu nguyên khối">
                             <div class="caption">
                                     <h4 class="text-uppercase ellipsis"> ${p.name}</h4>

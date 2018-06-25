@@ -42,7 +42,7 @@ public class ProductImageServiceImpl implements ProductImageService {
 
   @Override
   public void add(ProductImage productImage) {
-
+    productImageDAO.add(productImage);
   }
 
   @Override

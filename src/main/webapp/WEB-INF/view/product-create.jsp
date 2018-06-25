@@ -11,9 +11,13 @@
 <html>
 <head>
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+            crossorigin="anonymous"></script>
 </head>
 <body>
-    <form:form action="/create" modelAttribute="product" method="post">
+    <%--Product form--%>
+    <form:form id="product" action="/product/create" modelAttribute="product" method="post">
         <%--Manùacturer--%>
         Manufacturer
         <select name="manufacturerId" required>
@@ -49,8 +53,18 @@
         <br>
         Description: <form:input path="description"/>
         <br>
-        <form:hidden path="enabled" value="true"/>
-        <input type="submit" value="Save"/>
+        <form:hidden id="imageForm" path="enabled" value="true"/>
+        <br>
     </form:form>
+
+    <%--Image form--%>
+    <form:form id="image" action="/product/create" modelAttribute="images" enctype="multipart/form-data" method="post">
+        Hình : <input type="file" name="files" multiple="multiple" accept=".jpg,.jpeg,.png,.gif"/><br>
+        <%--Hinh 2: <input type="file" name="image2" accept=".jpg,.jpeg,.png,.gif"/><br>--%>
+        <%--Hinh 3: <input type="file" name="image3" accept=".jpg,.jpeg,.png,.gif"/><br>--%>
+        <%--Hinh 4: <input type="file" name="image4" accept=".jpg,.jpeg,.png,.gif"/><br>--%>
+    </form:form>
+    <input type="submit" value="Save" />
+
 </body>
 </html>
