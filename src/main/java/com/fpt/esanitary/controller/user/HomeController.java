@@ -35,10 +35,9 @@ public class HomeController {
     @RequestMapping("/")
     public String showHome(Model model) {
         for (int i = 1; i < categoryService.findAll().size(); i++) {
+            model.addAttribute("cat", categoryService.findAll());
             model.addAttribute("navCat", categoryService.getParent());
             model.addAttribute("navSubCat", categoryService.getChild());
-            model.addAttribute("catName"+i, categoryService.findAll().get(i).getName());
-            model.addAttribute("proOfCat"+i, productService.findByParentCategory(i));
         }
         return "index";
     }

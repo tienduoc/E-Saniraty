@@ -78,7 +78,7 @@ public class Category {
     this.categoriesById = categoriesById;
   }
 
-  @OneToMany(mappedBy = "categoryByCategoryId")
+  @OneToMany(fetch = FetchType.EAGER, mappedBy = "categoryByCategoryId")
   public Collection<Product> getProductsById() {
     return productsById;
   }

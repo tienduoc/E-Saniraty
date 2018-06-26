@@ -365,49 +365,49 @@
     </div>
 </div>
 
-<!-- PRODUCT -->
-<c:forEach var = "i" begin = "1" end = "4">
-    <c:set var="catName" value="catName${i}" />
-    <c:set var="proOfCat" value="proOfCat${i}" />
-<div class="main-product">
-    <div class="container">
-        <!-- Introducing of products categogies -->
-        <div class="row">
-            <div class="col-md-12">
-                <div class="centered-title">
-                    <h2 class="text-uppercase">${requestScope[catName]}
-                        <span class="heading-border"></span>
-                    </h2>
-                    <div class="clear"></div>
-                    <em>PRODUCT GROUP DESCRIPTION
-                    </em>
+<%--PRODUCT--%>
+    <div class="main-product">
+        <c:forEach var="cat" items="${cat}">
+            <c:if test="${cat.parentId == null}">
+            <div class="container">
+                <!-- Introducing of products categogies -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="centered-title">
+                            <h2 class="text-uppercase">${cat.name}
+                                <span class="heading-border"></span>
+                            </h2>
+                            <div class="clear"></div>
+                            <em>PRODUCT GROUP DESCRIPTION
+                            </em>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <!-- Products -->
-        <div class="row">
-            <!-- Product item -->
-            <c:forEach var="p" items="${requestScope[proOfCat]}">
-                <div class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
-                        <div class="thumbnail text-center">
-                            <img src="http://rtlarge.ie/wp-content/uploads/2016/10/maria-toilet-510x600.jpg" alt="Bồn cầu nguyên khối">
-                            <div class="caption">
-                                    <h4 class="text-uppercase ellipsis"> ${p.name}</h4>
+                <!-- Products -->
+                <div class="row">
+                    <c:forEach var="pro" items="${cat.productsById}">
+                    <!-- Product item -->
+                        <div class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+                            <div class="thumbnail text-center">
+                                <img src="http://rtlarge.ie/wp-content/uploads/2016/10/maria-toilet-510x600.jpg" alt="Bồn cầu nguyên khối">
+                                <div class="caption">
+                                    <h4 class="text-uppercase ellipsis"> ${pro.name}</h4>
                                     <p class="text-justify">PRODUCT SHORT DESCRIPTION</p>
                                     <p class="text-success">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="5" value="${p.salePrice}" /></strong>
+                                        <strong><fmt:formatNumber type="number" maxFractionDigits="5" value="${pro.salePrice}"/></strong>
                                         <del class="text-danger">OLD PRICE</del>
                                     </p>
                                     <a href="details.html" class="label label-primary text-right">Xem chi tiết...</a>
+                                </div>
                             </div>
                         </div>
+                    </c:forEach>
                 </div>
-            </c:forEach>
-        </div>
+            </div>
+            </c:if>
+        </c:forEach>
     </div>
-</div>
-</c:forEach>
 
 <!-- FOOTER -->
 <footer>
