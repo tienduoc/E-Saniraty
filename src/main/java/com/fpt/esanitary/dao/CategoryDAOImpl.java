@@ -34,14 +34,14 @@ public class CategoryDAOImpl implements CategoryDAO {
   @Override
   public List<Category> getParent() {
     Session session = sessionFactory.getCurrentSession();
-    List<Category> categories = session.createQuery("from Category where parentId = null ").getResultList();
+    List<Category> categories = session.createQuery("from Category where parentId = null").getResultList();
     return categories;
   }
 
   @Override
   public List<Category> getChild() {
     Session session = sessionFactory.getCurrentSession();
-    List<Category> categories = session.createQuery("from Category where parentId != null ").getResultList();
+    List<Category> categories = session.createQuery("from Category where parentId != null order by name").getResultList();
     return categories;
   }
 

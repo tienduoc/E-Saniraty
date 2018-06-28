@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: buunguyenlam
   Date: 6/15/2018
@@ -25,13 +25,18 @@
 <body>
 
 <%--TODO dữ liệu cho Navbar--%>
-<c:forEach var="cat" items="${navCat}">
-    <b>${cat.name}</b><br>
-    <c:forEach var="subCat" items="${navSubCat}">
-       <c:if test="${subCat.parentId == cat.id}">
-           <i>${subCat.name}</i><br>
-       </c:if>
-   </c:forEach>
+<c:forEach var="rootCat" items="${parentCats}">
+       <b>${rootCat.name}</b><br>
+    <c:forEach var="catLevel1" items="${childCats}">
+        <c:if test="${catLevel1.parentId == rootCat.id}">
+            <i style="padding-left: 20px">${catLevel1.name}</i><br>
+            <c:forEach var="catLevel2" items="${cats}">
+                <c:if test="${catLevel2.parentId == catLevel1.id}">
+                    <i style="padding-left: 50px">${catLevel2.name}</i><br>
+                </c:if>
+            </c:forEach>
+        </c:if>
+    </c:forEach>
 </c:forEach>
 
 <!-- NAVBAR -->
@@ -367,8 +372,8 @@
 
 <%--PRODUCT--%>
     <div class="main-product">
-        <c:forEach var="cat" items="${cat}">
-            <c:if test="${cat.parentId == null}">
+        <c:forEach var="cat" items="${cats}">
+            <c:if test="${cat.showOnIndex == true}">
             <div class="container">
                 <!-- Introducing of products categogies -->
                 <div class="row">
@@ -385,25 +390,25 @@
                 </div>
 
                 <!-- Products -->
-                <div class="row">
-                    <c:forEach var="pro" items="${cat.productsById}">
-                    <!-- Product item -->
-                        <div class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
-                            <div class="thumbnail text-center">
-                                <img src="http://rtlarge.ie/wp-content/uploads/2016/10/maria-toilet-510x600.jpg" alt="Bồn cầu nguyên khối">
-                                <div class="caption">
-                                    <h4 class="text-uppercase ellipsis"> ${pro.name}</h4>
-                                    <p class="text-justify">PRODUCT SHORT DESCRIPTION</p>
-                                    <p class="text-success">
-                                        <strong><fmt:formatNumber type="number" maxFractionDigits="5" value="${pro.salePrice}"/></strong>
-                                        <del class="text-danger">OLD PRICE</del>
-                                    </p>
-                                    <a href="details.html" class="label label-primary text-right">Xem chi tiết...</a>
-                                </div>
-                            </div>
-                        </div>
-                    </c:forEach>
-                </div>
+                <%--<div class="row">--%>
+                    <%--<c:forEach var="pro" items="${cat.productsById}">--%>
+                    <%--<!-- Product item -->--%>
+                        <%--<div class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">--%>
+                            <%--<div class="thumbnail text-center">--%>
+                                <%--<img src="http://rtlarge.ie/wp-content/uploads/2016/10/maria-toilet-510x600.jpg" alt="Bồn cầu nguyên khối">--%>
+                                <%--<div class="caption">--%>
+                                    <%--<h4 class="text-uppercase ellipsis"> ${pro.name}</h4>--%>
+                                    <%--<p class="text-justify">PRODUCT SHORT DESCRIPTION</p>--%>
+                                    <%--<p class="text-success">--%>
+                                        <%--<strong><fmt:formatNumber type="number" maxFractionDigits="5" value="${pro.salePrice}"/></strong>--%>
+                                        <%--<del class="text-danger">OLD PRICE</del>--%>
+                                    <%--</p>--%>
+                                    <%--<a href="details.html" class="label label-primary text-right">Xem chi tiết...</a>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</c:forEach>--%>
+                <%--</div>--%>
             </div>
             </c:if>
         </c:forEach>

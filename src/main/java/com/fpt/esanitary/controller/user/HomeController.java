@@ -1,7 +1,6 @@
 package com.fpt.esanitary.controller.user;
 
 import com.fpt.esanitary.entities.Account;
-import com.fpt.esanitary.entities.Category;
 import com.fpt.esanitary.service.AccountService;
 import com.fpt.esanitary.service.CategoryService;
 import com.fpt.esanitary.service.ProductService;
@@ -13,9 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class HomeController {
@@ -35,9 +31,9 @@ public class HomeController {
     @RequestMapping("/")
     public String showHome(Model model) {
         for (int i = 1; i < categoryService.findAll().size(); i++) {
-            model.addAttribute("cat", categoryService.findAll());
-            model.addAttribute("navCat", categoryService.getParent());
-            model.addAttribute("navSubCat", categoryService.getChild());
+            model.addAttribute("cats", categoryService.findAll());
+            model.addAttribute("parentCats", categoryService.getParent());
+            model.addAttribute("childCats", categoryService.getChild());
         }
         return "index";
     }
