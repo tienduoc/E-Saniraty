@@ -18,7 +18,7 @@ public class CategoryDAOImpl implements CategoryDAO {
   @Override
   public List<Category> findAll() {
     Session session = sessionFactory.getCurrentSession();
-    List categories = session.createQuery("from Category order by name").getResultList();
+    List categories = session.createQuery("from Category").getResultList();
     return categories;
   }
 

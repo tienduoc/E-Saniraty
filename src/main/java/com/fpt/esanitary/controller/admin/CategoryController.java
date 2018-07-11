@@ -44,18 +44,18 @@ public class CategoryController {
     return "redirect:/category";
   }
 
-
-
-
-  @RequestMapping("/search")
-  public String searchCategory(@RequestParam(value = "q", required=false) String keyword, Model model) {
+  @PostMapping("/search")
+  public String searchCategory(@RequestParam(value = "q", required=false) String keyword, Model model, HttpServletRequest request) {
     if (keyword != null) {
-      List<Category> catSearchResult = categoryService.search(keyword);
-      if (catSearchResult.isEmpty()) {
+      PagedListHolder pagedListHolder = new PagedListHolder(categoryService.search(keyword));
+      int page = ServletRequestUtils.getIntParameter(request, "p", 0);
+      pagedListHolder.setPage(page);
+      pagedListHolder.setPageSize(10);
+      model.addAttribute("pagedListHolder", pagedListHolder);
+      if (pagedListHolder.getPageSize() == 0) {
         model.addAttribute("notFound", "Sorry! Your search " + keyword + " did not match any results");
       }
-      model.addAttribute("catSearchResult", catSearchResult);
     }
-    return "category-search";
+    return "category";
   }
 }

@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.antMatchers("/", "/resources/**").permitAll()
+				.antMatchers("/", "/assets/**").permitAll()
 				.and().formLogin().loginPage("/login")
 				.loginProcessingUrl("/authenticateUser").permitAll()
 				.and()
@@ -47,6 +47,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/resources/**");
+		web.ignoring().antMatchers("/assets/**");
 	}
 }

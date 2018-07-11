@@ -55,7 +55,7 @@ public class WebConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**")
-				.addResourceLocations("/WEB-INF/resources/");
+        registry.addResourceHandler("/assets/**")
+				.addResourceLocations("/WEB-INF/assets/");
     }
 }

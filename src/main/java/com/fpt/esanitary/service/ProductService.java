@@ -14,6 +14,8 @@ public interface ProductService {
 
   List<Product> findByParentCategory(Integer id);
 
+  List<Product> getLastestByCategory(Integer id, int amount);
+
   void create(Product product);
 
   void update(Product product);

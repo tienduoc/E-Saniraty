@@ -30,11 +30,15 @@ public class HomeController {
 
     @RequestMapping("/")
     public String showHome(Model model) {
-        for (int i = 1; i < categoryService.findAll().size(); i++) {
-            model.addAttribute("cats", categoryService.findAll());
-            model.addAttribute("parentCats", categoryService.getParent());
-            model.addAttribute("childCats", categoryService.getChild());
-        }
+        model.addAttribute("allCategory", categoryService.findAll());
+        model.addAttribute("title1", categoryService.find(29).getName());
+        model.addAttribute("title2", categoryService.find(28).getName());
+        model.addAttribute("title3", categoryService.find(44).getName());
+        model.addAttribute("title4", categoryService.find(61).getName());
+        model.addAttribute("listProduct1", productService.getLastestByCategory(32, 8));
+        model.addAttribute("listProduct2", productService.getLastestByCategory(36, 8));
+        model.addAttribute("listProduct3", productService.getLastestByCategory(46, 8));
+        model.addAttribute("listProduct4", productService.getLastestByCategory(64, 8));
         return "index";
     }
 

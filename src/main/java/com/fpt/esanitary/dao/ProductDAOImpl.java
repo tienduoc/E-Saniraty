@@ -17,7 +17,8 @@ public class ProductDAOImpl implements ProductDAO {
   @Override
   public List<Product> findAll() {
     Session session = sessionFactory.getCurrentSession();
-    List<Product> products = session.createQuery("from Product order by name", Product.class).getResultList();
+    List<Product> products = session.createQuery("from Product order by name", Product.class)
+            .getResultList();
     return products;
   }
 
@@ -34,7 +35,17 @@ public class ProductDAOImpl implements ProductDAO {
     return null;
   }
 
-  @Override
+    @Override
+    public List<Product> getLastestByCategory(Integer id, int amount) {
+      Session session = sessionFactory.getCurrentSession();
+      List<Product> products = session.createQuery("from Product where categoryId=:id order by id desc", Product.class)
+              .setParameter("id", id)
+              .setMaxResults(amount)
+              .getResultList();
+        return products;
+    }
+
+    @Override
   public void create(Product product) {
     Session session = sessionFactory.getCurrentSession();
     session.save(product);
@@ -64,7 +75,7 @@ public class ProductDAOImpl implements ProductDAO {
   @Override
   public List<Product> findByParentCategory(Integer id) {
     Session session = sessionFactory.getCurrentSession();
-    List<Product> products = session.createQuery("from Product where categoryId =:id")
+    List<Product> products = session.createQuery("from Product where categoryId = :id")
             .setParameter("id", id)
             .getResultList();
     return products;

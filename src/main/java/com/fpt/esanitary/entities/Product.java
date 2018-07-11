@@ -268,7 +268,7 @@ public class Product {
     this.orderDetailsById = orderDetailsById;
   }
 
-  @ManyToOne(fetch = FetchType.EAGER)
+  @ManyToOne
   @JoinColumn(name = "CategoryID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
   public Category getCategoryByCategoryId() {
     return categoryByCategoryId;
@@ -288,7 +288,7 @@ public class Product {
     this.manufacturerByManufacturerId = manufacturerByManufacturerId;
   }
 
-  @OneToMany(fetch = FetchType.EAGER, mappedBy = "productByProductId")
+  @OneToMany(mappedBy = "productByProductId")
   public Collection<ProductImage> getProductImagesById() {
     return productImagesById;
   }

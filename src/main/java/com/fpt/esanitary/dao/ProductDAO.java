@@ -6,21 +6,23 @@ import java.util.List;
 
 public interface ProductDAO {
 
-  List<Product> findAll();
+    List<Product> findAll();
 
-  Product findById(String id);
+    Product findById(String id);
 
-  List<Product> getProductByCategory();
+    List<Product> getProductByCategory();
 
-  void create(Product product);
+    List<Product> getLastestByCategory(Integer id, int amount);
 
-  void update(Product product);
+    void create(Product product);
 
-  Product findByName(String name);
+    void update(Product product);
 
-  List<Product> search(String keyword);
+    Product findByName(String name);
 
-  List<Product> findByCategory(Integer id);
+    List<Product> search(String keyword);
 
-  List<Product> findByParentCategory(Integer id);
+    List<Product> findByCategory(Integer id);
+
+    List<Product> findByParentCategory(Integer id);
 }

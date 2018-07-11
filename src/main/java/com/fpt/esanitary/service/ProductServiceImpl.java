@@ -36,6 +36,11 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
+  public List<Product> getLastestByCategory(Integer id, int amount) {
+    return productDAO.getLastestByCategory(id, amount);
+  }
+
+  @Override
   public void create(Product product) {
     productDAO.create(product);
   }
