@@ -1,5 +1,6 @@
 package com.fpt.esanitary.controller.admin;
 
+import com.fpt.esanitary.entities.Account;
 import com.fpt.esanitary.entities.Category;
 import com.fpt.esanitary.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +11,9 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 @Controller
-@RequestMapping("category")
+@RequestMapping("/admin/category")
 public class CategoryController {
 
   @Autowired
@@ -21,27 +21,41 @@ public class CategoryController {
 
   @GetMapping
   public String getAllAccount(Model model, HttpServletRequest request){
-    PagedListHolder pagedListHolder = new PagedListHolder(categoryService.findAll());
-    int page = ServletRequestUtils.getIntParameter(request, "p", 0);
-    pagedListHolder.setPage(page);
-    pagedListHolder.setPageSize(10);
-    model.addAttribute("pagedListHolder", pagedListHolder);
-    model.addAttribute("parent", categoryService.getParent());
-    return "category";
+    model.addAttribute("categories", categoryService.findAll());
+    return "admin/category/index";
   }
 
   @GetMapping("/create")
   public String showFormCreate(Model model) {
     model.addAttribute("category", new Category());
-    model.addAttribute("parents", categoryService.getParent());
-    return "category-create";
+    model.addAttribute("allCategory", categoryService.findAll());
+    return "admin/category/create";
   }
 
   @PostMapping("/create")
   public String createCategory(@ModelAttribute("category") Category category,
                                @RequestParam(value = "parentId", required = false) Integer parentId) {
     categoryService.create(category);
-    return "redirect:/category";
+    return "redirect:/admin/category";
+  }
+
+  @GetMapping("detail")
+  public String showAccountDetail(@RequestParam("id") Integer id, Model model) {
+    model.addAttribute("category", categoryService.find(id));
+    return "admin/category/detail";
+  }
+
+  @GetMapping("update")
+  public String showFormUpdate(@RequestParam("id") Integer id, Model model) {
+    model.addAttribute("category", categoryService.find(id));
+    model.addAttribute("allCategory", categoryService.findAll());
+    return "admin/category/update";
+  }
+
+  @PostMapping("update")
+  public String updateAccount(@ModelAttribute("category") Category category) {
+    categoryService.update(category);
+    return "redirect:/admin/category";
   }
 
   @PostMapping("/search")
@@ -56,6 +70,6 @@ public class CategoryController {
         model.addAttribute("notFound", "Sorry! Your search " + keyword + " did not match any results");
       }
     }
-    return "category";
+    return "admin/category/category";
   }
 }

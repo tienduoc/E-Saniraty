@@ -10,11 +10,7 @@ $(document).ready(function () {
         $('.product-popup').removeClass('show__product-popup');
     });
 
-    //CAROUSEL
-    $('.carousel').carousel({
-        interval: 3000,
-        pause: false
-    });
+
     // CART
     $('.e-commerces__cart').on('click',
         function () {
@@ -30,9 +26,11 @@ $(document).ready(function () {
     );
 
     // FORM VALIDATION
-    $('#password').keyup(function () {
-        checkPassword();
-    });
+
+    // $('#password').keyup(function () {
+    //     checkPassword();
+    // });
+
     $('#passwordConfirm').keyup(function () {
         checkPasswordConfirm(password);
     });

@@ -24,10 +24,10 @@ public class ProductImageDAOImpl implements ProductImageDAO {
   }
 
   @Override
-  public List<ProductImage> findByProduct(String name) {
+  public List<ProductImage> findByProduct(String id) {
     Session session = sessionFactory.getCurrentSession();
-    List<ProductImage> productImages = session.createQuery("from ProductImage where productByProductId.name =: name")
-            .setParameter("name", name)
+    List<ProductImage> productImages = session.createQuery("from ProductImage where productByProductId.name = :id")
+            .setParameter("id", id)
             .getResultList();
     return productImages;
   }

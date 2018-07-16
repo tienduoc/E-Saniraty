@@ -21,6 +21,11 @@ public class ProductServiceImpl implements ProductService {
   }
 
   @Override
+  public List<Product> findAllByActive() {
+    return productDAO.findAllByActive();
+  }
+
+  @Override
   public Product findById(String id) {
     return productDAO.findById(id);
   }

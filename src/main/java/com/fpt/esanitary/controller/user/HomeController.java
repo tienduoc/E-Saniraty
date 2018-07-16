@@ -1,17 +1,18 @@
 package com.fpt.esanitary.controller.user;
 
 import com.fpt.esanitary.entities.Account;
+import com.fpt.esanitary.entities.Category;
 import com.fpt.esanitary.service.AccountService;
 import com.fpt.esanitary.service.CategoryService;
+import com.fpt.esanitary.service.ProductImageService;
 import com.fpt.esanitary.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class HomeController {
@@ -28,9 +29,11 @@ public class HomeController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @Autowired
+    private ProductImageService productImageService;
+
     @RequestMapping("/")
-    public String showHome(Model model) {
-        model.addAttribute("allCategory", categoryService.findAll());
+    public String showHome(Model model, HttpSession session) {
         model.addAttribute("title1", categoryService.find(29).getName());
         model.addAttribute("title2", categoryService.find(28).getName());
         model.addAttribute("title3", categoryService.find(44).getName());
@@ -39,18 +42,24 @@ public class HomeController {
         model.addAttribute("listProduct2", productService.getLastestByCategory(36, 8));
         model.addAttribute("listProduct3", productService.getLastestByCategory(46, 8));
         model.addAttribute("listProduct4", productService.getLastestByCategory(64, 8));
-        return "index";
+        return "user/index";
+    }
+
+    @GetMapping("/category")
+    public String showCategory(@RequestParam("id") Integer id, Model model) {
+        model.addAttribute("products", productService.findByCategory(id));
+        return "user/category";
     }
 
     @GetMapping("/login")
     public String showLoginForm() {
-        return "login";
+        return "user/login";
     }
 
     @GetMapping("/register")
     public String showRegisterForm(Model model) {
         model.addAttribute("account", new Account());
-        return "register";
+        return "user/register";
     }
 
     @PostMapping("/registerProcess")
@@ -68,7 +77,7 @@ public class HomeController {
             return "register-confirm";
         } else {
             model.addAttribute("accUsed", "This username has been used by order customer, please choose another username");
-            return "register";
+            return "user/register";
         }
     }
 }

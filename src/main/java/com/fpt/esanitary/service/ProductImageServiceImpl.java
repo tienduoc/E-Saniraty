@@ -21,8 +21,8 @@ public class ProductImageServiceImpl implements ProductImageService {
   }
 
   @Override
-  public List<ProductImage> findByProduct(String name) {
-    return productImageDAO.findByProduct(name);
+  public List<ProductImage> findByProduct(String id) {
+    return productImageDAO.findByProduct(id);
   }
 
   @Override

@@ -4,7 +4,6 @@ import com.fpt.esanitary.entities.Product;
 import com.fpt.esanitary.entities.ProductImage;
 import com.fpt.esanitary.service.CategoryService;
 import com.fpt.esanitary.service.ManufacturerService;
-import com.fpt.esanitary.service.ProductImageService;
 import com.fpt.esanitary.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
@@ -15,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
-@Controller
-@RequestMapping("product")
+@Controller("adminProductController")
+@RequestMapping("/admin/product")
 public class ProductController {
 
   @Autowired
@@ -29,30 +28,24 @@ public class ProductController {
   private ManufacturerService manufacturerService;
 
   @GetMapping
-  public String getAllProduct(Model model, HttpServletRequest request) {
-    PagedListHolder pagedListHolder = new PagedListHolder(productService.findAll());
-    int page = ServletRequestUtils.getIntParameter(request, "p", 0);
-    pagedListHolder.setPage(page);
-    pagedListHolder.setPageSize(10);
-    model.addAttribute("pagedListHolder", pagedListHolder);
-    model.addAttribute("categories", categoryService.findAll());
-    model.addAttribute("manufacturers", manufacturerService.findAll());
-    return "product";
+  public String getAllProduct(Model model) {
+    model.addAttribute("allProduct", productService.findAll());
+    return "admin/product/index";
   }
 
-  @GetMapping("create")
+  @GetMapping("/create")
   public String showCreateForm(Model model) {
     model.addAttribute("product", new Product());
     model.addAttribute("images", new ProductImage());
     model.addAttribute("categories", categoryService.findAll());
     model.addAttribute("manufacturers", manufacturerService.findAll());
-    return "product-create";
+    return "admin/product/create";
   }
 
-  @PostMapping("create")
+  @PostMapping("/create")
   public String createProduct(@ModelAttribute("product") Product product) {
     productService.create(product);
-    return "redirect:/product";
+    return "redirect:/admin/product";
   }
 
   @GetMapping("update")
@@ -60,7 +53,7 @@ public class ProductController {
     model.addAttribute("product", productService.findById(id));
     model.addAttribute("categories", categoryService.findAll());
     model.addAttribute("manufacturers", manufacturerService.findAll());
-    return "product-update";
+    return "admin/product/update";
   }
 
   @PostMapping("update")
@@ -74,6 +67,6 @@ public class ProductController {
     model.addAttribute("product", productService.findById(id));
     model.addAttribute("categories", categoryService.findAll());
     model.addAttribute("manufacturers", manufacturerService.findAll());
-    return "product-detail";
+    return "admin/product/detail";
   }
 }

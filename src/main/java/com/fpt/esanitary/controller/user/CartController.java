@@ -21,7 +21,7 @@ public class CartController {
     public String showCart(HttpSession session) {
         List<Item> cart = (List<Item>) session.getAttribute("cart");
         session.setAttribute("cart", cart);
-        return "cart";
+        return "user/cart";
     }
 
     @GetMapping("buy")
@@ -47,7 +47,7 @@ public class CartController {
             }
             session.setAttribute("cart", cart);
         }
-        return "cart";
+        return "user/cart";
     }
 
     private int isExits(String id, HttpSession session) {

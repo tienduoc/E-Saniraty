@@ -8,7 +8,7 @@ public interface ProductImageDAO {
 
   List<ProductImage> findAll();
 
-  List<ProductImage> findByProduct(String name);
+  List<ProductImage> findByProduct(String id);
 
   ProductImage find(int id);
 

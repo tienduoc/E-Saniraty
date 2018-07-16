@@ -9,13 +9,13 @@ public class Category {
     private int id;
     private String name;
     private Integer parentId;
-    private Boolean showOnIndex;
     private Category categoryByParentId;
     private Collection<Category> categoriesById;
     private Collection<Product> productsById;
 
     @Id
     @Column(name = "Id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int getId() {
         return id;
     }
@@ -44,16 +44,6 @@ public class Category {
         this.parentId = parentId;
     }
 
-    @Basic
-    @Column(name = "ShowOnIndex", nullable = true)
-    public Boolean getShowOnIndex() {
-        return showOnIndex;
-    }
-
-    public void setShowOnIndex(Boolean showOnIndex) {
-        this.showOnIndex = showOnIndex;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,13 +51,12 @@ public class Category {
         Category category = (Category) o;
         return id == category.id &&
                 Objects.equals(name, category.name) &&
-                Objects.equals(parentId, category.parentId) &&
-                Objects.equals(showOnIndex, category.showOnIndex);
+                Objects.equals(parentId, category.parentId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, parentId, showOnIndex);
+        return Objects.hash(id, name, parentId);
     }
 
     @ManyToOne

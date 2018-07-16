@@ -288,7 +288,7 @@ public class Product {
     this.manufacturerByManufacturerId = manufacturerByManufacturerId;
   }
 
-  @OneToMany(mappedBy = "productByProductId")
+  @OneToMany(mappedBy = "productByProductId", fetch = FetchType.EAGER)
   public Collection<ProductImage> getProductImagesById() {
     return productImagesById;
   }
