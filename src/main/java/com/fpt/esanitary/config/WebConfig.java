@@ -23,28 +23,19 @@ public class WebConfig implements WebMvcConfigurer {
 
 	@Bean
 	public ViewResolver viewResolver() {
-
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setPrefix("/WEB-INF/view/");
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
 
+	// Handle file upload
 	@Bean(name="multipartResolver")
-	public CommonsMultipartResolver getResolver() throws IOException {
-		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
-		//Set the maximum allowed size (in bytes) for each individual file.
-		resolver.setMaxUploadSizePerFile(5242880);//5MB
-		//You may also set other available properties.
-		return resolver;
+	public CommonsMultipartResolver multipartResolver() throws IOException {
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+		multipartResolver.setMaxUploadSizePerFile(5 * 1024 * 1024); // Set the maximum allowed size 5MB (in bytes) for each individual file.
+		return multipartResolver;
 	}
-
-//	@Bean(name = "multipartResolver")
-//	public CommonsMultipartResolver multipartResolver() {
-//		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-//		multipartResolver.setMaxUploadSize(5000000);
-//		return multipartResolver;
-//	}
 
 //	@Bean
 //	public MessageSource messageSource() {

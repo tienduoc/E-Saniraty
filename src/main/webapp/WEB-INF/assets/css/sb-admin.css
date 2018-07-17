@@ -151,3 +151,23 @@ ul.alert-dropdown {
 .side-nav>li>ul>li>a:hover {
     transform: scale(1.05);
 }
+
+
+
+
+@import url("https://cdn.datatables.net/1.10.2/css/jquery.dataTables.css");
+td.details-control {
+    background: url("http://www.datatables.net/examples/resources/details_open.png")
+    no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url("http://www.datatables.net/examples/resources/details_close.png")
+    no-repeat center center;
+}
+table.dataTable.display tbody tr:first-child td {
+    border-top: none;
+}
+#childRowTable{
+      width: 50% !important;
+  }

@@ -11,7 +11,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<<jsp:include page="../../template/head-admin_tag.jsp">
+<
+<jsp:include page="../../template/head-admin_tag.jsp">
     <jsp:param name="title" value="Thêm sản phẩm"/>
 </jsp:include>
 
@@ -20,7 +21,7 @@
 <div id="wrapper">
 
     <!-- Navigation -->
-    <jsp:include page="../../template/nav-tag__admin.jsp" />
+    <jsp:include page="../../template/nav-tag__admin.jsp"/>
 
     <div id="page-wrapper">
 
@@ -55,19 +56,22 @@
                             <h4 class="panel-title">Thêm sản phẩm</h4>
                         </div>
                         <div class="panel-body">
-                            <form:form id="product" action="/admin/product/create" modelAttribute="product" method="post">
+                            ${imgExisted}
+                            <form:form id="product" action="/admin/product/create" modelAttribute="product"
+                                       method="post" enctype="multipart/form-data">
                                 <div class="form-group row">
                                     <div class="col-md-2">
-                                        <label for="productID">Mã sản phẩm</label>
-                                        <form:input path="id" type="text" class="form-control" name="productID" required="required" placeholder="CS-CD-1331"/>
+                                        <label>Mã sản phẩm</label>
+                                        <form:input path="id" type="text" class="form-control" required="required"/>
                                     </div>
                                     <div class="col-md-4">
-                                        <label for="productName">Tên sản phẩm</label>
-                                        <form:input path="name" type="text" class="form-control" name="productName" required="required" placeholder="BÀN CẦU HAI KHỐI CAESAR CD-1331"/>
+                                        <label>Tên sản phẩm</label>
+                                        <form:input path="name" type="text" class="form-control" required="required"/>
                                     </div>
                                     <div class="col-md-3">
                                         <label>Hãng sản xuất</label>
-                                        <select name="manufacturerId" required style="display:block; height: 3.5rem; width: 100%;">
+                                        <select name="manufacturerId" required
+                                                style="display:block; height: 3.5rem; width: 100%;">
                                             <option value="">Chọn nhà sản xuất</option>
                                             <c:forEach var="m" items="${manufacturers}">
                                                 <option value="${m.id}">${m.name}</option>
@@ -76,7 +80,8 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label>Nhóm sản phẩm</label>
-                                        <select name="categoryId" required style="display:block; height: 3.5rem; width: 100%;">
+                                        <select name="categoryId" required
+                                                style="display:block; height: 3.5rem; width: 100%;">
                                             <option value="">Chọn nhóm</option>
                                             <c:forEach var="c" items="${categories}">
                                                 <option value="${c.id}">${c.name}</option>
@@ -86,49 +91,68 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-3">
-                                        <label for="material">Chất liệu</label>
-                                        <form:input path="material" type="text" class="form-control" name="material" placeholder="Gốm, sứ, inox..." required="required"/>
+                                        <label>Chất liệu</label>
+                                        <form:input path="material" type="text" class="form-control" required="required"/>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="size">Kích thước</label>
-                                        <form:input path="size" type="text" class="form-control" name="size" placeholder="60 x 30 x 15 (mm)" required="required"/>
+                                        <label>Kích thước</label>
+                                        <form:input path="size" type="text" class="form-control" required="required"/>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="weight">Khối lượng</label>
-                                        <form:input path="weight" type="number" class="form-control" name="weight" placeholder="120 (grams)" min="0" required="required"/>
+                                        <label>Khối lượng</label>
+                                        <form:input path="weight" type="number" class="form-control" min="0" required="required"/>
                                     </div>
                                     <div class="col-md-3">
-                                        <label for="unitInStock">Số lượng</label>
-                                        <form:input path="unitInStock" type="number" class="form-control" name="unitInStocks" placeholder="1 (cái)" min="0" required="required"/>
+                                        <label>Số lượng</label>
+                                        <form:input path="unitInStock" type="number" class="form-control" min="0" required="required"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group row">
                                     <div class="col-md-2">
-                                        <label for="costPrice">Giá gốc</label>
-                                        <form:input path="costPrice" type="number" class="form-control" name="costPrice" placeholder="1000 (đồng)" min="0" required="required"/>
+                                        <label>Giá gốc</label>
+                                        <form:input path="costPrice" type="number" class="form-control" min="0" required="required"/>
                                     </div>
                                     <div class="col-md-2">
-                                        <label for="salePrice">Giá bán</label>
-                                        <form:input path="salePrice" type="number" class="form-control" name="salePrice" placeholder="1000 (đồng)" min="0" required="required"/>
+                                        <label>Giá bán</label>
+                                        <form:input path="salePrice" type="number" class="form-control" min="0" required="required"/>
                                     </div>
                                     <div class="col-md-2">
-                                        <label for="minRatio">Ratio</label>
-                                        <form:input path="minRatio" type="number" class="form-control" name="minRatio" placeholder="Max 15 (%)" min="0" max="15" required="required"/>
+                                        <label>Ratio</label>
+                                        <form:input path="minRatio" type="number" class="form-control" min="0" max="15" required="required"/>
                                     </div>
                                     <div class="col-md-2">
-                                        <label for="minRatioForContractor">Ratio Contractor</label>
-                                        <form:input path="raitoForContractor" type="number" class="form-control" name="minRatioForContractor" placeholder="Max 10 (%)" min="0" max="10" required="required"/>
+                                        <label>Ratio Contractor</label>
+                                        <form:input path="raitoForContractor" type="number" class="form-control" min="0" max="10" required="required"/>
                                     </div>
                                     <div class="col-md-1">
-                                        <label for="status">Hiển thị</label>
-                                        <form:checkbox path="enabled" name="status"/>
+                                        <label>Hiển thị</label>
+                                        <form:checkbox path="enabled"/>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-md-2">
+                                        <label>Tải ảnh lên</label>
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-default btn-file">
+                                                    Chọn ảnh...
+                                                    <input id="file" type="file" name="file" multiple="multiple" accept=".jpg, .png" onchange="javascript:updateList()">
+                                                </span>
+                                            </span>
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-10">
+                                        <label>Ảnh đã chọn</label>
+                                            <div id="fileList" style="margin-top: -20px !important;"></div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-12">
                                         <label>Mô tả</label>
-                                        <form:textarea path="description" class="form-control" placeholder="Mô tả ngắn gọn sản phẩm"/>
+                                        <form:textarea path="description" class="form-control"/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -140,7 +164,8 @@
                                 <div class="form-group row">
                                     <div class="col-md-4">
                                         <input type="submit" class="btn btn-primary" value="Lưu">
-                                        <a href="${pageContext.request.contextPath}/admin/product" class="btn btn-default">Quay lại</a>
+                                        <a href="${pageContext.request.contextPath}/admin/product"
+                                           class="btn btn-default">Quay lại</a>
                                     </div>
                                 </div>
                             </form:form>
@@ -160,10 +185,13 @@
 <!-- /#wrapper -->
 
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 
 <!-- Datatables JavaScript -->
 <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
@@ -171,37 +199,21 @@
 
 <script>
     $(document).ready(function () {
-        var table = $('#example').DataTable({
-            columnDefs: [ {
-                targets: 1, // the target for this configuration, 0 it's the first column
-                render: function ( data, type, row ) {
-                    return data.length > 30 ?
-                        data.substr( 0, 30 ) +'…' :
-                        data;
-                }
-            } ],
-            "language": {
-                "sProcessing": "Đang xử lý...",
-                "sLengthMenu": "Xem _MENU_ mục",
-                "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
-                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-                "sInfoPostFix": "",
-                "sSearch": "Tìm:",
-                "sUrl": "",
-                "oPaginate": {
-                    "sFirst": "Đầu",
-                    "sPrevious": "Trước",
-                    "sNext": "Tiếp",
-                    "sLast": "Cuối"
-                }
+        updateList = function() {
+            var input = document.getElementById('file');
+            var output = document.getElementById('fileList');
+
+            output.innerHTML = '<ul class="list-group">';
+            for (var i = 0; i < input.files.length; ++i) {
+                output.innerHTML += '<li class="list-group-item">' + input.files.item(i).name + '</li>';
             }
-        });
+            output.innerHTML += '</ul>';
+        }
     });
 
 
 </script>
+
 
 </body>
 
