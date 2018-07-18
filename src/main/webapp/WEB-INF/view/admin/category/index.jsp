@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table table-hover table-striped" id="example">
+                        <table class="table table-hover table-striped display nowrap" cellspacing="0" width="100%" id="example">
                             <thead>
                             <tr>
                                 <th>Mã</th>
@@ -62,11 +62,12 @@
                             </thead>
                             <tbody>
                             <c:forEach var="cat" items="${categories}">
+
                             <tr>
                                 <td>${cat.id}</td>
                                 <td>${cat.name}</td>
                                 <td>${cat.categoryByParentId.name}</td>
-                                <td class="text-center">
+                                <td class="text-right">
                                     <a href="${pageContext.request.contextPath}/admin/category/update?id=${cat.id}" class="btn btn-warning btn-xs">Sửa</a>
                                     <a href="${pageContext.request.contextPath}/admin/category/detail?id=${cat.id}" class="btn btn-success btn-xs">Chi tiết</a>
                                 </td>
@@ -101,37 +102,32 @@
     $(document).ready(function () {
         var table = $('#example').DataTable({
             columnDefs: [ {
-                targets: 1, // the target for this configuration, 0 it's the first column
-                render: function ( data, type, row ) {
-                    return data.length > 100 ?
-                        data.substr( 0, 100 ) +'…' :
-                        data;
-                }
-            } ],
-            "language": {
-                "sProcessing": "Đang xử lý...",
-                "sLengthMenu": "Xem _MENU_ mục",
-                "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
-                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-                "sInfoPostFix": "",
-                "sSearch": "Tìm:",
-                "sUrl": "",
-                "oPaginate": {
-                    "sFirst": "Đầu",
-                    "sPrevious": "Trước",
-                    "sNext": "Tiếp",
-                    "sLast": "Cuối"
-                }
-            }
+                            targets: 1, // the target for this configuration, 0 it's the first column
+                            render: function ( data, type, row ) {
+                                return data.length > 100 ?
+                                    data.substr( 0, 100 ) +'…' :
+                                    data;
+                            }
+                        } ],
+                        "language": {
+                            "sProcessing": "Đang xử lý...",
+                            "sLengthMenu": "Xem _MENU_ mục",
+                            "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
+                            "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+                            "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+                            "sInfoFiltered": "(được lọc từ _MAX_ mục)",
+                            "sInfoPostFix": "",
+                            "sSearch": "Tìm:",
+                            "sUrl": "",
+                            "oPaginate": {
+                                "sFirst": "Đầu",
+                                "sPrevious": "Trước",
+                                "sNext": "Tiếp",
+                                "sLast": "Cuối"
+                            }
+                        }
         });
     });
-
-
 </script>
-
-
 </body>
-
 </html>

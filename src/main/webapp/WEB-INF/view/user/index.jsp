@@ -12,11 +12,11 @@
 <html lang="en">
 
 <jsp:include page="../template/head-tag__user.jsp">
-    <jsp:param name="title" value="THE SANI - Trang chủ" />
+    <jsp:param name="title" value="THE SANI - Trang chủ"/>
 </jsp:include>
 
 <body>
-<%@ include file="../template/header-tag__user.jsp"%>
+<%@ include file="../template/header-tag__user.jsp" %>
 
 <main>
     <section class="section-carousel">
@@ -43,7 +43,8 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="panel__title">
-                                <img src="assets/img/icon-featured-shop-1.png" alt="Giao hàng miễn phí">Giao hàng miễn phí
+                                <img src="assets/img/icon-featured-shop-1.png" alt="Giao hàng miễn phí">Giao hàng miễn
+                                phí
                             </div>
                             <p class="panel__desc">Miễn phí giao hàng với đơn hàng trên 5.000.000đ</p>
                         </div>
@@ -53,7 +54,9 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="panel__title">
-                                <img src="assets/img/icon-featured-shop-2.png" alt="Cam kết chính hãng"> Cam kết chính hãng</div>
+                                <img src="assets/img/icon-featured-shop-2.png" alt="Cam kết chính hãng"> Cam kết chính
+                                hãng
+                            </div>
                             <p class="panel__desc">Sản phẩm chính hãng và được bảo hành của hãng</p>
                         </div>
                     </div>
@@ -62,7 +65,9 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="panel__title">
-                                <img src="assets/img/icon-featured-shop-3.png" alt="Chiết khấu hấp dẫn"> Chiết khấu hấp dẫn</div>
+                                <img src="assets/img/icon-featured-shop-3.png" alt="Chiết khấu hấp dẫn"> Chiết khấu hấp
+                                dẫn
+                            </div>
                             <p class="panel__desc">Luôn có mức chiết khấu tốt nhất cho khách hàng</p>
                         </div>
                     </div>
@@ -71,7 +76,9 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="panel__title">
-                                <img src="assets/img/icon-featured-shop-4.png" alt="Thanh toán đơn giản"> Thanh toán đơn giản</div>
+                                <img src="assets/img/icon-featured-shop-4.png" alt="Thanh toán đơn giản"> Thanh toán đơn
+                                giản
+                            </div>
                             <p class="panel__desc">Có nhiều phương thức để quý khách lựa chọn</p>
                         </div>
                     </div>
@@ -101,38 +108,42 @@
             <div class="row">
                 <!-- Product item -->
                 <c:forEach var="p" items="${listProduct1}">
-                <div class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
-                    <div class="product">
-                        <div class="product__thumbnail">
-                            <c:forEach var="img" items="${p.productImagesById}">
-                                <c:choose>
-                                    <c:when test="${img.productId.equals(p.id) && img.mainPhoto == true}">
-                                        <img src="${pageContext.request.contextPath}/assets/img/products/${img.url}" alt="">
-                                    </c:when>
-                                </c:choose>
-                            </c:forEach>
-                            <div class="quick-add">
-                                <div class="quick-add__wrap">
-                                    <ul class="quick-add__list">
-                                        <li>
-                                            <a href="${pageContext.request.contextPath}/cart/buy?id=${p.id}" title="Thêm vào giỏ hàng">
-                                                <i class="fa fa-shopping-basket"></i>
-                                            </a>
-                                        </li>
-                                    </ul>
+                    <div class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+                        <form action="/cart/add" method="get">
+                            <input type="hidden" name="id" value="${p.id}" />
+                            <div class="product">
+                                <div class="product__thumbnail">
+                                    <c:forEach var="img" items="${p.productImagesById}">
+                                        <c:choose>
+                                            <c:when test="${img.productId.equals(p.id) && img.mainPhoto == true}">
+                                                <img src="${pageContext.request.contextPath}/assets/img/products/${img.url}"
+                                                     alt="">
+                                            </c:when>
+                                        </c:choose>
+                                    </c:forEach>
+                                    <div class="quick-add">
+                                        <div class="quick-add__wrap">
+                                            <ul class="quick-add__list">
+                                                <li>
+                                                    <a href="${pageContext.request.contextPath}/cart/add?id=${p.id}" title="Add to cart">
+                                                        <i class="fa fa-shopping-basket"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="product__info u-ellipsis">
-                            <h2 class="product__info--title">
-                                <a href="${pageContext.request.contextPath}product/detail?id=${p.id}">${p.name}</a>
-                            </h2>
-                            <span class="product__info--price">
+                                <div class="product__info u-ellipsis">
+                                    <h2 class="product__info--title">
+                                        <a href="${pageContext.request.contextPath}product/detail?id=${p.id}">${p.name}</a>
+                                    </h2>
+                                    <span class="product__info--price">
                                 <fmt:formatNumber type="number" pattern="###,###" value="${p.salePrice}"/>
                             </span>
-                        </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
-                </div>
                 </c:forEach>
             </div>
         </div>

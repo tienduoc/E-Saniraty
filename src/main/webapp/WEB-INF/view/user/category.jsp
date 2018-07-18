@@ -78,18 +78,12 @@
                 <div class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
                     <div class="product">
                         <div class="product__thumbnail">
-                            <c:forEach var="img" items="${p.productImagesById}">
-                                <c:choose>
-                                    <c:when test="${img.productId.equals(p.id) && img.mainPhoto == true}">
-                                        <img src="${pageContext.request.contextPath}/assets/img/products/${img.url}" alt="">
-                                    </c:when>
-                                </c:choose>
-                            </c:forEach>
+                            <img src="http://webaashi.com/TF/html/aashi-faucets/assets/img/product/11.jpg" alt="">
                             <div class="quick-add">
                                 <div class="quick-add__wrap">
                                     <ul class="quick-add__list">
                                         <li>
-                                            <a href="" title="Add to cart">
+                                            <a href="${pageContext.request.contextPath}/cart/add?id=${p.id}" title="Add to cart">
                                                 <i class="fa fa-shopping-basket"></i>
                                             </a>
                                         </li>

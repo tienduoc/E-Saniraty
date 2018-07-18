@@ -3,12 +3,14 @@ package com.fpt.esanitary.entities;
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Collection;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
+@Table(name = "[order]")
 public class Order {
   private String id;
-  private Timestamp date;
+  private Date date;
   private String username;
   private boolean closed;
   private Double totalPrice;
@@ -30,11 +32,11 @@ public class Order {
 
   @Basic
   @Column(name = "Date", nullable = false)
-  public Timestamp getDate() {
+  public Date getDate() {
     return date;
   }
 
-  public void setDate(Timestamp date) {
+  public void setDate(Date date) {
     this.date = date;
   }
 

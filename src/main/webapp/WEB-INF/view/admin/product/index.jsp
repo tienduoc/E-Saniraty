@@ -68,16 +68,17 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:set var="count" value="0" scope="page" />
                             <c:forEach var="p" items="${allProduct}">
-                                <c:set var="count" value="${count + 1}" scope="page"/>
                             <tr>
-                                <td class="text-center">${p.id}</td>
+                                <td>${p.id}</td>
                                 <td>${p.name}</td>
                                 <td>${p.categoryByCategoryId.name}</td>
                                 <td>${p.manufacturerByManufacturerId.name}</td>
                                 <td class="text-center">${p.unitInStock}</td>
-                                <td class="text-center"><fmt:formatNumber type="number" pattern="###,###" value="${p.salePrice}"/></td>
+                                <td class="text-right" id="price">
+                                    <fmt:parseNumber var="i" type="number" value="${p.salePrice}" />
+                                    <c:out value= "${i}" />
+                                </td>
                                 <c:choose>
                                     <c:when test="${p.enabled}">
                                         <td class="text-center" style="color: green">Hiển thị</td>
@@ -86,7 +87,7 @@
                                         <td class="text-center" style="color: red">Ẩn</td>
                                     </c:otherwise>
                                 </c:choose>
-                                <td class="text-center">
+                                <td class="text-right">
                                     <a href="${pageContext.request.contextPath}/admin/product/update?id=${p.id}" class="btn btn-warning btn-xs">Sửa</a>
                                     <a href="${pageContext.request.contextPath}/admin/product/detail?id=${p.id}" class="btn btn-success btn-xs">Chi tiết</a>
                                 </td>
@@ -119,6 +120,7 @@
 
 <script>
     $(document).ready(function () {
+
         var table = $('#example').DataTable({
             columnDefs: [ {
                 targets: 1, // the target for this configuration, 0 it's the first column
@@ -129,20 +131,22 @@
                 }
             } ],
             "language": {
-                "sProcessing": "Đang xử lý...",
-                "sLengthMenu": "Xem _MENU_ mục",
-                "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
-                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-                "sInfoPostFix": "",
-                "sSearch": "Tìm:",
-                "sUrl": "",
-                "oPaginate": {
-                    "sFirst": "Đầu",
-                    "sPrevious": "Trước",
-                    "sNext": "Tiếp",
-                    "sLast": "Cuối"
+                "decimal": ",",
+                "thousands": ".",
+                "processing": "Đang xử lý...",
+                "lengthMenu": "Xem _MENU_ mục",
+                "zeroRecords": "Không tìm thấy dòng nào phù hợp",
+                "info": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
+                "infoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
+                "infoFiltered": "(được lọc từ _MAX_ mục)",
+                "infoPostFix": "",
+                "search": "Tìm:",
+                "url": "",
+                "paginate": {
+                    "first": "Đầu",
+                    "previous": "Trước",
+                    "next": "Tiếp",
+                    "last": "Cuối"
                 }
             }
         });

@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -29,7 +28,7 @@
         </li>
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
-                Chào <sec:authentication property="principal.username"/>
+                <%--Chào <sec:authentication property="principal.username"/>--%>
                 <b class="caret"></b></a>
             <ul class="dropdown-menu">
                 <li>
@@ -56,6 +55,9 @@
             </li>
             <li>
                 <a href="${pageContext.request.contextPath}/admin/product/"><i class="fa fa-fw fa-shower"></i> Quản lý sản phẩm</a>
+            </li>
+            <li>
+                <a href="${pageContext.request.contextPath}/admin/order/"><i class="fa fa-shopping-cart"></i> Quản lý đơn hàng</a>
             </li>
             <li>
                 <a href="${pageContext.request.contextPath}/admin/account/"><i class="fa fa-fw fa-users"></i> Quản lý tài khoản</a>

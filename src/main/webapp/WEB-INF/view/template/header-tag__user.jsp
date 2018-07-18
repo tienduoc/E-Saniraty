@@ -10,6 +10,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <header class="header">
     <div id="top-bar" class="header__top-bar hidden-xs">
         <div class="container">
@@ -50,12 +51,12 @@
                                 <c:forEach var="cat0" items="${menu}">
                                     <c:if test="${cat0.parentId == null}">
                                         <li>
-                                            <a>${cat0.name}</a>
+                                            <a href="${pageContext.request.contextPath}/category?id=${cat0.id}">${cat0.name}</a>
                                             <ul class="nav-dropdown">
                                                 <c:forEach var="cat1" items="${menu}">
                                                     <c:if test="${cat1.parentId == cat0.id}">
                                                         <li>
-                                                            <a>${cat1.name}</a>
+                                                            <a href="${pageContext.request.contextPath}/category?id=${cat1.id}">${cat1.name}</a>
                                                             <ul class="nav-dropdown">
                                                                 <c:forEach var="cat2" items="${menu}">
                                                                     <c:if test="${cat2.parentId == cat1.id}">
@@ -114,16 +115,24 @@
                                     <i class="fa fa-close"></i>
                                 </a>
                                 <ul class="popup__list">
+                                    <c:set var="sum" value="0"></c:set>
+                                    <c:forEach var="item" items="${sessionScope.cart}">
+                                    <c:set var="sum" value="${sum + item.product.salePrice * item.quantity }"></c:set>
                                     <li class="popup__item clearfix">
                                         <img src="/assets/img/faucet-1.jpeg" alt="faucet-1" class="cart__image">
-                                        <a href="#" class="cart__title">Tên sản phẩm...</a>
-                                        <span class="cart__price">800.000d</span>
-                                        <span>x 01</span>
+                                        <a href="#" class="cart__title">${item.product.name}</a>
+                                        <span class="cart__price">
+                                            <fmt:formatNumber type="number" pattern="###,###" value="${item.product.salePrice}"/>
+                                        </span>
+                                        <span>x ${item.quantity}</span>
                                     </li>
+                                    </c:forEach>
                                 </ul>
                                 <div class="cart__footer">
                                     <span class="pull-left">Tổng cộng</span>
-                                    <span class="pull-right"> 240000d </span>
+                                    <span class="pull-right">
+                                        <fmt:formatNumber type="number" pattern="###,###" value="${sum}"/>
+                                    </span>
                                 </div>
                                 <a href="${pageContext.request.contextPath}/cart" class="button button--black">Xem giỏ
                                     hàng

@@ -37,7 +37,10 @@ public class ProductImageController {
     }
 
     @PostMapping("upload")
-    public String uploadImage(@RequestParam("productId") String productId, @RequestParam("file") CommonsMultipartFile file, HttpServletRequest request, Model model) {
+    public String uploadImage(@RequestParam("productId") String productId,
+                              @RequestParam("file") CommonsMultipartFile file,
+                              HttpServletRequest request,
+                              Model model) {
         String nameFile = file.getOriginalFilename();
         // Check if filename already in the database then return
         for (ProductImage pi : productImageService.findAll()) {
