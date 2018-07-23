@@ -35,7 +35,6 @@
             </div>
         </div>
     </div>
-
     <div id="main-menu" class="header__main-menu main_header_area animated">
         <div class="container">
             <div class="row">
@@ -87,22 +86,35 @@
                                     <i class="fa fa-close"></i>
                                 </a>
                                 <ul class="popup__list">
-                                    <li class="popup__item clearfix">
-                                        <c:choose>
-                                            <c:when test="${pageContext.request.userPrincipal.authenticated}">
+                                    <c:choose>
+                                        <c:when test="${pageContext.request.userPrincipal.authenticated}">
+                                            <li class="popup__item clearfix u-ellipsis">
                                                 <a href="">Chào <sec:authentication property="principal.username"/></a>
-                                                <sec:authorize access="hasAuthority('Admin')">
+                                            </li>
+                                            <sec:authorize access="hasAnyAuthority('Customer','Contractor')">
+                                                <li class="popup__item clearfix u-ellipsis">
+                                                    <a href="${pageContext.request.contextPath}/order/history">Quản lý đơn hàng</a>
+                                                </li>
+                                            </sec:authorize>
+                                            <sec:authorize access="hasAuthority('Admin')">
+                                                <li class="popup__item clearfix u-ellipsis">
                                                     <a href="${pageContext.request.contextPath}/admin">Trang quản
                                                         trị</a>
-                                                </sec:authorize>
+                                                </li>
+                                            </sec:authorize>
+                                            <li class="popup__item clearfix u-ellipsis">
                                                 <a href="${pageContext.request.contextPath}/logout">Đăng xuất</a>
-                                            </c:when>
-                                            <c:otherwise>
+                                            </li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li class="popup__item clearfix u-ellipsis">
                                                 <a href="${pageContext.request.contextPath}/login">Đăng nhập</a>
+                                            </li>
+                                            <li class="popup__item clearfix u-ellipsis">
                                                 <a href="${pageContext.request.contextPath}/register">Đăng ký</a>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </li>
+                                            </li>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </ul>
                             </div>
                         </li>
@@ -117,15 +129,15 @@
                                 <ul class="popup__list">
                                     <c:set var="sum" value="0"></c:set>
                                     <c:forEach var="item" items="${sessionScope.cart}">
-                                    <c:set var="sum" value="${sum + item.product.salePrice * item.quantity }"></c:set>
-                                    <li class="popup__item clearfix">
-                                        <img src="/assets/img/faucet-1.jpeg" alt="faucet-1" class="cart__image">
-                                        <a href="#" class="cart__title">${item.product.name}</a>
-                                        <span class="cart__price">
+                                        <c:set var="sum" value="${sum + item.product.salePrice * item.quantity }"></c:set>
+                                        <li class="popup__item clearfix u-ellipsis">
+                                            <img src="/assets/img/faucet-1.jpeg" alt="faucet-1" class="cart__image">
+                                            <a href="#" class="cart__title u-ellipsis">${item.product.name}</a>
+                                            <span class="cart__price">
                                             <fmt:formatNumber type="number" pattern="###,###" value="${item.product.salePrice}"/>
                                         </span>
-                                        <span>x ${item.quantity}</span>
-                                    </li>
+                                            <span>x ${item.quantity}</span>
+                                        </li>
                                     </c:forEach>
                                 </ul>
                                 <div class="cart__footer">
@@ -143,7 +155,6 @@
                     </ul>
                 </div>
             </div>
-
         </div>
         <!-- /.navbar-collapse -->
     </div>

@@ -118,7 +118,7 @@ public class Order {
     this.accountByUsername = accountByUsername;
   }
 
-  @OneToMany(mappedBy = "orderByOrderId")
+  @OneToMany(mappedBy = "orderByOrderId", fetch = FetchType.EAGER)
   public Collection<OrderDetail> getOrderDetailsById() {
     return orderDetailsById;
   }

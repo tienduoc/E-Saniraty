@@ -47,70 +47,81 @@
             </div>
         </div>
     </section>
-
+    ${msg}
     <section class="section-cart">
-
         <div class="container">
-
             <div class="row order">
                 <!-- Cart lists -->
-
                 <aside class="col-lg-8 col-lg-offset-0 col-md-7 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
                     <!-- Item row -->
-                    <c:set var="sum" value="0"></c:set>
-                    <c:forEach var="item" items="${sessionScope.cart}">
-                        <c:set var="sum" value="${sum + item.product.salePrice * item.quantity }"></c:set>
-                        <div class="row order__row u-margin-LR-none">
-
-                            <!-- Item column -- Product image -->
-                            <div class="col-lg-2 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4 u-padding-LR-none">
-                                <div class="order__cell">
-                                    <img src="https://images.homedepot-static.com/productImages/914a1d80-6efb-4772-bcc3-3ef5543e6c08/svn/chrome-delta-bar-faucets-b28911lf-64_1000.jpg"
-                                         alt="">
-                                    <div class="clearfix"></div>
+                    <form:form action="/cart/update" method="post" name="update">
+                        <%--<button type="submit" style="margin-left: 682px">Cập nhật</button>--%>
+                        <c:set var="sum" value="0"></c:set>
+                        <c:forEach var="item" items="${sessionScope.cart}">
+                            <c:set var="sum" value="${sum + item.product.salePrice * item.quantity }"></c:set>
+                            <div class="row order__row u-margin-LR-none">
+                                <!-- Item column -- Product image -->
+                                <div class="col-lg-1 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4 u-padding-LR-none">
+                                    <div class="order__cell">
+                                        <img src="https://images.homedepot-static.com/productImages/914a1d80-6efb-4772-bcc3-3ef5543e6c08/svn/chrome-delta-bar-faucets-b28911lf-64_1000.jpg"
+                                             alt="">
+                                        <div class="clearfix"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- Item column -- Product name -->
-                            <div class="col-lg-6 col-lg-offset-0 col-md-5 col-md-offset-0 col-sm-12 col-xs-offset-0 col-xs-12">
-                                <div class="order__cell">
-                                    <p class="order__cell--box-info">
-                                        <a href="${rootUrl}/product/detail?id=${item.product.id}">${item.product.name}</a>
-                                    </p>
-                                    <p class="order__cell--box-info">
-                                        Nhãn hiệu: ${item.product.manufacturerByManufacturerId.name}
-                                    </p>
-                                </div>
-                                <p>
-                                    <a href="${pageContext.request.contextPath}/cart/remove?id=${item.product.id}">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </a>
-                                </p>
-                            </div>
-                            <!-- Item column -- Product price -->
-                            <div class="col-lg-2 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-12 col-xs-offset-0 col-xs-12">
-                                <div class="order__cell">
-                                    <p class="order__cell--box-info">
-                                        <fmt:formatNumber type="number" pattern="###,###"
-                                                          value="${item.product.salePrice}"/>
+                                <!-- Item column -- Product name -->
+                                <input type="hidden" name="id" value="${item.product.id}">
+                                <div class="col-lg-6 col-lg-offset-0 col-md-5 col-md-offset-0 col-sm-12 col-xs-offset-0 col-xs-12">
+                                    <div class="order__cell">
+                                        <p class="order__cell--box-info">
+                                            <a href="${rootUrl}/product/detail?id=${item.product.id}">${item.product.name}</a>
+                                        </p>
+                                        <p class="order__cell--box-info">
+                                            Nhãn hiệu: ${item.product.manufacturerByManufacturerId.name}
+                                        </p>
+                                    </div>
+                                    <p>
+                                        <a href="${pageContext.request.contextPath}/cart/remove?id=${item.product.id}">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        </a>
                                     </p>
                                 </div>
-                            </div>
-                            <!-- Item column -- Product quantity -->
-                            <div class="col-lg-2 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-4 col-sm-offset-4 col-xs-offset-4 col-xs-4">
-                                <div class="order__cell">
-                                    <input value="${item.quantity}" class="qty" name="qty1" type="number">
+                                <!-- Item column -- Product price -->
+                                <div class="col-lg-2 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-12 col-xs-offset-0 col-xs-12">
+                                    <div class="order__cell">
+                                        <p class="order__cell--box-info">
+                                            <fmt:formatNumber type="number" pattern="###,###" value="${item.product.salePrice}"/>
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- Item column -- Product quantity -->
+                                <div class="col-lg-3 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-4 col-sm-offset-4 col-xs-offset-4 col-xs-4">
+                                    <div class="order__cell">
+                                        <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button type="submit" class="quantity-left-minus btn button--black" data-type="minus" data-field="">
+                                          <span class="fa fa-minus"></span>
+                                        </button>
+                                    </span>
+                                            <input type="text" id="quantity" name="quantity" onchange="submit()" class="form-control input-number" value="${item.quantity}" pattern="^\d{1,3}$" title="Số lượng từ 1-999">
+                                            <span class="input-group-btn">
+                                        <button type="submit" class="quantity-right-plus btn button--black"
+                                                data-type="plus" data-field="">
+                                            <span class="fa fa-plus"></span>
+                                        </button>
+                                    </span>
+                                        </div>
+                                            <%--<input name="quantity" type="text" value="${item.quantity}" pattern="^\d{1,3}$" title="Số lượng từ 1-999">--%>
+                                    </div>
                                 </div>
                             </div>
-
-                        </div>
-                    </c:forEach>
+                        </c:forEach>
+                    </form:form>
                 </aside>
-
                 <!-- Checkout  -->
                 <aside class="col-lg-4 col-lg-offset-0 col-md-5 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0 u-padding-LR-none">
-                    <!-- Checkout wrapper -->
-                    <div class="total">
-                        <form:form action="/cart/buy" method="post">
+                    <form:form action="/cart/buy" method="post">
+                        <!-- Checkout wrapper -->
+                        <div class="total">
                             <!-- Row -->
                             <div class="row total__row">
                                 <div class="col-md-6 total__cell">
@@ -124,31 +135,37 @@
                             <!-- Buttons -->
                             <div class="row total__row">
                                 <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
-                                    <button type="submit" class="btn button--black col-xs-12">
-                                        Tiếp tục
-                                    </button>
+                                    <a href="${pageContext.request.contextPath}/">
+                                        <button type="button" class="btn button--black col-xs-12">
+                                            Về trang chủ
+                                        </button>
+                                    </a>
                                 </div>
                                 <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
                                     <button type="submit" class="btn button--black col-xs-12">Đặt hàng</button>
                                 </div>
                             </div>
-                        </form:form>
-                    </div>
-
+                        </div>
+                    </form:form>
                 </aside>
-
             </div>
-
         </div>
-
     </section>
-
-
 </main>
-
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>
 <script src="/assets/js/main.js"></script>
-</body>
+<script>
+    <%-- Keep vertical scrollbar position --%>
+    $(window).scroll(function () {
+        sessionStorage.scrollTop = $(this).scrollTop();
+    });
 
+    $(document).ready(function () {
+        if (sessionStorage.scrollTop != "undefined") {
+            $(window).scrollTop(sessionStorage.scrollTop);
+        }
+    });
+</script>
+</body>
 </html>

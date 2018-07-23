@@ -2,9 +2,11 @@ package com.fpt.esanitary.service;
 
 import com.fpt.esanitary.entities.OrderDetail;
 
+import java.util.List;
+
 public interface OrderDetailService {
 
-  OrderDetail findByOrder(String orderId);
+  List<OrderDetail> findByOrder(String orderId);
 
   void save(OrderDetail orderDetail);
 

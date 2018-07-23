@@ -3,7 +3,6 @@ package com.fpt.esanitary.controller.user;
 import com.fpt.esanitary.entities.Item;
 import com.fpt.esanitary.entities.Order;
 import com.fpt.esanitary.entities.OrderDetail;
-import com.fpt.esanitary.entities.Product;
 import com.fpt.esanitary.service.AccountService;
 import com.fpt.esanitary.service.OrderDetailService;
 import com.fpt.esanitary.service.OrderService;
@@ -14,10 +13,12 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.util.*;
@@ -45,7 +46,7 @@ public class CartController {
         return "user/cart";
     }
 
-    @GetMapping("add")
+    @GetMapping(value = "add")
     public String addToCart(@RequestParam("id") String id, HttpSession session) {
         if (session.getAttribute("cart") == null) {
             List<Item> cart = new ArrayList<Item>();
@@ -59,12 +60,7 @@ public class CartController {
                 cart.add(new Item(productService.findById(id), 1));
             } else {
                 int quantity = cart.get(index).getQuantity();
-                int inStock = cart.get(index).getProduct().getUnitInStock();
-                if (quantity >= inStock) {
-                    quantity = inStock;
-                } else {
-                    quantity++;
-                }
+                quantity++;
                 cart.get(index).setQuantity(quantity);
             }
             session.setAttribute("cart", cart);
@@ -72,14 +68,31 @@ public class CartController {
         return "redirect:/cart";
     }
 
+    @PostMapping("update")
+    public String updateCart(@RequestParam String[] quantity,
+                             HttpSession session) {
+        List<Item> cart = (List<Item>) session.getAttribute("cart");
+        for (int i = 0; i < cart.size(); i++) {
+            cart.get(i).setQuantity(Integer.parseInt(quantity[i]));
+        }
+        session.setAttribute("cart", cart);
+        return "redirect:/cart";
+    }
+
     @GetMapping("remove")
-    public String removeItemInCart(@RequestParam String id, HttpSession session) {
+    public String removeItemInCart(@RequestParam String id, HttpSession session, Model model) {
         List<Item> cart = (List<Item>) session.getAttribute("cart");
         int index = isExits(id, session);
         if (id.equals(cart.get(index).getProduct().getId())) {
             cart.remove(index);
+            if (cart.size() > 1) {
+                session.setAttribute("cart", cart);
+
+            } else {
+                session.removeAttribute("cart");
+                model.addAttribute("msg", "Giở hàng trống");
+            }
         }
-        session.setAttribute("cart", cart);
         return "redirect:/cart";
     }
 
@@ -94,8 +107,7 @@ public class CartController {
     }
 
     @PostMapping("buy")
-    public String buy(@RequestParam Double totalPrice,
-                      HttpSession session) {
+    public String buy(@RequestParam Double totalPrice, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
         String acc = null;
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {
@@ -104,6 +116,9 @@ public class CartController {
         }
         if (acc == null) {
             return "user/login";
+        } else if (session.getAttribute("cart") == null) {
+            model.addAttribute("msg", "Giỏ hàng trống");
+            return "user/cart";
         } else {
             Order order = new Order();
             Calendar cal = Calendar.getInstance();
@@ -129,12 +144,13 @@ public class CartController {
                 orderDetail.setQuantity(cart.get(i).getQuantity());
                 orderDetailService.save(orderDetail); // Lưu
 
-                Product product = productService.findById(cart.get(i).getProduct().getId()); // Tìm sản phẩm
-                product.setUnitInStock(cart.get(i).getProduct().getUnitInStock() - cart.get(i).getQuantity()); // Lấy UnitInStock - số lượng đã bỏ vào giỏ
-                productService.update(product); // Cập nhật
+//                Product product = productService.findById(cart.get(i).getProduct().getId()); // Tìm sản phẩm
+//                product.setUnitInStock(cart.get(i).getProduct().getUnitInStock() - cart.get(i).getQuantity()); // Lấy UnitInStock - số lượng đã bỏ vào giỏ
+//                productService.update(product); // Cập nhật
             }
             session.removeAttribute("cart"); // Xóa đối tượng cart trong session sau khi order, vô giỏ hàng sẽ trống trơn
-            return "user/index";
+            redirectAttributes.addFlashAttribute("orderId", orderId);
+            return "redirect:/thanks";
         }
     }
 }

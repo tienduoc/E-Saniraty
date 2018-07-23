@@ -27,8 +27,13 @@ public class BaseController {
         return "user/403";
     }
 
+    @GetMapping("/thanks")
+    public String showThanksPage() {
+        return "user/thanks";
+    }
+
     @GetMapping("/test")
-    public String testNewPage() {
-        return "admin/image/index";
+    public String testForm() {
+        return "contractor/dealConfirm";
     }
 }

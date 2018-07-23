@@ -8,6 +8,8 @@ public interface OrderDAO {
 
   List<Order> findAll();
 
+  Order findById(String id);
+
   List<Order> findByUsername(String username);
 
   List<Order> search(String keyword);

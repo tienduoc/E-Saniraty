@@ -1,105 +1,127 @@
 package com.fpt.esanitary.entities;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
+import java.util.Date;
+import java.util.Date;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "deal_history", schema = "dbo", catalog = "esanitary")
 public class DealHistory {
-  private int id;
-  private String orderId;
-  private Timestamp date;
-  private Boolean bossApprove;
-  private Boolean contructorApprove;
-  private Order orderByOrderId;
-  private Collection<DealHistoryDetail> dealHistoryDetailsById;
+    private String id;
+    private String orderId;
+    private Date requestDate;
+    private Date responseDate;
+    private Boolean bossApprove;
+    private boolean contructorApprove;
+    private Order orderByOrderId;
+    private Collection<DealHistoryDetail> dealHistoryDetailsById;
+    private Collection<DealMessage> dealMessagesById;
 
-  @Id
-  @Column(name = "Id", nullable = false)
-  public int getId() {
-    return id;
-  }
+    @Id
+    @Column(name = "Id", nullable = false, length = 50)
+    public String getId() {
+        return id;
+    }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-  @Basic
-  @Column(name = "OrderID", nullable = false, length = 50)
-  public String getOrderId() {
-    return orderId;
-  }
+    @Basic
+    @Column(name = "OrderID", nullable = false, length = 50)
+    public String getOrderId() {
+        return orderId;
+    }
 
-  public void setOrderId(String orderId) {
-    this.orderId = orderId;
-  }
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
 
-  @Basic
-  @Column(name = "Date", nullable = false)
-  public Timestamp getDate() {
-    return date;
-  }
+    @Basic
+    @Column(name = "RequestDate", nullable = false)
+    public Date getRequestDate() {
+        return requestDate;
+    }
 
-  public void setDate(Timestamp date) {
-    this.date = date;
-  }
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
+    }
 
-  @Basic
-  @Column(name = "BossApprove", nullable = true)
-  public Boolean getBossApprove() {
-    return bossApprove;
-  }
+    @Basic
+    @Column(name = "ResponseDate", nullable = true)
+    public Date getResponseDate() {
+        return responseDate;
+    }
 
-  public void setBossApprove(Boolean bossApprove) {
-    this.bossApprove = bossApprove;
-  }
+    public void setResponseDate(Date responseDate) {
+        this.responseDate = responseDate;
+    }
 
-  @Basic
-  @Column(name = "ContructorApprove", nullable = true)
-  public Boolean getContructorApprove() {
-    return contructorApprove;
-  }
+    @Basic
+    @Column(name = "BossApprove", nullable = true)
+    public Boolean getBossApprove() {
+        return bossApprove;
+    }
 
-  public void setContructorApprove(Boolean contructorApprove) {
-    this.contructorApprove = contructorApprove;
-  }
+    public void setBossApprove(Boolean bossApprove) {
+        this.bossApprove = bossApprove;
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    DealHistory that = (DealHistory) o;
-    return id == that.id &&
-            Objects.equals(orderId, that.orderId) &&
-            Objects.equals(date, that.date) &&
-            Objects.equals(bossApprove, that.bossApprove) &&
-            Objects.equals(contructorApprove, that.contructorApprove);
-  }
+    @Basic
+    @Column(name = "ContructorApprove", nullable = false)
+    public boolean isContructorApprove() {
+        return contructorApprove;
+    }
 
-  @Override
-  public int hashCode() {
+    public void setContructorApprove(boolean contructorApprove) {
+        this.contructorApprove = contructorApprove;
+    }
 
-    return Objects.hash(id, orderId, date, bossApprove, contructorApprove);
-  }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DealHistory that = (DealHistory) o;
+        return contructorApprove == that.contructorApprove &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(orderId, that.orderId) &&
+                Objects.equals(requestDate, that.requestDate) &&
+                Objects.equals(responseDate, that.responseDate) &&
+                Objects.equals(bossApprove, that.bossApprove);
+    }
 
-  @ManyToOne
-  @JoinColumn(name = "OrderID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
-  public Order getOrderByOrderId() {
-    return orderByOrderId;
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, orderId, requestDate, responseDate, bossApprove, contructorApprove);
+    }
 
-  public void setOrderByOrderId(Order orderByOrderId) {
-    this.orderByOrderId = orderByOrderId;
-  }
+    @ManyToOne
+    @JoinColumn(name = "OrderID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
+    public Order getOrderByOrderId() {
+        return orderByOrderId;
+    }
 
-  @OneToMany(mappedBy = "dealHistoryByDealHistoryId")
-  public Collection<DealHistoryDetail> getDealHistoryDetailsById() {
-    return dealHistoryDetailsById;
-  }
+    public void setOrderByOrderId(Order orderByOrderId) {
+        this.orderByOrderId = orderByOrderId;
+    }
 
-  public void setDealHistoryDetailsById(Collection<DealHistoryDetail> dealHistoryDetailsById) {
-    this.dealHistoryDetailsById = dealHistoryDetailsById;
-  }
+    @OneToMany(mappedBy = "dealHistoryByDealHistoryId")
+    public Collection<DealHistoryDetail> getDealHistoryDetailsById() {
+        return dealHistoryDetailsById;
+    }
+
+    public void setDealHistoryDetailsById(Collection<DealHistoryDetail> dealHistoryDetailsById) {
+        this.dealHistoryDetailsById = dealHistoryDetailsById;
+    }
+
+    @OneToMany(mappedBy = "dealHistoryByDealHistoryId")
+    public Collection<DealMessage> getDealMessagesById() {
+        return dealMessagesById;
+    }
+
+    public void setDealMessagesById(Collection<DealMessage> dealMessagesById) {
+        this.dealMessagesById = dealMessagesById;
+    }
 }

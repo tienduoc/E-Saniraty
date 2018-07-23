@@ -21,6 +21,11 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
+  public Order findById(String id) {
+    return orderDAO.findById(id);
+  }
+
+  @Override
   public List<Order> findByUsername(String username) {
     return orderDAO.findByUsername(username);
   }

@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface DealHistoryService {
 
+  List<DealHistory> findAll();
+
   List<DealHistory> findAllByOrder(String orderId);
 
   void save(DealHistory dealHistory);

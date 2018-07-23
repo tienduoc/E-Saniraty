@@ -34,7 +34,6 @@
                 <div class="clear"></div>
 
                 <div class="col-md-6 col-sm-8 col-xs-12 col-md-offset-3 col-sm-offset-2 col-xs-offset-0">
-
                     <form:form action="${pageContext.request.contextPath}/authenticateUser" method="post" class="form">
                         <p>
                             <label for="username">Tên đăng nhập<span class="required">*</span></label>

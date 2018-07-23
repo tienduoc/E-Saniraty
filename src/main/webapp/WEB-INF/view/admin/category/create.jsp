@@ -65,7 +65,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="cateName">Tên nhóm</label>
+                                    <label>Tên nhóm</label>
                                     <form:input type="text" class="form-control" path="name" placeholder="Bồn tắm" required="required" />
                                 </div>
                                 <div class="form-group">

@@ -93,7 +93,7 @@ public class OrderDetail {
     this.orderByOrderId = orderByOrderId;
   }
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "ProductID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
   public Product getProductByProductId() {
     return productByProductId;

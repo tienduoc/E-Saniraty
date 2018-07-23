@@ -16,9 +16,16 @@ public class DealHistoryDAOImpl implements DealHistoryDAO {
   private SessionFactory sessionFactory;
 
   @Override
+  public List<DealHistory> findAll() {
+    Session session = sessionFactory.getCurrentSession();
+    List<DealHistory> dealHistories = session.createQuery("from  DealHistory", DealHistory.class).getResultList();
+    return dealHistories;
+  }
+
+  @Override
   public List<DealHistory> findAllByOrder(String orderId) {
     Session session = sessionFactory.getCurrentSession();
-    Query query = session.createQuery("from DealHistory where orderId = :orderId order by date desc", DealHistory.class)
+    Query query = session.createQuery("from DealHistory where orderId = :orderId order by requestDate desc", DealHistory.class)
             .setParameter("orderId", orderId);
     List<DealHistory> dealHistories = query.getResultList();
     return dealHistories;

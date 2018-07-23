@@ -7,7 +7,7 @@ import java.util.Objects;
 @Table(name = "deal_history_detail", schema = "dbo", catalog = "esanitary")
 @IdClass(DealHistoryDetailPK.class)
 public class DealHistoryDetail {
-  private int dealHistoryId;
+  private String dealHistoryId;
   private String productId;
   private double originalPrice;
   private double contractorPrice;
@@ -16,12 +16,14 @@ public class DealHistoryDetail {
   private Product productByProductId;
 
   @Id
+  @SequenceGenerator(name = "mySeqGen", sequenceName = "mySeq", initialValue = 5, allocationSize = 100)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "DealHistoryID", nullable = false)
-  public int getDealHistoryId() {
+  public String getDealHistoryId() {
     return dealHistoryId;
   }
 
-  public void setDealHistoryId(int dealHistoryId) {
+  public void setDealHistoryId(String dealHistoryId) {
     this.dealHistoryId = dealHistoryId;
   }
 
@@ -56,7 +58,7 @@ public class DealHistoryDetail {
   }
 
   @Basic
-  @Column(name = "NewPrice", nullable = false, precision = 0)
+  @Column(name = "NewPrice", precision = 0)
   public double getNewPrice() {
     return newPrice;
   }

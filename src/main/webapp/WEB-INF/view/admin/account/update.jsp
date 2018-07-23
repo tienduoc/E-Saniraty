@@ -84,7 +84,7 @@
                                     <form:input path="phone" type="text" class="form-control" name="phone" />
                                 </div>
                                 <div class="form-group">
-                                    <label for="role">Vai trò</label>
+                                    <label>Vai trò</label>
                                         <select name="roleId" required style="display:block">
                                         <c:forEach var="r" items="${roles}">
                                             <c:if test="${!(r.name.equalsIgnoreCase('Boss') || r.name.equalsIgnoreCase('Admin'))}">

@@ -6,16 +6,16 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class DealHistoryDetailPK implements Serializable {
-  private int dealHistoryId;
+  private String dealHistoryId;
   private String productId;
 
-  @Column(name = "DealHistoryID", nullable = false)
+  @Column(name = "DealHistoryID", nullable = false, length = 50)
   @Id
-  public int getDealHistoryId() {
+  public String getDealHistoryId() {
     return dealHistoryId;
   }
 
-  public void setDealHistoryId(int dealHistoryId) {
+  public void setDealHistoryId(String dealHistoryId) {
     this.dealHistoryId = dealHistoryId;
   }
 
@@ -40,7 +40,6 @@ public class DealHistoryDetailPK implements Serializable {
 
   @Override
   public int hashCode() {
-
     return Objects.hash(dealHistoryId, productId);
   }
 }

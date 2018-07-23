@@ -16,6 +16,11 @@ public class DealHistoryServiceImpl implements DealHistoryService {
   private DealHistoryDAO dealHistoryDAO;
 
   @Override
+  public List<DealHistory> findAll() {
+    return dealHistoryDAO.findAll();
+  }
+
+  @Override
   public List<DealHistory> findAllByOrder(String orderId) {
     return dealHistoryDAO.findAllByOrder(orderId);
   }

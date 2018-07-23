@@ -10,14 +10,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <jsp:include page="../template/head-tag__user.jsp">
     <jsp:param name="title" value="THE SANI - Trang chủ"/>
 </jsp:include>
-
 <body>
 <%@ include file="../template/header-tag__user.jsp" %>
-
 <main>
     <section class="section-carousel">
         <div class="owl-carousel">
@@ -34,7 +31,6 @@
         <ul id="carousel-custom-dots" class="owl-dots">
         </ul>
     </section>
-
     <section class="section-features">
         <div class="container">
             <div class="row">
@@ -86,7 +82,6 @@
             </div>
         </div>
     </section>
-
     <section class="section-product">
         <div class="container">
             <!-- Introducing of products categogies -->
@@ -103,7 +98,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Products -->
             <div class="row">
                 <!-- Product item -->
@@ -125,7 +119,7 @@
                                         <div class="quick-add__wrap">
                                             <ul class="quick-add__list">
                                                 <li>
-                                                    <a href="${pageContext.request.contextPath}/cart/add?id=${p.id}" title="Add to cart">
+                                                    <a id="add" href="${pageContext.request.contextPath}/cart/add?id=${p.id}" title="Add to cart">
                                                         <i class="fa fa-shopping-basket"></i>
                                                     </a>
                                                 </li>
@@ -150,14 +144,12 @@
         </div>
     </section>
 </main>
-
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/owl.carousel.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script>
     //CAROUSEL
-
     $('.owl-carousel').owlCarousel({
         autoplay: true,
         autoplayTimeout: 5000,

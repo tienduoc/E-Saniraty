@@ -9,22 +9,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tg" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <jsp:include page="../../template/head-admin_tag.jsp">
     <jsp:param name="title" value="Trang quản lý đơn hàng"/>
 </jsp:include>
-
 <body>
-
 <div id="wrapper">
     <!-- Navigation -->
-    <jsp:include page="../../template/nav-tag__admin.jsp" />
+    <jsp:include page="../../template/nav-tag__admin.jsp"/>
     <div id="page-wrapper">
-
         <div class="container-fluid">
-
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
@@ -45,8 +41,18 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <h4>Danh sách đơn đặt hàng</h4>
-
-
+                    <table border="0" cellspacing="5" cellpadding="5">
+                        <tbody>
+                        <tr>
+                            <td>Giá tiền tối thiểu:</td>
+                            <td><input type="text" id="min" name="min"></td>
+                        </tr>
+                        <tr>
+                            <td>Giá tiền tối đa:</td>
+                            <td><input type="text" id="max" name="max"></td>
+                        </tr>
+                        </tbody>
+                    </table>
                     <div class="table-responsive">
                         <table class="table table-hover table-striped" id="example">
                             <thead>
@@ -56,26 +62,44 @@
                                 <th class="text-center">Ngày tạo</th>
                                 <th class="text-center">Tổng tiền</th>
                                 <th class="text-center">Loại khách hàng</th>
-                                <th class="text-center">Tài khoản</th>
+                                <th class="text-center">Tên khách hàng</th>
                                 <th class="text-center">Tình trạng</th>
                                 <th class="text-center">Tuỳ chọn</th>
                             </tr>
                             </thead>
                             <tbody>
-
-                            <tr data-key-1="Thân Văn Sử" data-key-2="CVPM Quang Trung, Quận 12, TP.Hồ Chí Minh" data-key-3="0942745670" data-key-4="sutv@fpt.edu.vn">
-                                <td class="details-control"></td>
-                                <td>HD1234</td>
-                                <td>21/07/2018</td>
-                                <td>2.000.000đ</td>
-                                <td>Nhà thầu</td>
-                                <td>sutv</td>
-                                <td>Đóng</td>
-                                <td class="text-center">
-                                    <a href="${pageContext.request.contextPath}/admin/order/update" class="btn btn-warning btn-xs">Sửa</a>
-                                    <a href="${pageContext.request.contextPath}/admin/order/detail" class="btn btn-success btn-xs">Chi tiết</a>
-                                </td>
-                            </tr>
+                            <c:forEach var="o" items="${orders}">
+                                <tr data-key-1="${o.username}" data-key-2="${o.accountByUsername.fullname}" data-key-3="${o.accountByUsername.address}" data-key-4="${o.accountByUsername.phone}" data-key-5="${o.accountByUsername.email}">
+                                    <td class="details-control"></td>
+                                    <td>${o.id}</td>
+                                    <td><fmt:formatDate value="${o.date}" pattern="dd-MM-yyy"/></td>
+                                    <td class="text-right">
+                                        <fmt:formatNumber value="${o.totalPrice}" type="number" pattern="###,###"/>
+                                    </td>
+                                    <td>
+                                        <c:if test="${o.accountByUsername.roleByRoleId.id.equals('CU')}">
+                                            Khách lẻ
+                                        </c:if>
+                                        <c:if test="${o.accountByUsername.roleByRoleId.id.equals('CO')}">
+                                            Nhà thầu
+                                        </c:if>
+                                    </td>
+                                    <td>${o.accountByUsername.fullname}</td>
+                                    <td>
+                                        <c:if test="${o.closed == false}">
+                                            Mở
+                                        </c:if>
+                                        <c:if test="${o.closed == true}">
+                                            Đóng
+                                        </c:if>
+                                    </td>
+                                    <td class="text-center">
+                                        <a href="${pageContext.request.contextPath}/admin/order/update" class="btn btn-warning btn-xs">Sửa</a>
+                                        <a href="${pageContext.request.contextPath}/admin/order/detail" class="btn btn-success btn-xs">Chi tiết</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
                         </table>
                     </div>
                 </div>
@@ -83,21 +107,16 @@
             <!-- /.row -->
         </div>
         <!-- /.container-fluid -->
-
     </div>
     <!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
-
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
 <!-- Bootstrap Core JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
 <!-- Datatables JavaScript -->
 <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
-
 <script>
     function format(dataSource) {
         var html = '<table class="table table-hover" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;" id="childRowTable"><tbody>';
@@ -109,6 +128,7 @@
         }
         return html += '</tbody></table>';
     }
+
     $(document).ready(function () {
         var table = $('#example').DataTable({
             columnDefs: [{
@@ -137,12 +157,10 @@
                 }
             }
         });
-
         // Add event listener for opening and closing details
         $('#example').on('click', 'td.details-control', function () {
             var tr = $(this).closest('tr');
             var row = table.row(tr);
-
             if (row.child.isShown()) {
                 // This row is already open - close it
                 row.child.hide();
@@ -150,19 +168,16 @@
             } else {
                 // Open this row
                 row.child(format({
-                    'Khách hàng': tr.data('key-1'),
-                    'Địa chỉ': tr.data('key-2'),
-                    'Điện thoại': tr.data('key-3'),
-                    'Email': tr.data('key-4')
+                    'Tài khoản': tr.data('key-1'),
+                    'Khách hàng': tr.data('key-2'),
+                    'Địa chỉ': tr.data('key-3'),
+                    'Điện thoại': tr.data('key-4'),
+                    'Email': tr.data('key-5')
                 })).show();
                 tr.addClass('shown');
             }
         });
     });
-
-
 </script>
-
 </body>
-
 </html>

@@ -7,6 +7,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class OrderDetailDAOImpl implements OrderDetailDAO {
 
@@ -14,12 +16,12 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
   private SessionFactory sessionFactory;
 
   @Override
-  public OrderDetail findByOrder(String orderId) {
+  public List<OrderDetail> findByOrder(String orderId) {
     Session session = sessionFactory.getCurrentSession();
-    Query query = session.createQuery("from OrderDetail where orderId = :orderId", OrderDetail.class)
-            .setParameter("orderId", orderId);
-    OrderDetail orderDetail = (OrderDetail) query.getSingleResult();
-    return orderDetail;
+    List<OrderDetail> orderDetails = session.createQuery("from OrderDetail where orderId = :orderId", OrderDetail.class)
+            .setParameter("orderId", orderId)
+            .getResultList();
+    return orderDetails;
   }
 
   @Override

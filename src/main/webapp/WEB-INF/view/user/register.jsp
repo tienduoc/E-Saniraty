@@ -36,7 +36,7 @@
 
                 <div class="col-md-6 col-sm-8 col-xs-12 col-md-offset-3 col-sm-offset-2 col-xs-offset-0">
 
-                    <form:form action="${pageContext.request.contextPath}/registerProcess" modelAttribute="account" method="post" class="form">
+                    <form:form action="${pageContext.request.contextPath}/register" modelAttribute="account" method="post" class="form">
                         <p>
                             <label for="fullname">Họ tên<span class="required">*</span></label>
                             <input type="text"name="fullname" id="fullname" class="form__input" minlength="4" maxlength="100" required>

@@ -1,7 +1,6 @@
 package com.fpt.esanitary.controller.user;
 
 import com.fpt.esanitary.entities.Account;
-import com.fpt.esanitary.entities.Category;
 import com.fpt.esanitary.service.AccountService;
 import com.fpt.esanitary.service.CategoryService;
 import com.fpt.esanitary.service.ProductImageService;
@@ -62,7 +61,7 @@ public class HomeController {
         return "user/register";
     }
 
-    @PostMapping("/registerProcess")
+    @PostMapping("/register")
     public String processRegister(Model model, @ModelAttribute("account") Account account) {
         Account extAcc = accountService.find(account.getUsername());
         if (extAcc == null) {
@@ -74,10 +73,15 @@ public class HomeController {
             account.setEnabled(true);
             account.setRoleId("CU");
             accountService.create(account);
-            return "register-confirm";
+            return "redirect:/register/success";
         } else {
-            model.addAttribute("accUsed", "This username has been used by order customer, please choose another username");
+            model.addAttribute("accUsed", "Tài khoản bạn chọn đã được sử dụng, vui lòng chọn tài khoản khác.");
             return "user/register";
         }
+    }
+
+    @GetMapping("/register/success")
+    public String showRegisterSuccess() {
+        return "user/registerSuccess";
     }
 }
