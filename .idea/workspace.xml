@@ -7,60 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="72e3c9fe-6684-4276-8cf8-c5491b1b635f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/config/MvcWebApplicationInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/config/MvcWebApplicationInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/BaseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/BaseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/admin/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/admin/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/contractor/DealController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/contractor/DealController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/supervisor/DealController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/supervisor/DealController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/user/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/user/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/user/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/user/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/user/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/user/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/DealHistoryDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/DealHistoryDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/DealHistoryDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/DealHistoryDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/DealHistoryDetailDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/DealHistoryDetailDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/DealHistoryDetailDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/DealHistoryDetailDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/DealMessageDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/DealMessageDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/DealMessageDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/DealMessageDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/OrderDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/OrderDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/OrderDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/OrderDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/OrderDetailDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/OrderDetailDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/OrderDetailDAOImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/OrderDetailDAOImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/entities/DealHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/entities/DealHistory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/entities/DealHistoryDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/entities/DealHistoryDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/entities/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/entities/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/DealHistoryDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/DealHistoryDetailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/DealHistoryDetailSeviceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/DealHistoryDetailSeviceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/DealHistoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/DealHistoryService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/DealHistoryServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/DealHistoryServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/DealMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/DealMessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/DealMessageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/DealMessageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/OrderDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/OrderDetailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/OrderDetailServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/OrderDetailServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/OrderServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/service/OrderServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/assets/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/admin/account/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/admin/account/create.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/admin/account/detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/admin/account/detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/admin/account/update.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/admin/account/update.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/admin/category/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/admin/category/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/admin/order/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/admin/order/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/admin/product/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/admin/product/create.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/admin/product/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/admin/product/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/admin/product/update.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/admin/product/update.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/contractor/deal.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/contractor/deal/create_bak.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/contractor/dealConfirm.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/contractor/deal/confirm.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/contractor/order.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/contractor/order.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/supervisor/deal/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/supervisor/deal/index_bak.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/template/header-tag__user.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/template/header-tag__user.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/template/nav-tag__admin.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/template/nav-tag__admin.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/bak_cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/bak_cart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/cart.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/orderHistory.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/orderHistory_bak.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/thanks.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/thanks.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/viewOrder.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/viewOrder.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/updateOrder.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/updateOrder.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -118,9 +67,9 @@
           <entry key="deal_history" value="1" />
           <entry key="deal_history_detail" value="1" />
           <entry key="html" value="3" />
-          <entry key="java" value="589" />
+          <entry key="java" value="590" />
           <entry key="js" value="8" />
-          <entry key="jsp" value="394" />
+          <entry key="jsp" value="395" />
           <entry key="manufacturer" value="1" />
           <entry key="order" value="2" />
           <entry key="order_detail" value="2" />
@@ -140,8 +89,8 @@
           <entry key="CSS" value="13" />
           <entry key="Database Element" value="26" />
           <entry key="HTML" value="3" />
-          <entry key="JAVA" value="589" />
-          <entry key="JSP" value="395" />
+          <entry key="JAVA" value="590" />
+          <entry key="JSP" value="396" />
           <entry key="JavaScript" value="8" />
           <entry key="PLAIN_TEXT" value="5" />
           <entry key="Properties" value="8" />
@@ -155,7 +104,7 @@
           <entry key="cell" value="127" />
           <entry key="dummy" value="166" />
           <entry key="html" value="19" />
-          <entry key="java" value="21928" />
+          <entry key="java" value="21930" />
           <entry key="jsp" value="26666" />
           <entry key="jsp2" value="4" />
           <entry key="properties" value="8" />
@@ -166,7 +115,7 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="19" />
-          <entry key="JAVA" value="21928" />
+          <entry key="JAVA" value="21930" />
           <entry key="JSP" value="26666" />
           <entry key="PLAIN_TEXT" value="188" />
           <entry key="Properties" value="8" />
@@ -229,47 +178,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/contractor/DealController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="82" column="8" lean-forward="true" selection-start-line="82" selection-start-column="8" selection-end-line="82" selection-end-column="97" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/supervisor/DealController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="77" column="60" selection-start-line="77" selection-start-column="60" selection-end-line="77" selection-end-column="60" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/supervisor/deal/index.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="671">
-              <caret line="169" selection-start-line="169" selection-end-line="170" selection-end-column="105" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/supervisor/deal/update.jsp">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/user/CartController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="138" selection-start-line="138" selection-end-line="138" />
+            <state relative-caret-position="116">
+              <caret line="87" column="31" selection-start-line="87" selection-start-column="31" selection-end-line="87" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/user/OrderController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/cart.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="57" column="68" selection-start-line="57" selection-start-column="68" selection-end-line="57" selection-end-column="68" />
+            <state relative-caret-position="178">
+              <caret line="82" column="93" selection-start-line="82" selection-start-column="93" selection-end-line="82" selection-end-column="93" />
             </state>
           </provider>
         </entry>
@@ -347,7 +269,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/cart.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/bak_cart.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/entities/DealHistoryDetail.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/conversion/DateEditor.java" />
@@ -398,6 +319,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/updateOrder.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/supervisor/DealController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/view/supervisor/deal/update.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/user/CartController.java" />
       </list>
     </option>
   </component>
@@ -3322,7 +3244,7 @@
     <property name="SearchEverywhereHistoryKey" value="cart&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/user/cart.jsp&#10;header&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/template/header-tag__user.jsp&#10;DealCon&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/controller/supervisor/DealController.java&#10;Base&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/controller/BaseController.java&#10;ind&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/supervisor/deal/index.jsp&#10;inde&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/supervisor/deal/index.jsp&#10;Cart&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/controller/user/CartController.java&#10;hea&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/template/header-tag__user.jsp&#10;Bas&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/controller/BaseController.java&#10;index&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/user/index.jsp&#10;update&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/admin/account/update.jsp&#10;accountC&#9;PSI&#9;JAVA://com.fpt.esanitary.controller.admin.AccountController&#10;Dea&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/controller/supervisor/DealController.java&#10;Pro&#9;PSI&#9;JAVA://com.fpt.esanitary.controller.admin.ProductController&#10;Home&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/controller/user/HomeController.java&#10;pro&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/controller/admin/ProductController.java&#10;ca&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/user/cart.jsp&#10;Ca&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/controller/user/CartController.java&#10;bas&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/controller/BaseController.java&#10;Order&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/dao/OrderDAOImpl.java&#10;orde&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/controller/user/OrderController.java&#10;tha&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/user/thanks.jsp&#10;car&#9;PSI&#9;JAVA://com.fpt.esanitary.controller.user.CartController&#10;orderda&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/dao/OrderDAOImpl.java&#10;orderH&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/user/orderHistory.jsp&#10;Car&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/controller/user/CartController.java&#10;Or&#9;PSI&#9;JAVA://com.fpt.esanitary.controller.user.OrderController&#10;order&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/dao/OrderDAOImpl.java&#10;accounting&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/assets/js/accounting.min.js&#10;accou&#9;PSI&#9;JAVA://com.fpt.esanitary.controller.admin.AccountController&#10;create&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/admin/category/create.jsp&#10;DealHis&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/entities/DealHistory.java&#10;login&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/user/login.jsp&#10;Deal&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/entities/DealHistory.java&#10;Acc&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/controller/admin/AccountController.java&#10;dealhi&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/service/DealHistoryService.java&#10;head&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/template/header-tag__user.jsp&#10;base&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/controller/BaseController.java&#10;Orde&#9;PSI&#9;JAVA://com.fpt.esanitary.entities.Order&#10;OrderDe&#9;PSI&#9;JAVA://com.fpt.esanitary.entities.OrderDetail&#10;deta&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/admin/account/detail.jsp&#10;OrderServi&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/service/OrderService.java&#10;up&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/admin/account/update.jsp&#10;product&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/entities/Product.java&#10;category&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/user/category.jsp&#10;OrderDetail&#9;PSI&#9;JAVA://com.fpt.esanitary.dao.OrderDetailDAO&#10;catego&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/java/com/fpt/esanitary/dao/CategoryDAOImpl.java&#10;header-tag&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/webapp/WEB-INF/view/template/header-tag__user.jsp&#10;cate&#9;PSI&#9;JAVA://com.fpt.esanitary.dao.CategoryDAOImpl&#10;database&#9;FILE&#9;file://E:/Capstone Project/esanitary/src/main/resources/database-cfg.properties" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1532850895024" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1532853096894" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="E:/FPT University/Java OOP/StudentManagement_Practice" />
@@ -3584,7 +3506,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="600214000" />
+    <option name="totallyTimeSpent" value="600859000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -3596,10 +3518,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49099836" visible="true" weight="0.2473525" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49099836" visible="true" weight="0.2473525" />
       <window_info id="Structure" order="1" sideWeight="0.50163937" side_tool="true" weight="0.28290468" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -3611,8 +3533,8 @@
       <window_info anchor="bottom" auto_hide="true" id="Database Console" order="0" weight="0.3289689" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.3289689" />
-      <window_info anchor="bottom" auto_hide="true" x="0" y="0" width="1366" height="728" id="Run" order="3" sideWeight="0.49848714" visible="true" weight="0.28805238" />
-      <window_info anchor="bottom" x="0" y="23" width="1366" height="705" id="Debug" order="4" weight="0.59738135" />
+      <window_info active="true" anchor="bottom" auto_hide="true" x="0" y="0" width="1366" height="728" id="Run" order="3" sideWeight="0.49848714" visible="true" weight="0.28805238" />
+      <window_info anchor="bottom" x="0" y="23" width="1366" height="705" id="Debug" order="4" weight="0.4762684" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32569557" />
@@ -3643,6 +3565,16 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/user/CartController.java</url>
+          <line>84</line>
+          <properties />
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory">
         <watch expression="((ForEachTag)_jspx_th_c_005fforEach_005f0).rawItems" custom="org.apache.taglibs.standard.tag.rt.core.ForEachTag" />
@@ -3899,6 +3831,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
           <caret line="49" column="27" selection-start-line="49" selection-start-column="27" selection-end-line="49" selection-end-column="27" />
+          <folding>
+            <element signature="e#1034#1035#0" expanded="true" />
+            <element signature="e#1061#1062#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3913,6 +3849,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="34" column="51" selection-start-line="34" selection-start-column="51" selection-end-line="34" selection-end-column="51" />
+          <folding>
+            <element signature="e#878#879#0" expanded="true" />
+            <element signature="e#936#937#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3923,17 +3863,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/user/CartController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="56" column="72" lean-forward="true" selection-start-line="56" selection-start-column="72" selection-end-line="56" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/dao/OrderDetailDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="172">
           <caret line="41" column="21" selection-start-line="41" selection-start-column="21" selection-end-line="41" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -3986,13 +3922,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/cart.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-698">
-          <caret line="112" column="99" lean-forward="true" selection-start-line="112" selection-start-column="99" selection-end-line="112" selection-end-column="99" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/viewOrder.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1326" />
@@ -4009,6 +3938,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="138" selection-start-line="138" selection-end-line="138" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/view/user/cart.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="82" column="93" selection-start-line="82" selection-start-column="93" selection-end-line="82" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/fpt/esanitary/controller/user/CartController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="87" column="31" selection-start-line="87" selection-start-column="31" selection-end-line="87" selection-end-column="31" />
         </state>
       </provider>
     </entry>

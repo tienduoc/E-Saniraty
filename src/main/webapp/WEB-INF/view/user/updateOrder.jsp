@@ -87,10 +87,13 @@
                 </div>
             </div>
             <div class="row">
-                    <input type="submit" onclick="document.getElementById('update').submit();" class="button button--black" value="save">
-                <div class="col-md-2 col-md-offset-10">
-                    <a href="${pageContext.request.contextPath}/order/history" class="button button--black">Quay lại</a>
+                <div class="col-md-2  col-md-offset-8">
+                    <a href="${pageContext.request.contextPath}/order/history" class="button button--light">Quay lại</a>
                 </div>
+                    <div class="col-md-2">
+                        <button type="submit" onclick="document.getElementById('update').submit();" class="btn button--black" style="width: 100%;">Cập nhật</button>
+                    </div>
+
             </div>
         </div>
     </section>

@@ -85,9 +85,8 @@ public class CartController {
         int index = isExits(id, session);
         if (id.equals(cart.get(index).getProduct().getId())) {
             cart.remove(index);
-            if (cart.size() > 1) {
+            if (cart.size() > 0) {
                 session.setAttribute("cart", cart);
-
             } else {
                 session.removeAttribute("cart");
                 model.addAttribute("msg", "Giở hàng trống");
