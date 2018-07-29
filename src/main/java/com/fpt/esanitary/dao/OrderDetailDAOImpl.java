@@ -35,4 +35,13 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
     Session session = sessionFactory.getCurrentSession();
     session.update(orderDetail);
   }
+
+  @Override
+  public void removeProduct(String orderId, String productId) {
+    Session session = sessionFactory.getCurrentSession();
+    Query<OrderDetail> query = session.createQuery("delete from OrderDetail od where od.orderId=:orderId and od.productId=:productId")
+            .setParameter("orderId", orderId)
+            .setParameter("productId", productId);
+    query.executeUpdate();
+  }
 }

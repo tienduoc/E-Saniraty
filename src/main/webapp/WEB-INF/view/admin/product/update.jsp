@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="forma" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,7 +38,7 @@
                             <i class="fa fa-dashboard"></i> Tổng quan
                         </li>
                         <li>
-                            <i class="fa fa-archive"></i> Nhóm sản phẩm
+                            <i class="fa fa-archive"></i> Sản phẩm
                         </li>
                         <li class="active">
                             <i class="fa fa-pencil"></i> Cập nhật sản phẩm
@@ -93,7 +93,7 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label>Khối lượng</label>
-                                        <form:input path="weight" type="number" class="form-control" name="weight" />
+                                        <form:input path="weight" class="form-control" name="weight" />
                                     </div>
                                     <div class="col-md-3">
                                         <label>Số lượng</label>
@@ -103,19 +103,21 @@
                                 <div class="form-group row">
                                     <div class="col-md-2">
                                         <label>Giá gốc</label>
-                                        <form:input path="costPrice" type="number" class="form-control" name="costPrice" />
+                                        <fmt:parseNumber type="number" value="${product.costPrice}" var="cp"/>
+                                        <form:input path="costPrice" value="${cp}" class="form-control" />
                                     </div>
                                     <div class="col-md-2">
                                         <label>Giá bán</label>
-                                        <form:input path="salePrice" type="number" class="form-control" name="salePrice" />
+                                        <fmt:formatNumber pattern="###" value="${product.salePrice}" var="sp"/>
+                                        <form:input path="salePrice" value="${sp}" class="form-control"/>
                                     </div>
                                     <div class="col-md-2">
                                         <label>Ratio</label>
-                                        <form:input path="minRatio" type="number" class="form-control" name="minRatio" />
+                                        <form:input path="minRatio" class="form-control" name="minRatio" />
                                     </div>
                                     <div class="col-md-2">
                                         <label>Ratio Contractor</label>
-                                        <form:input path="raitoForContractor" type="number" class="form-control" name="minRatioForContractor" />
+                                        <form:input path="raitoForContractor" class="form-control" name="minRatioForContractor" />
                                     </div>
                                     <div class="col-md-1">
                                         <label>Kích hoạt</label>
@@ -132,14 +134,14 @@
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-12">
-                                        <label>Description</label>
-                                        <form:textarea path="description" class="form-control"></form:textarea>
+                                        <label>Mô tả</label>
+                                        <form:textarea path="description" class="form-control" rows="10"></form:textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-12">
-                                        <label>Review</label>
-                                        <form:textarea path="review" class="form-control" rows="5"></form:textarea>
+                                        <label>Giới thiệu sản phẩm</label>
+                                        <form:textarea path="review" class="form-control" rows="15"></form:textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">

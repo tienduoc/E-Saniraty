@@ -54,7 +54,7 @@
                 <!-- Cart lists -->
                 <aside class="col-lg-8 col-lg-offset-0 col-md-7 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
                     <!-- Item row -->
-                    <form:form action="/cart/update" method="post" name="update">
+                    <form:form action="/cart/update" method="post" name="update" id="update">
                         <%--<button type="submit" style="margin-left: 682px">Cập nhật</button>--%>
                         <c:set var="sum" value="0"></c:set>
                         <c:forEach var="item" items="${sessionScope.cart}">

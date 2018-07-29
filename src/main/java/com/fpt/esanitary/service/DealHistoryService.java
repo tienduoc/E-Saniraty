@@ -8,7 +8,9 @@ public interface DealHistoryService {
 
   List<DealHistory> findAll();
 
-  List<DealHistory> findAllByOrder(String orderId);
+  List<DealHistory> findByUsername(String username);
+
+  DealHistory findById(String dealHistoryId);
 
   void save(DealHistory dealHistory);
 

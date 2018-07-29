@@ -49,12 +49,6 @@ public class ProductController {
         return "admin/product/create";
     }
 
-//  @PostMapping("/create")
-//  public String createProduct(@ModelAttribute("product") Product product) {
-//    productService.create(product);
-//    return "redirect:/admin/product";
-//  }
-
     @PostMapping("/create")
     public String createProduct(@ModelAttribute("product") Product product,
                                 @RequestParam("file") MultipartFile[] files,
@@ -76,16 +70,13 @@ public class ProductController {
                 } catch (Exception ex) {
                     try {
                         BufferedOutputStream outputStream = new BufferedOutputStream(
-                                new FileOutputStream(
-                                        new File(dirFile, file.getOriginalFilename())));
-
+                                new FileOutputStream(new File(dirFile, file.getOriginalFilename())));
                         outputStream.write(file.getBytes());
                         outputStream.flush();
                         outputStream.close();
                     } catch (IOException e) {
                         e.getMessage();
                     }
-
                     ProductImage productImage = new ProductImage();
                     productImage.setProductId(product.getId());
                     productImage.setUrl(file.getOriginalFilename());
@@ -100,7 +91,6 @@ public class ProductController {
         model.addAttribute("msg", "Multiple files uploaded successfully.");
         return "redirect:/admin/product";
     }
-
     @GetMapping("update")
     public String showUpdateForm(@RequestParam("id") String id, Model model) {
         model.addAttribute("product", productService.findById(id));

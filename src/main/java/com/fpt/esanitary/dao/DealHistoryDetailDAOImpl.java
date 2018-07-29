@@ -3,9 +3,10 @@ package com.fpt.esanitary.dao;
 import com.fpt.esanitary.entities.DealHistoryDetail;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class DealHistoryDetailDAOImpl implements DealHistoryDetailDAO {
@@ -14,12 +15,21 @@ public class DealHistoryDetailDAOImpl implements DealHistoryDetailDAO {
   private SessionFactory sessionFactory;
 
   @Override
-  public DealHistoryDetail findByDealHistory(Integer dealHistoryId) {
+  public List<DealHistoryDetail> findByDealHistoryId(String dealHistoryId) {
     Session session = sessionFactory.getCurrentSession();
-    Query query = session.createQuery("from DealHistoryDetail where dealHistoryId = :dealHistoryId", DealHistoryDetail.class)
-            .setParameter("dealHistoryId", dealHistoryId);
-    DealHistoryDetail dealHistoryDetail = (DealHistoryDetail) query.getSingleResult();
-    return dealHistoryDetail;
+    List<DealHistoryDetail> dealHistoryDetails = session.createQuery("from DealHistoryDetail where dealHistoryId = :dealHistoryId", DealHistoryDetail.class)
+            .setParameter("dealHistoryId", dealHistoryId)
+            .getResultList();
+    return dealHistoryDetails;
+  }
+
+  @Override
+  public List<DealHistoryDetail> findByUsername(String username) {
+    Session session = sessionFactory.getCurrentSession();
+    List<DealHistoryDetail> dealHistoryDetails = session.createQuery("from DealHistoryDetail where dealHistoryByDealHistoryId.orderByOrderId.username = :username", DealHistoryDetail.class)
+            .setParameter("username", username)
+            .getResultList();
+    return dealHistoryDetails;
   }
 
   @Override

@@ -143,6 +143,68 @@
         </div>
         </div>
     </section>
+    <section class="section-product">
+        <div class="container">
+            <!-- Introducing of products categogies -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="heading-primary">
+                        <h2 class="heading-primary--title">
+                            <c:out value="${title2}"/>
+                            <span class="heading-primary--line"></span>
+                        </h2>
+                        <div class="clear"></div>
+                        <em class="heading-primary--sub">Mô tả ngắn về danh mục sản phẩm
+                        </em>
+                    </div>
+                </div>
+            </div>
+            <!-- Products -->
+            <div class="row">
+                <!-- Product item -->
+                <c:forEach var="p" items="${listProduct2}">
+                    <div class="col-lg-3 col-lg-offset-0 col-md-4 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
+                        <form action="/cart/add" method="get">
+                            <input type="hidden" name="id" value="${p.id}" />
+                            <div class="product">
+                                <div class="product__thumbnail">
+                                    <c:forEach var="img" items="${p.productImagesById}">
+                                        <c:choose>
+                                            <c:when test="${img.productId.equals(p.id) && img.mainPhoto == true}">
+                                                <img src="${pageContext.request.contextPath}/assets/img/products/${img.url}"
+                                                     alt="">
+                                            </c:when>
+                                        </c:choose>
+                                    </c:forEach>
+                                    <div class="quick-add">
+                                        <div class="quick-add__wrap">
+                                            <ul class="quick-add__list">
+                                                <li>
+                                                    <a id="add" href="${pageContext.request.contextPath}/cart/add?id=${p.id}" title="Add to cart">
+                                                        <i class="fa fa-shopping-basket"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product__info u-ellipsis">
+                                    <h2 class="product__info--title">
+                                        <a href="${pageContext.request.contextPath}product/detail?id=${p.id}">${p.name}</a>
+                                    </h2>
+                                    <span class="product__info--price">
+                                <fmt:formatNumber type="number" pattern="###,###" value="${p.salePrice}"/>
+                            </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+        </div>
+    </section>
+
 </main>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>

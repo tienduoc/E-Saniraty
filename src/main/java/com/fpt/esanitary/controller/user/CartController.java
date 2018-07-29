@@ -107,7 +107,10 @@ public class CartController {
     }
 
     @PostMapping("buy")
-    public String buy(@RequestParam Double totalPrice, HttpSession session, Model model, RedirectAttributes redirectAttributes) {
+    public String buy(@RequestParam Double totalPrice,
+                      HttpSession session,
+                      Model model,
+                      RedirectAttributes redirectAttributes) {
         String acc = null;
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (!(auth instanceof AnonymousAuthenticationToken)) {

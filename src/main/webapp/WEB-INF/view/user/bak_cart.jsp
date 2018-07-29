@@ -105,7 +105,6 @@
                         </div>
                     </c:forEach>
                 </aside>
-
                 <!-- Checkout  -->
                 <aside class="col-lg-4 col-lg-offset-0 col-md-5 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0 u-padding-LR-none">
                     <!-- Checkout wrapper -->

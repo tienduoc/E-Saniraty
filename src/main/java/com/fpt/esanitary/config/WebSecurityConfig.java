@@ -43,6 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.httpBasic().and().authorizeRequests()
                 .antMatchers("/", "/assets/**").permitAll()
 //				.antMatchers("/admin/**").hasAnyAuthority("Admin", "Boss")
+				.antMatchers("/deal/**").hasAuthority("Contractor")
                 .and().formLogin().loginPage("/login")
                 .loginProcessingUrl("/authenticateUser").permitAll()
                 .and()

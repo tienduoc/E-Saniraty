@@ -20,7 +20,7 @@
             ${o.id}<br>
             <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${o.date}"/> <br>
             <fmt:formatNumber type="number" pattern="###,###" value="${o.totalPrice}"/> <br>
-            <a href="${pageContext.request.contextPath}/contractor/deal?orderId=${o.id}">Thương lượng</a>
+            <a href="${pageContext.request.contextPath}deal?orderId=${o.id}">Thương lượng</a>
             <hr>
         </c:if>
     </c:forEach>

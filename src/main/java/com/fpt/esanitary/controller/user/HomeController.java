@@ -34,11 +34,11 @@ public class HomeController {
     @RequestMapping("/")
     public String showHome(Model model, HttpSession session) {
         model.addAttribute("title1", categoryService.find(29).getName());
-        model.addAttribute("title2", categoryService.find(28).getName());
+        model.addAttribute("title2", categoryService.find(33).getName());
         model.addAttribute("title3", categoryService.find(44).getName());
         model.addAttribute("title4", categoryService.find(61).getName());
-        model.addAttribute("listProduct1", productService.getLastestByCategory(32, 8));
-        model.addAttribute("listProduct2", productService.getLastestByCategory(36, 8));
+        model.addAttribute("listProduct1", productService.getLastestByCategory(30, 12));
+        model.addAttribute("listProduct2", productService.getLastestByCategory(33, 8));
         model.addAttribute("listProduct3", productService.getLastestByCategory(46, 8));
         model.addAttribute("listProduct4", productService.getLastestByCategory(64, 8));
         return "user/index";

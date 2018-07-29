@@ -56,7 +56,7 @@
                             <tr>
                                 <th>Mã</th>
                                 <th>Tên nhóm sản phẩm</th>
-                                <th>Nhóm sản phẩm cha</th>
+                                <th>Thuộc nhóm cấp trên</th>
                                 <th class="text-center">Tuỳ chọn</th>
                             </tr>
                             </thead>

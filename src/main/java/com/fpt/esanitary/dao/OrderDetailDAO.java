@@ -11,4 +11,6 @@ public interface OrderDetailDAO {
   void save(OrderDetail orderDetail);
 
   void update(OrderDetail orderDetail);
+
+  void removeProduct(String orderId, String productId);
 }

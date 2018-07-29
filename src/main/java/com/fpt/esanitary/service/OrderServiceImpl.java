@@ -46,6 +46,11 @@ public class OrderServiceImpl implements OrderService {
   }
 
   @Override
+  public void remove(String orderId) {
+    orderDAO.remove(orderId);
+  }
+
+  @Override
   public Order find(Integer id) {
     return orderDAO.find(id);
   }

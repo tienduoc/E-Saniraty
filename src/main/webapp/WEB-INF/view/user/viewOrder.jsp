@@ -12,20 +12,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="../template/head-tag__user.jsp">
-    <jsp:param name="title" value="Xem lại giỏ hàng"/>
+    <jsp:param name="title" value="Chi tiết đơn hàng"/>
 </jsp:include>
 <body>
 <%@ include file="../template/header-tag__user.jsp" %>
 <main>
     <section class="section-breadcrumb">
         <div class="container">
-            <h2 class="heading-primary--title">Xem lại giỏ hàng</h2>
+            <h2 class="heading-primary--title">Chi tiết đơn hàng</h2>
             <ol class="breadcrumb heading-primary--sub">
                 <li>
                     <a href="#">Trang chủ</a>
                 </li>
                 <li class="active">
-                    <a href="#">Xem lại giỏ hàng</a>
+                    <a href="#">Chi tiết đơn hàng</a>
                 </li>
             </ol>
         </div>
@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="heading-secondary">
-                        <h2 class="heading-secondary--title">Chi tiết đơn hàng: ${order.id}
+                        <h2 class="heading-secondary--title">Đơn hàng: ${order.id}
                             <span class="heading-secondary--line"></span>
                         </h2>
                         <div class="clear"></div>
@@ -46,99 +46,47 @@
     </section>
     <section class="section-cart">
         <div class="container">
-            <div class="row order">
-                <!-- Cart lists -->
-                <aside class="col-md-12">
-                    <!-- Row heading -->
-                    <div class="row u-bg-color-primary-light u-padTB-small u-margin-LR-none hidden-sm hidden-xs">
-                        <div class="col-lg-1 col-md-1"></div>
-                        <div class="col-lg-5 col-md-5">
-                            <div class="u-bg-color-primary-light u-padTB-small text-left">
-                                <strong class="text-uppercase">Sản phẩm</strong>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2">
-                            <div class="u-bg-color-primary-light u-padTB-small text-left">
-                                <strong class="text-uppercase">Đơn giá</strong>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2">
-                            <div class="u-bg-color-primary-light u-padTB-small text-center">
-                                <strong class="text-uppercase">Số lượng</strong>
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-2">
-                            <div class="u-bg-color-primary-light u-padTB-small text-left">
-                                <strong class="text-uppercase">Thành tiền</strong>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Item row -->
-                    <c:forEach var="od" items="${order.orderDetailsById}">
-                        <div class="row order__row u-margin-LR-none">
-                            <!-- Item column -- Product image -->
-                            <div class="col-lg-1 col-lg-offset-0 col-md-1 col-md-offset-0 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4 u-padding-LR-none">
-                                <div class="order__cell">
-                                    <a href="product-detail.html">
-                                        <img src="https://images.homedepot-static.com/productImages/914a1d80-6efb-4772-bcc3-3ef5543e6c08/svn/chrome-delta-bar-faucets-b28911lf-64_1000.jpg"
-                                             alt="">
-                                    </a>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                            <!-- Item column -- Product name -->
-                            <div class="col-lg-5 col-lg-offset-0 col-md-5 col-md-offset-0 col-sm-12 col-xs-offset-0 col-xs-12">
-                                <div class="order__cell">
-                                    <p class="order__cell--box-info text-left">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="u-bg-color-primary-light">
+                            <tr class="text-uppercase">
+                                <th class="text-center">Sản phẩm</th>
+                                <th class="text-center">Số lượng</th>
+                                <th class="text-center">Đơn giá</th>
+                                <th class="text-center">Thành tiền</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:set var="sum" value="0"/>
+                            <c:forEach var="od" items="${order.orderDetailsById}">
+
+                                <tr>
+                                    <td>
                                         <a href="product-detail.html">${od.productByProductId.name}</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- Item column -- Product price -->
-                            <div class="col-lg-2 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-12 col-xs-offset-0 col-xs-12">
-                                <div class="order__cell">
-                                    <div class="order__cell">
-                                        <fmt:formatNumber pattern="###,###" value="${od.unitPrice}"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Item column -- Product new price -->
-                            <div class="col-lg-2 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-12 col-xs-offset-0 col-xs-12">
-                                <div class="order__cell">
-                                    <p class="text-center">${od.quantity}</p>
-                                </div>
-                            </div>
-                            <!-- Item column -- Product quantity -->
-                            <div class="col-lg-2 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-12 col-xs-offset-0 col-xs-12">
-                                <div class="order__cell">
-                                    <fmt:formatNumber pattern="###,###" value="${od.unitPrice * od.quantity}"/>
-                                </div>
-                            </div>
-                        </div>
-                    </c:forEach>
-                </aside>
-                <!-- Deal Buttons  -->
-                <aside class="col-lg-6 col-lg-offset-6 col-md-6 col-md-offset-6 col-sm-10 col-sm-offset-1 col-xs-12 col-xs-offset-0">
-                    <!-- Checkout wrapper -->
-                    <div class="total">
-                        <!-- Row -->
-                        <div class="row total__row">
-                            <div class="col-md-6 total__cell">
-                                <p class="total__cell--heading">Tổng cộng:</p>
-                                <p class="total__cell--sub">
-                                    <fmt:formatNumber pattern="###,###" value="${order.totalPrice}"/>
-                                </p>
-                            </div>
-                        </div>
-                        <!-- Buttons -->
-                        <div class="row total__row">
-                            <div class="col-lg-6 col-lg-offset-6 col-md-6 col-md-offset-6 col-sm-6 col-sm-offset-6 col-xs-12 col-xs-offset-0">
-                                <a href="${pageContext.request.contextPath}/" class="button button--black">Trở về trang chủ
-                                </a>
-                            </div>
-                        </div>
+                                    </td>
+                                    <td class="text-right">${od.quantity}</td>
+                                    <td class="text-right"><fmt:formatNumber pattern="###,###" value="${od.unitPrice}"/></td>
+                                    <td class="text-right"><fmt:formatNumber pattern="###,###" value="${od.unitPrice * od.quantity}"/></td>
+                                    <c:set var="sum" value="${sum + (od.unitPrice * od.quantity)}"/>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                            <tfoot class="u-bg-color-primary-light">
+                            <tr>
+                                <td colspan="3" class="text-right"><strong>Tổng cộng</strong></td>
+                                <td class="text-right"><strong><fmt:formatNumber pattern="###,###" value="${sum}"/></strong></td>
+                            </tr>
+                            </tfoot>
+                        </table>
                     </div>
-                </aside>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 col-md-offset-10">
+                    <a href="${pageContext.request.contextPath}/order/history" class="button button--black">Quay lại</a>
+                </div>
             </div>
         </div>
     </section>

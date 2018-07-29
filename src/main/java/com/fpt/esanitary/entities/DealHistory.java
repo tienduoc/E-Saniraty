@@ -1,7 +1,10 @@
 package com.fpt.esanitary.entities;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
-import java.util.Date;
 import java.util.Date;
 import java.util.Collection;
 import java.util.Objects;
@@ -107,7 +110,8 @@ public class DealHistory {
         this.orderByOrderId = orderByOrderId;
     }
 
-    @OneToMany(mappedBy = "dealHistoryByDealHistoryId")
+    @OneToMany(mappedBy = "dealHistoryByDealHistoryId", fetch= FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     public Collection<DealHistoryDetail> getDealHistoryDetailsById() {
         return dealHistoryDetailsById;
     }

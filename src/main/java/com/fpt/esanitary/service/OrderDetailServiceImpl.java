@@ -29,4 +29,9 @@ public class OrderDetailServiceImpl implements OrderDetailService {
   public void update(OrderDetail orderDetail) {
     orderDetailDAO.update(orderDetail);
   }
+
+  @Override
+  public void removeProduct(String orderId, String productId) {
+    orderDetailDAO.removeProduct(orderId, productId);
+  }
 }

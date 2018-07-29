@@ -11,12 +11,11 @@ public class DealHistoryDetail {
   private String productId;
   private double originalPrice;
   private double contractorPrice;
-  private double newPrice;
+  private Double newPrice;
   private DealHistory dealHistoryByDealHistoryId;
   private Product productByProductId;
 
   @Id
-  @SequenceGenerator(name = "mySeqGen", sequenceName = "mySeq", initialValue = 5, allocationSize = 100)
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "DealHistoryID", nullable = false)
   public String getDealHistoryId() {
@@ -59,11 +58,11 @@ public class DealHistoryDetail {
 
   @Basic
   @Column(name = "NewPrice", precision = 0)
-  public double getNewPrice() {
+  public Double getNewPrice() {
     return newPrice;
   }
 
-  public void setNewPrice(double newPrice) {
+  public void setNewPrice(Double newPrice) {
     this.newPrice = newPrice;
   }
 

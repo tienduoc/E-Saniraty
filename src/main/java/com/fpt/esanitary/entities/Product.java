@@ -72,7 +72,6 @@ public class Product {
   }
 
   @Basic
-
   @Column(name = "CostPrice", nullable = true, precision = 0)
   public Double getCostPrice() {
     return costPrice;

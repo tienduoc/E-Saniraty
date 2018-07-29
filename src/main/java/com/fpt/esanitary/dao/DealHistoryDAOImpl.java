@@ -22,13 +22,22 @@ public class DealHistoryDAOImpl implements DealHistoryDAO {
     return dealHistories;
   }
 
-  @Override
-  public List<DealHistory> findAllByOrder(String orderId) {
+    @Override
+    public List<DealHistory> findByUsername(String username) {
+        Session session = sessionFactory.getCurrentSession();
+        List<DealHistory> dealHistories = session.createQuery("from DealHistory where orderByOrderId.username = :username", DealHistory.class)
+                .setParameter("username", username)
+                .getResultList();
+        return dealHistories;
+    }
+
+    @Override
+  public DealHistory findById(String dealHistoryId) {
     Session session = sessionFactory.getCurrentSession();
-    Query query = session.createQuery("from DealHistory where orderId = :orderId order by requestDate desc", DealHistory.class)
-            .setParameter("orderId", orderId);
-    List<DealHistory> dealHistories = query.getResultList();
-    return dealHistories;
+    DealHistory dealHistory = session.createQuery("from DealHistory where id = :dealHistoryId", DealHistory.class)
+            .setParameter("dealHistoryId", dealHistoryId)
+            .getSingleResult();
+    return dealHistory;
   }
 
   @Override

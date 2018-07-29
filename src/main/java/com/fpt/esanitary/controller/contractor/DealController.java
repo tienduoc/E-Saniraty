@@ -3,20 +3,24 @@ package com.fpt.esanitary.controller.contractor;
 import com.fpt.esanitary.entities.*;
 import com.fpt.esanitary.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NoResultException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
 @Controller("contractorDealControlller")
-@RequestMapping("contractor")
+@RequestMapping("deal")
 public class DealController {
 
     @Autowired
@@ -37,7 +41,25 @@ public class DealController {
     @Autowired
     private DealHistoryDetailService dealHistoryDetailService;
 
-    @GetMapping("deal")
+    @InitBinder
+    public void initBinder(final WebDataBinder binder){
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
+    }
+
+    @GetMapping
+    public String showDealManage(Model model) {
+        String acc = null;
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (!(auth instanceof AnonymousAuthenticationToken)) {
+            UserDetails userDetail = (UserDetails) auth.getPrincipal();
+            acc = userDetail.getUsername(); // Lấy tên username
+        }
+        model.addAttribute("deals", dealHistoryDetailService.findByUsername(acc));
+        return "contractor/deal/index";
+    }
+
+    @GetMapping("create")
     public String showDealForm(@RequestParam String orderId, Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth instanceof AnonymousAuthenticationToken) {
@@ -48,10 +70,10 @@ public class DealController {
         } catch (NoResultException nre) {
             return "redirect:/";
         }
-        return "contractor/deal";
+        return "contractor/deal/create";
     }
 
-    @PostMapping("dealRequest")
+    @PostMapping("create")
     public String createDealRequest(@ModelAttribute("order") Order order,
                                     @RequestParam("message") String message,
                                     @RequestParam("orderId") String orderId,
@@ -89,6 +111,38 @@ public class DealController {
             dealMessageService.save(dealMessage);
         }
 
-        return "contractor/dealConfirm";
+        return "contractor/deal/confirm";
+    }
+
+    @GetMapping("view")
+    public String showDealDetail(@RequestParam String dealHistoryId, Model model) {
+        model.addAttribute("deal", dealHistoryService.findById(dealHistoryId));
+        model.addAttribute("dealDetails", dealHistoryDetailService.findByDealHistoryId(dealHistoryId));
+        model.addAttribute("messages", dealMessageService.findByDealHistoryId(dealHistoryId));
+        return "contractor/deal/detail";
+    }
+
+    @PostMapping("update")
+    public String updateDeal(@RequestParam String dealHistoryId,
+                             @RequestParam String[] contractorPrice,
+                             @ModelAttribute("deal") DealHistory dealHistory) {
+        List<DealHistoryDetail> dealHistoryDetails = dealHistoryDetailService.findByDealHistoryId(dealHistoryId);
+        for (int i = 0; i < dealHistoryDetails.size(); i++) {
+            if (!contractorPrice[i].isEmpty()) {
+                dealHistoryDetails.get(i).setContractorPrice(Double.parseDouble(contractorPrice[i]));
+            } else {
+                double sellerPrice = dealHistoryDetails.get(i).getNewPrice();
+                dealHistoryDetails.get(i).setContractorPrice(sellerPrice);
+            }
+            dealHistoryDetailService.update(dealHistoryDetails.get(i));
+        }
+        dealHistory.setId(dealHistoryId);
+        dealHistory.setOrderId(dealHistory.getOrderId());
+        dealHistory.setRequestDate(new Date());
+        dealHistory.setResponseDate(dealHistory.getResponseDate());
+        dealHistory.setContructorApprove(true);
+        dealHistory.setBossApprove(false);
+        dealHistoryService.update(dealHistory);
+        return "redirect:/deal";
     }
 }

@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class DealMessageServiceImpl implements DealMessageService {
@@ -16,5 +18,10 @@ public class DealMessageServiceImpl implements DealMessageService {
     @Override
     public void save(DealMessage dealMessage) {
         dealMessageDAO.save(dealMessage);
+    }
+
+    @Override
+    public List<DealMessage> findByDealHistoryId(String dealHistoryId) {
+        return dealMessageDAO.findByDealHistoryId(dealHistoryId);
     }
 }

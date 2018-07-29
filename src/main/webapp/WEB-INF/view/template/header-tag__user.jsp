@@ -96,6 +96,11 @@
                                                     <a href="${pageContext.request.contextPath}/order/history">Quản lý đơn hàng</a>
                                                 </li>
                                             </sec:authorize>
+                                            <sec:authorize access="hasAnyAuthority('Contractor')">
+                                                <li class="popup__item clearfix u-ellipsis">
+                                                    <a href="${pageContext.request.contextPath}/deal">Quản lý thương lượng</a>
+                                                </li>
+                                            </sec:authorize>
                                             <sec:authorize access="hasAuthority('Admin')">
                                                 <li class="popup__item clearfix u-ellipsis">
                                                     <a href="${pageContext.request.contextPath}/admin">Trang quản

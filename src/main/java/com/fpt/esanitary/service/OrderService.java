@@ -19,5 +19,7 @@ public interface OrderService {
 
   void update(Order order);
 
+  void remove(String orderId);
+
   Order find(Integer id);
 }

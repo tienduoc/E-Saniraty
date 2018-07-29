@@ -126,4 +126,4 @@
 
 </body>
 
-</html>/assets/
+</html>

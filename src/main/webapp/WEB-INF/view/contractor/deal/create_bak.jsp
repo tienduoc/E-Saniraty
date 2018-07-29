@@ -10,11 +10,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
-<jsp:include page="../template/head-tag__user.jsp">
+<jsp:include page="../../template/head-tag__user.jsp">
     <jsp:param name="title" value="Thương lượng"/>
 </jsp:include>
 <body>
-<%@ include file="../template/header-tag__user.jsp" %>
+<%@ include file="../../template/header-tag__user.jsp" %>
 <main>
     <section class="section-breadcrumb">
         <div class="container">
@@ -45,7 +45,7 @@
         </div>
     </section>
 
-    <form:form action="/contractor/dealRequest" method="post">
+    <form:form action="/deal/create" method="post">
         <input type="hidden" name="orderId" value="${order.id}">
         <section class="section-cart">
             <div class="container">
@@ -62,7 +62,7 @@
                             </div>
                             <div class="col-lg-2 col-md-2">
                                 <div class="u-bg-color-primary-light u-padTB-small text-left">
-                                    <strong class="text-uppercase">Giá bán</strong>
+                                    <strong class="text-uppercase">Giá niêm yết</strong>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-2">
@@ -77,7 +77,6 @@
                             </div>
                         </div>
                         <!-- Item row -->
-
                         <c:forEach var="od" items="${order.orderDetailsById}">
                             <div class="row order__row u-margin-LR-none">
                                 <!-- Item column -- Product image -->
@@ -165,7 +164,6 @@
             </div>
         </section>
     </form:form>
-
 </main>
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>

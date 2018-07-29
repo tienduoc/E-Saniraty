@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        Trang quản lý đơn đặt hàng
+                        Quản lý đơn hàng
                     </h1>
                     <ol class="breadcrumb">
                         <li>
@@ -41,18 +41,6 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <h4>Danh sách đơn đặt hàng</h4>
-                    <table border="0" cellspacing="5" cellpadding="5">
-                        <tbody>
-                        <tr>
-                            <td>Giá tiền tối thiểu:</td>
-                            <td><input type="text" id="min" name="min"></td>
-                        </tr>
-                        <tr>
-                            <td>Giá tiền tối đa:</td>
-                            <td><input type="text" id="max" name="max"></td>
-                        </tr>
-                        </tbody>
-                    </table>
                     <div class="table-responsive">
                         <table class="table table-hover table-striped" id="example">
                             <thead>
@@ -74,7 +62,8 @@
                                     <td>${o.id}</td>
                                     <td><fmt:formatDate value="${o.date}" pattern="dd-MM-yyy"/></td>
                                     <td class="text-right">
-                                        <fmt:formatNumber value="${o.totalPrice}" type="number" pattern="###,###"/>
+                                        <fmt:formatNumber var="tp" value="${o.totalPrice}" type="number" />
+                                        ${tp} đ
                                     </td>
                                     <td>
                                         <c:if test="${o.accountByUsername.roleByRoleId.id.equals('CU')}">

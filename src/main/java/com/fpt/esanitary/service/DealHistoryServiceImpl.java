@@ -3,6 +3,7 @@ package com.fpt.esanitary.service;
 import com.fpt.esanitary.dao.DealHistoryDAO;
 import com.fpt.esanitary.entities.DealHistory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,8 +22,13 @@ public class DealHistoryServiceImpl implements DealHistoryService {
   }
 
   @Override
-  public List<DealHistory> findAllByOrder(String orderId) {
-    return dealHistoryDAO.findAllByOrder(orderId);
+  public List<DealHistory> findByUsername(String username) {
+    return dealHistoryDAO.findByUsername(username);
+  }
+
+  @Override
+  public DealHistory findById(String dealHistoryId) {
+    return dealHistoryDAO.findById(dealHistoryId);
   }
 
   @Override

@@ -10,23 +10,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
-
-<
 <jsp:include page="../../template/head-admin_tag.jsp">
     <jsp:param name="title" value="Thêm sản phẩm"/>
 </jsp:include>
-
 <body>
-
 <div id="wrapper">
-
     <!-- Navigation -->
     <jsp:include page="../../template/nav-tag__admin.jsp"/>
-
     <div id="page-wrapper">
-
         <div class="container-fluid">
-
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
@@ -47,7 +39,6 @@
                 </div>
             </div>
             <!-- /.row -->
-
             <!-- TODO: Please only chage the datas in this row!!! -->
             <div class="row">
                 <div class="col-md-12 col-md-offset-0">
@@ -100,14 +91,13 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label>Khối lượng</label>
-                                        <form:input path="weight" type="number" class="form-control" min="0" required="required"/>
+                                        <form:input path="weight" type="number" class="form-control" min="0" />
                                     </div>
                                     <div class="col-md-3">
                                         <label>Số lượng</label>
                                         <form:input path="unitInStock" type="number" class="form-control" min="0" required="required"/>
                                     </div>
                                 </div>
-
                                 <div class="form-group row">
                                     <div class="col-md-2">
                                         <label>Giá gốc</label>
@@ -140,25 +130,23 @@
                                                     <input id="file" type="file" name="file" multiple="multiple" accept=".jpg, .png" onchange="javascript:updateList()">
                                                 </span>
                                             </span>
-
                                         </div>
                                     </div>
-
                                     <div class="col-md-10">
                                         <label>Ảnh đã chọn</label>
-                                            <div id="fileList" style="margin-top: -20px !important;"></div>
+                                        <div id="fileList" style="margin-top: -20px !important;"></div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-12">
                                         <label>Mô tả</label>
-                                        <form:textarea path="description" class="form-control"/>
+                                        <form:textarea path="description" class="form-control" rows="10"/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-12">
                                         <label>Giới thiệu sản phẩm</label>
-                                        <form:textarea path="review" class="form-control" rows="5"/>
+                                        <form:textarea path="review" class="form-control" rows="15"/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -174,35 +162,27 @@
                 </div>
             </div>
             <!-- END TODO -->
-
         </div>
         <!-- /.container-fluid -->
-
     </div>
     <!-- /#page-wrapper -->
-
 </div>
 <!-- /#wrapper -->
-
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
 <!-- Bootstrap Core JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-
 <!-- Datatables JavaScript -->
 <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
-
 <script>
     $(document).ready(function () {
         updateList = function() {
             var input = document.getElementById('file');
             var output = document.getElementById('fileList');
-
             output.innerHTML = '<ul class="list-group">';
             for (var i = 0; i < input.files.length; ++i) {
                 output.innerHTML += '<li class="list-group-item">' + input.files.item(i).name + '</li>';
@@ -210,11 +190,6 @@
             output.innerHTML += '</ul>';
         }
     });
-
-
 </script>
-
-
 </body>
-
 </html>

@@ -18,5 +18,7 @@ public interface OrderDAO {
 
   void update(Order order);
 
+  void remove(String orderId);
+
   Order find(Integer id);
 }

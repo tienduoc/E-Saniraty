@@ -60,10 +60,13 @@
                 <a href="${pageContext.request.contextPath}/admin/order/"><i class="fa fa-shopping-cart"></i> Quản lý đơn hàng</a>
             </li>
             <li>
+                <a href="${pageContext.request.contextPath}/supervisor/deal/"><i class="fa fa-handshake-o"></i> Yêu cầu thương lượng</a>
+            </li>
+            <li>
                 <a href="${pageContext.request.contextPath}/admin/account/"><i class="fa fa-fw fa-users"></i> Quản lý tài khoản</a>
             </li>
             <li>
-                <a href="${pageContext.request.contextPath}/admin/image/"><i class="fa fa-fw fa-picture-o"></i> Quản lý hình ảnh</a>
+                <a href="${pageContext.request.contextPath}/admin/image/"><i class="fa fa-fw fa-picture-o"></i> Hình ảnh sản phẩm</a>
             </li>
             <li>
                 <a href="${pageContext.request.contextPath}/admin/article/"><i class="fa fa-fw fa-file-text-o"></i> Quản lý bài viết</a>
