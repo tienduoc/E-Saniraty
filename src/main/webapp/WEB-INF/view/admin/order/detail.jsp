@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tg" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="../../template/head-admin_tag.jsp">
@@ -18,7 +19,7 @@
 
 <div id="wrapper">
     <!-- Navigation -->
-    <jsp:include page="../../template/nav-tag__admin.jsp" />
+    <jsp:include page="../../template/nav-tag__admin.jsp"/>
     <div id="page-wrapper">
 
         <div class="container-fluid">
@@ -50,88 +51,98 @@
                             <h4 class="panel-title">Chi tiết đơn đặt hàng</h4>
                         </div>
                         <div class="panel-body">
-                            <form method="post">
-                                <input type="hidden" name="id" value="ID">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <label>Mã đơn hàng</label>
-                                            <input type="text" class="form-control" name="productID" value="HD1234" disabled>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label>Ngày tạo</label>
-                                            <input type="text" class="form-control" name="productName" value="21/07/2018" disabled>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label>Loại khách hàng</label>
-                                            <input type="text" class="form-control" name="productName" value="Nhà thầu" disabled>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label>Tình trạng</label>
-                                            <input type="text" class="form-control" name="productName" value="Đang xử lý" disabled>
-                                        </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Mã đơn hàng</label>
+                                        <input type="text" class="form-control" value="${order.id}" disabled>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>Ngày tạo</label>
+                                        <fmt:formatDate value="${order.date}" var="date" pattern="dd/MM/yyyy"/>
+                                        <input type="text" class="form-control" value="${date}" disabled>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>Loại khách hàng</label>
+                                        <c:choose>
+                                            <c:when test="${order.accountByUsername.roleId.equalsIgnoreCase(co)}">
+                                                <input type="text" class="form-control" value="Nhà thầu" disabled>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <input type="text" class="form-control" value="Khách lẻ" disabled>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>Tình trạng</label>
+                                        <c:choose>
+                                            <c:when test="${order.closed == false}">
+                                                <input type="text" class="form-control" value="Đang xử lý" disabled>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <input type="text" class="form-control" value="Đã đóng" disabled>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                            </div>
+                            <div class="form-group">
 
-                                </div>
-                                <div class="form-group">
-                                    <label>Khách hàng</label>
-                                    <input type="text" class="form-control" name="manufacturer" value="Thân Văn Sử" disabled>
-                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Khách hàng</label>
+                                <input type="text" class="form-control" value="${order.accountByUsername.fullname}" disabled>
+                            </div>
 
-                                <div class="form-group">
-                                    <label>Địa chỉ</label>
-                                    <input type="text" class="form-control" name="manufacturer" value="CVPM Quang Trung, Quận 12, TP.Hồ Chí Minh" disabled>
-                                </div>
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <label>Điện thoại</label>
-                                            <input type="text" class="form-control" name="manufacturer" value="0942745670" disabled>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <label>Email</label>
-                                            <input type="text" class="form-control" name="manufacturer" value="sutv@fpt.edu.vn" disabled>
-                                        </div>
+                            <div class="form-group">
+                                <label>Địa chỉ</label>
+                                <input type="text" class="form-control" value="${order.accountByUsername.address}" disabled>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <label>Điện thoại</label>
+                                        <input type="text" class="form-control" value="${order.accountByUsername.phone}" disabled>
                                     </div>
-
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Chi tiết sản phẩm</label>
-                                    <div class="table-responsive">
-                                        <table class="table table-hover table-striped">
-                                            <thead>
-                                            <tr>
-                                                <th class="text-center">STT</th>
-                                                <th class="text-center">Tên sản phẩm</th>
-                                                <th class="text-center">Số lượng</th>
-                                                <th class="text-center">Giá bán</th>
-                                                <th class="text-center">Thành tiền</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td class="text-right">1</td>
-                                                <td>Vòi Lạnh Lavabo American Standard Sandra W126</td>
-                                                <td class="text-right">100</td>
-                                                <td class="text-right">700.000 đ</td>
-                                                <td class="text-right">700.0000 đ</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="text-right">2</td>
-                                                <td>Bồn cầu Caesar</td>
-                                                <td class="text-right">15</td>
-                                                <td class="text-right">2.000.000 đ</td>
-                                                <td class="text-right">14.000.0000 đ</td>
-                                            </tr>
-
-                                            </tbody>
-                                        </table>
+                                    <div class="col-md-9">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control" value="${order.accountByUsername.email}" disabled>
                                     </div>
                                 </div>
-                            </form>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Chi tiết sản phẩm</label>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-center">Tên sản phẩm</th>
+                                            <th class="text-right">Số lượng</th>
+                                            <th class="text-right">Giá bán</th>
+                                            <th class="text-right">Thành tiền</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <c:forEach var="od" items="${orderDetails}">
+                                            <tr>
+                                                <td>${od.productByProductId.name}</td>
+                                                <td class="text-right">
+                                                    <fmt:formatNumber value="${od.quantity}" pattern="###,###"/>
+                                                </td>
+                                                <td class="text-right">
+                                                    <fmt:formatNumber value="${od.unitPrice}" pattern="###,###"/>
+                                                </td>
+                                                <td class="text-right">
+                                                        <fmt:formatNumber value="${od.unitPrice * od.quantity}" pattern="###,###"/>
+                                                </td>
+                                            </tr>
+                                        </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                         <div class="panel-footer">
                             <a href="${pageContext.request.contextPath}/admin/order" class="btn btn-default">Quay lại</a>

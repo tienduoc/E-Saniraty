@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,19 +35,25 @@
                 <div class="clear"></div>
 
                 <div class="col-md-6 col-sm-8 col-xs-12 col-md-offset-3 col-sm-offset-2 col-xs-offset-0">
-                    <form:form action="${pageContext.request.contextPath}/authenticateUser" method="post" class="form">
+                    <form:form action="${pageContext.request.contextPath}/authenticateUser" method="post" class="form" id="login-form">
+
                         <p>
-                            <label for="username">Tên đăng nhập<span class="required">*</span></label>
-                            <input type="text" name="username" id="username" class="form__input" required>
+                            <input type="text" name="username" class="form__input" placeholder="Tên đăng nhập">
                         </p>
 
                         <p>
-                            <label for="password">Mật khẩu<span class="required">*</span></label>
-                            <input type="password" name="password" id="password" class="form__input" required>
+                            <input type="password" name="password" class="form__input" placeholder="Mật khẩu">
+                        </p>
+                        <p>
+                            <c:if test="${param.error != null}">
+                                <div class="alert alert-danger">
+                                    <strong>Lỗi!</strong> Tên đăng nhập hoặc mật khẩu không đúng!
+                                </div>
+                            </c:if>
                         </p>
 
                         <p style="padding-top: 1rem;">
-                            <input type="submit" value="Đăng nhập" name="login" class="btn button--black col-md-12 text-uppercase">
+                            <input type="submit" value="Đăng nhập" name="login" class="btn button--black col-md-12 text-uppercase" onsubmit="return valid.Apply()">
                         </p>
 
                         <p class="pull-right" style="padding-top: 20px;">
@@ -62,9 +69,13 @@
 
 </main>
 
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/main.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="/assets/js/jquery.validate.js"></script>
+<script type="text/javascript" src="/assets/js/messages_vi.js"></script>
+<script type="text/javascript" src="/assets/js/main.js"></script>
+<script type="text/javascript" src="/assets/js/myValidation.js"></script>
 </body>
 
 </html>

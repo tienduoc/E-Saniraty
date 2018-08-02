@@ -12,9 +12,13 @@ public interface DealHistoryDAO {
 
   DealHistory findById(String dealHistoryId);
 
+  List<DealHistory> findByOrderId(String orderId);
+
   void save(DealHistory dealHistory);
 
   void update(DealHistory dealHistory);
 
   void delete(DealHistory dealHistory);
+
+  void deleteByOrderId(String orderId);
 }

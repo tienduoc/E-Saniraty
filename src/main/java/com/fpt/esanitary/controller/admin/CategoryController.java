@@ -34,9 +34,17 @@ public class CategoryController {
 
   @PostMapping("/create")
   public String createCategory(@ModelAttribute("category") Category category,
-                               @RequestParam(value = "parentId", required = false) Integer parentId) {
-    categoryService.create(category);
-    return "redirect:/admin/category";
+                               @RequestParam(value = "parentId", required = false) Integer parentId,
+                               Model model) {
+    Category extCat = categoryService.findByName(category.getName());
+    if (extCat == null) {
+      categoryService.create(category);
+      return "redirect:/admin/category";
+    } else {
+//      todo hiển thị nhóm sản phẩm đã tồn tại
+      model.addAttribute("catExist", "Tên nhóm sản phẩm bị trùng, vui lòng nhập lại");
+      return "admin/category/create";
+    }
   }
 
   @GetMapping("detail")

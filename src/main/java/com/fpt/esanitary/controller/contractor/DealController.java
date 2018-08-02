@@ -55,7 +55,7 @@ public class DealController {
             UserDetails userDetail = (UserDetails) auth.getPrincipal();
             acc = userDetail.getUsername(); // Lấy tên username
         }
-        model.addAttribute("deals", dealHistoryDetailService.findByUsername(acc));
+        model.addAttribute("deals", dealHistoryService.findByUsername(acc));
         return "contractor/deal/index";
     }
 
@@ -74,8 +74,7 @@ public class DealController {
     }
 
     @PostMapping("create")
-    public String createDealRequest(@ModelAttribute("order") Order order,
-                                    @RequestParam("message") String message,
+    public String createDealRequest(@RequestParam("message") String message,
                                     @RequestParam("orderId") String orderId,
                                     @RequestParam String[] contractorPrice) {
 
@@ -98,9 +97,18 @@ public class DealController {
             dealHistoryDetail.setDealHistoryId(dealId);
             dealHistoryDetail.setProductId(orderDetails.get(i).getProductByProductId().getId());
             dealHistoryDetail.setOriginalPrice(orderDetails.get(i).getUnitPrice());
-            dealHistoryDetail.setContractorPrice(Double.parseDouble(contractorPrice[i]));
+            if (!contractorPrice[i].isEmpty()) {
+                dealHistoryDetail.setContractorPrice(Double.parseDouble(contractorPrice[i]));
+            } else {
+                dealHistoryDetail.setContractorPrice(orderDetails.get(i).getUnitPrice());
+            }
             dealHistoryDetailService.save(dealHistoryDetail);
         }
+
+        // Set deal state
+        Order order = orderService.findById(orderId);
+        order.setDealStatus("InProcess");
+        orderService.update(order);
 
         if (!message.isEmpty()) {
             DealMessage dealMessage = new DealMessage();
@@ -128,11 +136,12 @@ public class DealController {
                              @ModelAttribute("deal") DealHistory dealHistory) {
         List<DealHistoryDetail> dealHistoryDetails = dealHistoryDetailService.findByDealHistoryId(dealHistoryId);
         for (int i = 0; i < dealHistoryDetails.size(); i++) {
-            if (!contractorPrice[i].isEmpty()) {
-                dealHistoryDetails.get(i).setContractorPrice(Double.parseDouble(contractorPrice[i]));
-            } else {
+            if (contractorPrice[i].trim() == null || contractorPrice[i].isEmpty()) {
                 double sellerPrice = dealHistoryDetails.get(i).getNewPrice();
                 dealHistoryDetails.get(i).setContractorPrice(sellerPrice);
+            } else {
+                dealHistoryDetails.get(i).setContractorPrice(Double.parseDouble(contractorPrice[i]));
+
             }
             dealHistoryDetailService.update(dealHistoryDetails.get(i));
         }
@@ -144,5 +153,19 @@ public class DealController {
         dealHistory.setBossApprove(false);
         dealHistoryService.update(dealHistory);
         return "redirect:/deal";
+    }
+
+    @PostMapping("confirm")
+    public String agreeWithDeal(@RequestParam String orderId,
+                                @ModelAttribute DealHistoryDetail[] dealHistoryDetails) {
+        List<OrderDetail> orderDetails = orderDetailService.findByOrder(orderId);
+        for (int i = 0; i < dealHistoryDetails.length; i++) {
+            orderDetails.get(i).setUnitPrice(dealHistoryDetails[i].getNewPrice());
+            orderDetailService.update(orderDetails.get(i));
+        }
+        Order order = orderService.findById(orderId);
+        order.setDealStatus("Success");
+        orderService.update(order);
+        return "contractor/deal/detail";
     }
 }

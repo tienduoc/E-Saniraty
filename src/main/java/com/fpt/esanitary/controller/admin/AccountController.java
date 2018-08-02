@@ -27,26 +27,6 @@ public class AccountController {
   @Autowired
   private PasswordEncoder passwordEncoder;
 
-//  @GetMapping("forBoss")
-//  public String getAccountsForBoss(Model model, HttpServletRequest request){
-//    PagedListHolder pagedListHolder = new PagedListHolder(accountService.findAll());
-//    int page = ServletRequestUtils.getIntParameter(request, "p", 0);
-//    pagedListHolder.setPage(page);
-//    pagedListHolder.setPageSize(10);
-//    model.addAttribute("pagedListHolder", pagedListHolder);
-//    return "admin/account/account";
-//  }
-
-//  @GetMapping
-//  public String getAccountsForAdmin(Model model, HttpServletRequest request){
-//    PagedListHolder pagedListHolder = new PagedListHolder(accountService.findAllCustomer());
-//    int page = ServletRequestUtils.getIntParameter(request, "p", 0);
-//    pagedListHolder.setPage(page);
-//    pagedListHolder.setPageSize(10);
-//    model.addAttribute("pagedListHolder", pagedListHolder);
-//    return "admin/account/account";
-//  }
-
   @GetMapping
   public String getAllAccount(Model model) {
       model.addAttribute("accounts", accountService.findAll());
@@ -61,10 +41,17 @@ public class AccountController {
   }
 
   @PostMapping("create")
-  public String createAccount(@ModelAttribute("account") Account account) {
+  public String createAccount(@ModelAttribute("account") Account account, Model model) {
+    Account extAcc = accountService.find(account.getUsername());
+    if (extAcc == null) {
     account.setPassword(passwordEncoder.encode(account.getPassword()));
     accountService.create(account);
     return "redirect:/admin/account";
+    } else {
+//      todo hiển thị trùng tài khoản
+      model.addAttribute("accExist", "Tài khoản bạn chọn đã được sử dụng, vui lòng chọn tài khoản khác.");
+      return "admin/account/create";
+    }
   }
 
   @GetMapping("detail")

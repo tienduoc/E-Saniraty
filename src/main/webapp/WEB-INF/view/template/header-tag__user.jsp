@@ -93,15 +93,15 @@
                                             </li>
                                             <sec:authorize access="hasAnyAuthority('Customer','Contractor')">
                                                 <li class="popup__item clearfix u-ellipsis">
-                                                    <a href="${pageContext.request.contextPath}/order/history">Quản lý đơn hàng</a>
+                                                    <a href="${pageContext.request.contextPath}/order">Quản lý đơn hàng</a>
                                                 </li>
                                             </sec:authorize>
-                                            <sec:authorize access="hasAnyAuthority('Contractor')">
+                                            <sec:authorize access="hasAuthority('Contractor')">
                                                 <li class="popup__item clearfix u-ellipsis">
                                                     <a href="${pageContext.request.contextPath}/deal">Quản lý thương lượng</a>
                                                 </li>
                                             </sec:authorize>
-                                            <sec:authorize access="hasAuthority('Admin')">
+                                            <sec:authorize access="hasAnyAuthority('Admin','Boss')">
                                                 <li class="popup__item clearfix u-ellipsis">
                                                     <a href="${pageContext.request.contextPath}/admin">Trang quản
                                                         trị</a>

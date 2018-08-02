@@ -7,6 +7,7 @@ import com.fpt.esanitary.service.AccountService;
 import com.fpt.esanitary.service.OrderDetailService;
 import com.fpt.esanitary.service.OrderService;
 import com.fpt.esanitary.service.ProductService;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -14,13 +15,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.*;
 
 @Controller
@@ -39,15 +39,23 @@ public class CartController {
     @Autowired
     private OrderDetailService orderDetailService;
 
+    private final int MIN_QUANTITY = 1;
+    private final int MAX_QUANTITY = 999;
+
     @GetMapping
     public String showCart(HttpSession session) {
         List<Item> cart = (List<Item>) session.getAttribute("cart");
+        if (session.getAttribute("cart") == null || cart.size() < 1) {
+            return "user/cartEmpty";
+        }
         session.setAttribute("cart", cart);
         return "user/cart";
     }
 
     @GetMapping(value = "add")
-    public String addToCart(@RequestParam("id") String id, HttpSession session) {
+    public String addToCart(@RequestParam("id") String id,
+                            HttpSession session,
+                            RedirectAttributes redirectAttributes) {
         if (session.getAttribute("cart") == null) {
             List<Item> cart = new ArrayList<Item>();
             cart.add(new Item(productService.findById(id), 1));
@@ -60,6 +68,11 @@ public class CartController {
                 cart.add(new Item(productService.findById(id), 1));
             } else {
                 int quantity = cart.get(index).getQuantity();
+                if (quantity == MAX_QUANTITY) {
+                    redirectAttributes.addFlashAttribute("product", String.valueOf(cart.get(index).getProduct()));
+                    redirectAttributes.addFlashAttribute("errQuantity", "Số lượng tối đa của mỗi sản phẩm là 999");
+                    return "redirect:/cart";
+                }
                 quantity++;
                 cart.get(index).setQuantity(quantity);
             }
@@ -70,10 +83,18 @@ public class CartController {
 
     @PostMapping("update")
     public String updateCart(@RequestParam String[] quantity,
-                             HttpSession session) {
+                             HttpSession session,
+                             RedirectAttributes redirectAttributes) {
         List<Item> cart = (List<Item>) session.getAttribute("cart");
         for (int i = 0; i < cart.size(); i++) {
-            cart.get(i).setQuantity(Integer.parseInt(quantity[i]));
+            int qty = Integer.parseInt(quantity[i]);
+            if (qty >= MIN_QUANTITY && qty <= MAX_QUANTITY) {
+                cart.get(i).setQuantity(qty);
+            } else {
+                redirectAttributes.addFlashAttribute("product", String.valueOf(cart.get(i).getProduct()));
+                redirectAttributes.addFlashAttribute("errQuantity", "Vui lòng nhập số lượng từ 1-999");
+                return "redirect:/cart";
+            }
         }
         session.setAttribute("cart", cart);
         return "redirect:/cart";
@@ -85,11 +106,10 @@ public class CartController {
         int index = isExits(id, session);
         if (id.equals(cart.get(index).getProduct().getId())) {
             cart.remove(index);
-            if (cart.size() > 0) {
-                session.setAttribute("cart", cart);
-            } else {
+            session.setAttribute("cart", cart);
+            if (cart.size() < 1) {
                 session.removeAttribute("cart");
-                model.addAttribute("msg", "Giở hàng trống");
+                return "user/cartEmpty";
             }
         }
         return "redirect:/cart";

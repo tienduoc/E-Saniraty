@@ -60,7 +60,7 @@
                                 <tr data-key-1="${o.username}" data-key-2="${o.accountByUsername.fullname}" data-key-3="${o.accountByUsername.address}" data-key-4="${o.accountByUsername.phone}" data-key-5="${o.accountByUsername.email}">
                                     <td class="details-control"></td>
                                     <td>${o.id}</td>
-                                    <td><fmt:formatDate value="${o.date}" pattern="dd-MM-yyy"/></td>
+                                    <td><fmt:formatDate value="${o.date}" pattern="dd-MM-yyy HH:mm"/></td>
                                     <td class="text-right">
                                         <fmt:formatNumber var="tp" value="${o.totalPrice}" type="number" />
                                         ${tp} đ
@@ -83,8 +83,8 @@
                                         </c:if>
                                     </td>
                                     <td class="text-center">
-                                        <a href="${pageContext.request.contextPath}/admin/order/update" class="btn btn-warning btn-xs">Sửa</a>
-                                        <a href="${pageContext.request.contextPath}/admin/order/detail" class="btn btn-success btn-xs">Chi tiết</a>
+                                        <a href="${pageContext.request.contextPath}/admin/order/update?orderId=${o.id}" class="btn btn-warning btn-xs">Sửa</a>
+                                        <a href="${pageContext.request.contextPath}/admin/order/detail?orderId=${o.id}" class="btn btn-success btn-xs">Chi tiết</a>
                                     </td>
                                 </tr>
                             </c:forEach>

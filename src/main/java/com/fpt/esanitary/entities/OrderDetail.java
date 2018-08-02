@@ -11,7 +11,6 @@ public class OrderDetail {
   private String productId;
   private double unitPrice;
   private int quantity;
-  private Boolean dealSuccessed;
   private Order orderByOrderId;
   private Product productByProductId;
 
@@ -55,16 +54,6 @@ public class OrderDetail {
     this.quantity = quantity;
   }
 
-  @Basic
-  @Column(name = "DealSuccessed", nullable = true)
-  public Boolean getDealSuccessed() {
-    return dealSuccessed;
-  }
-
-  public void setDealSuccessed(Boolean dealSuccessed) {
-    this.dealSuccessed = dealSuccessed;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -73,14 +62,13 @@ public class OrderDetail {
     return Double.compare(that.unitPrice, unitPrice) == 0 &&
             quantity == that.quantity &&
             Objects.equals(orderId, that.orderId) &&
-            Objects.equals(productId, that.productId) &&
-            Objects.equals(dealSuccessed, that.dealSuccessed);
+            Objects.equals(productId, that.productId);
   }
 
   @Override
   public int hashCode() {
 
-    return Objects.hash(orderId, productId, unitPrice, quantity, dealSuccessed);
+    return Objects.hash(orderId, productId, unitPrice, quantity);
   }
 
   @ManyToOne

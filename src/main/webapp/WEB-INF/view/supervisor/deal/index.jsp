@@ -36,8 +36,9 @@
                     <table class="table table-hover table-striped" id="table1">
                         <thead>
                         <tr>
+                            <th class="text-center">Mã</th>
                             <th class="text-center">Mã hoá đơn</th>
-                            <th class="text-center">Khách hàng yêu cầu</th>
+                            <th class="text-center">Khách hàng</th>
                             <th class="text-center">Ngày yêu cầu</th>
                             <th class="text-center">Ngày phản hồi</th>
                             <th class="text-right">Giá đơn hàng</th>
@@ -50,6 +51,9 @@
                         <c:forEach var="deal" items="${deals}">
                             <c:if test="${(deal.contructorApprove == true && (deal.bossApprove == false || deal.bossApprove == null)) || (deal.contructorApprove == false && deal.bossApprove == true)}">
                                 <tr>
+                                    <td>
+                                        ${deal.id}
+                                    </td>
                                     <td href="${pageContext.request.contextPath}/">${deal.orderId}</td>
                                     <td class="text-left">
                                         <a href="${pageContext.request.contextPath}/admin/account/detail?username=${deal.orderByOrderId.username}">
@@ -57,10 +61,10 @@
                                         </a>
                                     </td>
                                     <td class="text-center">
-                                        <fmt:formatDate value="${deal.requestDate}" pattern="dd/MM/yyyy  HH:mm"/>
+                                        <fmt:formatDate value="${deal.requestDate}" pattern="dd/MM/yyyy"/>
                                     </td>
                                     <td class="text-center">
-                                        <fmt:formatDate value="${deal.responseDate}" pattern="dd/MM/yyyy  HH:mm"/>
+                                        <fmt:formatDate value="${deal.responseDate}" pattern="dd/MM/yyyy"/>
                                     </td>
                                     <td class="text-right">
                                         <fmt:formatNumber value="${deal.orderByOrderId.totalPrice}"/>
@@ -76,18 +80,21 @@
                                     </td>
                                     <c:choose>
                                         <c:when test="${deal.contructorApprove == true && (deal.bossApprove == false || deal.bossApprove == null)}">
-                                            <td class="text-center text-danger">Đang thương lượng</td>
+                                            <td class="text-center text-primary">Thương lượng</td>
                                         </c:when>
                                         <c:when test="${deal.contructorApprove == false && deal.bossApprove == true}">
-                                            <td class="text-center text-primary">Đã trả lời</td>
+                                            <td class="text-center">Đã trả lời</td>
                                         </c:when>
                                     </c:choose>
-                                    <td class="text-center">
+                                    <td class="text-right">
+                                        <c:if test="${deal.contructorApprove == true && (deal.bossApprove == false || deal.bossApprove == null)}">
                                         <a href="${pageContext.request.contextPath}/supervisor/deal/update?dealHistoryId=${deal.id}" class="btn btn-warning btn-xs" data-toggle="tooltip"
                                            title="Điều chỉnh giá mới"><i class="fa fa-pencil"></i></a>
-                                        <a href="" class="btn btn-success btn-xs" data-toggle="tooltip"
+                                        </c:if>
+                                        <a href="${pageContext.request.contextPath}/supervisor/deal/acceptDeal?orderId=${deal.orderId}&dealHistoryId=${deal.id}" class="btn btn-success btn-xs" data-toggle="tooltip"
                                            title="Đồng ý với giá nhà thầu đưa ra"><i class="fa fa-check"></i></a>
-                                        <a href="" class="btn btn-danger btn-xs" data-toggle="tooltip"
+                                        <%--todo hiển thị: giới hạn ô message còn khoảng 250 ký tự vì phương thức get chỉ chấp nhận URL tối đa 2048 ký tự--%>
+                                        <a href="${pageContext.request.contextPath}/supervisor/deal/cancelDeal?dealHistoryId=${deal.id}&orderId=${deal.orderId}&message=${mesage}" class="btn btn-danger btn-xs" data-toggle="tooltip"
                                            title="Không thương lượng nữa"><i class="fa fa-ban"></i></a>
                                     </td>
                                 </tr>
@@ -105,8 +112,9 @@
                     <table class="table table-hover table-striped" id="table2">
                         <thead>
                         <tr>
+                            <th class="text-center">Mã</th>
                             <th class="text-center">Mã hoá đơn</th>
-                            <th class="text-center">Khách hàng yêu cầu</th>
+                            <th class="text-center">Khách hàng</th>
                             <th class="text-center">Ngày yêu cầu</th>
                             <th class="text-center">Ngày phản hồi</th>
                             <th class="text-right">Giá đơn hàng</th>
@@ -119,6 +127,7 @@
                         <c:forEach var="deal" items="${deals}">
                             <c:if test="${(deal.contructorApprove == true && deal.bossApprove == true) || (deal.contructorApprove == false && deal.bossApprove == false)}">
                                 <tr>
+                                    <td>${deal.id}</td>
                                     <td href="${pageContext.request.contextPath}/">${deal.orderId}</td>
                                     <td class="text-left">
                                         <a href="${pageContext.request.contextPath}/admin/account/detail?username=${deal.orderByOrderId.username}">
@@ -126,10 +135,10 @@
                                         </a>
                                     </td>
                                     <td class="text-center">
-                                        <fmt:formatDate value="${deal.requestDate}" pattern="dd/MM/yyyy  HH:mm"/>
+                                        <fmt:formatDate value="${deal.requestDate}" pattern="dd/MM/yyyy HH:mm"/>
                                     </td>
                                     <td class="text-center">
-                                        <fmt:formatDate value="${deal.responseDate}" pattern="dd/MM/yyyy  HH:mm"/>
+                                        <fmt:formatDate value="${deal.responseDate}" pattern="dd/MM/yyyy HH:mm"/>
                                     </td>
                                     <td class="text-right">
                                         <fmt:formatNumber value="${deal.orderByOrderId.totalPrice}"/>
@@ -148,11 +157,12 @@
                                             <td class="text-center text-success">Thành công</td>
                                         </c:when>
                                         <c:when test="${deal.contructorApprove == false && deal.bossApprove == false}">
-                                            <td class="text-center">Đã huỷ</td>
+                                            <td class="text-center text-danger">Đã huỷ</td>
                                         </c:when>
                                     </c:choose>
                                     <td class="text-center">
-                                        <a href="" class="btn btn-xs btn-info">Xem</a>
+                                        <a href="" class="btn btn-xs btn-info" data-toggle="tooltip"
+                                           title="Xem thương lượng"><i class="fa fa-eye"></i></a>
                                     </td>
                                 </tr>
                             </c:if>
@@ -179,6 +189,7 @@
 <script>
     $(document).ready(function () {
         var table = $('#table1').DataTable({
+            "order": [[ 3, "asc" ]],
             "language": {
                 "sProcessing": "Đang xử lý...",
                 "sLengthMenu": "Xem _MENU_ mục",
@@ -200,6 +211,7 @@
     });
     $(document).ready(function () {
         var table = $('#table2').DataTable({
+            "order": [[ 3, "asc" ]],
             "language": {
                 "sProcessing": "Đang xử lý...",
                 "sLengthMenu": "Xem _MENU_ mục",

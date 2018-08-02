@@ -17,7 +17,7 @@ public class DealHistory {
     private Date requestDate;
     private Date responseDate;
     private Boolean bossApprove;
-    private boolean contructorApprove;
+    private Boolean contructorApprove;
     private Order orderByOrderId;
     private Collection<DealHistoryDetail> dealHistoryDetailsById;
     private Collection<DealMessage> dealMessagesById;
@@ -74,7 +74,7 @@ public class DealHistory {
 
     @Basic
     @Column(name = "ContructorApprove", nullable = false)
-    public boolean isContructorApprove() {
+    public Boolean getContructorApprove() {
         return contructorApprove;
     }
 

@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tg" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="../../template/head-admin_tag.jsp">
@@ -18,7 +19,7 @@
 
 <div id="wrapper">
     <!-- Navigation -->
-    <jsp:include page="../../template/nav-tag__admin.jsp" />
+    <jsp:include page="../../template/nav-tag__admin.jsp"/>
     <div id="page-wrapper">
 
         <div class="container-fluid">
@@ -50,29 +51,33 @@
                             <h4 class="panel-title">Cập nhật đơn đặt hàng</h4>
                         </div>
                         <div class="panel-body">
-                            <form method="post">
-                                <input type="hidden" name="id" value="ID">
+                            <form:form id="order" modelAttribute="order" method="post">
+                                <form:hidden path="username"/>
+                                <form:hidden path="totalPrice"/>
+                                <form:hidden path="totalPaid"/>
+                                <form:hidden path="dealStatus"/>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-md-3">
                                             <label>Mã đơn hàng</label>
-                                            <input type="text" class="form-control" name="productID" value="HD1234" disabled>
+                                            <form:input path="id" class="form-control" disabled="true"/>
                                         </div>
                                         <div class="col-md-3">
                                             <label>Ngày tạo</label>
-                                            <input type="text" class="form-control" name="productName" value="21/07/2018" disabled>
+                                            <fmt:formatDate var="date" value="${order.date}" pattern="dd/MM/yyyy"/>
+                                            <input type="text" class="form-control" value="${date}" disabled>
+                                            <form:hidden path="date"/>
                                         </div>
                                         <div class="col-md-3">
                                             <label>Loại khách hàng</label>
-                                            <input type="text" class="form-control" name="productName" value="Nhà thầu" disabled>
+                                            <input type="text" class="form-control" value="Nhà thầu" disabled>
                                         </div>
                                         <div class="col-md-3">
                                             <label>Tình trạng</label>
-                                            <select name="" style="display:block; width: 100%; height: 4rem;">
-                                                <option name="" value="">Đang xử lý</option>
-                                                <option name="" value="">Đã giao hàng</option>
-                                                <option name="" value="">Đã đóng</option>
-                                            </select>
+                                            <form:select path="closed" style="display:block; width: 100%; height: 4rem;">
+                                                <form:option value="true">Đang xử lý</form:option>
+                                                <form:option value="false">Đóng</form:option>
+                                            </form:select>
                                         </div>
                                     </div>
                                 </div>
@@ -130,15 +135,14 @@
                                                 <td class="text-right">2.000.000 đ</td>
                                                 <td class="text-right">14.000.0000 đ</td>
                                             </tr>
-
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                            </form>
+                            </form:form>
                         </div>
                         <div class="panel-footer">
-                            <input type="submit" class="btn btn-primary" value="Lưu lại">
+                            <input type="submit" onclick="document.getElementById('order').submit();" class="btn btn-primary" value="Lưu lại">
                             <a href="${pageContext.request.contextPath}/admin/order" class="btn btn-default">Quay lại</a>
                         </div>
                     </div>

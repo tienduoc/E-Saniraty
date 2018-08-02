@@ -27,6 +27,11 @@ public class DealHistoryServiceImpl implements DealHistoryService {
   }
 
   @Override
+  public List<DealHistory> findByOrderId(String orderId) {
+    return dealHistoryDAO.findByOrderId(orderId);
+  }
+
+  @Override
   public DealHistory findById(String dealHistoryId) {
     return dealHistoryDAO.findById(dealHistoryId);
   }
@@ -44,5 +49,10 @@ public class DealHistoryServiceImpl implements DealHistoryService {
   @Override
   public void delete(DealHistory dealHistory) {
     dealHistoryDAO.delete(dealHistory);
+  }
+
+  @Override
+  public void deleteByOrderId(String orderId) {
+    dealHistoryDAO.deleteByOrderId(orderId);
   }
 }

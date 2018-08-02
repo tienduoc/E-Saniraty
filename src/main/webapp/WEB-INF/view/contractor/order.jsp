@@ -14,7 +14,7 @@
     <title>Title</title>
 </head>
 <body>
-<form:form action="order" modelAttribute="order" method="get">
+<form:form action="order" method="get">
     <c:forEach var="o" items="${order}">
         <c:if test="${o.closed == false}">
             ${o.id}<br>

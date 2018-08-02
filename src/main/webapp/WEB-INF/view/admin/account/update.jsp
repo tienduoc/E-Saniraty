@@ -96,7 +96,6 @@
                 </div>
 
             </div>
-            <!-- END TODO -->
         </div>
         <!-- /.container-fluid -->
     </div>

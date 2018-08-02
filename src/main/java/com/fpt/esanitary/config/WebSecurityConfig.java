@@ -40,18 +40,29 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().and().authorizeRequests()
-                .antMatchers("/", "/assets/**").permitAll()
-//				.antMatchers("/admin/**").hasAnyAuthority("Admin", "Boss")
-				.antMatchers("/deal/**").hasAuthority("Contractor")
-                .and().formLogin().loginPage("/login")
-                .loginProcessingUrl("/authenticateUser").permitAll()
+        http
+                .httpBasic()
                 .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
+                    .authorizeRequests()
+                        .antMatchers("/", "/assets/**").permitAll()
+        				.antMatchers("/admin/**").hasAnyAuthority("Admin", "Boss")
+        				.antMatchers("/supervisor/**").hasAuthority("Boss")
+                        .antMatchers("/cart/**", "/order/**").authenticated()
+                        .antMatchers("/deal/**").hasAuthority("Contractor")
                 .and()
-                .exceptionHandling().accessDeniedPage("/403")
+                    .formLogin()
+                        .loginPage("/login")
+                        .loginProcessingUrl("/authenticateUser").permitAll()
+                        .successHandler(new CustomAuthenticationSuccessHandler())
                 .and()
-                .csrf().disable();
+                    .logout()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                    .permitAll()
+                .and()
+                    .exceptionHandling()
+                    .accessDeniedPage("/403")
+                .and()
+                    .csrf().disable();
     }
 
     @Override

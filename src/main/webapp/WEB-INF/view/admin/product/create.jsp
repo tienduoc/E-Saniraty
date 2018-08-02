@@ -39,7 +39,6 @@
                 </div>
             </div>
             <!-- /.row -->
-            <!-- TODO: Please only chage the datas in this row!!! -->
             <div class="row">
                 <div class="col-md-12 col-md-offset-0">
                     <div class="panel panel-primary">
@@ -161,7 +160,6 @@
                     </div>
                 </div>
             </div>
-            <!-- END TODO -->
         </div>
         <!-- /.container-fluid -->
     </div>

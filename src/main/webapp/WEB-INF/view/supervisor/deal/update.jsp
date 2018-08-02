@@ -37,7 +37,9 @@
             </div>
             <!-- /.row -->
 
-            <!-- TODO: Please only chage the datas in this row!!! -->
+            <c:set var="request" value="${deal.contructorApprove == true && (deal.bossApprove == false || deal.bossApprove == null)}"/>
+            <c:set var="response" value="${deal.contructorApprove == false && deal.bossApprove == true}"/>
+
             <form:form action="/supervisor/deal/update" method="post">
                 <input type="hidden" name="id" value="${deal.id}">
                 <input type="hidden" name="orderId" value="${deal.orderId}">
@@ -93,13 +95,11 @@
                                                     <tr>
                                                         <th>Mã SP</th>
                                                         <th>Tên sản phẩm</th>
-                                                        <th>SL</th>
-                                                        <th>Giá gốc</th>
-                                                        <th>Giá bán</th>
-                                                        <th>Giá nhà thầu</th>
-                                                        <c:if test="${deal.contructorApprove == true && (deal.bossApprove == false || deal.bossApprove == null)}">
-                                                            <th>Giá chấp nhận</th>
-                                                        </c:if>
+                                                        <th class="text-right">SL</th>
+                                                        <th class="text-right">Giá gốc</th>
+                                                        <th class="text-right">Giá bán</th>
+                                                        <th class="text-right">Giá nhà thầu</th>
+                                                        <th class="text-center">Giá chấp nhận</th>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -125,9 +125,30 @@
                                                                 </c:forEach>
                                                             </td>
                                                             <td class="text-right">
-                                                                <fmt:formatNumber value="${dealDetail.contractorPrice}" pattern="###,###"/>
+                                                                <fmt:formatNumber var="cp" value="${dealDetail.contractorPrice}" pattern="###,###"/>
+                                                                <c:choose>
+                                                                    <c:when test="${dealDetail.contractorPrice != dealDetail.originalPrice}">
+                                                                        <b>${cp}</b><br>
+                                                                        <fmt:formatNumber value="${dealDetail.contractorPrice - dealDetail.originalPrice}" pattern="###,###"/>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        ${cp}
+                                                                    </c:otherwise>
+                                                                </c:choose>
                                                             </td>
-                                                            <c:if test="${deal.contructorApprove == true && (deal.bossApprove == false || deal.bossApprove == null)}">
+                                                            <%--<c:if test="${response}">--%>
+                                                                <%--<td class="text-right">--%>
+                                                                    <%--<c:choose>--%>
+                                                                        <%--<c:when test="${dealDetail.contractorPrice == dealDetail.newPrice}">--%>
+                                                                            <%--Đã chấp nhận--%>
+                                                                        <%--</c:when>--%>
+                                                                        <%--<c:otherwise>--%>
+                                                                            <%--<fmt:formatNumber value="${dealDetail.newPrice}" pattern="###,###"/>--%>
+                                                                        <%--</c:otherwise>--%>
+                                                                    <%--</c:choose>--%>
+                                                                <%--</td>--%>
+                                                            <%--</c:if>--%>
+                                                            <c:if test="${request}">
                                                                 <td class="text-right">
                                                                     <c:if test="${dealDetail.contractorPrice == dealDetail.newPrice}">
                                                                         Đã chấp nhận
@@ -173,8 +194,10 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-6">
-                                            <label>Tin nhắn từ nhà thầu</label>
-                                            <textarea class="form-control" readonly>ca</textarea>
+                                            <c:forEach var="m" items="${messages}">
+                                                <fmt:formatDate value="${m.time}" var="time" pattern="HH:mm dd/MM/yyyy"/>
+                                                <i style="color: #008CBA">${m.sender}</i> (${time}): ${m.message}<br>
+                                            </c:forEach>
                                         </div>
                                         <div class="col-md-6">
                                             <label>Nhắn tin cho nhà thầu</label>
@@ -183,7 +206,10 @@
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-md-4">
-                                            <input type="submit" class="btn btn-primary" value="Xác nhận">
+                                            <c:if test="${request}">
+                                                <input type="submit" class="btn btn-primary" value="Gửi">
+                                            </c:if>
+                                            <a href="${pageContext.request.contextPath}/supervisor/deal/acceptDeal?orderId=${deal.orderId}&dealHistoryId=${deal.id}" class="btn btn-success">Đồng ý</a>
                                             <a href="${pageContext.request.contextPath}/supervisor/deal" class="btn btn-danger">Huỷ</a>
                                             <a href="${pageContext.request.contextPath}/supervisor/deal" class="btn btn-default">Quay lại</a>
                                         </div>
@@ -194,7 +220,6 @@
                     </div>
                 </div>
             </form:form>
-            <!-- END TODO -->
         </div>
         <!-- /.container-fluid -->
     </div>

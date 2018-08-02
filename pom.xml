@@ -10,8 +10,8 @@
     <packaging>war</packaging>
 
     <properties>
-        <springframework.version>5.0.7.RELEASE</springframework.version>
-        <springsecurity.version>5.0.6.RELEASE</springsecurity.version>
+        <springframework.version>5.0.8.RELEASE</springframework.version>
+        <springsecurity.version>5.0.7.RELEASE</springsecurity.version>
         <hibernate.version>5.3.2.Final</hibernate.version>
         <hibernate.validator.version>6.0.11.Final</hibernate.validator.version>
         <c3p0.version>0.9.5.2</c3p0.version>
@@ -38,9 +38,15 @@
             <version>${springframework.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
-            <version>2.0.8.RELEASE</version>
+            <version>2.0.9.RELEASE</version>
         </dependency>
 
         <!-- Spring Security -->
@@ -135,6 +141,19 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
+        </dependency>
+
+        <!-- JavaMail API -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.5.0-b01</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-email</artifactId>
+            <version>1.5</version>
         </dependency>
 
         <dependency>

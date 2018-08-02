@@ -1,5 +1,7 @@
 package com.fpt.esanitary.entities;
 
+import org.hibernate.validator.constraints.Length;
+
 public class Item {
 
     private Product product;

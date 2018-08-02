@@ -54,42 +54,49 @@ public class ProductController {
                                 @RequestParam("file") MultipartFile[] files,
                                 HttpServletRequest request,
                                 Model model) {
-        productService.create(product);
-        String dirFile = request.getServletContext().getRealPath("WEB-INF/assets/img/products/");
-        File fileDir = new File(dirFile);
-        if (!fileDir.exists()) {
-            fileDir.mkdir();
-        }
-        // Save file on system
-        for (MultipartFile file : files) {
-            String fileName = file.getOriginalFilename();
-            if (!fileName.isEmpty()) {
-                try {
-                    productImageService.findByUrl(fileName);
-                    model.addAttribute("imgExisted", "Hinh " + file.getOriginalFilename() + " đã tồn tại");
-                } catch (Exception ex) {
-                    try {
-                        BufferedOutputStream outputStream = new BufferedOutputStream(
-                                new FileOutputStream(new File(dirFile, file.getOriginalFilename())));
-                        outputStream.write(file.getBytes());
-                        outputStream.flush();
-                        outputStream.close();
-                    } catch (IOException e) {
-                        e.getMessage();
-                    }
-                    ProductImage productImage = new ProductImage();
-                    productImage.setProductId(product.getId());
-                    productImage.setUrl(file.getOriginalFilename());
-                    productImage.setMainPhoto(false);
-                    productImageService.add(productImage);
-                }
-            } else {
-                model.addAttribute("msg", "Please select at least one file..");
-                return "upload";
+        Product extPro = productService.findById(product.getId());
+        if (extPro == null) {
+            productService.create(product);
+            String dirFile = request.getServletContext().getRealPath("WEB-INF/assets/img/products/");
+            File fileDir = new File(dirFile);
+            if (!fileDir.exists()) {
+                fileDir.mkdir();
             }
+            // Save file on system
+            for (MultipartFile file : files) {
+                String fileName = file.getOriginalFilename();
+                if (!fileName.isEmpty()) {
+                    try {
+                        productImageService.findByUrl(fileName);
+                        model.addAttribute("imgExisted", "Hinh " + file.getOriginalFilename() + " đã tồn tại");
+                    } catch (Exception ex) {
+                        try {
+                            BufferedOutputStream outputStream = new BufferedOutputStream(
+                                    new FileOutputStream(new File(dirFile, file.getOriginalFilename())));
+                            outputStream.write(file.getBytes());
+                            outputStream.flush();
+                            outputStream.close();
+                        } catch (IOException e) {
+                            e.getMessage();
+                        }
+                        ProductImage productImage = new ProductImage();
+                        productImage.setProductId(product.getId());
+                        productImage.setUrl(file.getOriginalFilename());
+                        productImage.setMainPhoto(false);
+                        productImageService.add(productImage);
+                    }
+                } else {
+                    model.addAttribute("msg", "Please select at least one file..");
+                    return "upload";
+                }
+            }
+            model.addAttribute("msg", "Multiple files uploaded successfully.");
+            return "redirect:/admin/product";
+        } else {
+//            todo hiển thị MÃ sản phẩm đã tồn tại
+            model.addAttribute("proIdExist", "Mã sản phẩm đã tồn tại, vui lòng nhập lại");
+            return "admin/product/create";
         }
-        model.addAttribute("msg", "Multiple files uploaded successfully.");
-        return "redirect:/admin/product";
     }
     @GetMapping("update")
     public String showUpdateForm(@RequestParam("id") String id, Model model) {

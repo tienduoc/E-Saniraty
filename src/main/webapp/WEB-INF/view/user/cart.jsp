@@ -11,11 +11,9 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <jsp:include page="../template/head-tag__user.jsp">
     <jsp:param name="title" value="Giỏ hàng"/>
 </jsp:include>
-
 <body>
 <%@ include file="../template/header-tag__user.jsp" %>
 <main>
@@ -32,7 +30,6 @@
             </ol>
         </div>
     </section>
-
     <section class="section-cart-title">
         <div class="container">
             <div class="row">
@@ -50,104 +47,83 @@
     ${msg}
     <section class="section-cart">
         <div class="container">
-            <div class="row order">
-                <!-- Cart lists -->
-                <aside class="col-lg-8 col-lg-offset-0 col-md-7 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0">
-                    <!-- Item row -->
-                    <form:form action="/cart/update" method="post" name="update" id="update">
-                        <%--<button type="submit" style="margin-left: 682px">Cập nhật</button>--%>
-                        <c:set var="sum" value="0"></c:set>
-                        <c:forEach var="item" items="${sessionScope.cart}">
-                            <c:set var="sum" value="${sum + item.product.salePrice * item.quantity }"></c:set>
-                            <div class="row order__row u-margin-LR-none">
-                                <!-- Item column -- Product image -->
-                                <div class="col-lg-1 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4 u-padding-LR-none">
-                                    <div class="order__cell">
-                                        <img src="https://images.homedepot-static.com/productImages/914a1d80-6efb-4772-bcc3-3ef5543e6c08/svn/chrome-delta-bar-faucets-b28911lf-64_1000.jpg"
-                                             alt="">
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </div>
-                                <!-- Item column -- Product name -->
-                                <input type="hidden" name="id" value="${item.product.id}">
-                                <div class="col-lg-6 col-lg-offset-0 col-md-5 col-md-offset-0 col-sm-12 col-xs-offset-0 col-xs-12">
-                                    <div class="order__cell">
-                                        <p class="order__cell--box-info">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="u-bg-color-primary-light">
+                            <tr class="text-uppercase">
+                                <th class="text-center">Sản phẩm</th>
+                                <th class="text-center">Hãng sản xuất</th>
+                                <th class="text-center">Đơn giá</th>
+                                <th class="text-center">Số lượng</th>
+                                <th class="text-center">Thành tiền</th>
+                                <th class="text-center"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <form:form action="/cart/update" method="post" name="update" id="update">
+                                <c:set var="sum" value="0"></c:set>
+                                <c:forEach var="item" items="${sessionScope.cart}">
+                                    <c:set var="sum" value="${sum + item.product.salePrice * item.quantity }"></c:set>
+                                    <tr>
+                                        <input type="hidden" name="id" value="${item.product.id}">
+                                        <td>
                                             <a href="${rootUrl}/product/detail?id=${item.product.id}">${item.product.name}</a>
-                                        </p>
-                                        <p class="order__cell--box-info">
-                                            Nhãn hiệu: ${item.product.manufacturerByManufacturerId.name}
-                                        </p>
-                                    </div>
-                                    <p>
-                                        <a href="${pageContext.request.contextPath}/cart/remove?id=${item.product.id}">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </a>
-                                    </p>
-                                </div>
-                                <!-- Item column -- Product price -->
-                                <div class="col-lg-2 col-lg-offset-0 col-md-3 col-md-offset-0 col-sm-12 col-xs-offset-0 col-xs-12">
-                                    <div class="order__cell">
-                                        <p class="order__cell--box-info">
-                                            <fmt:formatNumber type="number" pattern="###,###" value="${item.product.salePrice}"/>
-                                        </p>
-                                    </div>
-                                </div>
-                                <!-- Item column -- Product quantity -->
-                                <div class="col-lg-3 col-lg-offset-0 col-md-2 col-md-offset-0 col-sm-4 col-sm-offset-4 col-xs-offset-4 col-xs-4">
-                                    <div class="order__cell">
-                                        <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <button type="submit" class="quantity-left-minus btn button--black" data-type="minus" data-field="">
-                                          <span class="fa fa-minus"></span>
-                                        </button>
-                                    </span>
-                                            <input type="text" id="quantity" name="quantity" onchange="submit()" class="form-control input-number" value="${item.quantity}" pattern="^\d{1,3}$" title="Số lượng từ 1-999">
-                                            <span class="input-group-btn">
-                                        <button type="submit" class="quantity-right-plus btn button--black"
-                                                data-type="plus" data-field="">
-                                            <span class="fa fa-plus"></span>
-                                        </button>
-                                    </span>
-                                        </div>
-                                            <%--<input name="quantity" type="text" value="${item.quantity}" pattern="^\d{1,3}$" title="Số lượng từ 1-999">--%>
-                                    </div>
-                                </div>
-                            </div>
-                        </c:forEach>
-                    </form:form>
-                </aside>
-                <!-- Checkout  -->
-                <aside class="col-lg-4 col-lg-offset-0 col-md-5 col-md-offset-0 col-sm-8 col-sm-offset-2 col-xs-12 col-xs-offset-0 u-padding-LR-none">
-                    <form:form action="/cart/buy" method="post">
-                        <!-- Checkout wrapper -->
-                        <div class="total">
-                            <!-- Row -->
-                            <div class="row total__row">
-                                <div class="col-md-6 total__cell">
-                                    <p class="total__cell--heading">Tổng cộng:</p>
-                                    <p class="total__cell--sub">
-                                        <input type="hidden" name="totalPrice" value="${sum}">
+                                        </td>
+                                        <td class="text-left">${item.product.manufacturerByManufacturerId.name}</td>
+                                        <td class="text-right"><fmt:formatNumber type="number" pattern="###,###"
+                                                                                 value="${item.product.salePrice}"/></td>
+                                        <td class="text-right">
+                                            <input type="number" id="quantity" name="quantity"
+                                                                     onchange="submit()"
+                                                                     class="form-control input-number"
+                                                                     value="${item.quantity}"
+                                            style="width: 100px; text-align: right;">
+                                            <br/>
+                                            <c:if test="${item.product == product}">
+                                                <i style="color: #ff0000">${errQuantity}</i>
+                                            </c:if>
+                                        </td>
+                                        <td class="text-right">
+                                            <fmt:formatNumber type="number" pattern="###,###"
+                                                              value="${item.product.salePrice * item.quantity}"/>
+                                        </td>
+                                        <td>
+                                            <a href="${pageContext.request.contextPath}/cart/remove?id=${item.product.id}">
+                                                <span style="font-size: 10px;">Xoá</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </form:form>
+                            </tbody>
+                            <tfoot class="u-bg-color-primary-light">
+                            <tr>
+                                <td colspan="4" class="text-right"><strong>Tổng cộng</strong></td>
+                                <td class="text-right">
+                                    <strong>
                                         <fmt:formatNumber type="number" pattern="###,###" value="${sum}"/>
-                                    </p>
-                                </div>
-                            </div>
-                            <!-- Buttons -->
-                            <div class="row total__row">
-                                <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
-                                    <a href="${pageContext.request.contextPath}/">
-                                        <button type="button" class="btn button--black col-xs-12">
-                                            Về trang chủ
-                                        </button>
-                                    </a>
-                                </div>
-                                <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
-                                    <button type="submit" class="btn button--black col-xs-12">Đặt hàng</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form:form>
-                </aside>
+                                        <input type="hidden" name="totalPrice" value="${sum}">
+                                    </strong>
+                                </td>
+                                <td></td>
+                            </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <form:form action="/cart/buy" method="post">
+                    <input type="hidden" name="totalPrice" value="${sum}">
+                    <div class="col-md-2  col-md-offset-8">
+                        <a href="${pageContext.request.contextPath}/" class="button button--light">Quay lại</a>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn button--black col-xs-12">Đặt hàng</button>
+                    </div>
+                </form:form>
             </div>
         </div>
     </section>
@@ -160,7 +136,6 @@
     $(window).scroll(function () {
         sessionStorage.scrollTop = $(this).scrollTop();
     });
-
     $(document).ready(function () {
         if (sessionStorage.scrollTop != "undefined") {
             $(window).scrollTop(sessionStorage.scrollTop);

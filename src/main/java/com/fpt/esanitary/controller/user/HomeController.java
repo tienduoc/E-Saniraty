@@ -28,9 +28,6 @@ public class HomeController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private ProductImageService productImageService;
-
     @RequestMapping("/")
     public String showHome(Model model, HttpSession session) {
         model.addAttribute("title1", categoryService.find(29).getName());
@@ -75,7 +72,7 @@ public class HomeController {
             accountService.create(account);
             return "redirect:/register/success";
         } else {
-            model.addAttribute("accUsed", "Tài khoản bạn chọn đã được sử dụng, vui lòng chọn tài khoản khác.");
+            model.addAttribute("accExist", "Tài khoản bạn chọn đã được sử dụng, vui lòng chọn tài khoản khác.");
             return "user/register";
         }
     }

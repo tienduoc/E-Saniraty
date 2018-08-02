@@ -10,6 +10,8 @@ public interface DealHistoryService {
 
   List<DealHistory> findByUsername(String username);
 
+  List<DealHistory> findByOrderId(String orderId);
+
   DealHistory findById(String dealHistoryId);
 
   void save(DealHistory dealHistory);
@@ -17,4 +19,6 @@ public interface DealHistoryService {
   void update(DealHistory dealHistory);
 
   void delete(DealHistory dealHistory);
+
+  void deleteByOrderId(String orderId);
 }

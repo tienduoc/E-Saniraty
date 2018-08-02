@@ -18,7 +18,7 @@ public class DealHistoryDAOImpl implements DealHistoryDAO {
   @Override
   public List<DealHistory> findAll() {
     Session session = sessionFactory.getCurrentSession();
-    List<DealHistory> dealHistories = session.createQuery("from  DealHistory", DealHistory.class).getResultList();
+    List<DealHistory> dealHistories = session.createQuery("from  DealHistory order by requestDate desc", DealHistory.class).getResultList();
     return dealHistories;
   }
 
@@ -34,10 +34,19 @@ public class DealHistoryDAOImpl implements DealHistoryDAO {
     @Override
   public DealHistory findById(String dealHistoryId) {
     Session session = sessionFactory.getCurrentSession();
-    DealHistory dealHistory = session.createQuery("from DealHistory where id = :dealHistoryId", DealHistory.class)
+    DealHistory dealHistory = session.createQuery("from DealHistory where id=:dealHistoryId", DealHistory.class)
             .setParameter("dealHistoryId", dealHistoryId)
             .getSingleResult();
     return dealHistory;
+  }
+
+  @Override
+  public List<DealHistory> findByOrderId(String orderId) {
+    Session session = sessionFactory.getCurrentSession();
+    List<DealHistory> dealHistories = session.createQuery("from DealHistory where orderId=:orderId", DealHistory.class)
+            .setParameter("orderId", orderId)
+            .getResultList();
+    return dealHistories;
   }
 
   @Override
@@ -56,5 +65,13 @@ public class DealHistoryDAOImpl implements DealHistoryDAO {
   public void delete(DealHistory dealHistory) {
     Session session = sessionFactory.getCurrentSession();
     session.delete(dealHistory);
+  }
+
+  @Override
+  public void deleteByOrderId(String orderId) {
+    Session session = sessionFactory.getCurrentSession();
+    Query query = session.createQuery("delete DealHistory where orderId=:orderId")
+            .setParameter("orderId", orderId);
+    query.executeUpdate();
   }
 }

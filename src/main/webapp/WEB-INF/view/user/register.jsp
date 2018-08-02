@@ -9,14 +9,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <jsp:include page="../template/head-tag__user.jsp">
     <jsp:param name="title" value="Đăng ký" />
 </jsp:include>
-
 <body>
 <main>
-
     <section class="section-register">
         <div class="container">
             <div class="row">
@@ -31,45 +28,30 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="clear"></div>
-
                 <div class="col-md-6 col-sm-8 col-xs-12 col-md-offset-3 col-sm-offset-2 col-xs-offset-0">
 
-                    <form:form action="${pageContext.request.contextPath}/register" modelAttribute="account" method="post" class="form">
+                    <form:form action="${pageContext.request.contextPath}/register" modelAttribute="account" method="post" class="form" id="register-form">
                         <p>
-                            <label for="fullname">Họ tên<span class="required">*</span></label>
-                            <input type="text"name="fullname" id="fullname" class="form__input" minlength="4" maxlength="100" required>
+                            <input type="text" name="fullname" class="form__input" placeholder="Họ tên">
                         </p>
                         <p>
-                            <label for="username">Tên đăng nhập<span class="required">*</span></label>
-                            <input type="text" name="username" id="username" class="form__input" minlength="5" maxlength="50" required>
+                            <input type="text" name="username" class="form__input" placeholder="Tên đăng nhập">
                         </p>
                         <p>
-                            <label for="password">Mật khẩu<span class="required">*</span></label>
-                            <input type="password" name="password" id="password" class="form__input" minlength="8" required>
+                            <input type="password" id="password" name="password" class="form__input" placeholder="Mật khẩu">
                         </p>
                         <p>
-                            <label id="message" class="form__message"></label>
+                            <input type="password" name="passwordConfirm"  class="form__input" placeholder="Nhập lại mật khẩu">
                         </p>
                         <p>
-                            <label for="passwordConfirm">Nhập lại mật khẩu<span class="required">*</span></label>
-                            <input type="password" name="passwordConfirm" id="passwordConfirm" class="form__input" required>
+                            <input type="text" name="email" class="form__input" placeholder="Email">
                         </p>
                         <p>
-                            <label id="messageConfirm" class="form__message"></label>
+                            <input type="text" name="phone" class="form__input" placeholder="Điện thoại">
                         </p>
-                        <p>
-                            <label for="email">Email</label>
-                            <input type="email" name="email" id="email" class="form__input">
-                        </p>
-                        <p>
-                            <label for="phone">Điện thoại</label>
-                            <input type="text" name="phone" id="phone" class="form__input" minlength="10">
-                        </p>
-                        <p><label id="messagePhone" class="form__message"></label></p>
                         <p style="padding-top: 1rem;">
-                            <input type="submit" value="Đăng ký" name="register" class="btn button--black col-md-12">
+                            <input type="submit" value="Đăng ký" name="register" class="btn button--black col-md-12" onsubmit="return valid.Apply()">
                         </p>
                         <p class="pull-right" style="padding-top: 20px;">
                             <a href="${pageContext.request.contextPath}/login">Đăng nhập</a> |
@@ -84,9 +66,13 @@
 
 </main>
 
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/main.js"></script>
+<script type="text/javascript" src="/assets/js/jquery.min.js"></script>
+<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="/assets/js/jquery.validate.js"></script>
+<script type="text/javascript" src="/assets/js/messages_vi.js"></script>
+<script type="text/javascript" src="/assets/js/main.js"></script>
+<script type="text/javascript" src="/assets/js/myValidation.js"></script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 package com.fpt.esanitary.controller;
 
 import com.fpt.esanitary.service.CategoryService;
+import com.fpt.esanitary.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +14,11 @@ public class BaseController {
     @Autowired
     private CategoryService categoryService;
 
+    @Autowired
+    private MailService mailService;
+
     @RequestMapping("*")
-    public void menu(Model model){
+    public void menu(Model model) {
         model.addAttribute("menu", categoryService.findAll());
     }
 
@@ -29,7 +33,7 @@ public class BaseController {
     }
 
     @GetMapping("/test")
-    public String testForm() {
-        return "contractor/deal/create";
+    public String testForm() throws InterruptedException {
+        return "admin/order/update";
     }
 }

@@ -1,7 +1,9 @@
 package com.fpt.esanitary.entities;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
@@ -15,6 +17,7 @@ public class Order {
   private boolean closed;
   private Double totalPrice;
   private Double totalPaid;
+  private String dealStatus;
   private Collection<DealHistory> dealHistoriesById;
   private Account accountByUsername;
   private Collection<OrderDetail> orderDetailsById;
@@ -52,7 +55,7 @@ public class Order {
 
   @Basic
   @Column(name = "Closed", nullable = false)
-  public boolean isClosed() {
+  public boolean getClosed() {
     return closed;
   }
 
@@ -80,6 +83,16 @@ public class Order {
     this.totalPaid = totalPaid;
   }
 
+  @Basic
+  @Column(name = "DealStatus", nullable = true, length = 10)
+  public String getDealStatus() {
+    return dealStatus;
+  }
+
+  public void setDealStatus(String dealState) {
+    this.dealStatus = dealState;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -90,16 +103,18 @@ public class Order {
             Objects.equals(date, order.date) &&
             Objects.equals(username, order.username) &&
             Objects.equals(totalPrice, order.totalPrice) &&
-            Objects.equals(totalPaid, order.totalPaid);
+            Objects.equals(totalPaid, order.totalPaid) &&
+            Objects.equals(dealStatus, order.dealStatus);
   }
 
   @Override
   public int hashCode() {
 
-    return Objects.hash(id, date, username, closed, totalPrice, totalPaid);
+    return Objects.hash(id, date, username, closed, totalPrice, totalPaid, dealStatus);
   }
 
   @OneToMany(mappedBy = "orderByOrderId")
+  @LazyCollection(LazyCollectionOption.FALSE)
   public Collection<DealHistory> getDealHistoriesById() {
     return dealHistoriesById;
   }

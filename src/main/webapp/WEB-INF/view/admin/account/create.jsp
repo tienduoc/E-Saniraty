@@ -48,7 +48,6 @@
             <!-- /.row -->
 
 
-            <!-- TODO: Please only chage the datas in this row!!! -->
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
                     <div class="panel panel-primary">
@@ -83,7 +82,7 @@
                                     <form:input path="phone" type="text" class="form-control" name="phone" required="required"/>
                                 </div>
                                 <div class="form-group">
-                                    <label for="role">Vai trò</label>
+                                    <label>Vai trò</label>
                                     <select name="roleId" required style="display:block">
                                         <option value="">None</option>
                                         <c:forEach var="r" items="${roles}">
@@ -105,11 +104,7 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
-            <!-- END TODO -->
-
         </div>
         <!-- /.container-fluid -->
 

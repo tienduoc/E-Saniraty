@@ -63,7 +63,7 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label>Tên sản phẩm</label>
-                                        <form:input path="name" type="text" class="form-control" name="productName" />
+                                        <form:input path="name" type="text" class="form-control" />
                                     </div>
                                     <div class="col-md-3">
                                         <label>Hãng sản xuất</label>

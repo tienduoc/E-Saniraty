@@ -10,22 +10,15 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <jsp:include page="../../template/head-admin_tag.jsp">
     <jsp:param name="title" value="Chi tiết tài khoản"/>
 </jsp:include>
-
 <body>
-
 <div id="wrapper">
-
     <!-- Navigation -->
     <jsp:include page="../../template/nav-tag__admin.jsp" />
-
     <div id="page-wrapper">
-
         <div class="container-fluid">
-
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
@@ -47,8 +40,6 @@
             </div>
             <!-- /.row -->
 
-
-            <!-- TODO: Please only chage the datas in this row!!! -->
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
                     <div class="panel panel-primary">
@@ -58,31 +49,31 @@
                         <div class="panel-body">
                             <form:form action="/admin/account/detail" modelAttribute="account" method="get">
                                 <div class="form-group">
-                                    <label for="userName">Tên đăng nhập</label>
+                                    <label>Tên đăng nhập</label>
                                     <input value="${account.username}" type="text" class="form-control" name="userName" disabled="true">
                                 </div>
                                 <div class="form-group">
-                                    <label for="fullname">Họ và tên</label>
+                                    <label>Họ và tên</label>
                                     <input value="${account.fullname}" type="text" class="form-control" name="fullname" disabled="true">
                                 </div>
                                 <div class="form-group">
-                                    <label for="email">Email</label>
+                                    <label>Email</label>
                                     <input value="${account.email}" type="email" class="form-control" name="email" disabled="true">
                                 </div>
                                 <div class="form-group">
-                                    <label for="address">Địa chỉ</label>
+                                    <label>Địa chỉ</label>
                                     <input value="${account.address}" type="text" class="form-control" name="address" disabled="true">
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">Điện thoại</label>
+                                    <label>Điện thoại</label>
                                     <input value="${account.phone}" type="text" class="form-control" name="phone" disabled="true">
                                 </div>
                                 <div class="form-group">
-                                    <label for="role">Vai trò</label>
+                                    <label>Vai trò</label>
                                     <input type="text" class="form-control" name="role" value="${account.roleByRoleId.name}" disabled="true">
                                 </div>
                                 <div class="form-group">
-                                    <label for="status">Trạng thái</label>
+                                    <label>Trạng thái</label>
                                     <c:choose>
                                         <c:when test="${account.enabled}">
                                             <input type="text" class="form-control" name="status" value="Kích hoạt" disabled>
@@ -99,17 +90,10 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
-            <!-- END TODO -->
-
         </div>
-        <!-- /.container-fluid -->
-
     </div>
     <!-- /#page-wrapper -->
-
 </div>
 <!-- /#wrapper -->
 
