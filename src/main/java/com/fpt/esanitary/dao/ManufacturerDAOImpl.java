@@ -1,5 +1,6 @@
 package com.fpt.esanitary.dao;
 
+import com.fpt.esanitary.entities.Account;
 import com.fpt.esanitary.entities.Manufacturer;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -42,5 +43,12 @@ public class ManufacturerDAOImpl implements ManufacturerDAO {
   public void update(Manufacturer manufacturer) {
     Session session = sessionFactory.getCurrentSession();
     session.update(manufacturer);
+  }
+
+  @Override
+  public Manufacturer find(String id) {
+    Session session = sessionFactory.getCurrentSession();
+    Manufacturer manufacturer = session.get(Manufacturer.class, id);
+    return manufacturer;
   }
 }

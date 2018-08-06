@@ -99,14 +99,13 @@ public class DealController {
         }
 
         String customerUsername = orderService.findById(dealHistory.getOrderId()).getUsername();
-        String customerName = accountService.find(orderService.findById(dealHistory.getOrderId()).getUsername()).getFullname();
         String userMail = accountService.find(customerUsername).getEmail();
         if (!userMail.trim().isEmpty()) {
             String msgBody = "<p>K&iacute;nh ch&agrave;o qu&yacute; kh&aacute;ch</p>\n" +
                     "<p>ELUX xin th&ocirc;ng b&aacute;o t&igrave;nh trạng thương lượng gi&aacute; của qu&yacute; kh&aacute;ch như sau</p>\n" +
                     "<ul>\n" +
-                    "<li>M&atilde; thương lượng: <strong>"+dealHistory.getId()+"</strong></li>\n" +
-                    "<li>M&atilde; h&oacute;a đơn: <strong>"+dealHistory.getOrderId()+"</strong></li>\n" +
+                    "<li>M&atilde; thương lượng: <strong>" + dealHistory.getId() + "</strong></li>\n" +
+                    "<li>M&atilde; h&oacute;a đơn: <strong>" + dealHistory.getOrderId() + "</strong></li>\n" +
                     "<li>Trạng th&aacute;i: <strong>đ&atilde; trả lời</strong></li>\n" +
                     "</ul>\n" +
                     "<p>Qu&yacute; kh&aacute;ch vui l&ograve;ng truy cập website để biết th&ecirc;m chi tiết, xin ch&acirc;n th&agrave;nh cảm ơn.</p>";
@@ -125,6 +124,10 @@ public class DealController {
 
         List<OrderDetail> orderDetails = orderDetailService.findByOrder(orderId);
         List<DealHistoryDetail> dealHistoryDetails = dealHistoryDetailService.findByDealHistoryId(dealHistoryId);
+        for (int i = 0; i < dealHistoryDetails.size(); i++) {
+            dealHistoryDetails.get(i).setNewPrice(dealHistoryDetails.get(i).getContractorPrice());
+            dealHistoryDetailService.update(dealHistoryDetails.get(i));
+        }
         for (int i = 0; i < orderDetails.size(); i++) {
             if (orderDetails.get(i).getProductId().equals(dealHistoryDetails.get(i).getProductId())) {
                 orderDetails.get(i).setUnitPrice(dealHistoryDetails.get(i).getContractorPrice());
@@ -145,14 +148,13 @@ public class DealController {
         }
 
         String customerUsername = orderService.findById(dealHistory.getOrderId()).getUsername();
-        String customerName = accountService.find(orderService.findById(dealHistory.getOrderId()).getUsername()).getFullname();
         String userMail = accountService.find(customerUsername).getEmail();
         if (!userMail.trim().isEmpty()) {
             String msgBody = "<p>K&iacute;nh ch&agrave;o qu&yacute; kh&aacute;ch</p>\n" +
                     "<p>ELUX xin th&ocirc;ng b&aacute;o t&igrave;nh trạng thương lượng gi&aacute; của qu&yacute; kh&aacute;ch như sau</p>\n" +
                     "<ul>\n" +
-                    "<li>M&atilde; thương lượng: <strong>"+dealHistory.getId()+"</strong></li>\n" +
-                    "<li>M&atilde; h&oacute;a đơn: <strong>"+dealHistory.getOrderId()+"</strong></li>\n" +
+                    "<li>M&atilde; thương lượng: <strong>" + dealHistory.getId() + "</strong></li>\n" +
+                    "<li>M&atilde; h&oacute;a đơn: <strong>" + dealHistory.getOrderId() + "</strong></li>\n" +
                     "<li>Trạng th&aacute;i: <strong><span style=\"color: #0000ff;\">đ&atilde; chấp nhận</span></strong></li>\n" +
                     "</ul>\n" +
                     "<p>Qu&yacute; kh&aacute;ch vui l&ograve;ng truy cập website để biết th&ecirc;m chi tiết, xin ch&acirc;n th&agrave;nh cảm ơn.</p>";
@@ -184,14 +186,13 @@ public class DealController {
         }
 
         String customerUsername = orderService.findById(dealHistory.getOrderId()).getUsername();
-        String customerName = accountService.find(orderService.findById(dealHistory.getOrderId()).getUsername()).getFullname();
         String userMail = accountService.find(customerUsername).getEmail();
         if (!userMail.trim().isEmpty()) {
             String msgBody = "<p>K&iacute;nh ch&agrave;o qu&yacute; kh&aacute;ch</p>\n" +
                     "<p>ELUX xin th&ocirc;ng b&aacute;o t&igrave;nh trạng thương lượng gi&aacute; của qu&yacute; kh&aacute;ch như sau</p>\n" +
                     "<ul>\n" +
-                    "<li>M&atilde; thương lượng: <strong>"+dealHistory.getId()+"</strong></li>\n" +
-                    "<li>M&atilde; h&oacute;a đơn: <strong>"+dealHistory.getOrderId()+"</strong></li>\n" +
+                    "<li>M&atilde; thương lượng: <strong>" + dealHistory.getId() + "</strong></li>\n" +
+                    "<li>M&atilde; h&oacute;a đơn: <strong>" + dealHistory.getOrderId() + "</strong></li>\n" +
                     "<li>Trạng th&aacute;i: <span style=\"color: #ff0000;\"><strong>đ&atilde; hủy</strong></span></li>\n" +
                     "</ul>\n" +
                     "<p>Qu&yacute; kh&aacute;ch vui l&ograve;ng truy cập website để biết th&ecirc;m chi tiết, xin ch&acirc;n th&agrave;nh cảm ơn.</p>";

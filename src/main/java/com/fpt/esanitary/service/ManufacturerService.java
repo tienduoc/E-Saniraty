@@ -8,6 +8,8 @@ public interface ManufacturerService {
 
   List<Manufacturer> findAll();
 
+  Manufacturer find(String id);
+
   List<Manufacturer> search(String keyword);
 
   void create(Manufacturer manufacturer);

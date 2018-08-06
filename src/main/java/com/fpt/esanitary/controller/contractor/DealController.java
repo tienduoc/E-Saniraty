@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.NoResultException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -55,7 +56,9 @@ public class DealController {
             UserDetails userDetail = (UserDetails) auth.getPrincipal();
             acc = userDetail.getUsername(); // Lấy tên username
         }
-        model.addAttribute("deals", dealHistoryService.findByUsername(acc));
+        List<DealHistory> dealHistories = dealHistoryService.findByUsername(acc);
+        dealHistories.sort(Comparator.comparing(DealHistory::getRequestDate).reversed());
+        model.addAttribute("deals", dealHistories);
         return "contractor/deal/index";
     }
 

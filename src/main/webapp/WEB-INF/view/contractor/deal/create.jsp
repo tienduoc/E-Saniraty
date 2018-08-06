@@ -16,19 +16,19 @@
 <body>
 <%@ include file="../../template/header-tag__user.jsp" %>
 <main>
-    <section class="section-breadcrumb">
-        <div class="container">
-            <h2 class="heading-primary--title">Thương lượng</h2>
-            <ol class="breadcrumb heading-primary--sub">
-                <li>
-                    <a href="#">Trang chủ</a>
-                </li>
-                <li class="active">
-                    <a href="#">Thương lượng</a>
-                </li>
-            </ol>
-        </div>
-    </section>
+    <<section class="section-breadcrumb">
+    <div class="container">
+        <h2 class="heading-primary--title">Thương lượng</h2>
+        <ol class="breadcrumb heading-primary--sub">
+            <li>
+                <a href="#">Trang chủ</a>
+            </li>
+            <li class="active">
+                <a href="#">Chi tiết đơn hàng</a>
+            </li>
+        </ol>
+    </div>
+</section>
     <section class="section-cart-title">
         <div class="container">
             <div class="row">
@@ -66,10 +66,10 @@
                             <c:forEach var="od" items="${order.orderDetailsById}">
                                 <tr>
                                     <td>
-                                        ${od.productByProductId.name}
+                                            ${od.productByProductId.name}
                                     </td>
                                     <td class="text-right">
-                                        ${od.quantity}
+                                            ${od.quantity}
                                     </td>
                                     <td class="text-right">
                                         <fmt:formatNumber type="number" pattern="###,###" value="${od.unitPrice}"/>
@@ -124,7 +124,7 @@
                         <!-- Buttons -->
                         <div class="row total__row">
                             <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
-                                <button type="button" class="btn button--submit col-xs-12" style="color: black; text-transform: uppercase;">Quay lại</button>
+                                <a href="${pageContext.request.contextPath}/order" class="button button--light">Quay lại</a>
                             </div>
                             <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
                                 <button type="submit" class="btn button--black col-xs-12">Gửi yêu cầu</button>

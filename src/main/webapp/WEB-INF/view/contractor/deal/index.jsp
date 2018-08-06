@@ -55,17 +55,21 @@
                     <table class="table table-striped">
                         <thead class="u-bg-color-primary-light">
                         <tr class="text-uppercase">
+                            <th class="text-center">Mã thương lượng</th>
                             <th class="text-center">Mã đơn hàng</th>
                             <th class="text-center">Ngày yêu cầu</th>
                             <th class="text-center">Ngày phản hồi</th>
-                            <th class="text-left">Trạng thái</th>
+                            <th class="text-center">Trạng thái</th>
                         </tr>
                         </thead>
                         <tbody>
                         <c:forEach var="deal" items="${deals}">
                                 <tr>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/deal/view?dealHistoryId=${deal.id}"><strong>${deal.orderId}</strong></a>
+                                        <a href="${pageContext.request.contextPath}/deal/view?dealHistoryId=${deal.id}"><strong>${deal.id}</strong></a>
+                                    </td>
+                                    <td>
+                                        <a href="${pageContext.request.contextPath}/order/view?orderId=${deal.orderId}">${deal.orderId}</a>
                                     </td>
                                     <td class="text-center"><fmt:formatDate value="${deal.requestDate}" pattern="dd/MM/yyyy" /></td>
                                     <td class="text-center">
@@ -78,7 +82,7 @@
                                             </c:otherwise>
                                         </c:choose>
                                     </td>
-                                    <td class="text-left">
+                                    <td class="text-center">
                                         <c:choose>
                                             <c:when test="${deal.contructorApprove == true && (deal.bossApprove == false || deal.bossApprove == null)}">
                                                 Đang thương lượng

@@ -1234,7 +1234,8 @@ Detail page
     height: 20rem;
     padding: 5rem 0;
     background-color: #EEEEEE;
-    background-image: url(http://staging.hydrosolution.com/wp-content/uploads/2017/10/HS-17145-robinet-1.jpg);
+    /*background-image: url(http://staging.hydrosolution.com/wp-content/uploads/2017/10/HS-17145-robinet-1.jpg);*/
+    background-image: url(../img/transitional-bathroom-design-of-astonishing-images-lighting.jpg);
 }
 
 .section-product-manufacturer, .section-product-description, .section-product-leave-review {

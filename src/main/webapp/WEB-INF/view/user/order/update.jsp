@@ -106,6 +106,7 @@
 <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
+<script src="${pageContext.request.contextPath}/assets/js/inputValidation.js"></script>
 <script>
     $(window).scroll(function () {
         sessionStorage.scrollTop = $(this).scrollTop();

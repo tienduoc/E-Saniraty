@@ -13,4 +13,6 @@ public interface ManufacturerDAO {
   void create(Manufacturer manufacturer);
 
   void update(Manufacturer manufacturer);
+
+  Manufacturer find(String id);
 }

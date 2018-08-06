@@ -46,7 +46,7 @@ public class ProductDAOImpl implements ProductDAO {
     @Override
     public List<Product> getLastestByCategory(Integer id, int amount) {
         Session session = sessionFactory.getCurrentSession();
-        List<Product> products = session.createQuery("from Product where categoryId=:id and enabled = true order by id desc", Product.class)
+        List<Product> products = session.createQuery("from Product where categoryId = :id and enabled = true order by id desc", Product.class)
                 .setParameter("id", id)
                 .setMaxResults(amount)
                 .getResultList();

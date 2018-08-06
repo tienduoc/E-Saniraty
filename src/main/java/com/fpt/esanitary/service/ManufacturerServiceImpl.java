@@ -21,6 +21,11 @@ public class ManufacturerServiceImpl implements ManufacturerService {
   }
 
   @Override
+  public Manufacturer find(String id) {
+    return manufacturerDAO.find(id);
+  }
+
+  @Override
   public List<Manufacturer> search(String keyword) {
     return manufacturerDAO.search(keyword);
   }

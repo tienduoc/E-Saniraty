@@ -50,7 +50,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table table-striped" id="tblCart">
                             <thead class="u-bg-color-primary-light">
                             <tr class="text-uppercase">
                                 <th class="text-center">Sản phẩm</th>
@@ -71,19 +71,19 @@
                                         <td>
                                             <a href="${rootUrl}/product/detail?id=${item.product.id}">${item.product.name}</a>
                                         </td>
-                                        <td class="text-left">${item.product.manufacturerByManufacturerId.name}</td>
-                                        <td class="text-right"><fmt:formatNumber type="number" pattern="###,###"
-                                                                                 value="${item.product.salePrice}"/></td>
+                                        <td class="text-left">
+                                                ${item.product.manufacturerByManufacturerId.name}
+                                        </td>
                                         <td class="text-right">
-                                            <input type="number" id="quantity" name="quantity"
-                                                                     onchange="submit()"
-                                                                     class="form-control input-number"
-                                                                     value="${item.quantity}"
-                                            style="width: 100px; text-align: right;">
+                                            <fmt:formatNumber type="number" pattern="###,###" value="${item.product.salePrice}"/>
+                                        </td>
+                                        <td class="text-right">
+                                            <input type="text" id="quantity" name="quantity"
+                                                   onblur="checkNumber()"
+                                                   class="form-control input-number"
+                                                   value="${item.quantity}"
+                                                   style="width: 100px; text-align: right;">
                                             <br/>
-                                            <c:if test="${item.product == product}">
-                                                <i style="color: #ff0000">${errQuantity}</i>
-                                            </c:if>
                                         </td>
                                         <td class="text-right">
                                             <fmt:formatNumber type="number" pattern="###,###"
@@ -115,13 +115,13 @@
                 </div>
             </div>
             <div class="row">
-                <form:form action="/cart/buy" method="post">
+                <form:form action="/cart/buy" method="post" id="buy">
                     <input type="hidden" name="totalPrice" value="${sum}">
                     <div class="col-md-2  col-md-offset-8">
                         <a href="${pageContext.request.contextPath}/" class="button button--light">Quay lại</a>
                     </div>
                     <div class="col-md-2">
-                        <button type="submit" class="btn button--black col-xs-12">Đặt hàng</button>
+                        <button type="button" class="btn button--black col-xs-12" id="buy">Đặt hàng</button>
                     </div>
                 </form:form>
             </div>
@@ -141,6 +141,26 @@
             $(window).scrollTop(sessionStorage.scrollTop);
         }
     });
+
+    function checkNumber() {
+        var nodes = document.querySelectorAll("#tblCart input[type=text]");
+        for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].value > 999 || nodes[i].value < 1 || nodes[i].value == "" || !/[0-9.]/.test(nodes[i].value)) {
+                alert("Vui lòng nhập giá trị từ 1 - 999");
+                return false;
+                break;
+            } else if (i == nodes.length -1) {
+                document.getElementById('update').submit();
+            }
+        }
+    };
+
+    $('#buy').on('click',function () {
+        if(checkNumber() != false) {
+            document.getElementById('buy').submit();
+        }
+    });
+
 </script>
 </body>
 </html>

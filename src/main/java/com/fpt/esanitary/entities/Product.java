@@ -227,7 +227,6 @@ public class Product {
 
   @Override
   public int hashCode() {
-
     return Objects.hash(id, categoryId, manufacturerId, name, costPrice, salePrice, material, description, review, size, weight, unitInStock, enabled, minRatio, raitoForContractor, outlet, outletEnable);
   }
 

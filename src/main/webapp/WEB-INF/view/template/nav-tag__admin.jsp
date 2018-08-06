@@ -74,6 +74,9 @@
                 <a href="${pageContext.request.contextPath}/admin/article/"><i class="fa fa-fw fa-file-text-o"></i> Quản lý bài viết</a>
             </li>
             <li>
+                <a href="${pageContext.request.contextPath}/admin/manufacturer/"><i class="fa fa-address-card-o"></i> Nhà sản xuất</a>
+            </li>
+            <li>
                 <a href="#"><i class="fa fa-fw fa-line-chart"></i> Báo cáo</a>
             </li>
 

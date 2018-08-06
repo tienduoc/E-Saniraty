@@ -21,10 +21,10 @@
             <h2 class="heading-primary--title">Đơn hàng của tôi</h2>
             <ol class="breadcrumb heading-primary--sub">
                 <li>
-                    <a href="#">Trang chủ</a>
+                    <a href="${pageContext.request.contextPath}/">Trang chủ</a>
                 </li>
                 <li class="active">
-                    <a href="#">Xem lại đơn hàng</a>
+                    <a href="${pageContext.request.contextPath}/order">Xem lại đơn hàng</a>
                 </li>
             </ol>
         </div>
@@ -46,7 +46,6 @@
     <section class="section-cart">
         <div class="container">
             <div class="row">
-
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <thead class="u-bg-color-primary-light">
@@ -60,9 +59,7 @@
                         <tbody>
                         <c:forEach var="o" items="${orders}">
                             <tr>
-                                <td style="padding-left: 15px">
-                                        ${o.id}
-                                </td>
+                                <td style="padding-left: 15px">${o.id}</td>
                                 <td class="text-center"><fmt:formatDate value="${o.date}" pattern="dd/MM/yyyy"/></td>
                                 <td class="text-justify">
                                     <c:forEach var="od" items="${o.orderDetailsById}">
@@ -71,16 +68,12 @@
                                 </td>
                                 <td class="text-right">
                                     <c:if test="${!o.closed}">
-                                        <%--todo kiem tra lai--%>
-                                        <%--<c:if test="${o.dealHistoriesById.size() == 0}">--%>
-                                            <sec:authorize access="hasAnyAuthority('Contractor')">
-                                                <a href="${pageContext.request.contextPath}/deal/create?orderId=${o.id}">Thương lượng</a> |
-                                            </sec:authorize>
-                                        <%--</c:if>--%>
+                                        <sec:authorize access="hasAnyAuthority('Contractor')">
+                                            <a href="${pageContext.request.contextPath}/deal/create?orderId=${o.id}">Thương lượng</a> |
+                                        </sec:authorize>
                                         <a href="${pageContext.request.contextPath}/order/update?orderId=${o.id}">Sửa</a> |
                                     </c:if>
                                     <a href="${pageContext.request.contextPath}/order/view?orderId=${o.id}">Chi tiết</a>
-
                                 </td>
                             </tr>
                         </c:forEach>

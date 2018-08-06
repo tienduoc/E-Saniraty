@@ -49,7 +49,7 @@ $(function () {
     }, "Chỉ nhập số và dấu chấm");
     $.validator.addMethod("fullnameinput", function (value, element) {
             return this.optional(element) || /[^\u0000-\u007F]+/i.test(value);
-    },"Hãy nhập tên đầy đủ!");
+    },"Vui lòng nhập tên đầy đủ!");
 
 
         $("#register-form").validate({

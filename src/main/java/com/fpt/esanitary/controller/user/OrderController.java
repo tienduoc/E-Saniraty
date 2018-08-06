@@ -94,7 +94,7 @@ public class OrderController {
                 } else {
                     redirectAttributes.addAttribute("orderId", orderId);
                     redirectAttributes.addFlashAttribute("productId", orderDetails.get(i).getProductId());
-                    redirectAttributes.addFlashAttribute("errQuantity", "Vui lòng nhập số lượng từ 1-999");
+                    redirectAttributes.addFlashAttribute("errQuantity", "Vui lòng nhập số lượng từ 1 - 999");
                     return "redirect:/order/update";
                 }
             }
@@ -130,8 +130,9 @@ public class OrderController {
         if (auth instanceof AnonymousAuthenticationToken) {
             return "redirect:/login";
         } else if (!orderService.findById(orderId).getDealHistoriesById().isEmpty()) {
+            // todo chuyển hướng đến trang không thể hủy order đã có thương lượng
             return "user/403";
-        } else if (orderDetailService.findByOrder(orderId).size() > 1) { // todo Duoc: kiem tra neu order dong thi khong duoc xoa
+        } else if (orderDetailService.findByOrder(orderId).size() > 1) { // todo kiểm tra nếu order đóng thì không được xóa
             orderDetailService.removeProduct(orderId, productId);
             redirectAttributes.addAttribute("orderId", orderId);
             return "redirect:/order/update";
