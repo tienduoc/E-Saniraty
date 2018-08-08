@@ -9,7 +9,7 @@
       <ObjectId>6</ObjectId>
       <Collation>SQL_Latin1_General_CP1_CI_AS</Collation>
     </database>
-    <database id="3" parent="1" name="TakeCoffe">
+    <database id="3" parent="1" name="TakeCoffee">
       <ObjectId>8</ObjectId>
     </database>
     <database id="4" parent="1" name="esanitary">
@@ -39,10 +39,10 @@
     </database>
     <schema id="10" parent="4" name="dbo">
       <ObjectId>1</ObjectId>
-      <IntrospectionTimestamp>2018-07-23.23:51:14.480</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2018-08-07.20:01:55.090</IntrospectionTimestamp>
       <Current>1</Current>
       <Visible>1</Visible>
-      <DescriptionsCheckSum>52354590619</DescriptionsCheckSum>
+      <DescriptionsCheckSum>51576862123</DescriptionsCheckSum>
     </schema>
     <schema id="11" parent="4" name="guest">
       <ObjectId>2</ObjectId>
@@ -93,7 +93,7 @@
     <table id="25" parent="10" name="category">
       <ObjectId>949578421</ObjectId>
       <CreatedTimestamp>2018-06-23.02:20:57.867</CreatedTimestamp>
-      <ModifiedTimestamp>2018-07-12.15:19:47.660</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-07-25.01:15:48.420</ModifiedTimestamp>
     </table>
     <table id="26" parent="10" name="combo">
       <ObjectId>965578478</ObjectId>
@@ -103,57 +103,57 @@
     <table id="27" parent="10" name="combo_product">
       <ObjectId>981578535</ObjectId>
       <CreatedTimestamp>2018-06-23.02:20:57.907</CreatedTimestamp>
-      <ModifiedTimestamp>2018-06-23.02:20:58.373</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-07-25.01:15:48.547</ModifiedTimestamp>
     </table>
     <table id="28" parent="10" name="deal_history">
       <ObjectId>1474104292</ObjectId>
       <CreatedTimestamp>2018-07-23.22:01:41.960</CreatedTimestamp>
-      <ModifiedTimestamp>2018-07-23.23:49:50.290</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-07-30.05:17:09.480</ModifiedTimestamp>
     </table>
     <table id="29" parent="10" name="deal_history_detail">
       <ObjectId>1538104520</ObjectId>
       <CreatedTimestamp>2018-07-23.22:01:42.330</CreatedTimestamp>
-      <ModifiedTimestamp>2018-07-23.22:01:42.353</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-07-30.05:16:40.310</ModifiedTimestamp>
     </table>
     <table id="30" parent="10" name="deal_message">
       <ObjectId>1634104862</ObjectId>
       <CreatedTimestamp>2018-07-23.23:48:47.507</CreatedTimestamp>
-      <ModifiedTimestamp>2018-07-23.23:49:50.293</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-07-30.05:17:09.480</ModifiedTimestamp>
     </table>
     <table id="31" parent="10" name="feedback">
       <ObjectId>1045578763</ObjectId>
       <CreatedTimestamp>2018-06-23.02:20:57.963</CreatedTimestamp>
-      <ModifiedTimestamp>2018-06-23.02:20:58.397</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-07-25.01:15:48.530</ModifiedTimestamp>
     </table>
     <table id="32" parent="10" name="manufacturer">
       <ObjectId>1061578820</ObjectId>
       <CreatedTimestamp>2018-06-23.02:20:57.980</CreatedTimestamp>
-      <ModifiedTimestamp>2018-06-23.02:20:58.420</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-07-25.01:15:48.413</ModifiedTimestamp>
     </table>
     <table id="33" parent="10" name="order">
       <ObjectId>1077578877</ObjectId>
       <CreatedTimestamp>2018-06-23.02:20:57.997</CreatedTimestamp>
-      <ModifiedTimestamp>2018-07-23.22:01:42.170</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-08-02.16:33:57.183</ModifiedTimestamp>
     </table>
     <table id="34" parent="10" name="order_detail">
       <ObjectId>1109578991</ObjectId>
       <CreatedTimestamp>2018-06-23.02:20:58.010</CreatedTimestamp>
-      <ModifiedTimestamp>2018-06-23.02:20:58.410</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-07-30.18:32:01.443</ModifiedTimestamp>
     </table>
     <table id="35" parent="10" name="pay_history">
       <ObjectId>1125579048</ObjectId>
       <CreatedTimestamp>2018-06-23.02:20:58.027</CreatedTimestamp>
-      <ModifiedTimestamp>2018-06-23.02:20:58.417</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-07-30.05:17:15.530</ModifiedTimestamp>
     </table>
     <table id="36" parent="10" name="product">
-      <ObjectId>1157579162</ObjectId>
-      <CreatedTimestamp>2018-06-23.02:20:58.043</CreatedTimestamp>
-      <ModifiedTimestamp>2018-07-23.22:01:42.343</ModifiedTimestamp>
+      <ObjectId>2082106458</ObjectId>
+      <CreatedTimestamp>2018-07-25.01:15:48.323</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-25.01:15:48.543</ModifiedTimestamp>
     </table>
     <table id="37" parent="10" name="product_image">
       <ObjectId>1173579219</ObjectId>
       <CreatedTimestamp>2018-06-23.02:20:58.073</CreatedTimestamp>
-      <ModifiedTimestamp>2018-06-23.02:20:58.430</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-07-25.01:15:48.483</ModifiedTimestamp>
     </table>
     <table id="38" parent="10" name="role">
       <ObjectId>1189579276</ObjectId>
@@ -461,11 +461,11 @@ ProductID</ColNames>
       <RefColNames>Id</RefColNames>
     </foreign-key>
     <foreign-key id="84" parent="27" name="FK_combo_product_product1">
-      <ObjectId>1493580359</ObjectId>
-      <CreatedTimestamp>2018-06-23.02:20:58.370</CreatedTimestamp>
-      <ModifiedTimestamp>2018-06-23.02:20:58.370</ModifiedTimestamp>
+      <ObjectId>62623266</ObjectId>
+      <CreatedTimestamp>2018-07-25.01:15:48.543</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-25.01:15:48.543</ModifiedTimestamp>
       <ColNames>ProductID</ColNames>
-      <RefTableId>1157579162</RefTableId>
+      <RefTableId>2082106458</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
       <RefTableName>product</RefTableName>
       <RefKeyName>PK_Product</RefKeyName>
@@ -520,15 +520,16 @@ ProductID</ColNames>
       <Primary>1</Primary>
     </key>
     <foreign-key id="93" parent="28" name="FK_DealHistory_Order">
-      <ObjectId>1522104463</ObjectId>
-      <CreatedTimestamp>2018-07-23.22:01:42.170</CreatedTimestamp>
-      <ModifiedTimestamp>2018-07-23.22:01:42.170</ModifiedTimestamp>
+      <ObjectId>126623494</ObjectId>
+      <CreatedTimestamp>2018-07-30.05:17:09.447</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-30.05:17:09.447</ModifiedTimestamp>
       <ColNames>OrderID</ColNames>
       <RefTableId>1077578877</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
       <RefTableName>order</RefTableName>
       <RefKeyName>PK_Order</RefKeyName>
       <RefColNames>Id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <default id="94" parent="28" name="DF__deal_histo__Date__3C69FB99">
       <ObjectId>1490104349</ObjectId>
@@ -547,7 +548,7 @@ ProductID</ColNames>
     </column>
     <column id="97" parent="29" name="OriginalPrice">
       <Position>3</Position>
-      <Comment>Giá g?c</Comment>
+      <Comment>Giá g?c t?i th?i di?m deal, n?</Comment>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
     </column>
@@ -579,22 +580,23 @@ ProductID</ColNames>
       <Primary>1</Primary>
     </key>
     <foreign-key id="102" parent="29" name="FK_DealHistoryDetail_DealHistory">
-      <ObjectId>1570104634</ObjectId>
-      <CreatedTimestamp>2018-07-23.22:01:42.340</CreatedTimestamp>
-      <ModifiedTimestamp>2018-07-23.22:01:42.340</ModifiedTimestamp>
+      <ObjectId>110623437</ObjectId>
+      <CreatedTimestamp>2018-07-30.05:16:40.287</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-30.05:16:40.287</ModifiedTimestamp>
       <ColNames>DealHistoryID</ColNames>
       <RefTableId>1474104292</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
       <RefTableName>deal_history</RefTableName>
       <RefKeyName>PK_DealHistory</RefKeyName>
       <RefColNames>Id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="103" parent="29" name="FK_DealHistoryDetail_Product">
-      <ObjectId>1586104691</ObjectId>
-      <CreatedTimestamp>2018-07-23.22:01:42.343</CreatedTimestamp>
-      <ModifiedTimestamp>2018-07-23.22:01:42.343</ModifiedTimestamp>
+      <ObjectId>30623152</ObjectId>
+      <CreatedTimestamp>2018-07-25.01:15:48.510</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-25.01:15:48.510</ModifiedTimestamp>
       <ColNames>ProductID</ColNames>
-      <RefTableId>1157579162</RefTableId>
+      <RefTableId>2082106458</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
       <RefTableName>product</RefTableName>
       <RefKeyName>PK_Product</RefKeyName>
@@ -641,15 +643,16 @@ ProductID</ColNames>
       <Primary>1</Primary>
     </key>
     <foreign-key id="111" parent="30" name="FK_deal_message_deal_history">
-      <ObjectId>1666104976</ObjectId>
-      <CreatedTimestamp>2018-07-23.23:49:50.290</CreatedTimestamp>
-      <ModifiedTimestamp>2018-07-23.23:49:50.290</ModifiedTimestamp>
+      <ObjectId>158623608</ObjectId>
+      <CreatedTimestamp>2018-07-30.05:17:09.477</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-30.05:17:09.477</ModifiedTimestamp>
       <ColNames>DealHistoryID</ColNames>
       <RefTableId>1474104292</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
       <RefTableName>deal_history</RefTableName>
       <RefKeyName>PK_DealHistory</RefKeyName>
       <RefColNames>Id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="112" parent="31" name="FeedbackID">
       <Position>1</Position>
@@ -701,11 +704,11 @@ ProductID</ColNames>
       <RefColNames>Username</RefColNames>
     </foreign-key>
     <foreign-key id="119" parent="31" name="FK_Feedback_Product">
-      <ObjectId>1573580644</ObjectId>
-      <CreatedTimestamp>2018-06-23.02:20:58.393</CreatedTimestamp>
-      <ModifiedTimestamp>2018-06-23.02:20:58.393</ModifiedTimestamp>
+      <ObjectId>46623209</ObjectId>
+      <CreatedTimestamp>2018-07-25.01:15:48.527</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-25.01:15:48.527</ModifiedTimestamp>
       <ColNames>ProductID</ColNames>
-      <RefTableId>1157579162</RefTableId>
+      <RefTableId>2082106458</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
       <RefTableName>product</RefTableName>
       <RefKeyName>PK_Product</RefKeyName>
@@ -783,13 +786,17 @@ ProductID</ColNames>
       <Comment>S? ti?n dã thanh toán</Comment>
       <DataType>float|0s</DataType>
     </column>
-    <index id="132" parent="33" name="PK_Order">
+    <column id="132" parent="33" name="DealStatus">
+      <Position>7</Position>
+      <DataType>nchar(10 char)|0s</DataType>
+    </column>
+    <index id="133" parent="33" name="PK_Order">
       <Position>1</Position>
       <ColNames>Id</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="133" parent="33" name="PK_Order">
+    <key id="134" parent="33" name="PK_Order">
       <ObjectId>1349579846</ObjectId>
       <CreatedTimestamp>2018-06-23.02:20:58.323</CreatedTimestamp>
       <ModifiedTimestamp>2018-06-23.02:20:58.323</ModifiedTimestamp>
@@ -797,7 +804,7 @@ ProductID</ColNames>
       <UnderlyingIndexName>PK_Order</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="134" parent="33" name="FK_Order_Account1">
+    <foreign-key id="135" parent="33" name="FK_Order_Account1">
       <ObjectId>1605580758</ObjectId>
       <CreatedTimestamp>2018-06-23.02:20:58.403</CreatedTimestamp>
       <ModifiedTimestamp>2018-06-23.02:20:58.403</ModifiedTimestamp>
@@ -808,38 +815,33 @@ ProductID</ColNames>
       <RefKeyName>PK_Account</RefKeyName>
       <RefColNames>Username</RefColNames>
     </foreign-key>
-    <default id="135" parent="33" name="DF__order__Date__412EB0B6">
+    <default id="136" parent="33" name="DF__order__Date__412EB0B6">
       <ObjectId>1093578934</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <ColNames>Date</ColNames>
       <DefaultExpression>getdate()</DefaultExpression>
     </default>
-    <column id="136" parent="34" name="OrderID">
+    <column id="137" parent="34" name="OrderID">
       <Position>1</Position>
       <DataType>varchar(50 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="137" parent="34" name="ProductID">
+    <column id="138" parent="34" name="ProductID">
       <Position>2</Position>
       <DataType>varchar(50 char)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="138" parent="34" name="UnitPrice">
+    <column id="139" parent="34" name="UnitPrice">
       <Position>3</Position>
       <Comment>Giá</Comment>
       <DataType>float|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="139" parent="34" name="Quantity">
+    <column id="140" parent="34" name="Quantity">
       <Position>4</Position>
       <Comment>S? lu?ng</Comment>
       <DataType>int|0s</DataType>
       <NotNull>1</NotNull>
-    </column>
-    <column id="140" parent="34" name="DealSuccessed">
-      <Position>5</Position>
-      <Comment>Tr?ng thái deal</Comment>
-      <DataType>bit|0s</DataType>
     </column>
     <index id="141" parent="34" name="PK_OrderDetail_1">
       <Position>1</Position>
@@ -858,22 +860,23 @@ ProductID</ColNames>
       <Primary>1</Primary>
     </key>
     <foreign-key id="143" parent="34" name="FK_OrderDetail_Order">
-      <ObjectId>1637580872</ObjectId>
-      <CreatedTimestamp>2018-06-23.02:20:58.410</CreatedTimestamp>
-      <ModifiedTimestamp>2018-06-23.02:20:58.410</ModifiedTimestamp>
+      <ObjectId>206623779</ObjectId>
+      <CreatedTimestamp>2018-07-30.05:40:22.180</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-30.05:40:22.180</ModifiedTimestamp>
       <ColNames>OrderID</ColNames>
       <RefTableId>1077578877</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
       <RefTableName>order</RefTableName>
       <RefKeyName>PK_Order</RefKeyName>
       <RefColNames>Id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="144" parent="34" name="FK_OrderDetail_Product">
-      <ObjectId>1621580815</ObjectId>
-      <CreatedTimestamp>2018-06-23.02:20:58.407</CreatedTimestamp>
-      <ModifiedTimestamp>2018-06-23.02:20:58.407</ModifiedTimestamp>
+      <ObjectId>14623095</ObjectId>
+      <CreatedTimestamp>2018-07-25.01:15:48.497</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-25.01:15:48.497</ModifiedTimestamp>
       <ColNames>ProductID</ColNames>
-      <RefTableId>1157579162</RefTableId>
+      <RefTableId>2082106458</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
       <RefTableName>product</RefTableName>
       <RefKeyName>PK_Product</RefKeyName>
@@ -920,15 +923,16 @@ ProductID</ColNames>
       <Primary>1</Primary>
     </key>
     <foreign-key id="151" parent="35" name="FK_PayHistory_Order">
-      <ObjectId>1653580929</ObjectId>
-      <CreatedTimestamp>2018-06-23.02:20:58.417</CreatedTimestamp>
-      <ModifiedTimestamp>2018-06-23.02:20:58.417</ModifiedTimestamp>
+      <ObjectId>174623665</ObjectId>
+      <CreatedTimestamp>2018-07-30.05:17:15.527</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-30.05:17:15.527</ModifiedTimestamp>
       <ColNames>OrderID</ColNames>
       <RefTableId>1077578877</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
       <RefTableName>order</RefTableName>
       <RefKeyName>PK_Order</RefKeyName>
       <RefColNames>Id</RefColNames>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <default id="152" parent="35" name="DF__pay_histor__Date__440B1D61">
       <ObjectId>1141579105</ObjectId>
@@ -1031,17 +1035,17 @@ ProductID</ColNames>
       <Unique>1</Unique>
     </index>
     <key id="171" parent="36" name="PK_Product">
-      <ObjectId>1397580017</ObjectId>
-      <CreatedTimestamp>2018-06-23.02:20:58.340</CreatedTimestamp>
-      <ModifiedTimestamp>2018-06-23.02:20:58.340</ModifiedTimestamp>
+      <ObjectId>2098106515</ObjectId>
+      <CreatedTimestamp>2018-07-25.01:15:48.410</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-25.01:15:48.410</ModifiedTimestamp>
       <ColNames>Id</ColNames>
       <UnderlyingIndexName>PK_Product</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
     <foreign-key id="172" parent="36" name="FK_product_category1">
-      <ObjectId>1685581043</ObjectId>
-      <CreatedTimestamp>2018-06-23.02:20:58.423</CreatedTimestamp>
-      <ModifiedTimestamp>2018-06-23.02:20:58.423</ModifiedTimestamp>
+      <ObjectId>2130106629</ObjectId>
+      <CreatedTimestamp>2018-07-25.01:15:48.420</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-25.01:15:48.420</ModifiedTimestamp>
       <ColNames>CategoryID</ColNames>
       <RefTableId>949578421</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1050,9 +1054,9 @@ ProductID</ColNames>
       <RefColNames>Id</RefColNames>
     </foreign-key>
     <foreign-key id="173" parent="36" name="FK_Product_Manufacturer">
-      <ObjectId>1669580986</ObjectId>
-      <CreatedTimestamp>2018-06-23.02:20:58.420</CreatedTimestamp>
-      <ModifiedTimestamp>2018-06-23.02:20:58.420</ModifiedTimestamp>
+      <ObjectId>2114106572</ObjectId>
+      <CreatedTimestamp>2018-07-25.01:15:48.413</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-25.01:15:48.413</ModifiedTimestamp>
       <ColNames>ManufacturerID</ColNames>
       <RefTableId>1061578820</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
@@ -1097,11 +1101,11 @@ ProductID</ColNames>
       <Primary>1</Primary>
     </key>
     <foreign-key id="180" parent="37" name="FK_product_image_product1">
-      <ObjectId>1701581100</ObjectId>
-      <CreatedTimestamp>2018-06-23.02:20:58.430</CreatedTimestamp>
-      <ModifiedTimestamp>2018-06-23.02:20:58.430</ModifiedTimestamp>
+      <ObjectId>2146106686</ObjectId>
+      <CreatedTimestamp>2018-07-25.01:15:48.480</CreatedTimestamp>
+      <ModifiedTimestamp>2018-07-25.01:15:48.480</ModifiedTimestamp>
       <ColNames>ProductID</ColNames>
-      <RefTableId>1157579162</RefTableId>
+      <RefTableId>2082106458</RefTableId>
       <RefSchemaName>dbo</RefSchemaName>
       <RefTableName>product</RefTableName>
       <RefKeyName>PK_Product</RefKeyName>

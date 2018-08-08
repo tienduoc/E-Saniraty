@@ -49,7 +49,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table table-striped" id="tblOrder">
                             <thead class="u-bg-color-primary-light">
                             <tr class="text-uppercase">
                                 <th class="text-center">Sản phẩm</th>
@@ -67,11 +67,8 @@
                                     <tr>
                                         <td><a href="product-detail.html">${od.productByProductId.name}</a></td>
                                         <td class="text-left">
-                                            <input type="text" name="quantity" value="${od.quantity}">
-                                            <br>
-                                            <c:if test="${od.productId.equals(productId)}">
-                                                <i style="color: #ff0000">${errQuantity}</i>
-                                            </c:if>
+                                            <input type="text" name="quantity" value="${od.quantity}" onblur="checkNumber()">
+                                            <p id="error"></p>
                                         </td>
                                         <td class="text-right"><fmt:formatNumber pattern="###,###" value="${od.unitPrice}"/></td>
                                         <td class="text-right"><fmt:formatNumber pattern="###,###" value="${od.unitPrice * od.quantity}"/></td>
@@ -97,7 +94,7 @@
                     <a href="${pageContext.request.contextPath}/order" class="button button--light">Quay lại</a>
                 </div>
                 <div class="col-md-2">
-                    <button type="submit" onclick="document.getElementById('update').submit();" class="btn button--black" style="width: 100%;">Cập nhật</button>
+                    <button type="button" id="save" class="btn button--black" style="width: 100%;">Cập nhật</button>
                 </div>
             </div>
         </div>
@@ -115,6 +112,25 @@
     $(document).ready(function () {
         if (sessionStorage.scrollTop != "undefined") {
             $(window).scrollTop(sessionStorage.scrollTop);
+        }
+    });
+
+    function checkNumber() {
+        var nodes = document.querySelectorAll("#tblOrder input[type=text]");
+        for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].value > 999 || nodes[i].value < 1 || nodes[i].value == "" || !/[0-9.]/.test(nodes[i].value)) {
+                alert("Vui lòng nhập giá trị từ 1 - 999");
+                return false;
+                break;
+            } else if (i == nodes.length -1) {
+                document.getElementById('update').submit();
+            }
+        }
+    };
+
+    $('#save').on('click',function () {
+        if(checkNumber() != false) {
+            document.getElementById('save').submit();
         }
     });
 </script>

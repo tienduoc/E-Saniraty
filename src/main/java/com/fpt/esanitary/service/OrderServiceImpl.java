@@ -1,11 +1,13 @@
 package com.fpt.esanitary.service;
 
 import com.fpt.esanitary.dao.OrderDAO;
+import com.fpt.esanitary.entities.Debt;
 import com.fpt.esanitary.entities.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -18,6 +20,21 @@ public class OrderServiceImpl implements OrderService {
   @Override
   public List<Order> findAll() {
     return orderDAO.findAll();
+  }
+
+  @Override
+  public List<Order> findAllOpen() {
+    return orderDAO.findAllOpen();
+  }
+
+  @Override
+  public List<Debt> findAllGroupByUsername() {
+    return orderDAO.findAllGroupByUsername();
+  }
+
+  @Override
+  public List<Order> getOrderBetweenDate(Date fromDate, Date untilDate) {
+    return orderDAO.getOrderBetweenDate(fromDate, untilDate);
   }
 
   @Override

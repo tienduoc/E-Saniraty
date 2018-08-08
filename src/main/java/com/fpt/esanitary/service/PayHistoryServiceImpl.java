@@ -16,6 +16,11 @@ public class PayHistoryServiceImpl implements PayHistoryService {
   private PayHistoryDAO payHistoryDAO;
 
   @Override
+  public List<PayHistory> findAll() {
+    return null;
+  }
+
+  @Override
   public List<PayHistory> findByOrder(String orderId) {
     return payHistoryDAO.findByOrder(orderId);
   }
@@ -33,5 +38,10 @@ public class PayHistoryServiceImpl implements PayHistoryService {
   @Override
   public void delete(PayHistory payHistory) {
     payHistoryDAO.delete(payHistory);
+  }
+
+  @Override
+  public int getLastId() {
+    return payHistoryDAO.getLastId();
   }
 }

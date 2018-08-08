@@ -59,11 +59,12 @@
             <li>
                 <a href="${pageContext.request.contextPath}/admin/order/"><i class="fa fa-shopping-cart"></i> Quản lý đơn hàng</a>
             </li>
-            <sec:authorize access="hasAuthority('Boss')">
             <li>
                 <a href="${pageContext.request.contextPath}/supervisor/deal/"><i class="fa fa-handshake-o"></i> Yêu cầu thương lượng</a>
             </li>
-            </sec:authorize>
+            <li>
+                <a href="${pageContext.request.contextPath}/admin/debt/"><i class="fa fa-money"></i> Quản lý công nợ</a>
+            </li>
             <li>
                 <a href="${pageContext.request.contextPath}/admin/account/"><i class="fa fa-fw fa-users"></i> Quản lý tài khoản</a>
             </li>
@@ -77,7 +78,7 @@
                 <a href="${pageContext.request.contextPath}/admin/manufacturer/"><i class="fa fa-address-card-o"></i> Nhà sản xuất</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-fw fa-line-chart"></i> Báo cáo</a>
+                <a href="${pageContext.request.contextPath}/admin/report/"><i class="fa fa-fw fa-line-chart"></i> Báo cáo</a>
             </li>
 
         </ul>

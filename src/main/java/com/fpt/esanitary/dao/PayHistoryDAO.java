@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface PayHistoryDAO {
 
+  List<PayHistory> findAll();
+
   List<PayHistory> findByOrder(String orderId);
 
   void save(PayHistory payHistory);
@@ -13,4 +15,6 @@ public interface PayHistoryDAO {
   void update(PayHistory payHistory);
 
   void delete(PayHistory payHistory);
+
+  int getLastId();
 }

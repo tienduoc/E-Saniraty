@@ -39,9 +39,6 @@ public class CartController {
     @Autowired
     private OrderDetailService orderDetailService;
 
-    private final int MIN_QUANTITY = 1;
-    private final int MAX_QUANTITY = 999;
-
     @GetMapping
     public String showCart(HttpSession session) {
         List<Item> cart = (List<Item>) session.getAttribute("cart");
@@ -68,11 +65,6 @@ public class CartController {
                 cart.add(new Item(productService.findById(id), 1));
             } else {
                 int quantity = cart.get(index).getQuantity();
-                if (quantity == MAX_QUANTITY) {
-                    redirectAttributes.addFlashAttribute("product", String.valueOf(cart.get(index).getProduct()));
-                    redirectAttributes.addFlashAttribute("errQuantity", "Số lượng tối đa của mỗi sản phẩm là 999");
-                    return "redirect:/cart";
-                }
                 quantity++;
                 cart.get(index).setQuantity(quantity);
             }
@@ -87,14 +79,7 @@ public class CartController {
                              RedirectAttributes redirectAttributes) {
         List<Item> cart = (List<Item>) session.getAttribute("cart");
         for (int i = 0; i < cart.size(); i++) {
-            int qty = Integer.parseInt(quantity[i]);
-            if (qty >= MIN_QUANTITY && qty <= MAX_QUANTITY) {
-                cart.get(i).setQuantity(qty);
-            } else {
-                redirectAttributes.addFlashAttribute("product", String.valueOf(cart.get(i).getProduct()));
-                redirectAttributes.addFlashAttribute("errQuantity", "Vui lòng nhập số lượng từ 1 - 999");
-                return "redirect:/cart";
-            }
+                cart.get(i).setQuantity(Integer.parseInt(quantity[i]));
         }
         session.setAttribute("cart", cart);
         return "redirect:/cart";

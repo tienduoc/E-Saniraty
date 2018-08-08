@@ -85,6 +85,7 @@
                                     <td class="text-center">
                                         <a href="${pageContext.request.contextPath}/admin/order/update?orderId=${o.id}" class="btn btn-warning btn-xs">Sửa</a>
                                         <a href="${pageContext.request.contextPath}/admin/order/detail?orderId=${o.id}" class="btn btn-success btn-xs">Chi tiết</a>
+                                        <a href="${pageContext.request.contextPath}/admin/debt/pay?orderId=${o.id}" class="btn btn-primary btn-xs">Thanh toán</a>
                                     </td>
                                 </tr>
                             </c:forEach>

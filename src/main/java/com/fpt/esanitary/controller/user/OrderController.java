@@ -40,9 +40,6 @@ public class OrderController {
     @Autowired
     private DealMessageService dealMessageService;
 
-    private final int MIN_QUANTITY = 1;
-    private final int MAX_QUANTITY = 999;
-
     @GetMapping
     public String getOrder(Model model) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -87,16 +84,8 @@ public class OrderController {
         List<OrderDetail> orderDetails = orderDetailService.findByOrder(orderId);
         for (int i = 0; i < orderDetails.size(); i++) {
             if (!quantity[i].isEmpty()) {
-                int qty = Integer.parseInt(quantity[i]);
-                if (qty >= MIN_QUANTITY && qty <= MAX_QUANTITY) {
-                    orderDetails.get(i).setQuantity(Integer.parseInt(quantity[i]));
-                    orderDetailService.update(orderDetails.get(i));
-                } else {
-                    redirectAttributes.addAttribute("orderId", orderId);
-                    redirectAttributes.addFlashAttribute("productId", orderDetails.get(i).getProductId());
-                    redirectAttributes.addFlashAttribute("errQuantity", "Vui lòng nhập số lượng từ 1 - 999");
-                    return "redirect:/order/update";
-                }
+                orderDetails.get(i).setQuantity(Integer.parseInt(quantity[i]));
+                orderDetailService.update(orderDetails.get(i));
             }
         }
 

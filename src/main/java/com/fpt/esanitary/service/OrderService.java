@@ -1,13 +1,20 @@
 package com.fpt.esanitary.service;
 
+import com.fpt.esanitary.entities.Debt;
 import com.fpt.esanitary.entities.Order;
-import org.springframework.security.access.prepost.PreAuthorize;
 
+import java.util.Date;
 import java.util.List;
 
 public interface OrderService {
 
   List<Order> findAll();
+
+  List<Order> findAllOpen();
+
+  List<Debt> findAllGroupByUsername();
+
+  List<Order> getOrderBetweenDate(Date fromDate, Date untilDate);
 
   Order findById(String id);
 

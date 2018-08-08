@@ -16,6 +16,13 @@ public class PayHistoryDAOImpl implements PayHistoryDAO {
   private SessionFactory sessionFactory;
 
   @Override
+  public List<PayHistory> findAll() {
+    Session session = sessionFactory.getCurrentSession();
+    List<PayHistory> payHistories = session.createQuery("from PayHistory").getResultList();
+    return payHistories;
+  }
+
+  @Override
   public List<PayHistory> findByOrder(String orderId) {
     Session session = sessionFactory.getCurrentSession();
     Query query = session.createQuery("from PayHistory where orderId = :orderId", PayHistory.class)
@@ -40,5 +47,14 @@ public class PayHistoryDAOImpl implements PayHistoryDAO {
   public void delete(PayHistory payHistory) {
     Session session = sessionFactory.getCurrentSession();
     session.delete(payHistory);
+  }
+
+  @Override
+  public int getLastId() {
+    Session session = sessionFactory.getCurrentSession();
+    int lastId = (int) session.createQuery("select id from PayHistory order by id desc")
+            .setMaxResults(1)
+            .uniqueResult();
+    return lastId;
   }
 }

@@ -1,5 +1,7 @@
 package com.fpt.esanitary.entities;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -142,12 +144,30 @@ public class Order {
     this.orderDetailsById = orderDetailsById;
   }
 
-  @OneToMany(mappedBy = "orderByOrderId")
+  @OneToMany(mappedBy = "orderByOrderId", fetch = FetchType.EAGER)
+  @Fetch(value = FetchMode.SUBSELECT)
   public Collection<PayHistory> getPayHistoriesById() {
     return payHistoriesById;
   }
 
   public void setPayHistoriesById(Collection<PayHistory> payHistoriesById) {
     this.payHistoriesById = payHistoriesById;
+  }
+
+  @Override
+  public String toString() {
+    return "Order{" +
+            "id='" + id + '\'' +
+            ", date=" + date +
+            ", username='" + username + '\'' +
+            ", closed=" + closed +
+            ", totalPrice=" + totalPrice +
+            ", totalPaid=" + totalPaid +
+            ", dealStatus='" + dealStatus + '\'' +
+            ", dealHistoriesById=" + dealHistoriesById +
+            ", accountByUsername=" + accountByUsername +
+            ", orderDetailsById=" + orderDetailsById +
+            ", payHistoriesById=" + payHistoriesById +
+            '}';
   }
 }
