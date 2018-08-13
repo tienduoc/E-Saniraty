@@ -3,6 +3,7 @@ package com.fpt.esanitary.service;
 import com.fpt.esanitary.dao.CategoryDAO;
 import com.fpt.esanitary.entities.Category;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

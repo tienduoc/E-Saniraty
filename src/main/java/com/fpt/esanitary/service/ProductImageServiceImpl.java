@@ -49,4 +49,9 @@ public class ProductImageServiceImpl implements ProductImageService {
   public void delete(ProductImage productImage) {
 
   }
+
+  @Override
+  public void update(ProductImage productImage) {
+    productImageDAO.update(productImage);
+  }
 }

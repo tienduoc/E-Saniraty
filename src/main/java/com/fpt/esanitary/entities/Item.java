@@ -2,7 +2,9 @@ package com.fpt.esanitary.entities;
 
 import org.hibernate.validator.constraints.Length;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
 
     private Product product;
     private int quantity;

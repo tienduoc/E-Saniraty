@@ -56,12 +56,12 @@
                             <form method="post">
 
                                 <div class="form-group">
-                                    <label>Ảnh hiện tại</label>
-                                    <img src="/img/faucet-1.jpeg" alt="" style="width: 200px; height: auto;">
+                                    <label>Ảnh hiện tại</label> <br>
+                                    <img src="${pageContext.request.contextPath}/assets/img/products/${image.url}" alt="" style="max-width: 200px; height: auto;">
                                 </div>
                                 <div class="form-group">
                                     <label>Sản phẩm</label>
-                                    <input type="text" class="form-control" value="Bàn Cầu American Standard 2040" readonly>
+                                    <input type="text" class="form-control" value="${image.productByProductId.id}" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label>Hình ảnh</label>

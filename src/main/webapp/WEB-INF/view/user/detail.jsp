@@ -13,11 +13,11 @@
 <html lang="en">
 
 <jsp:include page="../template/head-tag__user.jsp">
-    <jsp:param name="title" value="THE SANI - Trang chủ" />
+    <jsp:param name="title" value="THE SANI - Trang chủ"/>
 </jsp:include>
 
 <body>
-<%@ include file="../template/header-tag__user.jsp"%>
+<%@ include file="../template/header-tag__user.jsp" %>
 
 <main>
     <section class="section-breadcrumb">
@@ -44,9 +44,18 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <div class="owl-carousel">
-                                        <div class='item'>
-                                            <img src="${pageContext.request.contextPath}/assets/img/faucet-1.jpeg">
-                                        </div>
+                                        <c:forEach var="img" items="${product.productImagesById}">
+                                            <c:if test="${img.mainPhoto}">
+                                                <div class='item'>
+                                                    <img src="${pageContext.request.contextPath}/assets/img/products/${img.url}">
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${!img.mainPhoto}">
+                                                <div class='item'>
+                                                    <img src="${pageContext.request.contextPath}/assets/img/products/${img.url}">
+                                                </div>
+                                            </c:if>
+                                        </c:forEach>
                                     </div>
                                     <ul id='carousel-custom-dots' class='owl-dots'>
                                     </ul>
@@ -94,18 +103,20 @@
                                 <div class="row">
                                     <div class="col-md-5 col-sm-6 col-xs-12">
                                         <div class="form-group">
-                                            <label for="qty">
+                                            <label>
                                                 <strong class="emphasize">Số lượng: </strong>
                                             </label>
-                                            <input type="number" name="qty" value="1" max="${product.unitInStock}"
-                                                   min="1">
+                                            <input type="number" name="qty" value="1" max="${product.unitInStock}" min="1" class="text-right">
                                         </div>
-                                    </div>
-                                </div>
 
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-12 col-xs-12">
-                                        <button type="submit" class="button-submit">Đặt hàng</button>
+                                    </div>
+                                    <div class="col-md-5 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label>
+                                                <strong class="emphasize">&nbsp;</strong>
+                                            </label>
+                                            <button type="submit" class="btn btn--dark btn-group-justified">Đặt hàng</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -148,43 +159,79 @@
                 </div>
             </div>
         </section>
-        <section class="section-product-leave-review">
+
+        <%--TODO: review--%>
+
+        <section class="section-product-review">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="heading-secondary">
-                            <h2 class="heading-secondary--title">Đánh giá sản phẩm
+                            <h2 class="heading-secondary--title">Khách hàng nhận xét
                                 <span class="heading-secondary--line"></span>
                             </h2>
                             <div class="clear"></div>
                         </div>
+
+
                     </div>
+                </div>
 
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <form action="#" class="form">
-                                <div class="col-md-6 form-group">
-                                    <input type="text" placeholder="Họ tên" class="form__input">
+                <div class="row">
+                    <div class="col-md-12">
+                        <c:forEach var="feedback" items="${feedbacks}">
+                            <c:if test="${feedback.approve}">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h4 class="media-heading">${feedback.accountByUsername.fullname}</h4>
+                                        <i style="color: #888888; font-size: 1.3rem;"><fmt:formatDate value="${feedback.date}" pattern="dd/MM/yyyy HH:mm"/></i><br>
+                                            ${feedback.feedbackContent}
+                                    </div>
                                 </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="email" placeholder="Email" class="form__input">
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <textarea type="text" placeholder="Mời bạn để lại bình luận"
+                            </c:if>
+                        </c:forEach>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </section>
+    </form:form>
+
+    <section class="section-product-leave-review">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="heading-secondary">
+                        <h2 class="heading-secondary--title">Đánh giá sản phẩm
+                            <span class="heading-secondary--line"></span>
+                        </h2>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <form action="/createFeedback" method="post" class="form">
+                            <input type="hidden" name="productId" value="${product.id}">
+                            <div class="col-md-12 form-group">
+                                    <textarea name="content" type="text" placeholder="Mời bạn để lại bình luận"
                                               class="form__input form__input--area"></textarea>
-                                </div>
+                            </div>
 
-                                <div class="col-md-3 col-xs-12 form-group">
-                                    <button type="submit" class="button-submit">Gửi</button>
-                                </div>
-                            </form>
-                        </div>
+                            <div class="col-md-3 col-xs-12 form-group">
+                                <button type="submit" class="btn btn--dark btn-group-justified">Gửi</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </section>
-    </form:form>
+        </div>
+    </section>
 </main>
+
+<%@ include file="../template/footer-tag__user.jsp" %>
 <script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/owl.carousel.min.js"></script>

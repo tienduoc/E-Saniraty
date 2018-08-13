@@ -1,6 +1,7 @@
 package com.fpt.esanitary.controller.user;
 
 import com.fpt.esanitary.service.CategoryService;
+import com.fpt.esanitary.service.FeedbackService;
 import com.fpt.esanitary.service.ManufacturerService;
 import com.fpt.esanitary.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,13 @@ public class ProductController {
     @Autowired
     private ManufacturerService manufacturerService;
 
+    @Autowired
+    private FeedbackService feedbackService;
+
     @GetMapping("detail")
     public String getProductDetail(@RequestParam("id") String id, Model model) {
         model.addAttribute("product", productService.findById(id));
+        model.addAttribute("feedbacks", feedbackService.findByProduct(id));
         return "user/detail";
     }
 }

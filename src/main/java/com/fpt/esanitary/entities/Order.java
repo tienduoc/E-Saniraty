@@ -6,13 +6,14 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "[order]")
-public class Order {
+public class Order implements Serializable {
   private String id;
   private Date date;
   private String username;

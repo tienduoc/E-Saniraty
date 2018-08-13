@@ -6,12 +6,15 @@ import com.fpt.esanitary.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/image")
@@ -78,7 +81,23 @@ public class ProductImageController {
     }
 
     @GetMapping("update")
-    public String showUpdateImage(@ModelAttribute("image") ProductImage productImage) {
+    public String showUpdateImage(@RequestParam("img_url") String url, Model model) {
+        model.addAttribute("image", productImageService.findByUrl(url));
         return "admin/image/update";
+    }
+
+    @GetMapping("setMainPhoto")
+    public String setMainPhoto(@RequestParam("img_url") String url, @RequestParam("product_id") String id) {
+        List<ProductImage> productImages = productImageService.findByProduct(id);
+        for (int i = 0; i < productImages.size(); i++) {
+            if (productImages.get(i).getUrl().equals(url)) {
+                productImages.get(i).setMainPhoto(true);
+                productImageService.update(productImages.get(i));
+            } else {
+                productImages.get(i).setMainPhoto(false);
+                productImageService.update(productImages.get(i));
+            }
+        }
+        return "redirect:/admin/image";
     }
 }

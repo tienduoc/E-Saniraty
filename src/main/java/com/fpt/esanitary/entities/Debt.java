@@ -1,8 +1,9 @@
 package com.fpt.esanitary.entities;
 
 import javax.persistence.Entity;
+import java.io.Serializable;
 
-public class Debt {
+public class Debt implements Serializable {
 
     private String username;
     private Double totalPrice;

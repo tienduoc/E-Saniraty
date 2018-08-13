@@ -24,6 +24,15 @@ public class FeedbackDAOImpl implements FeedbackDAO {
   }
 
   @Override
+  public Feedback findById(Integer id) {
+    Session session = sessionFactory.getCurrentSession();
+    Feedback feedback = session.createQuery("from Feedback where id = :id", Feedback.class)
+            .setParameter("id", id)
+            .getSingleResult();
+    return feedback;
+  }
+
+  @Override
   public List<Feedback> findByUsername(String username) {
     Session session = sessionFactory.getCurrentSession();
     Query query = session.createQuery("from Feedback where username = :username", Feedback.class)

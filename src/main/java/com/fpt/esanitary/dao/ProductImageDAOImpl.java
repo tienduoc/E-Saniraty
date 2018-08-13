@@ -18,7 +18,7 @@ public class ProductImageDAOImpl implements ProductImageDAO {
   @Override
   public List<ProductImage> findAll() {
     Session session = sessionFactory.getCurrentSession();
-    List<ProductImage> productImages = session.createQuery("from ProductImage order by productId", ProductImage.class)
+    List<ProductImage> productImages = session.createQuery("from ProductImage order by id desc", ProductImage.class)
             .getResultList();
     return productImages;
   }
@@ -26,7 +26,7 @@ public class ProductImageDAOImpl implements ProductImageDAO {
   @Override
   public List<ProductImage> findByProduct(String id) {
     Session session = sessionFactory.getCurrentSession();
-    List<ProductImage> productImages = session.createQuery("from ProductImage where productByProductId.name = :id")
+    List<ProductImage> productImages = session.createQuery("from ProductImage where productId =:id")
             .setParameter("id", id)
             .getResultList();
     return productImages;
@@ -69,4 +69,11 @@ public class ProductImageDAOImpl implements ProductImageDAO {
   public void delete(ProductImage productImage) {
 
   }
+
+  @Override
+  public void update(ProductImage productImage) {
+    Session session = sessionFactory.getCurrentSession();
+    session.update(productImage);
+  }
+
 }

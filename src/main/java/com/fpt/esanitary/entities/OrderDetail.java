@@ -1,12 +1,13 @@
 package com.fpt.esanitary.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "order_detail", schema = "dbo", catalog = "esanitary")
 @IdClass(OrderDetailPK.class)
-public class OrderDetail {
+public class OrderDetail implements Serializable {
   private String orderId;
   private String productId;
   private double unitPrice;

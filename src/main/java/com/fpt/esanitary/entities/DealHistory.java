@@ -5,13 +5,14 @@ import org.hibernate.annotations.FetchMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
 @Table(name = "deal_history", schema = "dbo", catalog = "esanitary")
-public class DealHistory {
+public class DealHistory implements Serializable {
     private String id;
     private String orderId;
     private Date requestDate;

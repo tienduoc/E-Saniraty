@@ -118,16 +118,17 @@
                 <form:form action="/cart/buy" method="post" id="buy">
                     <input type="hidden" name="totalPrice" value="${sum}">
                     <div class="col-md-2  col-md-offset-8">
-                        <a href="${pageContext.request.contextPath}/" class="button button--light">Quay lại</a>
+                        <a href="${pageContext.request.contextPath}/" class="btn btn--light btn-group-justified">Quay lại</a>
                     </div>
                     <div class="col-md-2">
-                        <button type="button" class="btn button--black col-xs-12" id="buy">Đặt hàng</button>
+                        <button type="button" class="btn btn--dark btn-group-justified col-xs-12" id="buy">Đặt hàng</button>
                     </div>
                 </form:form>
             </div>
         </div>
     </section>
 </main>
+<%@ include file="../template/footer-tag__user.jsp" %>
 <script src="/assets/js/jquery.min.js"></script>
 <script src="/assets/js/bootstrap.min.js"></script>
 <script src="/assets/js/main.js"></script>

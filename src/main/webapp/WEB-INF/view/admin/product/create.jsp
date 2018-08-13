@@ -86,11 +86,11 @@
                                     </div>
                                     <div class="col-md-3">
                                         <label>Kích thước</label>
-                                        <form:input path="size" type="text" class="form-control" required="required"/>
+                                        <form:input path="size" type="text" class="form-control"/>
                                     </div>
                                     <div class="col-md-3">
                                         <label>Khối lượng</label>
-                                        <form:input path="weight" type="number" class="form-control" min="0" />
+                                        <form:input path="weight" type="number" class="form-control" min="0" step="0.1" />
                                     </div>
                                     <div class="col-md-3">
                                         <label>Số lượng</label>
@@ -106,17 +106,17 @@
                                         <label>Giá bán</label>
                                         <form:input path="salePrice" type="number" class="form-control" min="0" required="required"/>
                                     </div>
-                                    <div class="col-md-2">
-                                        <label>Ratio</label>
-                                        <form:input path="minRatio" type="number" class="form-control" min="0" max="15" required="required"/>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label>Ratio Contractor</label>
-                                        <form:input path="raitoForContractor" type="number" class="form-control" min="0" max="10" required="required"/>
-                                    </div>
+                                    <%--<div class="col-md-2">--%>
+                                        <%--<label>Ratio</label>--%>
+                                        <%--<form:input path="minRatio" type="number" class="form-control" min="0" max="15"/>--%>
+                                    <%--</div>--%>
+                                    <%--<div class="col-md-2">--%>
+                                        <%--<label>Ratio Contractor</label>--%>
+                                        <%--<form:input path="raitoForContractor" type="number" class="form-control" min="0" max="10"/>--%>
+                                    <%--</div>--%>
                                     <div class="col-md-1">
                                         <label>Hiển thị</label>
-                                        <form:checkbox path="enabled"/>
+                                        <form:checkbox path="enabled" checked="checked"/>
                                     </div>
                                 </div>
                                 <div class="form-group row">

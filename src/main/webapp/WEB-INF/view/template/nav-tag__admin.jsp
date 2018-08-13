@@ -72,6 +72,9 @@
                 <a href="${pageContext.request.contextPath}/admin/image/"><i class="fa fa-fw fa-picture-o"></i> Hình ảnh sản phẩm</a>
             </li>
             <li>
+                <a href="${pageContext.request.contextPath}/admin/feedback/"><i class="fa fa-fw fa-comments"></i> Quản lý phản hồi</a>
+            </li>
+            <li>
                 <a href="${pageContext.request.contextPath}/admin/article/"><i class="fa fa-fw fa-file-text-o"></i> Quản lý bài viết</a>
             </li>
             <li>

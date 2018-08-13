@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .formLogin()
                         .loginPage("/login")
                         .loginProcessingUrl("/authenticateUser").permitAll()
-                        .successHandler(new CustomAuthenticationSuccessHandler())
+//                        .successHandler(new CustomAuthenticationSuccessHandler())
                 .and()
                     .logout()
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

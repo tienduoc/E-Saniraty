@@ -21,6 +21,11 @@ public class FeedbackServiceImpl implements FeedbackService {
   }
 
   @Override
+  public Feedback findById(Integer id) {
+    return feedbackDAO.findById(id);
+  }
+
+  @Override
   public List<Feedback> findByUsername(String username) {
     return feedbackDAO.findByUsername(username);
   }

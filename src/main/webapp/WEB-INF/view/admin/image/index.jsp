@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="tg" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="tg" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,14 +18,10 @@
 <body>
 
 <div id="wrapper">
-
     <!-- Navigation -->
-    <jsp:include page="../../template/nav-tag__admin.jsp" />
-
+    <jsp:include page="../../template/nav-tag__admin.jsp"/>
     <div id="page-wrapper">
-
         <div class="container-fluid">
-
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">
@@ -43,15 +39,12 @@
                 </div>
             </div>
             <!-- /.row -->
-
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <h4>Danh sách ảnh sản phẩm</h4>
                     <div class="form-group">
                         <a href="${pageContext.request.contextPath}/admin/image/upload" class="btn btn-primary">Thêm ảnh</a>
                     </div>
-
-
                     <div class="table-responsive">
                         <table class="table table-hover table-striped" id="example">
                             <thead>
@@ -66,21 +59,28 @@
                             </thead>
                             <tbody>
                             <c:forEach var="img" items="${images}">
-                            <tr>
-                                <td class="text-center">${img.id}</td>
-                                <td class="text-center">
-                                    <img src="${pageContext.request.contextPath}/assets/img/products/${img.url}" alt="" style="width: 7rem; height:auto; align-self: auto;">
-                                </td>
-                                <td class="text-center">${img.productId}</td>
-                                <td>
-                                    <a href="${pageContext.request.contextPath}/assets/img/products/${img.url}">${img.url}</a>
-                                </td>
-                                <td class="text-center">${img.mainPhoto}</td>
-                                <td class="text-center">
-                                    <a href="${pageContext.request.contextPath}/admin/image/update" class="btn btn-warning btn-xs">Sửa</a>
-                                    <a href="${pageContext.request.contextPath}/admin/image/delete" class="btn btn-danger btn-xs">Xóa</a>
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td class="text-center">${img.id}</td>
+                                    <td class="text-center">
+                                        <img src="${pageContext.request.contextPath}/assets/img/products/${img.url}" alt="" style="width: 7rem; height:auto; align-self: auto;">
+                                    </td>
+                                    <td class="text-center">${img.productId}</td>
+                                    <td>
+                                        <a href="${pageContext.request.contextPath}/assets/img/products/${img.url}">${img.url}</a>
+                                    </td>
+                                    <td class="text-center">
+                                        <c:if test="${img.mainPhoto}">
+                                            Ảnh đại diện
+                                        </c:if>
+                                    </td>
+                                    <td class="text-right">
+                                        <c:if test="${!img.mainPhoto}">
+                                            <a href="${pageContext.request.contextPath}/admin/image/setMainPhoto?img_url=${img.url}&product_id=${img.productId}" class="btn btn-primary btn-xs">Ảnh đại diện</a>
+                                        </c:if>
+                                        <a href="${pageContext.request.contextPath}/admin/image/update?img_url=${img.url}" class="btn btn-warning btn-xs">Sửa</a>
+                                        <a href="${pageContext.request.contextPath}/admin/image/delete?img_url${img.url}" class="btn btn-danger btn-xs">Xóa</a>
+                                    </td>
+                                </tr>
                             </c:forEach>
                             </tbody>
                         </table>
@@ -91,7 +91,6 @@
         <!-- /.container-fluid -->
     </div>
     <!-- /#page-wrapper -->
-
 </div>
 <!-- /#wrapper -->
 
@@ -108,6 +107,7 @@
 <script>
     $(document).ready(function () {
         var table = $('#example').DataTable({
+            "order": [[1, "desc"]],
             "language": {
                 "sProcessing": "Đang xử lý...",
                 "sLengthMenu": "Xem _MENU_ mục",

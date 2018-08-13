@@ -1,11 +1,12 @@
 package com.fpt.esanitary.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-public class Account {
+public class Account implements Serializable {
   private String username;
   private String password;
   private String fullname;

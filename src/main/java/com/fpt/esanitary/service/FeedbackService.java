@@ -8,6 +8,8 @@ public interface FeedbackService {
 
   List<Feedback> findAll();
 
+  Feedback findById(Integer id);
+
   List<Feedback> findByUsername(String username);
 
   List<Feedback> findByProduct(String id);

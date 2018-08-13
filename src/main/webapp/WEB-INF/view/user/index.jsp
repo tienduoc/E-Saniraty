@@ -92,9 +92,6 @@
                             <c:out value="${title1}"/>
                             <span class="heading-primary--line"></span>
                         </h2>
-                        <div class="clear"></div>
-                        <em class="heading-primary--sub">Mô tả ngắn về danh mục sản phẩm
-                        </em>
                     </div>
                 </div>
             </div>
@@ -119,7 +116,7 @@
                                         <div class="quick-add__wrap">
                                             <ul class="quick-add__list">
                                                 <li>
-                                                    <a id="add" href="${pageContext.request.contextPath}/cart/add?id=${p.id}" title="Add to cart">
+                                                    <a href="${pageContext.request.contextPath}/cart/add?id=${p.id}" title="Add to cart">
                                                         <i class="fa fa-shopping-basket"></i>
                                                     </a>
                                                 </li>
@@ -153,9 +150,6 @@
                             <c:out value="${title2}"/>
                             <span class="heading-primary--line"></span>
                         </h2>
-                        <div class="clear"></div>
-                        <em class="heading-primary--sub">Mô tả ngắn về danh mục sản phẩm
-                        </em>
                     </div>
                 </div>
             </div>
@@ -204,37 +198,60 @@
         </div>
         </div>
     </section>
-
+    <aside class="proposal">
+        <div class="proposal__wrapper">
+            <i class="fa fa-bolt proposal__icon" id="bolt"></i>
+            <a href="getProposal.html" class="proposal__text">Xem đề xuất</a>
+        </div>
+    </aside>
 </main>
+
+<%@ include file="../template/footer-tag__user.jsp" %>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/owl.carousel.min.js"></script>
 <script>
-    //CAROUSEL
-    $('.owl-carousel').owlCarousel({
-        autoplay: true,
-        autoplayTimeout: 5000,
-        autoplayHoverPause: true,
-        loop: true,
-        margin: 100,
-        slideTransition: 'ease-in-out',
-        touchDrag: true,
-        autoWidth: true,
-        dotsContainer: '#carousel-custom-dots',
-        center: true,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 1
-            },
-            1000: {
-                items: 1
+    $(document).ready(function () {
+        $('.owl-carousel').owlCarousel({
+            autoplay: true,
+            autoplayTimeout: 5000,
+            autoplayHoverPause: true,
+            loop: true,
+            margin: 100,
+            slideTransition: 'ease-in-out',
+            touchDrag: true,
+            autoWidth: true,
+            dotsContainer: '#carousel-custom-dots',
+            center: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                1000: {
+                    items: 1
+                }
             }
-        }
-    })
+        }),
+
+            getAttent = function() {
+                var element = document.getElementById('bolt');
+
+                element.style.transform = 'translate(-20%, -50%) scale(1.5)';
+                setTimeout(function(){
+                    element.style.transform = 'translate(-20%, -50%) scale(1)';
+                }, 200);
+                setTimeout(function(){
+                    element.style.transform = 'translate(-20%, -50%) scale(1.5)';
+                }, 400);
+            };
+
+        getAttent();
+        setInterval(getAttent, 500);
+    });
 </script>
 </body>
 </html>

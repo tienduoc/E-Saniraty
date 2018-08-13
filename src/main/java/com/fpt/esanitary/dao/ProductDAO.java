@@ -12,8 +12,6 @@ public interface ProductDAO {
 
     Product findById(String id);
 
-    List<Product> getProductByCategory();
-
     List<Product> getLastestByCategory(Integer id, int amount);
 
     void create(Product product);

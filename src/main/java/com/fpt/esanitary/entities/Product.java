@@ -1,11 +1,12 @@
 package com.fpt.esanitary.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-public class Product {
+public class Product implements Serializable {
   private String id;
   private int categoryId;
   private String manufacturerId;
@@ -297,24 +298,6 @@ public class Product {
 
   @Override
   public String toString() {
-    return "Product{" +
-            "id='" + id + '\'' +
-            ", categoryId=" + categoryId +
-            ", manufacturerId='" + manufacturerId + '\'' +
-            ", name='" + name + '\'' +
-            ", costPrice=" + costPrice +
-            ", salePrice=" + salePrice +
-            ", material='" + material + '\'' +
-            ", description='" + description + '\'' +
-            ", review='" + review + '\'' +
-            ", size='" + size + '\'' +
-            ", weight=" + weight +
-            ", unitInStock=" + unitInStock +
-            ", enabled=" + enabled +
-            ", minRatio=" + minRatio +
-            ", raitoForContractor=" + raitoForContractor +
-            ", outlet=" + outlet +
-            ", outletEnable=" + outletEnable +
-            '}';
+    return String.format("%-6s | %.0f", id, salePrice);
   }
 }

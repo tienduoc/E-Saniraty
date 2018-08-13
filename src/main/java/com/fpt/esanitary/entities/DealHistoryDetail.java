@@ -1,12 +1,13 @@
 package com.fpt.esanitary.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "deal_history_detail", schema = "dbo", catalog = "esanitary")
 @IdClass(DealHistoryDetailPK.class)
-public class DealHistoryDetail {
+public class DealHistoryDetail implements Serializable {
   private String dealHistoryId;
   private String productId;
   private double originalPrice;

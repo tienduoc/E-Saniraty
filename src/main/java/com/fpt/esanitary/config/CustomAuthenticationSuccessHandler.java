@@ -16,7 +16,6 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
         User principal = (User) authentication.getPrincipal();
-        System.out.println(">>> principal " + principal.getUsername());
         boolean sysAdmin = false;
         Iterator<GrantedAuthority> grantedAuthorityIterator = principal.getAuthorities().iterator();
         while (grantedAuthorityIterator.hasNext()) {

@@ -111,26 +111,26 @@
                                         <fmt:formatNumber pattern="###" value="${product.salePrice}" var="sp"/>
                                         <form:input path="salePrice" value="${sp}" class="form-control"/>
                                     </div>
-                                    <div class="col-md-2">
-                                        <label>Ratio</label>
-                                        <form:input path="minRatio" class="form-control" name="minRatio" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label>Ratio Contractor</label>
-                                        <form:input path="raitoForContractor" class="form-control" name="minRatioForContractor" />
-                                    </div>
+                                    <%--<div class="col-md-2">--%>
+                                        <%--<label>Ratio</label>--%>
+                                        <%--<form:input path="minRatio" class="form-control" name="minRatio" />--%>
+                                    <%--</div>--%>
+                                    <%--<div class="col-md-2">--%>
+                                        <%--<label>Ratio Contractor</label>--%>
+                                        <%--<form:input path="raitoForContractor" class="form-control" name="minRatioForContractor" />--%>
+                                    <%--</div>--%>
                                     <div class="col-md-1">
                                         <label>Kích hoạt</label>
                                         <form:checkbox path="enabled" />
                                     </div>
-                                    <div class="col-md-1">
-                                        <label>Outlet</label>
-                                        <form:input path="outlet" type="number" />
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label>Outlet enable</label>
-                                        <form:checkbox path="outletEnable" />
-                                    </div>
+                                    <%--<div class="col-md-1">--%>
+                                        <%--<label>Outlet</label>--%>
+                                        <%--<form:input path="outlet" type="number" />--%>
+                                    <%--</div>--%>
+                                    <%--<div class="col-md-2">--%>
+                                        <%--<label>Outlet enable</label>--%>
+                                        <%--<form:checkbox path="outletEnable" />--%>
+                                    <%--</div>--%>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-md-12">

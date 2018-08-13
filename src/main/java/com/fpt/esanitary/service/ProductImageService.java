@@ -19,4 +19,6 @@ public interface ProductImageService {
   void add(ProductImage productImage);
 
   void delete(ProductImage productImage);
+
+  void update(ProductImage productImage);
 }

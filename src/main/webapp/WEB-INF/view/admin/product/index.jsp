@@ -5,11 +5,13 @@
   Time: 10:33 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tg" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="../../template/head-admin_tag.jsp">
@@ -67,7 +69,7 @@
                                     <td class="text-center">${p.manufacturerByManufacturerId.name}</td>
                                     <td class="text-center">${p.unitInStock}</td>
                                     <td class="text-right" id="price">
-                                        <fmt:parseNumber value="${p.salePrice}" type="number"/>
+                                        ${p.salePrice}
                                     </td>
                                     <c:choose>
                                         <c:when test="${p.enabled}">
@@ -78,8 +80,11 @@
                                         </c:otherwise>
                                     </c:choose>
                                     <td class="text-right">
-                                        <a href="${pageContext.request.contextPath}/admin/product/update?id=${p.id}" class="btn btn-warning btn-xs">Sửa</a>
-                                        <a href="${pageContext.request.contextPath}/admin/product/detail?id=${p.id}" class="btn btn-success btn-xs">Chi tiết</a>
+                                        <c:url value="" var="product_id">
+                                            <c:param name="id" value="${p.id}" />
+                                        </c:url>
+                                        <a href="${pageContext.request.contextPath}/admin/product/update${product_id}" class="btn btn-warning btn-xs">Sửa</a>
+                                        <a href="${pageContext.request.contextPath}/admin/product/detail${product_id}" class="btn btn-success btn-xs">Chi tiết</a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -100,19 +105,21 @@
 <!-- Datatables JavaScript -->
 <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
+
+
 <script>
     $(document).ready(function () {
         var table = $('#example').DataTable({
-            columnDefs: [{
-                targets: 1, // the target for this configuration, 0 it's the first column
-                render: function (data, type, row) {
-                    return data.length > 30 ?
-                        data.substr(0, 30) + '…' :
-                        data;
+            columnDefs: [
+                {
+                    targets: 1, render: function (data, type, row) {
+                        return data.length > 37 ? data.substr(0, 37) + '…' : data;
+                    }
                 },
-                targets: 5,
-                render: $.fn.dataTable.render.number(',', '.')
-            }],
+                {
+                    targets: 5, render: $.fn.dataTable.render.number(',', '.')
+                }
+            ],
             "language": {
                 "decimal": ",",
                 "thousands": ".",

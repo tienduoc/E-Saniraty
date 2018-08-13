@@ -1,13 +1,18 @@
 package com.fpt.esanitary.config;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
+import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
@@ -25,6 +30,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 @PropertySource({"classpath:database-cfg.properties", "classpath:email-cfg.properties"})
 @ComponentScan({"com.fpt.esanitary.dao", "com.fpt.esanitary.service"})
+@EnableCaching
 public class AppConfig {
 
     // variable to hold the properties
@@ -111,5 +117,18 @@ public class AppConfig {
         props.put("mail.debug", env.getProperty("spring.mail.properties.mail.debug"));
 
         return mailSender;
+    }
+
+    @Bean
+    public CacheManager cacheManager() {
+        return new EhCacheCacheManager(ehCacheCacheManager().getObject());
+    }
+
+    @Bean
+    public EhCacheManagerFactoryBean ehCacheCacheManager() {
+        EhCacheManagerFactoryBean factory = new EhCacheManagerFactoryBean();
+        factory.setConfigLocation(new ClassPathResource("ehcache.xml"));
+        factory.setShared(true);
+        return factory;
     }
 }

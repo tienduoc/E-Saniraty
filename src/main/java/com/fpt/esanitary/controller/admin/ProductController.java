@@ -63,6 +63,7 @@ public class ProductController {
                 fileDir.mkdir();
             }
             // Save file on system
+            int index = 0;
             for (MultipartFile file : files) {
                 String fileName = file.getOriginalFilename();
                 if (!fileName.isEmpty()) {
@@ -82,13 +83,18 @@ public class ProductController {
                         ProductImage productImage = new ProductImage();
                         productImage.setProductId(product.getId());
                         productImage.setUrl(file.getOriginalFilename());
-                        productImage.setMainPhoto(false);
+                        if (index == 0) {
+                            productImage.setMainPhoto(true);
+                        } else {
+                            productImage.setMainPhoto(false);
+                        }
                         productImageService.add(productImage);
                     }
                 } else {
                     model.addAttribute("msg", "Please select at least one file..");
                     return "upload";
                 }
+                index++;
             }
             model.addAttribute("msg", "Multiple files uploaded successfully.");
             return "redirect:/admin/product";
@@ -98,6 +104,7 @@ public class ProductController {
             return "admin/product/create";
         }
     }
+
     @GetMapping("update")
     public String showUpdateForm(@RequestParam("id") String id, Model model) {
         model.addAttribute("product", productService.findById(id));

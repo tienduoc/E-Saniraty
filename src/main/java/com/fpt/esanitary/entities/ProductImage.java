@@ -1,11 +1,12 @@
 package com.fpt.esanitary.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "product_image", schema = "dbo", catalog = "esanitary")
-public class ProductImage {
+public class ProductImage implements Serializable {
   private int id;
   private String productId;
   private String url;

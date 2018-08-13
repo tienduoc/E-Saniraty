@@ -1,11 +1,12 @@
 package com.fpt.esanitary.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-public class Category {
+public class Category implements Serializable {
     private int id;
     private String name;
     private Integer parentId;

@@ -1,12 +1,13 @@
 package com.fpt.esanitary.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "combo_product", schema = "dbo", catalog = "esanitary")
 @IdClass(ComboProductPK.class)
-public class ComboProduct {
+public class ComboProduct implements Serializable {
   private String comboId;
   private String productId;
   private Combo comboByComboId;

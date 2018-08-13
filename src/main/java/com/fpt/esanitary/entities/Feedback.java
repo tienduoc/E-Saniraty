@@ -1,18 +1,23 @@
 package com.fpt.esanitary.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
-public class Feedback {
+public class Feedback implements Serializable {
   private int feedbackId;
   private String username;
   private String productId;
   private String feedbackContent;
+  private Date date;
+  private boolean approve;
   private Account accountByUsername;
   private Product productByProductId;
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "FeedbackID", nullable = false)
   public int getFeedbackId() {
     return feedbackId;
@@ -52,6 +57,26 @@ public class Feedback {
     this.feedbackContent = feedbackContent;
   }
 
+  @Basic
+  @Column(name = "Date", nullable = false)
+  public Date getDate() {
+    return date;
+  }
+
+  public void setDate(Date date) {
+    this.date = date;
+  }
+
+  @Basic
+  @Column(name = "Approve", nullable = true)
+  public boolean getApprove() {
+    return approve;
+  }
+
+  public void setApprove(boolean approve) {
+    this.approve = approve;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -60,13 +85,15 @@ public class Feedback {
     return feedbackId == feedback.feedbackId &&
             Objects.equals(username, feedback.username) &&
             Objects.equals(productId, feedback.productId) &&
-            Objects.equals(feedbackContent, feedback.feedbackContent);
+            Objects.equals(feedbackContent, feedback.feedbackContent) &&
+            Objects.equals(date, feedback.date) &&
+            Objects.equals(approve, feedback.approve);
   }
 
   @Override
   public int hashCode() {
 
-    return Objects.hash(feedbackId, username, productId, feedbackContent);
+    return Objects.hash(feedbackId, username, productId, feedbackContent, date, approve);
   }
 
   @ManyToOne

@@ -1,11 +1,12 @@
 package com.fpt.esanitary.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.Objects;
 
 @Entity
-public class Manufacturer {
+public class Manufacturer implements Serializable {
   private String id;
   private String name;
   private String url;

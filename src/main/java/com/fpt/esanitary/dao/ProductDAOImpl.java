@@ -3,6 +3,7 @@ package com.fpt.esanitary.dao;
 import com.fpt.esanitary.entities.Product;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -38,12 +39,6 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<Product> getProductByCategory() {
-        Session session = sessionFactory.getCurrentSession();
-        return null;
-    }
-
-    @Override
     public List<Product> getLastestByCategory(Integer id, int amount) {
         Session session = sessionFactory.getCurrentSession();
         List<Product> products = session.createQuery("from Product where categoryId = :id and enabled = true order by id desc", Product.class)
@@ -72,7 +67,11 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public List<Product> search(String keyword) {
-        return null;
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Product where name like :keyword", Product.class)
+                .setParameter("keyword", "%" + keyword + "%");
+        List<Product> products = query.getResultList();
+        return products;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.fpt.esanitary.controller;
 
+import com.fpt.esanitary.entities.Product;
 import com.fpt.esanitary.service.CategoryService;
 import com.fpt.esanitary.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ public class BaseController {
 
     @GetMapping("/test")
     public String testForm() throws InterruptedException {
-        return "admin/order/update";
+        return "admin/feedback/index";
     }
+
 }

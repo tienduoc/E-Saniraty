@@ -22,19 +22,20 @@
                 </div>
                 <div class="col-md-8 col-sm-8 col-xs-12">
                     <div class="header__search-box">
-                        <form action="${pageContext.request.contextPath}/category?id=" class="form">
+                        <form:form action="/search" method="get" class="form">
                             <div class="form__group">
-                                <input type="text" class="form__input" placeholder="Tìm kiếm" id="search">
+                                <input type="text" name="keyword" class="form__input" placeholder="Tìm kiếm" id="search">
                             </div>
                             <button type="submit" class="form__submit">
                                 <i class="fa fa-paper-plane"></i>
                             </button>
-                        </form>
+                        </form:form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <div id="main-menu" class="header__main-menu main_header_area animated">
         <div class="container">
             <div class="row">
@@ -50,12 +51,14 @@
                                 <c:forEach var="cat0" items="${menu}">
                                     <c:if test="${cat0.parentId == null}">
                                         <li>
-                                            <a href="${pageContext.request.contextPath}/category?id=${cat0.id}">${cat0.name}</a>
+                                            <%--<a href="${pageContext.request.contextPath}/category?id=${cat0.id}">${cat0.name}</a>--%>
+                                            <a>${cat0.name}</a>
                                             <ul class="nav-dropdown">
                                                 <c:forEach var="cat1" items="${menu}">
                                                     <c:if test="${cat1.parentId == cat0.id}">
                                                         <li>
-                                                            <a href="${pageContext.request.contextPath}/category?id=${cat1.id}">${cat1.name}</a>
+                                                            <%--<a href="${pageContext.request.contextPath}/category?id=${cat1.id}">${cat1.name}</a>--%>
+                                                            <a>${cat1.name}</a>
                                                             <ul class="nav-dropdown">
                                                                 <c:forEach var="cat2" items="${menu}">
                                                                     <c:if test="${cat2.parentId == cat1.id}">
@@ -76,9 +79,12 @@
                         </div>
                     </nav>
                 </div>
+
                 <hr class="line">
+
                 <div class="col-lg-2 col-md-3 col-sm-12">
                     <ul class="e-commerces">
+
                         <li class="e-commerces__user">
                             <span class="fa fa-user"></span>
                             <div class="popup" id="popup-user">
@@ -123,10 +129,12 @@
                                 </ul>
                             </div>
                         </li>
+
                         <li class="e-commerces__cart">
                             <a>
                                 <span class="fa fa-shopping-cart"></span>
                             </a>
+
                             <div class="popup cart" id="popup-cart">
                                 <a href="" class="popup__close-button">
                                     <i class="fa fa-close"></i>
@@ -151,7 +159,7 @@
                                         <fmt:formatNumber type="number" pattern="###,###" value="${sum}"/>
                                     </span>
                                 </div>
-                                <a href="${pageContext.request.contextPath}/cart" class="button button--black">Xem giỏ
+                                <a href="${pageContext.request.contextPath}/cart" class="btn btn--dark btn-group-justified">Xem giỏ
                                     hàng
                                     <span style="float: right;">&rarr;</span>
                                 </a>

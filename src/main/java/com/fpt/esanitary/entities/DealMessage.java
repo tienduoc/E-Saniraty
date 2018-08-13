@@ -1,12 +1,13 @@
 package com.fpt.esanitary.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
 @Table(name = "deal_message", schema = "dbo", catalog = "esanitary")
-public class DealMessage {
+public class DealMessage implements Serializable {
     private int id;
     private String dealHistoryId;
     private Date time;
