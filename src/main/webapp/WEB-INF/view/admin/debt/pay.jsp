@@ -109,7 +109,7 @@
                                                     <input type="hidden" name="orderId" value="${order.id}">
                                                     <thead>
                                                     <tr>
-                                                        <th>Mã SP</th>
+                                                        <th>Mã sản phẩm</th>
                                                         <th>Tên sản phẩm</th>
                                                         <th class="text-right">Số lượng</th>
                                                         <th class="text-right">Đơn giá</th>
@@ -188,7 +188,6 @@
                                                 <div class="col-md-2">
                                                     <label>Tuỳ chọn</label>
                                                     <button type="button" class="btn btn-success btn-group-justified" id="paidAll">Trả hết</button>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -206,13 +205,10 @@
                             <a href="${pageContext.request.contextPath}/admin/debt/" class="btn btn-default">Quay lại</a>
                         </div>
                     </div>
-
-
-
                 </div>
 
                 <div class="col-md-12 col-md-offset-0">
-                    <div class="panel panel-info">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h4 class="panel-title">Lịch sử thanh toán</h4>
                         </div>
@@ -222,7 +218,7 @@
                                     <div class="col-md-2">Số phiếu</div>
                                     <div class="col-md-4">Mã hóa đơn</div>
                                     <div class="col-md-3">Ngày thanh toán</div>
-                                    <div class="col-md-3">Số tiền</div>
+                                    <div class="col-md-3 text-right">Số tiền</div>
                                 </div>
                             </strong>
                             <c:forEach var="payHistory" items="${payHistories}">
@@ -233,10 +229,8 @@
                                     <div class="col-md-3 text-right"><fmt:formatNumber value="${payHistory.paid}" pattern="###,###"/></div>
                                 </div>
                             </c:forEach>
-
                         </div>
                     </div>
-
                 </div>
 
             </div>

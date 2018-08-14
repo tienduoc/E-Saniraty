@@ -70,7 +70,7 @@
                                     </td>
                                     <td class="text-center">
                                         <c:if test="${img.mainPhoto}">
-                                            Ảnh đại diện
+                                            <img src="${pageContext.request.contextPath}/assets/img/green_tick.png" alt="">
                                         </c:if>
                                     </td>
                                     <td class="text-right">

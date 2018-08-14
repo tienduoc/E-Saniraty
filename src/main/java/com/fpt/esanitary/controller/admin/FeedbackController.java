@@ -21,7 +21,6 @@ public class FeedbackController {
     @GetMapping
     public String getAllFeedback(Model model) {
         model.addAttribute("feedbacks", feedbackService.findAll());
-        List feedbacks = feedbackService.findAll();
         return "admin/feedback/index";
     }
 

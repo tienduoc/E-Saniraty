@@ -75,8 +75,8 @@
                                         <div class="col-md-3">
                                             <label>Tình trạng</label>
                                             <form:select path="closed" style="display:block; width: 100%; height: 4rem;">
-                                                <form:option value="true">Đang xử lý</form:option>
-                                                <form:option value="false">Đóng</form:option>
+                                                <form:option value="false">Đang xử lý</form:option>
+                                                <form:option value="true">Đóng</form:option>
                                             </form:select>
                                         </div>
                                     </div>
@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Khách hàng</label>
-                                    <input type="text" class="form-control" name="manufacturer" value="Thân Văn Sử" disabled>
+                                    <input type="text" class="form-control" value="Thân Văn Sử" disabled>
                                 </div>
 
                                 <div class="form-group">

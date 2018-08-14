@@ -30,7 +30,6 @@ import java.util.Properties;
 @EnableTransactionManagement
 @PropertySource({"classpath:database-cfg.properties", "classpath:email-cfg.properties"})
 @ComponentScan({"com.fpt.esanitary.dao", "com.fpt.esanitary.service"})
-@EnableCaching
 public class AppConfig {
 
     // variable to hold the properties
@@ -117,18 +116,5 @@ public class AppConfig {
         props.put("mail.debug", env.getProperty("spring.mail.properties.mail.debug"));
 
         return mailSender;
-    }
-
-    @Bean
-    public CacheManager cacheManager() {
-        return new EhCacheCacheManager(ehCacheCacheManager().getObject());
-    }
-
-    @Bean
-    public EhCacheManagerFactoryBean ehCacheCacheManager() {
-        EhCacheManagerFactoryBean factory = new EhCacheManagerFactoryBean();
-        factory.setConfigLocation(new ClassPathResource("ehcache.xml"));
-        factory.setShared(true);
-        return factory;
     }
 }

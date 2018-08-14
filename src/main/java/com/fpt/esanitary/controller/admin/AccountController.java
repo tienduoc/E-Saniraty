@@ -48,7 +48,6 @@ public class AccountController {
     accountService.create(account);
     return "redirect:/admin/account";
     } else {
-//      todo hiển thị trùng tài khoản
       model.addAttribute("accExist", "Tài khoản bạn chọn đã được sử dụng, vui lòng chọn tài khoản khác.");
       return "admin/account/create";
     }

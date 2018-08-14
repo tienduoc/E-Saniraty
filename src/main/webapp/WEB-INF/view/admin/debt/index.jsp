@@ -85,7 +85,7 @@
                                             <td class="text-right">${acc.phone}</td>
                                             <td class="text-left">${acc.email}</td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal${i}">Chi tiết</button>
+                                                <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal${i}">Chi tiết</button>
                                             </td>
 
                                             <!-- Modal -->

@@ -10,13 +10,15 @@ public interface CategoryDAO {
 
   Category find(Integer id);
 
+  List<Category> findByParentId(Integer id);
+
   List<Category> getParent();
 
   List<Category> getChild();
 
   void create(Category category);
 
-  void delete(Category category);
+  void delete(Integer id);
 
   void update(Category category);
 

@@ -57,8 +57,7 @@
                                                 <c:forEach var="cat1" items="${menu}">
                                                     <c:if test="${cat1.parentId == cat0.id}">
                                                         <li>
-                                                            <%--<a href="${pageContext.request.contextPath}/category?id=${cat1.id}">${cat1.name}</a>--%>
-                                                            <a>${cat1.name}</a>
+                                                            <a href="${pageContext.request.contextPath}/category?id=${cat1.id}">${cat1.name}</a>
                                                             <ul class="nav-dropdown">
                                                                 <c:forEach var="cat2" items="${menu}">
                                                                     <c:if test="${cat2.parentId == cat1.id}">

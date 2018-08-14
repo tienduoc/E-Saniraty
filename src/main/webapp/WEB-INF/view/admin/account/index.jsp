@@ -9,6 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tg" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +57,6 @@
                                 <th class="text-center">Họ tên</th>
                                 <th class="text-center">Vai trò</th>
                                 <th class="text-center">Email</th>
-                                <th class="text-center">Địa chỉ</th>
                                 <th class="text-center">Điện thoại</th>
                                 <th class="text-center">Trạng thái</th>
                                 <th class="text-center">Tuỳ chọn</th>
@@ -64,32 +64,59 @@
                             </thead>
                             <tbody>
                             <c:forEach var="acc" items="${accounts}">
-                                <c:if test="${!acc.roleId.matches('AD|BO')}">
-                                <tr>
-                                    <td class="text-center">${acc.username}</td>
-                                    <td class="text-center">${acc.fullname}</td>
-                                    <td class="text-center">${acc.roleByRoleId.name}</td>
-                                    <td class="text-center">${acc.email}</td>
-                                    <td class="text-center">${acc.address}</td>
-                                    <td class="text-center">${acc.phone}</td>
-                                    <td class="text-center">
-                                        <c:choose>
-                                            <c:when test="${acc.enabled}">
-                                                <p style="color: green">Kích hoạt</p>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <p style="color: red">Đóng</p>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </td>
-                                    <td class="text-center">
-                                        <a href="${pageContext.request.contextPath}/admin/account/update?username=${acc.username}"
-                                           class="btn btn-warning btn-xs">Sửa</a>
-                                        <a href="${pageContext.request.contextPath}/admin/account/detail?username=${acc.username}"
-                                           class="btn btn-success btn-xs">Chi tiết</a>
-                                    </td>
-                                </tr>
-                                </c:if>
+                                <sec:authorize access="hasAnyAuthority('Admin')">
+                                    <c:if test="${!acc.roleId.matches('AD|BO')}">
+                                        <tr>
+                                            <td class="text-left">${acc.username}</td>
+                                            <td class="text-left">${acc.fullname}</td>
+                                            <td class="text-left">${acc.roleByRoleId.name}</td>
+                                            <td class="text-left">${acc.email}</td>
+                                            <td class="text-right">${acc.phone}</td>
+                                            <td class="text-center">
+                                                <c:choose>
+                                                    <c:when test="${acc.enabled}">
+                                                        <p style="color: green">Kích hoạt</p>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <p style="color: red">Đóng</p>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="${pageContext.request.contextPath}/admin/account/update?username=${acc.username}"
+                                                   class="btn btn-warning btn-xs">Sửa</a>
+                                                <a href="${pageContext.request.contextPath}/admin/account/detail?username=${acc.username}"
+                                                   class="btn btn-success btn-xs">Chi tiết</a>
+                                            </td>
+                                        </tr>
+                                    </c:if>
+                                </sec:authorize>
+
+                                <sec:authorize access="hasAnyAuthority('Boss')">
+                                        <tr>
+                                            <td class="text-left">${acc.username}</td>
+                                            <td class="text-left">${acc.fullname}</td>
+                                            <td class="text-left">${acc.roleByRoleId.name}</td>
+                                            <td class="text-left">${acc.email}</td>
+                                            <td class="text-right">${acc.phone}</td>
+                                            <td class="text-center">
+                                                <c:choose>
+                                                    <c:when test="${acc.enabled}">
+                                                        <p style="color: green">Kích hoạt</p>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <p style="color: red">Đóng</p>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                            <td class="text-center">
+                                                <a href="${pageContext.request.contextPath}/admin/account/update?username=${acc.username}"
+                                                   class="btn btn-warning btn-xs">Sửa</a>
+                                                <a href="${pageContext.request.contextPath}/admin/account/detail?username=${acc.username}"
+                                                   class="btn btn-success btn-xs">Chi tiết</a>
+                                            </td>
+                                        </tr>
+                                </sec:authorize>
                             </c:forEach>
                             </tbody>
                         </table>

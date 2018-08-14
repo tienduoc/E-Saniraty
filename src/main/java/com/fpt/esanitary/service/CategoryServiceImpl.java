@@ -27,6 +27,11 @@ public class CategoryServiceImpl implements CategoryService {
   }
 
   @Override
+  public List<Category> findByParentId(Integer id) {
+    return categoryDAO.findByParentId(id);
+  }
+
+  @Override
   public List<Category> getParent() {
     return categoryDAO.getParent();
   }
@@ -42,8 +47,8 @@ public class CategoryServiceImpl implements CategoryService {
   }
 
   @Override
-  public void delete(Category category) {
-    categoryDAO.delete(category);
+  public void delete(Integer id) {
+    categoryDAO.delete(id);
   }
 
   @Override

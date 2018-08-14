@@ -32,6 +32,15 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     @Override
+    public List<Category> findByParentId(Integer id) {
+        Session session = sessionFactory.getCurrentSession();
+        List<Category> categories = session.createQuery("from Category where parentId = :id")
+                .setParameter("id", id)
+                .getResultList();
+        return categories;
+    }
+
+    @Override
     public List<Category> getParent() {
         Session session = sessionFactory.getCurrentSession();
         List<Category> categories = session.createQuery("from Category where parentId = null").getResultList();
@@ -52,8 +61,9 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     @Override
-    public void delete(Category category) {
+    public void delete(Integer id) {
         Session session = sessionFactory.getCurrentSession();
+        Category category = session.load(Category.class, id);
         session.delete(category);
     }
 

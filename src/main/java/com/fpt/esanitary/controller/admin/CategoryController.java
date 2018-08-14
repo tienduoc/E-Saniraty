@@ -3,14 +3,17 @@ package com.fpt.esanitary.controller.admin;
 import com.fpt.esanitary.entities.Account;
 import com.fpt.esanitary.entities.Category;
 import com.fpt.esanitary.service.CategoryService;
+import com.fpt.esanitary.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.support.PagedListHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin/category")
@@ -19,8 +22,11 @@ public class CategoryController {
   @Autowired
   private CategoryService categoryService;
 
+  @Autowired
+  private ProductService productService;
+
   @GetMapping
-  public String getAllAccount(Model model, HttpServletRequest request){
+  public String getAllCategory(Model model, HttpServletRequest request){
     model.addAttribute("categories", categoryService.findAll());
     return "admin/category/index";
   }
@@ -41,7 +47,6 @@ public class CategoryController {
       categoryService.create(category);
       return "redirect:/admin/category";
     } else {
-//      todo hiển thị nhóm sản phẩm đã tồn tại
       model.addAttribute("catExist", "Tên nhóm sản phẩm bị trùng, vui lòng nhập lại");
       return "admin/category/create";
     }
@@ -61,8 +66,21 @@ public class CategoryController {
   }
 
   @PostMapping("update")
-  public String updateAccount(@ModelAttribute("category") Category category) {
+  public String updateCategory(@ModelAttribute("category") Category category) {
     categoryService.update(category);
+    return "redirect:/admin/category";
+  }
+
+  @GetMapping("delete")
+  public String deleteCategory(@RequestParam("id") Integer id, RedirectAttributes redirectAttributes) {
+    if (categoryService.findByParentId(id).size() == 0 && productService.findByCategory(id).size() == 0) {
+      categoryService.delete(id);
+      redirectAttributes.addFlashAttribute("result", "Đã xóa thành công");
+    } else if (categoryService.findByParentId(id).size() != 0){
+      redirectAttributes.addFlashAttribute("result", "Danh mục có chứa danh mục con, không thể xóa.");
+    } else if (productService.findByCategory(id).size() != 0){
+      redirectAttributes.addFlashAttribute("result", "Danh mục có chứa sản phẩm, không thể xóa.");
+    }
     return "redirect:/admin/category";
   }
 

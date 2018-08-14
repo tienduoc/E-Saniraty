@@ -51,7 +51,7 @@ public class ProductController {
 
     @PostMapping("/create")
     public String createProduct(@ModelAttribute("product") Product product,
-                                @RequestParam("file") MultipartFile[] files,
+                                @RequestParam(value = "file", required = false) MultipartFile[] files ,
                                 HttpServletRequest request,
                                 Model model) {
         Product extPro = productService.findById(product.getId());
@@ -63,43 +63,39 @@ public class ProductController {
                 fileDir.mkdir();
             }
             // Save file on system
-            int index = 0;
-            for (MultipartFile file : files) {
-                String fileName = file.getOriginalFilename();
-                if (!fileName.isEmpty()) {
-                    try {
-                        productImageService.findByUrl(fileName);
-                        model.addAttribute("imgExisted", "Hinh " + file.getOriginalFilename() + " đã tồn tại");
-                    } catch (Exception ex) {
+                int index = 0;
+                for (MultipartFile file : files) {
+                    String fileName = file.getOriginalFilename();
+                    if (!fileName.isEmpty() && fileName.trim() != "") {
                         try {
-                            BufferedOutputStream outputStream = new BufferedOutputStream(
-                                    new FileOutputStream(new File(dirFile, file.getOriginalFilename())));
-                            outputStream.write(file.getBytes());
-                            outputStream.flush();
-                            outputStream.close();
-                        } catch (IOException e) {
-                            e.getMessage();
+                            productImageService.findByUrl(fileName);
+                            model.addAttribute("imgExisted", "Hinh " + file.getOriginalFilename() + " đã tồn tại");
+                        } catch (Exception ex) {
+                            try {
+                                BufferedOutputStream outputStream = new BufferedOutputStream(
+                                        new FileOutputStream(new File(dirFile, file.getOriginalFilename())));
+                                outputStream.write(file.getBytes());
+                                outputStream.flush();
+                                outputStream.close();
+                            } catch (IOException e) {
+                                e.getMessage();
+                            }
+                            ProductImage productImage = new ProductImage();
+                            productImage.setProductId(product.getId());
+                            productImage.setUrl(file.getOriginalFilename());
+                            if (index == 0) {
+                                productImage.setMainPhoto(true);
+                            } else {
+                                productImage.setMainPhoto(false);
+                            }
+                            productImageService.add(productImage);
                         }
-                        ProductImage productImage = new ProductImage();
-                        productImage.setProductId(product.getId());
-                        productImage.setUrl(file.getOriginalFilename());
-                        if (index == 0) {
-                            productImage.setMainPhoto(true);
-                        } else {
-                            productImage.setMainPhoto(false);
-                        }
-                        productImageService.add(productImage);
                     }
-                } else {
-                    model.addAttribute("msg", "Please select at least one file..");
-                    return "upload";
+                    index++;
                 }
-                index++;
-            }
             model.addAttribute("msg", "Multiple files uploaded successfully.");
             return "redirect:/admin/product";
         } else {
-//            todo hiển thị MÃ sản phẩm đã tồn tại
             model.addAttribute("proIdExist", "Mã sản phẩm đã tồn tại, vui lòng nhập lại");
             return "admin/product/create";
         }

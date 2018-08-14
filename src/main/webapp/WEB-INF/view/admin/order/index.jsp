@@ -62,8 +62,8 @@
                                     <td>${o.id}</td>
                                     <td><fmt:formatDate value="${o.date}" pattern="dd-MM-yyy HH:mm"/></td>
                                     <td class="text-right">
-                                        <fmt:formatNumber var="tp" value="${o.totalPrice}" type="number" />
-                                        ${tp} đ
+                                        <fmt:formatNumber var="tp" value="${o.totalPrice}" type="number"/>
+                                            ${tp} đ
                                     </td>
                                     <td>
                                         <c:if test="${o.accountByUsername.roleByRoleId.id.equals('CU')}">
@@ -76,16 +76,18 @@
                                     <td>${o.accountByUsername.fullname}</td>
                                     <td>
                                         <c:if test="${o.closed == false}">
-                                            Mở
+                                            Đang xử lý
                                         </c:if>
                                         <c:if test="${o.closed == true}">
                                             Đóng
                                         </c:if>
                                     </td>
-                                    <td class="text-center">
+                                    <td class="text-right">
+                                        <c:if test="${!o.closed}">
+                                            <a href="${pageContext.request.contextPath}/admin/debt/pay?orderId=${o.id}" class="btn btn-primary btn-xs">Thanh toán</a>
+                                        </c:if>
                                         <a href="${pageContext.request.contextPath}/admin/order/update?orderId=${o.id}" class="btn btn-warning btn-xs">Sửa</a>
                                         <a href="${pageContext.request.contextPath}/admin/order/detail?orderId=${o.id}" class="btn btn-success btn-xs">Chi tiết</a>
-                                        <a href="${pageContext.request.contextPath}/admin/debt/pay?orderId=${o.id}" class="btn btn-primary btn-xs">Thanh toán</a>
                                     </td>
                                 </tr>
                             </c:forEach>

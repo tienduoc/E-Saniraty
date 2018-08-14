@@ -72,14 +72,18 @@
                                 </c:if>
                                 <td>${feedback.accountByUsername.fullname}</td>
                                 <td>
-                                    ${feedback.feedbackContent}
+                                        ${feedback.feedbackContent}
                                 </td>
                                 <td>
-                                    ${feedback.productId} | <fmt:formatDate value="${feedback.date}" pattern="dd/MM/yyyy HH:mm"/>
+                                        ${feedback.productId} | <fmt:formatDate value="${feedback.date}" pattern="dd/MM/yyyy HH:mm"/>
                                 </td>
-                                <td class="text-right">
-                                    <a href="${pageContext.request.contextPath}/admin/feedback/approve?id=${feedback.feedbackId}" class="badge bg-success">Chấp nhận</a>
-                                    <a href="${pageContext.request.contextPath}/admin/feedback/unapprove?id=${feedback.feedbackId}" class="badge bg-danger">Hủy</a>
+                                <td class="text-center">
+                                    <c:if test="${!feedback.approve}">
+                                        <a href="${pageContext.request.contextPath}/admin/feedback/approve?id=${feedback.feedbackId}" class="badge bg-success">Chấp nhận</a>
+                                    </c:if>
+                                    <c:if test="${feedback.approve}">
+                                        <a href="${pageContext.request.contextPath}/admin/feedback/unapprove?id=${feedback.feedbackId}" class="badge bg-danger">Hủy</a>
+                                    </c:if>
                                 </td>
                             </tr>
                             </c:forEach>
