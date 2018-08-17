@@ -86,6 +86,19 @@ public class ProductImageController {
         return "admin/image/update";
     }
 
+    @GetMapping("delete")
+    public String deleteImage(@RequestParam("img_url") String url, HttpServletRequest request) {
+        String dirFile = request.getServletContext().getRealPath("WEB-INF/assets/img/products/");
+        File file = new File(dirFile+url);
+        if (file.exists()) {
+            file.delete();
+            productImageService.delete(url);
+        } else {
+            System.out.println("File không tồn tại");
+        }
+        return "redirect:/admin/image";
+    }
+
     @GetMapping("setMainPhoto")
     public String setMainPhoto(@RequestParam("img_url") String url, @RequestParam("product_id") String id) {
         List<ProductImage> productImages = productImageService.findByProduct(id);

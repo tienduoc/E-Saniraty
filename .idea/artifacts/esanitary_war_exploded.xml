@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="esanitary:war exploded">
-    <output-path>$PROJECT_DIR$/target/esanitary-1.0-SNAPSHOT</output-path>
+    <output-path>C:/apache-tomcat-9.0.10/webapps/ROOT</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
@@ -19,9 +19,6 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.0.8.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context-support:5.0.8.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework.data:spring-data-jpa:2.0.9.RELEASE" />
-          <element id="library" level="project" name="Maven: org.springframework.data:spring-data-commons:2.0.9.RELEASE" />
-          <element id="library" level="project" name="Maven: org.aspectj:aspectjrt:1.8.13" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:5.0.7.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:5.0.7.RELEASE" />

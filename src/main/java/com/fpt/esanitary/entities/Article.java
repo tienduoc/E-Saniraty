@@ -2,7 +2,7 @@ package com.fpt.esanitary.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +15,7 @@ public class Article implements Serializable {
   private Manufacturer manufacturerByManufacturerId;
 
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "Id", nullable = false)
   public int getId() {
     return id;

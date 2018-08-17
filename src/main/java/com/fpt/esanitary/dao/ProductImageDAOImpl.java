@@ -1,5 +1,6 @@
 package com.fpt.esanitary.dao;
 
+import com.fpt.esanitary.entities.Category;
 import com.fpt.esanitary.entities.ProductImage;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -66,8 +67,12 @@ public class ProductImageDAOImpl implements ProductImageDAO {
   }
 
   @Override
-  public void delete(ProductImage productImage) {
-
+  public void delete(String url) {
+    Session session = sessionFactory.getCurrentSession();
+    ProductImage productImage = session.createQuery("from ProductImage where url = :url", ProductImage.class)
+            .setParameter("url", url)
+            .getSingleResult();
+    session.delete(productImage);
   }
 
   @Override

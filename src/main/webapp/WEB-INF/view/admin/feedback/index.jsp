@@ -75,7 +75,7 @@
                                         ${feedback.feedbackContent}
                                 </td>
                                 <td>
-                                        ${feedback.productId} | <fmt:formatDate value="${feedback.date}" pattern="dd/MM/yyyy HH:mm"/>
+                                    <a target="_blank" href="${pageContext.request.contextPath}/product/detail?id=${feedback.productId}">${feedback.productId}</a> | <fmt:formatDate value="${feedback.date}" pattern="dd/MM/yyyy HH:mm"/>
                                 </td>
                                 <td class="text-center">
                                     <c:if test="${!feedback.approve}">

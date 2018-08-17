@@ -13,37 +13,38 @@ import java.util.Collections;
 import java.util.List;
 
 @Controller
-@RequestMapping("cp")
+@RequestMapping("getProposal")
 public class ProposalController {
 
     @Autowired
     private ProductService productService;
 
     @GetMapping
+    public String showPageProposal() {
+        return "user/getProposal";
+    }
+
+    @GetMapping("/result")
     public String getProposal(@RequestParam("maxCost") Double maxCost,
-                              @RequestParam("numOfSol") Integer N,
+                              @RequestParam("cat") int[] selectedCategories,
                               Model model) {
 
-       final int[] arrDomain = {31,32,33}; // N biến, N domain (id of categories)
-       int i, j = 0;
-//       MyElement<Product> el;
+
+        final int[] arrDomain = selectedCategories; // N biến, N domain (id of categories)
+        int i, j = 0;
         Element<Product> el;
 
-       // Thiết lập 10 domain, mỗi domain có 10 phần tử
-       Domain[] D = new Domain[arrDomain.length];
-       for (i = 0; i < arrDomain.length; i++) {
-           D[i] = new Domain();
-       }
+        // Thiết lập 10 domain, mỗi domain có 10 phần tử
+        Domain[] D = new Domain[arrDomain.length];
+        for (i = 0; i < arrDomain.length; i++) {
+            D[i] = new Domain();
+        }
 
+        int numEmptyDomain = 0;
         for (j = 0; j < arrDomain.length; j++) {
             List<Product> products = productService.findByCategory(arrDomain[j]);
+            if (products.size() == 0) numEmptyDomain++;
             Collections.shuffle(products);
-//            products.sort(new Comparator<Product>() {
-//                @Override
-//                public int compare(Product o1, Product o2) {
-//                    return Double.compare(o1.getSalePrice(), o2.getSalePrice());
-//                }
-//            });
 
             for (int k = 0; k < products.size(); k++) {
                 el = new Element<>();
@@ -55,34 +56,43 @@ public class ProposalController {
             }
         }
 
-       // Thiết lập 10 biến ứng với 10 domain
-       Variable[] vars = new Variable[arrDomain.length];
-       for (i = 0; i < arrDomain.length; i++) {
-           vars[i] = new Variable();
-           vars[i].setDomain(D[i]);
-       }
+        if (numEmptyDomain == arrDomain.length) {
+            model.addAttribute("noSolution", "Không tìm thấy");
+            return "user/getProposal";
+        }
 
-       // Thiết lập bài toán
-       Problem_Min prob = new Problem_Min();
-       for (i = 0; i < arrDomain.length; i++) {
-           prob.add(vars[i]);
-       }
+        // Thiết lập 10 biến ứng với 10 domain
+        Variable[] vars = new Variable[arrDomain.length];
+        for (i = 0; i < arrDomain.length; i++) {
+            vars[i] = new Variable();
+            vars[i].setDomain(D[i]);
+        }
 
-       prob.setMaxCost(maxCost);
+        // Thiết lập bài toán
+        Problem_Min prob = new Problem_Min();
+        for (i = 0; i < arrDomain.length; i++) {
+            prob.add(vars[i]);
+        }
 
-       // Giải bái toán
-       Solver_Bactrack solver = new Solver_Bactrack(prob);
+        prob.setMaxCost(maxCost);
+
+        // Giải bái toán
+        Solver_Bactrack solver = new Solver_Bactrack(prob);
 //       solver.backtrack();
-       solver.backtrack(N);
+        solver.backtrack(1500);
 
-       // xuất kết quả
-       if (solver.isMayBeSolved() == false) {
-           System.out.println ("the problem has no solution!\n");
-           model.addAttribute("noSolution", "Không tìm thấy gợi ý phù hợp với số tiền đưa ra");
-       } else {
-           System.out.println(solver.getSoluList());
-           model.addAttribute("solutionList", solver.getSoluList());
-       }
-       return "user/proposal";
-   }
+        // xuất kết quả
+        if (solver.isMayBeSolved() == false) {
+            model.addAttribute("noSolution", "Không tìm thấy gợi ý phù hợp với số tiền đưa ra");
+        } else {
+            List<Solution> solutions = solver.getSoluList();
+            Collections.shuffle(solutions);
+            if (solutions.size() > 10) {
+                model.addAttribute("solutionList", solutions.subList(0, 10));
+            } else {
+                model.addAttribute("solutionList", solutions);
+            }
+        }
+        return "user/getProposal";
+    }
 }

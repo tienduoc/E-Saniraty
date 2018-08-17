@@ -202,7 +202,7 @@
                             <c:if test="${order.totalPaid != order.totalPrice}">
                                 <button type="button" class="btn btn-primary" id="save">Xác nhận</button>
                             </c:if>
-                            <a href="${pageContext.request.contextPath}/admin/debt/" class="btn btn-default">Quay lại</a>
+                            <button  class="btn btn-default" onclick="goBack()">Quay lại</button>
                         </div>
                     </div>
                 </div>
@@ -250,5 +250,10 @@
     $('#save').on('click', function () {
         document.getElementById('pay').submit();
     });
+</script>
+<script>
+    function goBack() {
+        window.history.go(-1);
+    }
 </script>
 </html>

@@ -51,22 +51,37 @@ public class CartController {
 
     @GetMapping(value = "add")
     public String addToCart(@RequestParam("id") String id,
+                            @RequestParam(value = "quantity", required = false) Integer qty,
                             HttpSession session,
                             RedirectAttributes redirectAttributes) {
         if (session.getAttribute("cart") == null) {
             List<Item> cart = new ArrayList<Item>();
-            cart.add(new Item(productService.findById(id), 1));
+            if (qty != null) {
+                cart.add(new Item(productService.findById(id), qty));
+            } else {
+                cart.add(new Item(productService.findById(id), 1));
+            }
             session.setAttribute("cart", cart);
             return "redirect:/cart";
         } else {
             List<Item> cart = (List<Item>) session.getAttribute("cart");
             int index = isExits(id, session);
             if (index == -1) {
-                cart.add(new Item(productService.findById(id), 1));
+                if (qty != null) {
+                    cart.add(new Item(productService.findById(id), qty));
+                } else {
+                    cart.add(new Item(productService.findById(id), 1));
+                }
             } else {
-                int quantity = cart.get(index).getQuantity();
-                quantity++;
-                cart.get(index).setQuantity(quantity);
+                if (qty != null) {
+                    int quantity = cart.get(index).getQuantity();
+                    quantity += qty;
+                    cart.get(index).setQuantity(quantity);
+                } else {
+                    int quantity = cart.get(index).getQuantity();
+                    quantity++;
+                    cart.get(index).setQuantity(quantity);
+                }
             }
             session.setAttribute("cart", cart);
         }

@@ -78,7 +78,7 @@
                                             <a href="${pageContext.request.contextPath}/admin/image/setMainPhoto?img_url=${img.url}&product_id=${img.productId}" class="btn btn-primary btn-xs">Ảnh đại diện</a>
                                         </c:if>
                                         <a href="${pageContext.request.contextPath}/admin/image/update?img_url=${img.url}" class="btn btn-warning btn-xs">Sửa</a>
-                                        <a href="${pageContext.request.contextPath}/admin/image/delete?img_url${img.url}" class="btn btn-danger btn-xs">Xóa</a>
+                                        <a href="${pageContext.request.contextPath}/admin/image/delete?img_url=${img.url}" class="btn btn-danger btn-xs">Xóa</a>
                                     </td>
                                 </tr>
                             </c:forEach>

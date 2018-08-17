@@ -18,7 +18,7 @@ public interface ProductImageService {
 
   void add(ProductImage productImage);
 
-  void delete(ProductImage productImage);
+  void delete(String url);
 
   void update(ProductImage productImage);
 }

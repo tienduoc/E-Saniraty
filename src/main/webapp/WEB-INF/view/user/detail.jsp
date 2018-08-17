@@ -34,7 +34,8 @@
         </div>
     </section>
 
-    <form:form action="/product/detail" modelAttribute="product" method="get">
+    <form action="/cart/add" id="product" method="get">
+        <input type="hidden" name="id" value="${product.id}">
         <section class="section-product">
             <div class="product-info">
                 <div class="container">
@@ -106,7 +107,7 @@
                                             <label>
                                                 <strong class="emphasize">Số lượng: </strong>
                                             </label>
-                                            <input type="number" name="qty" value="1" max="${product.unitInStock}" min="1" class="text-right">
+                                            <input type="number" name="quantity" value="1" min="1" class="text-right">
                                         </div>
 
                                     </div>
@@ -115,7 +116,7 @@
                                             <label>
                                                 <strong class="emphasize">&nbsp;</strong>
                                             </label>
-                                            <button type="submit" class="btn btn--dark btn-group-justified">Đặt hàng</button>
+                                            <input type="submit" onclick="document.getElementById('product').submit();" class="btn btn--dark btn-group-justified">Thêm vào giỏ</a>
                                         </div>
                                     </div>
                                 </div>
@@ -197,7 +198,7 @@
             </div>
 
         </section>
-    </form:form>
+    </form>
 
     <section class="section-product-leave-review">
         <div class="container">

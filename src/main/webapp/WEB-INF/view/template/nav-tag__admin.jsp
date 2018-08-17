@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
@@ -59,9 +59,11 @@
             <li>
                 <a href="${pageContext.request.contextPath}/admin/order/"><i class="fa fa-shopping-cart"></i> Quản lý đơn hàng</a>
             </li>
-            <li>
-                <a href="${pageContext.request.contextPath}/supervisor/deal/"><i class="fa fa-handshake-o"></i> Yêu cầu thương lượng</a>
-            </li>
+            <sec:authorize access="hasAnyAuthority('Boss')">
+                <li>
+                    <a href="${pageContext.request.contextPath}/supervisor/deal/"><i class="fa fa-handshake-o"></i> Yêu cầu thương lượng</a>
+                </li>
+            </sec:authorize>
             <li>
                 <a href="${pageContext.request.contextPath}/admin/debt/"><i class="fa fa-money"></i> Quản lý công nợ</a>
             </li>

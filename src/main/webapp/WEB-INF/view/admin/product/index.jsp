@@ -63,7 +63,9 @@
                             <tbody>
                             <c:forEach var="p" items="${allProduct}">
                                 <tr>
-                                    <td class="text-left">${p.id}</td>
+                                    <td class="text-left">
+                                        <a target="_blank" href="${pageContext.request.contextPath}/product/detail?id=${p.id}">${p.id}</a>
+                                    </td>
                                     <td class="text-left">${p.name}</td>
                                     <td class="text-left">${p.categoryByCategoryId.name}</td>
                                     <td class="text-center">${p.manufacturerByManufacturerId.name}</td>

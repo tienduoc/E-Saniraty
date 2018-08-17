@@ -46,8 +46,8 @@ public class ProductImageServiceImpl implements ProductImageService {
   }
 
   @Override
-  public void delete(ProductImage productImage) {
-
+  public void delete(String url) {
+    productImageDAO.delete(url);
   }
 
   @Override

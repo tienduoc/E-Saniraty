@@ -116,7 +116,7 @@
                                         <div class="quick-add__wrap">
                                             <ul class="quick-add__list">
                                                 <li>
-                                                    <a href="${pageContext.request.contextPath}/cart/add?id=${p.id}" title="Add to cart">
+                                                    <a href="${pageContext.request.contextPath}/cart/add?id=${p.id}" title="Thêm vào giỏ">
                                                         <i class="fa fa-shopping-basket"></i>
                                                     </a>
                                                 </li>
@@ -201,7 +201,7 @@
     <aside class="proposal">
         <div class="proposal__wrapper">
             <i class="fa fa-bolt proposal__icon" id="bolt"></i>
-            <a href="getProposal.html" class="proposal__text">Xem đề xuất</a>
+            <a href="${pageContext.request.contextPath}/getProposal" class="proposal__text">Xem đề xuất</a>
         </div>
     </aside>
 </main>

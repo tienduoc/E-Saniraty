@@ -20,10 +20,6 @@ public class Product implements Serializable {
   private Double weight;
   private int unitInStock;
   private boolean enabled;
-  private Double minRatio;
-  private Double raitoForContractor;
-  private Double outlet;
-  private Boolean outletEnable;
   private Collection<ComboProduct> comboProductsById;
   private Collection<DealHistoryDetail> dealHistoryDetailsById;
   private Collection<Feedback> feedbacksById;
@@ -162,46 +158,6 @@ public class Product implements Serializable {
     this.enabled = enabled;
   }
 
-  @Basic
-  @Column(name = "MinRatio", nullable = true, precision = 0)
-  public Double getMinRatio() {
-    return minRatio;
-  }
-
-  public void setMinRatio(Double minRatio) {
-    this.minRatio = minRatio;
-  }
-
-  @Basic
-  @Column(name = "RaitoForContractor", nullable = true, precision = 0)
-  public Double getRaitoForContractor() {
-    return raitoForContractor;
-  }
-
-  public void setRaitoForContractor(Double raitoForContractor) {
-    this.raitoForContractor = raitoForContractor;
-  }
-
-  @Basic
-  @Column(name = "Outlet", nullable = true, precision = 0)
-  public Double getOutlet() {
-    return outlet;
-  }
-
-  public void setOutlet(Double outlet) {
-    this.outlet = outlet;
-  }
-
-  @Basic
-  @Column(name = "OutletEnable", nullable = true)
-  public Boolean getOutletEnable() {
-    return outletEnable;
-  }
-
-  public void setOutletEnable(Boolean outletEnable) {
-    this.outletEnable = outletEnable;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -219,16 +175,12 @@ public class Product implements Serializable {
             Objects.equals(description, product.description) &&
             Objects.equals(review, product.review) &&
             Objects.equals(size, product.size) &&
-            Objects.equals(weight, product.weight) &&
-            Objects.equals(minRatio, product.minRatio) &&
-            Objects.equals(raitoForContractor, product.raitoForContractor) &&
-            Objects.equals(outlet, product.outlet) &&
-            Objects.equals(outletEnable, product.outletEnable);
+            Objects.equals(weight, product.weight);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, categoryId, manufacturerId, name, costPrice, salePrice, material, description, review, size, weight, unitInStock, enabled, minRatio, raitoForContractor, outlet, outletEnable);
+    return Objects.hash(id, categoryId, manufacturerId, name, costPrice, salePrice, material, description, review, size, weight, unitInStock, enabled);
   }
 
   @OneToMany(mappedBy = "productByProductId")
