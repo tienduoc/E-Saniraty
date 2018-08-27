@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="../../template/head-admin_tag.jsp">
-    <jsp:param name="title" value="Trang quản lý đơn hàng"/>
+    <jsp:param name="title" value="Trang quản lý đơn đặt hàng"/>
 </jsp:include>
 <body>
 <div id="wrapper">
@@ -22,21 +22,10 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Quản lý đơn hàng
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i> Tổng quan
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-archive"></i> Đơn đặt hàng
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <jsp:include page="../../template/breakcrumb__admin.jsp">
+                <jsp:param name="pageURL" value="${pageContext.request.contextPath}/admin/order/"/>
+                <jsp:param name="pageTitle" value="đơn đặt hàng"/>
+            </jsp:include>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12 col-md-12">
@@ -46,7 +35,7 @@
                             <thead>
                             <tr>
                                 <th class="text-center"></th>
-                                <th class="text-center">Mã</th>
+                                <th class="text-center">Mã hoá đơn</th>
                                 <th class="text-center">Ngày tạo</th>
                                 <th class="text-center">Tổng tiền</th>
                                 <th class="text-center">Loại khách hàng</th>
@@ -62,8 +51,12 @@
                                     <td>${o.id}</td>
                                     <td><fmt:formatDate value="${o.date}" pattern="dd-MM-yyy HH:mm"/></td>
                                     <td class="text-right">
-                                        <fmt:formatNumber var="tp" value="${o.totalPrice}" type="number"/>
-                                            ${tp} đ
+                                        <c:set var="totalPrice" value="0"/>
+                                        <c:forEach var="od" items="${o.orderDetailsById}">
+                                            <c:set var="totalPrice" value="${sum + od.unitPrice * od.quantity}"/>
+                                        </c:forEach>
+                                        <fmt:formatNumber var="tp" value="${totalPrice}" type="number" />
+                                        ${tp} đ
                                     </td>
                                     <td>
                                         <c:if test="${o.accountByUsername.roleByRoleId.id.equals('CU')}">
@@ -74,20 +67,18 @@
                                         </c:if>
                                     </td>
                                     <td>${o.accountByUsername.fullname}</td>
-                                    <td>
+                                    <td class="text-center">
                                         <c:if test="${o.closed == false}">
-                                            Đang xử lý
+                                            <i class="fa fa-hourglass-end" style="color: darkorange" data-toggle="tooltip" title="Đang chờ xử lý"></i>
                                         </c:if>
                                         <c:if test="${o.closed == true}">
-                                            Đóng
+                                            <i class="fa fa-check" style="color: green" data-toggle="tooltip" title="Đơn hàng đã đóng"></i>
                                         </c:if>
                                     </td>
-                                    <td class="text-right">
-                                        <c:if test="${!o.closed}">
-                                            <a href="${pageContext.request.contextPath}/admin/debt/pay?orderId=${o.id}" class="btn btn-primary btn-xs">Thanh toán</a>
-                                        </c:if>
-                                        <a href="${pageContext.request.contextPath}/admin/order/update?orderId=${o.id}" class="btn btn-warning btn-xs">Sửa</a>
-                                        <a href="${pageContext.request.contextPath}/admin/order/detail?orderId=${o.id}" class="btn btn-success btn-xs">Chi tiết</a>
+                                    <td class="text-center">
+                                        <a href="${pageContext.request.contextPath}/admin/order/update?orderId=${o.id}" class="btn btn-warning btn-xs" data-toggle="tooltip" title="Cập nhật"><i class="fa fa-pencil"></i></a>
+                                        <a href="${pageContext.request.contextPath}/admin/order/detail?orderId=${o.id}" class="btn btn-success btn-xs" data-toggle="tooltip" title="Chi tiết đơn hàng"><i class="fa fa-eye"></i></a>
+                                        <a href="${pageContext.request.contextPath}/admin/debt/pay?orderId=${o.id}" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Thanh toán"><i class="fa fa-money"></i></a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -103,56 +94,26 @@
     <!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<!-- Datatables JavaScript -->
-<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
-<script>
-    function format(dataSource) {
-        var html = '<table class="table table-hover" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;" id="childRowTable"><tbody>';
-        for (var key in dataSource) {
-            html += '<tr>' +
-                '<td>' + key + '</td>' +
-                '<td>' + dataSource[key] + '</td>' +
-                '</tr>';
-        }
-        return html += '</tbody></table>';
-    }
 
+<jsp:include page="../../template/script-tags__admin.jsp">
+    <jsp:param name="columnDefs" value=""/>
+</jsp:include>
+<script>
     $(document).ready(function () {
-        var table = $('#example').DataTable({
-            columnDefs: [{
-                targets: 1, // the target for this configuration, 0 it's the first column
-                render: function (data, type, row) {
-                    return data.length > 100 ?
-                        data.substr(0, 100) + '…' :
-                        data;
-                }
-            }],
-            "language": {
-                "sProcessing": "Đang xử lý...",
-                "sLengthMenu": "Xem _MENU_ mục",
-                "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
-                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-                "sInfoPostFix": "",
-                "sSearch": "Tìm:",
-                "sUrl": "",
-                "oPaginate": {
-                    "sFirst": "Đầu",
-                    "sPrevious": "Trước",
-                    "sNext": "Tiếp",
-                    "sLast": "Cuối"
-                }
+        function format(dataSource) {
+            var html = '<table class="table table-hover" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;" id="childRowTable"><tbody>';
+            for (var key in dataSource) {
+                html += '<tr>' +
+                    '<td>' + key + '</td>' +
+                    '<td>' + dataSource[key] + '</td>' +
+                    '</tr>';
             }
-        });
+            return html += '</tbody></table>';
+        }
         // Add event listener for opening and closing details
         $('#example').on('click', 'td.details-control', function () {
             var tr = $(this).closest('tr');
-            var row = table.row(tr);
+            var row = $('#example').DataTable().row(tr);
             if (row.child.isShown()) {
                 // This row is already open - close it
                 row.child.hide();

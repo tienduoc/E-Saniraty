@@ -109,9 +109,7 @@
         </div>
     </section>
 </main>
-<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
+<%@ include file="../../template/footer-tag__user.jsp" %>
 <script>
     $(window).scroll(function() {
         sessionStorage.scrollTop = $(this).scrollTop();

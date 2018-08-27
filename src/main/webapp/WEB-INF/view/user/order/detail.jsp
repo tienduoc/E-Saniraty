@@ -85,14 +85,12 @@
             </div>
             <div class="row">
                 <div class="col-md-2 col-md-offset-10">
-                    <a href="${pageContext.request.contextPath}/order" class="button button--black">Quay lại</a>
+                    <a href="${pageContext.request.contextPath}/order" class="btn btn--light btn-group-justified">Quay lại</a>
                 </div>
             </div>
         </div>
     </section>
 </main>
-<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
+<%@ include file="../../template/footer-tag__user.jsp" %>
 </body>
 </html>

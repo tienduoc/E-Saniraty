@@ -105,14 +105,14 @@
                                                     <th class="text-right">Giá ban đầu</th>
                                                     <th class="text-right">Giá công ty đưa ra</th>
                                                     <th class="text-center">
-                                                    <c:choose>
-                                                        <c:when test="${(deal.contructorApprove == false && deal.bossApprove == true)}">
-                                                            Giá mong muốn
-                                                        </c:when>
-                                                        <c:otherwise>
-                                                            Trạng thái
-                                                        </c:otherwise>
-                                                    </c:choose>
+                                                        <c:choose>
+                                                            <c:when test="${(deal.contructorApprove == false && deal.bossApprove == true)}">
+                                                                Giá mong muốn
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                Trạng thái
+                                                            </c:otherwise>
+                                                        </c:choose>
                                                     </th>
                                                 </tr>
                                                 </thead>
@@ -122,6 +122,9 @@
                                                 <form:hidden path="responseDate"/>
                                                 <form:hidden path="orderId"/>
                                                 <c:forEach var="p" items="${dealDetails}">
+                                                    <c:set var="waitResponse" value="${(p.dealHistoryByDealHistoryId.requestDate > p.dealHistoryByDealHistoryId.responseDate || p.dealHistoryByDealHistoryId.responseDate == null) && p.contractorPrice != p.newPrice}"/>
+                                                    <c:set var="approved" value="${p.contractorPrice == p.newPrice}"/>
+                                                    <c:set var="canceled" value="${deal.bossApprove == false && deal.contructorApprove == false}"/>
                                                     <tr>
                                                         <td>${p.productId}</td>
                                                         <td>${p.productByProductId.name}
@@ -141,11 +144,15 @@
                                                         </td>
                                                         <td class="text-right">
                                                             <c:choose>
-                                                                <c:when test="${p.contractorPrice == p.newPrice}">
+                                                                <c:when test="${approved}">
                                                                     Đã chấp nhận
                                                                     <input type="hidden" name="contractorPrice">
                                                                 </c:when>
-                                                                <c:when test="${(p.dealHistoryByDealHistoryId.requestDate > p.dealHistoryByDealHistoryId.responseDate || p.dealHistoryByDealHistoryId.responseDate == null) && p.contractorPrice != p.newPrice}">
+                                                                <c:when test="${canceled}">
+                                                                    Đã hủy
+                                                                    <input type="hidden" name="contractorPrice">
+                                                                </c:when>
+                                                                <c:when test="${waitResponse}">
                                                                     Chờ phản hồi
                                                                     <input type="hidden" name="contractorPrice">
                                                                 </c:when>
@@ -153,48 +160,54 @@
                                                                     <input type="number" name="contractorPrice" class="text-right">
                                                                 </c:otherwise>
                                                             </c:choose>
-                                                            <%--<c:if test="${!(deal.bossApprove == false && deal.contructorApprove == false) && !(deal.bossApprove == true && deal.contructorApprove == true)}">--%>
-                                                                <%--<input type="text" name="contractorPrice" class="text-right">--%>
-                                                            <%--</c:if>--%>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
-                                                    <%--<input type="submit" value="len">--%>
-                                                    <%--</form:form>--%>
                                                 </tbody>
                                             </table>
-
                                         </div>
                                     </div>
                                 </div>
-                                    <%-- Message này cũ nè bỏ đi--%>
-                                <div class="form-group row">
-                                    <c:if test="${!(deal.bossApprove == false && deal.contructorApprove == false) && !(deal.bossApprove == true && deal.contructorApprove == true)}">
+                                <c:if test="${!waitResponse}">
+                                    <div class="form-group row">
+                                        <c:if test="${!(deal.bossApprove == false && deal.contructorApprove == false) && !(deal.bossApprove == true && deal.contructorApprove == true)}">
+                                            <div class="col-md-6">
+                                                <label>Nhắn tin cho người bán</label>
+                                                <textarea class="form-control"
+                                                          placeholder="Nhắn tin cho người bán"></textarea>
+                                            </div>
+                                        </c:if>
                                         <div class="col-md-6">
-                                            <label>Nhắn tin cho người bán</label>
-                                            <textarea class="form-control"
-                                                      placeholder="Nhắn tin cho người bán"></textarea>
+                                            <c:forEach var="m" items="${messages}">
+                                                <fmt:formatDate value="${m.time}" var="time" pattern="dd/MM/yyyy HH:mm"/>
+                                                <i style="color: #008CBA">${m.sender}</i> (${time}): ${m.message}<br>
+                                            </c:forEach>
                                         </div>
-                                    </c:if>
-                                    <div class="col-md-6">
-                                        <c:forEach var="m" items="${messages}">
-                                            <fmt:formatDate value="${m.time}" var="time" pattern="HH:mm dd/MM/yyyy"/>
-                                            <i style="color: #008CBA">${m.sender}</i> (${time}): ${m.message}<br>
-                                        </c:forEach>
                                     </div>
-                                </div>
-
+                                </c:if>
                             </div>
                                 <%-- Buttons--%>
                             <div class="panel-footer">
                                 <div class="form-group row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-2 col-md-offset-6">
                                         <c:if test="${deal.bossApprove == true && deal.contructorApprove == false}">
-                                            <%--<input type="submit" class="btn btn-primary" value="Xác nhận">--%>
-                                            <input type="submit" class="btn btn-primary" value="Xác nhận" onclick="checkAll()">
+                                            <input type="submit" class="btn btn--dark btn-group-justified" value="Gửi">
                                         </c:if>
-                                        <input type="submit" class="btn btn-danger" value="Huỷ">
-                                        <a href="${pageContext.request.contextPath}/deal" class="btn btn-info">Quay lại</a>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <c:if test="${deal.bossApprove == true}">
+                                            <c:if test="${!(deal.bossApprove == true && deal.contructorApprove == true)}">
+                                                <a href="${pageContext.request.contextPath}/deal/confirm?orderId=${deal.orderId}&dealHistoryId=${deal.id}" class="btn btn-success">Đồng ý</a>
+                                            </c:if>
+                                        </c:if>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <c:if test="${!waitResponse && !approved && !canceled}">
+                                            <a href="${pageContext.request.contextPath}/deal/cancelDeal?orderId=${deal.orderId}&dealHistoryId=${deal.id}" class="btn btn--dark btn-group-justified">Huỷ</a>
+                                        </c:if>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="${pageContext.request.contextPath}/deal" class="btn btn--light btn-group-justified">Quay lại</a>
                                     </div>
                                 </div>
                             </div>
@@ -205,9 +218,7 @@
         </div>
     </section>
 </main>
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/main.js"></script>
+<%@ include file="../../template/footer-tag__user.jsp" %>
 
 <script type="text/javascript">
 
@@ -220,24 +231,29 @@
         }
         return result;
     }
-    function checkBlank()
-    {  return valid("input[type=number]", "^\\w+$", "Chỉ nhập từ 1 - 999");
+
+    function checkBlank() {
+        return valid("input[type=number]", "^\\w+$", "Chỉ nhập từ 1 - 999");
     }
+
     function checkRange() {
         return valid("input[type=number]", "^\\d{1,3}$", "Chỉ nhập từ 1 - 999");
     }
-    function isPositive(element, message){
+
+    function isPositive(element, message) {
         var obj = document.querySelector(element);
         var result = obj.value;
-        if(result < 1){
+        if (result < 1) {
             window.alert(message);
             obj.focus();
         }
         return result;
     }
-    function checkPositive(){
+
+    function checkPositive() {
         return isPositive('input[type=number]', 'Chỉ nhập từ 1 - 999');
     }
+
     function checkAll() {
         return checkBlank() && checkRange() && checkPositive();
 

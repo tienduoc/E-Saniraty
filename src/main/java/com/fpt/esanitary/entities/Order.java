@@ -67,7 +67,7 @@ public class Order implements Serializable {
   }
 
   @Basic
-  @Column(name = "TotalPrice", nullable = true, precision = 0)
+  @Column(name = "TotalPrice", nullable = false, precision = 0)
   public Double getTotalPrice() {
     return totalPrice;
   }

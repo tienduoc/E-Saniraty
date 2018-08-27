@@ -9,7 +9,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,24 +27,12 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Cập nhật sản phẩm
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i> Tổng quan
-                        </li>
-                        <li>
-                            <i class="fa fa-archive"></i> Sản phẩm
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-pencil"></i> Cập nhật sản phẩm
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <jsp:include page="../../template/breakcrumb--child__admin.jsp">
+                <jsp:param name="parentURL" value="${pageContext.request.contextPath}/admin/product/"/>
+                <jsp:param name="parentTitle" value="sản phẩm"/>
+                <jsp:param name="pageURL" value="${pageContext.request.contextPath}/admin/product/update"/>
+                <jsp:param name="pageTitle" value="Cập nhật sản phẩm"/>
+            </jsp:include>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12 col-md-12">

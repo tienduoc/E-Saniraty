@@ -12,7 +12,7 @@
 <html lang="en">
 
 <jsp:include page="../../template/head-admin_tag.jsp">
-    <jsp:param name="title" value="Chi tiết nhóm sản phẩm"/>
+    <jsp:param name="title" value="Chi tiết hình ảnh sản phẩm"/>
 </jsp:include>
 
 <body>
@@ -26,24 +26,12 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Trang quản lý hình ảnh
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i> Tổng quan
-                        </li>
-                        <li>
-                            <i class="fa fa-archive"></i> Hình ảnh
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-archive"></i> Chi tiết hình ảnh
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <jsp:include page="../../template/breakcrumb--child__admin.jsp">
+                <jsp:param name="parentURL" value="${pageContext.request.contextPath}/admin/image/"/>
+                <jsp:param name="parentTitle" value="hình ảnh sản phẩm"/>
+                <jsp:param name="pageURL" value="${pageContext.request.contextPath}/admin/image/detail"/>
+                <jsp:param name="pageTitle" value="Chi tiết hình ảnh sản phẩm"/>
+            </jsp:include>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
@@ -88,15 +76,8 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<!-- Datatables JavaScript -->
-<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
-
+<jsp:include page="../../template/script-tags__admin.jsp">
+    <jsp:param name="columnDefs" value=""/>
+</jsp:include>
 </body>
 </html>

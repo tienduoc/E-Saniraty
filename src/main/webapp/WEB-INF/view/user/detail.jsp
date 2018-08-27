@@ -116,7 +116,7 @@
                                             <label>
                                                 <strong class="emphasize">&nbsp;</strong>
                                             </label>
-                                            <input type="submit" onclick="document.getElementById('product').submit();" class="btn btn--dark btn-group-justified">Thêm vào giỏ</a>
+                                            <input type="submit" onclick="document.getElementById('product').submit();" class="btn btn--dark btn-group-justified" value="Thêm vào giỏ" />
                                         </div>
                                     </div>
                                 </div>
@@ -153,7 +153,9 @@
                             </h2>
                             <div class="clear"></div>
                             <p class="pagragraph">
-                                    ${product.manufacturerByManufacturerId.name}
+                                    <strong>${product.manufacturerByManufacturerId.name}</strong>
+                                        <br>
+                                ${product.manufacturerByManufacturerId.desciption}
                             </p>
                         </div>
                     </div>
@@ -200,7 +202,7 @@
         </section>
     </form>
 
-    <section class="section-product-leave-review">
+    <section class="section-product-leave-review" style="margin-bottom: 8rem;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -218,7 +220,7 @@
                             <input type="hidden" name="productId" value="${product.id}">
                             <div class="col-md-12 form-group">
                                     <textarea name="content" type="text" placeholder="Mời bạn để lại bình luận"
-                                              class="form__input form__input--area"></textarea>
+                                              class="form__input form__input--area" required></textarea>
                             </div>
 
                             <div class="col-md-3 col-xs-12 form-group">
@@ -233,10 +235,7 @@
 </main>
 
 <%@ include file="../template/footer-tag__user.jsp" %>
-<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/owl.carousel.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
+
 
 <script>
     //CAROUSEL

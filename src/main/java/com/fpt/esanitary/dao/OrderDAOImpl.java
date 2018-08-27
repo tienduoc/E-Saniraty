@@ -20,7 +20,7 @@ public class OrderDAOImpl implements OrderDAO {
     @Override
     public List<Order> findAll() {
         Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Order order by date desc", Order.class);
+        Query query = session.createQuery("from Order order by date desc");
         List<Order> orders = query.getResultList();
         return orders;
     }

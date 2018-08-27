@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="../../template/head-admin_tag.jsp">
-    <jsp:param name="title" value="Cập nhât đơn đặt hàng"/>
+    <jsp:param name="title" value="Cập nhật đơn đặt hàng"/>
 </jsp:include>
 <body>
 
@@ -25,24 +25,12 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Trang quản lý đơn đặt hàng
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i> Tổng quan
-                        </li>
-                        <li>
-                            <i class="fa fa-archive"></i> Đơn đặt hàng
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-archive"></i> Cập nhật đơn đặt hàng
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <jsp:include page="../../template/breakcrumb--child__admin.jsp">
+                <jsp:param name="parentURL" value="${pageContext.request.contextPath}/admin/order/"/>
+                <jsp:param name="parentTitle" value="đơn đặt hàng"/>
+                <jsp:param name="pageURL" value="${pageContext.request.contextPath}/admin/oder/update"/>
+                <jsp:param name="pageTitle" value="Cập nhật đơn đặt hàng"/>
+            </jsp:include>
             <!-- /.row -->
             <div class="row">
                 <div class="col-md-12 col-md-offset-0">
@@ -75,8 +63,8 @@
                                         <div class="col-md-3">
                                             <label>Tình trạng</label>
                                             <form:select path="closed" style="display:block; width: 100%; height: 4rem;">
-                                                <form:option value="false">Đang xử lý</form:option>
-                                                <form:option value="true">Đóng</form:option>
+                                                <form:option value="true">Đang xử lý</form:option>
+                                                <form:option value="false">Đóng</form:option>
                                             </form:select>
                                         </div>
                                     </div>
@@ -86,7 +74,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Khách hàng</label>
-                                    <input type="text" class="form-control" value="Thân Văn Sử" disabled>
+                                    <input type="text" class="form-control" name="manufacturer" value="Thân Văn Sử" disabled>
                                 </div>
 
                                 <div class="form-group">

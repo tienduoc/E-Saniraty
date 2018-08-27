@@ -69,7 +69,7 @@ public class Product implements Serializable {
   }
 
   @Basic
-  @Column(name = "CostPrice", nullable = true, precision = 0)
+  @Column(name = "CostPrice", nullable = false, precision = 0)
   public Double getCostPrice() {
     return costPrice;
   }

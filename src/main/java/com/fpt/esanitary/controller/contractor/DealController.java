@@ -135,15 +135,15 @@ public class DealController {
 
     @PostMapping("update")
     public String updateDeal(@RequestParam String dealHistoryId,
-                             @RequestParam String[] contractorPrice,
+                             @RequestParam Double[] contractorPrice,
                              @ModelAttribute("deal") DealHistory dealHistory) {
         List<DealHistoryDetail> dealHistoryDetails = dealHistoryDetailService.findByDealHistoryId(dealHistoryId);
         for (int i = 0; i < dealHistoryDetails.size(); i++) {
-            if (contractorPrice[i].trim() == null || contractorPrice[i].isEmpty()) {
+            if (contractorPrice.length == 0 || contractorPrice[i] == 0) {
                 double sellerPrice = dealHistoryDetails.get(i).getNewPrice();
                 dealHistoryDetails.get(i).setContractorPrice(sellerPrice);
             } else {
-                dealHistoryDetails.get(i).setContractorPrice(Double.parseDouble(contractorPrice[i]));
+                dealHistoryDetails.get(i).setContractorPrice(contractorPrice[i]);
 
             }
             dealHistoryDetailService.update(dealHistoryDetails.get(i));
@@ -158,17 +158,36 @@ public class DealController {
         return "redirect:/deal";
     }
 
-    @PostMapping("confirm")
+    @GetMapping("confirm")
     public String agreeWithDeal(@RequestParam String orderId,
-                                @ModelAttribute DealHistoryDetail[] dealHistoryDetails) {
+                                @RequestParam String dealHistoryId) {
         List<OrderDetail> orderDetails = orderDetailService.findByOrder(orderId);
-        for (int i = 0; i < dealHistoryDetails.length; i++) {
-            orderDetails.get(i).setUnitPrice(dealHistoryDetails[i].getNewPrice());
+        List<DealHistoryDetail> dealHistoryDetails = dealHistoryDetailService.findByDealHistoryId(dealHistoryId);
+        for (int i = 0; i < dealHistoryDetails.size(); i++) {
+            orderDetails.get(i).setUnitPrice(dealHistoryDetails.get(i).getNewPrice());
             orderDetailService.update(orderDetails.get(i));
         }
+        DealHistory dealHistory = dealHistoryService.findById(dealHistoryId);
+        dealHistory.setContructorApprove(true);
+        dealHistoryService.update(dealHistory);
+
         Order order = orderService.findById(orderId);
         order.setDealStatus("Success");
         orderService.update(order);
-        return "contractor/deal/detail";
+        return "redirect:/deal";
+    }
+
+    @GetMapping("cancelDeal")
+    public String cancelDeal(@RequestParam String orderId,
+                                @RequestParam String dealHistoryId) {
+        DealHistory dealHistory = dealHistoryService.findById(dealHistoryId);
+        dealHistory.setBossApprove(false);
+        dealHistory.setContructorApprove(false);
+        dealHistoryService.update(dealHistory);
+
+        Order order = orderService.findById(orderId);
+        order.setDealStatus("Cancel");
+        orderService.update(order);
+        return "redirect:/deal";
     }
 }

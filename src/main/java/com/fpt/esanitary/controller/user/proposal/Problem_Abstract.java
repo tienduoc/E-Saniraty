@@ -1,7 +1,6 @@
 /* Abstract class for a constraint problem
 Problem = set of variable + set of constraints + objective function
 Process will minimize objective function
-* @author SuTV 
 */
 package com.fpt.esanitary.controller.user.proposal;
 import java.util.ArrayList;

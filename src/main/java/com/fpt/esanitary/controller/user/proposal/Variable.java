@@ -1,7 +1,6 @@
 /* Abstract class for a variable
  * To use: Implement a sub class and the function getEvaluateValue
    must be ovverided
- * @author SuTV
  */
 package com.fpt.esanitary.controller.user.proposal;
 public class Variable {
@@ -20,5 +19,4 @@ public class Variable {
     public void setValue(Element value) {
         this.value = value;
     }
-    
 }

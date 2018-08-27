@@ -54,8 +54,5 @@
 </main>
 
 <%@ include file="../template/footer-tag__user.jsp" %>
-<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 </body>
 </html>

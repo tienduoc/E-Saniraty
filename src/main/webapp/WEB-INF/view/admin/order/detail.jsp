@@ -25,24 +25,12 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Trang quản lý đơn đặt hàng
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i> Tổng quan
-                        </li>
-                        <li>
-                            <i class="fa fa-archive"></i> Đơn đặt hàng
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-archive"></i> Chi tiết đơn đặt hàng
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <jsp:include page="../../template/breakcrumb--child__admin.jsp">
+                <jsp:param name="parentURL" value="${pageContext.request.contextPath}/admin/order/"/>
+                <jsp:param name="parentTitle" value="đơn đặt hàng"/>
+                <jsp:param name="pageURL" value="${pageContext.request.contextPath}/admin/oder/detail"/>
+                <jsp:param name="pageTitle" value="Chi tiết đơn đặt hàng"/>
+            </jsp:include>
             <!-- /.row -->
             <div class="row">
                 <div class="col-md-12 col-md-offset-0">

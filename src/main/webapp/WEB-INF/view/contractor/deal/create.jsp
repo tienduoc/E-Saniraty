@@ -16,19 +16,20 @@
 <body>
 <%@ include file="../../template/header-tag__user.jsp" %>
 <main>
-    <<section class="section-breadcrumb">
-    <div class="container">
-        <h2 class="heading-primary--title">Thương lượng</h2>
-        <ol class="breadcrumb heading-primary--sub">
-            <li>
-                <a href="#">Trang chủ</a>
-            </li>
-            <li class="active">
-                <a href="#">Chi tiết đơn hàng</a>
-            </li>
-        </ol>
-    </div>
-</section>
+    <
+    <section class="section-breadcrumb">
+        <div class="container">
+            <h2 class="heading-primary--title">Thương lượng</h2>
+            <ol class="breadcrumb heading-primary--sub">
+                <li>
+                    <a href="#">Trang chủ</a>
+                </li>
+                <li class="active">
+                    <a href="#">Chi tiết đơn hàng</a>
+                </li>
+            </ol>
+        </div>
+    </section>
     <section class="section-cart-title">
         <div class="container">
             <div class="row">
@@ -46,13 +47,13 @@
     </section>
 
     <div class="container">
-        <form:form action="/deal/create" method="post">
+        <form:form action="/deal/create" method="post" id="formDeal">
             <div class="row">
 
                 <div class="col-md-12">
 
                     <div class="table-responsive">
-                        <table class="table table-striped">
+                        <table class="table table-striped" id="tblDeal">
                             <thead class="u-bg-color-primary-light">
                             <tr class="text-uppercase">
                                 <th class="text-center">Sản phẩm</th>
@@ -75,7 +76,7 @@
                                         <fmt:formatNumber type="number" pattern="###,###" value="${od.unitPrice}"/>
                                     </td>
                                     <td class="text-right">
-                                        <input name="contractorPrice" type="text"/>
+                                        <input name="contractorPrice" type="text" class="js-input text-right"/>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -97,37 +98,31 @@
                         </div>
                         <div class="row total__row">
                             <div class="col-xs-12 total__cell">
-                                    <%--todo chuyển chữ hoa về lại bình thường--%>
-                                <textarea class="total__cell--heading" style="height: 8.3rem;" name="message" rows="4" cols="50"></textarea>
+                                <textarea style="height: 8.3rem;" name="message" rows="4" cols="50"></textarea>
                             </div>
                         </div>
                     </div>
                 </aside>
                 <!-- Deal Buttons  -->
-                <aside class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-xs-offset-0">
+                <aside class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-xs-offset-0" style="margin-bottom: 8rem;">
 
                     <div class="total">
                         <!-- Row -->
                         <div class="row total__row">
                             <div class="col-md-6 total__cell">
                                 <p class="total__cell--heading">Tổng cộng:</p>
-                                <p class="total__cell--sub">1.970.000d</p>
-                            </div>
-                        </div>
-                        <!-- Row -->
-                        <div class="row total__row">
-                            <div class="col-md-6 total__cell">
-                                <p class="total__cell--heading">Giá mong muốn:</p>
-                                <p class="total__cell--sub">1.520.000d</p>
+                                <p class="total__cell--sub">
+                                    <fmt:formatNumber value="${order.totalPrice}" pattern="###,###"/>
+                                </p>
                             </div>
                         </div>
                         <!-- Buttons -->
                         <div class="row total__row">
                             <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
-                                <a href="${pageContext.request.contextPath}/order" class="button button--light">Quay lại</a>
+                                <a href="${pageContext.request.contextPath}/order" class="btn btn--light btn-group-justified">Quay lại</a>
                             </div>
                             <div class="col-lg-6 col-lg-offset-0 col-md-6 col-md-offset-0 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
-                                <button type="submit" class="btn button--black col-xs-12">Gửi yêu cầu</button>
+                                <button type="submit" class="btn btn--dark btn-group-justified" id="sendDeal">Gửi yêu cầu</button>
                             </div>
                         </div>
                     </div>
@@ -136,9 +131,35 @@
         </form:form>
     </div>
 </main>
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/owl.carousel.min.js"></script>
-<script src="/assets/js/main.js"></script>
+<%@ include file="../../template/footer-tag__user.jsp" %>
+<script>
+    <%-- Keep vertical scrollbar position --%>
+    $(window).scroll(function () {
+        sessionStorage.scrollTop = $(this).scrollTop();
+    });
+    $(document).ready(function () {
+        if (sessionStorage.scrollTop != "undefined") {
+            $(window).scrollTop(sessionStorage.scrollTop);
+        }
+    });
+    $('.js-input').on('input', () => {
+        if ($(this).value > 999 || $(this).value < 1 || $(this).value == "" || !/[0-9.]/.test($(this)[i].value)) {
+            alert("Vui lòng nhập giá trị từ 1 - 999");
+            return false;
+        }
+    });
+    // function isValidNumber() {
+    //
+    //     return true;
+    // };
+
+
+    $('#sendDeal').on('click', function () {
+        if (isValidNumber()) {
+            document.getElementById('formDeal').submit();
+        }
+    });
+
+</script>
 </body>
 </html>

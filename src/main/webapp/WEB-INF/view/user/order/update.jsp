@@ -39,6 +39,7 @@
                             <span class="heading-secondary--line"></span>
                         </h2>
                         <div class="clear"></div>
+                            <a class="text-primary">${updateSuccess}</a>
                     </div>
                 </div>
             </div>
@@ -100,10 +101,7 @@
         </div>
     </section>
 </main>
-<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/inputValidation.js"></script>
+<%@ include file="../../template/footer-tag__user.jsp" %>
 <script>
     $(window).scroll(function () {
         sessionStorage.scrollTop = $(this).scrollTop();
@@ -122,14 +120,14 @@
                 alert("Vui lòng nhập giá trị từ 1 - 999");
                 return false;
                 break;
-            } else if (i == nodes.length -1) {
+            } else if (i == nodes.length - 1) {
                 document.getElementById('update').submit();
             }
         }
     };
 
-    $('#save').on('click',function () {
-        if(checkNumber() != false) {
+    $('#save').on('click', function () {
+        if (checkNumber() != false) {
             document.getElementById('save').submit();
         }
     });

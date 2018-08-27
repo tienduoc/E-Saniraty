@@ -104,7 +104,6 @@
                                 <td class="text-right">
                                     <strong>
                                         <fmt:formatNumber type="number" pattern="###,###" value="${sum}"/>
-                                        <input type="hidden" name="totalPrice" value="${sum}">
                                     </strong>
                                 </td>
                                 <td></td>
@@ -115,10 +114,10 @@
                 </div>
             </div>
             <div class="row">
-                <form:form action="/cart/buy" method="post" id="buy">
+                <form:form action="/cart/buy" method="post" id="buyForm">
                     <input type="hidden" name="totalPrice" value="${sum}">
                     <div class="col-md-2  col-md-offset-8">
-                        <a href="${pageContext.request.contextPath}/" class="btn btn--light btn-group-justified">Quay lại</a>
+                        <a onclick="goBack()" class="btn btn--light btn-group-justified">Quay lại</a>
                     </div>
                     <div class="col-md-2">
                         <button type="button" class="btn btn--dark btn-group-justified col-xs-12" id="buy">Đặt hàng</button>
@@ -129,9 +128,12 @@
     </section>
 </main>
 <%@ include file="../template/footer-tag__user.jsp" %>
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/main.js"></script>
+<script>
+    function goBack() {
+        window.history.go(-1);
+        return false;
+    }
+</script>
 <script>
     <%-- Keep vertical scrollbar position --%>
     $(window).scroll(function () {
@@ -158,7 +160,7 @@
 
     $('#buy').on('click',function () {
         if(checkNumber() != false) {
-            document.getElementById('buy').submit();
+            document.getElementById('buyForm').submit();
         }
     });
 

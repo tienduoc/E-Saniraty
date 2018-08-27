@@ -9,10 +9,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="tg" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
-<jsp:include page="../../template/head-admin_tag.jsp">
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/template/head-admin_tag.jsp">
     <jsp:param name="title" value="Trang quản lý bài viết"/>
 </jsp:include>
 
@@ -20,22 +21,14 @@
 
 <div id="wrapper">
     <!-- Navigation -->
-    <jsp:include page="../../template/nav-tag__admin.jsp" />
+    <jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/template/nav-tag__admin.jsp"/>
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Trang quản lý bài viết
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li class="active">
-                            <i class="fa fa-dashboard"></i> Bài viết
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/template/breakcrumb__admin.jsp">
+                <jsp:param name="pageURL" value="${pageContext.request.contextPath}/admin/article/"/>
+                <jsp:param name="pageTitle" value="bài viết"/>
+            </jsp:include>
             <!-- /.row -->
 
             <div class="row">
@@ -59,18 +52,20 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td class="text-center">1</td>
-                                <td class="text-center">Bồn cầu caesar</td>
-                                <td class="text-center">12/03/2018</td>
-                                <td class="text-center"><a href="http://www.caesar.com.vn/vi/Introduce/Gioithieu">http://www.caesar.com.vn/vi/Introduce/Gioithieu</a></td>
-                                <td class="text-center">Caesar</td>
-                                <td class="text-center">
-                                    <a href="${pageContext.request.contextPath}/admin/article/update" class="btn btn-warning btn-xs">Sửa</a>
-                                    <a href="${pageContext.request.contextPath}/admin/article/detail" class="btn btn-success btn-xs">Chi tiết</a>
-                                </td>
-                            </tr>
-
+                            <c:forEach var="article" items="${articles}">
+                                <tr>
+                                    <td class="text-center">${article.id}</td>
+                                    <td class="text-center">${article.title}</td>
+                                    <td class="text-center">
+                                        <fmt:formatDate value="${article.date}" pattern="dd/MM/yyyy"/>
+                                    </td>
+                                    <td class="text-center"><a href="${article.aricleUrl}">${article.aricleUrl}</a></td>
+                                    <td class="text-center">${article.manufacturerByManufacturerId.name}</td>
+                                    <td class="text-center">
+                                        <a href="${pageContext.request.contextPath}/admin/article/update" class="btn btn-warning btn-xs">Sửa</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -83,48 +78,18 @@
 </div>
 <!-- /#wrapper -->
 
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-<!-- Datatables JavaScript -->
-<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
-
-<script>
-    $(document).ready(function () {
-        var table = $('#example').DataTable({
-            columnDefs: [ {
-                targets: 1, // the target for this configuration, 0 it's the first column
-                render: function ( data, type, row ) {
-                    return data.length > 30 ?
-                        data.substr( 0, 30 ) +'…' :
-                        data;
-                }
-            } ],
-            "language": {
-                "sProcessing": "Đang xử lý...",
-                "sLengthMenu": "Xem _MENU_ mục",
-                "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
-                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-                "sInfoPostFix": "",
-                "sSearch": "Tìm:",
-                "sUrl": "",
-                "oPaginate": {
-                    "sFirst": "Đầu",
-                    "sPrevious": "Trước",
-                    "sNext": "Tiếp",
-                    "sLast": "Cuối"
-                }
-            }
-        });
-    });
-
-
-</script>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/template/script-tags__admin.jsp">
+    <jsp:param name="columnDefs" value="
+        columnDefs: [
+            { width: '10px', targets: 0 },
+            { width: '30px', targets: 2 },
+            { width: '50px', targets: 3 },
+            { width: '10px', targets: 6 },
+            { width: '40px', targets: 7 }
+         ],
+         fixedColumns: true,
+    "/>
+</jsp:include>
 
 </body>
 

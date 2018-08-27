@@ -40,7 +40,7 @@ public class Account implements Serializable {
   }
 
   @Basic
-  @Column(name = "Fullname", nullable = true, length = 2147483647)
+  @Column(name = "Fullname", nullable = false, length = 2147483647)
   public String getFullname() {
     return fullname;
   }
@@ -50,7 +50,7 @@ public class Account implements Serializable {
   }
 
   @Basic
-  @Column(name = "Phone", nullable = true, length = 15)
+  @Column(name = "Phone", nullable = false, length = 15)
   public String getPhone() {
     return phone;
   }
@@ -60,7 +60,7 @@ public class Account implements Serializable {
   }
 
   @Basic
-  @Column(name = "Email", nullable = true, length = 2147483647)
+  @Column(name = "Email", nullable = false, length = 2147483647)
   public String getEmail() {
     return email;
   }
@@ -70,7 +70,7 @@ public class Account implements Serializable {
   }
 
   @Basic
-  @Column(name = "Address", nullable = true, length = 2147483647)
+  @Column(name = "Address", nullable = false, length = 2147483647)
   public String getAddress() {
     return address;
   }

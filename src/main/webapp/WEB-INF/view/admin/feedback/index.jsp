@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="../../template/head-admin_tag.jsp">
-    <jsp:param name="title" value="Trang quản lý danh mục sản phẩm"/>
+    <jsp:param name="title" value="Trang quản lý phản hồi"/>
 </jsp:include>
 
 <body>
@@ -29,21 +29,10 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Trang quản lý bình luận
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i> Tổng quan
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-archive"></i> bình luận
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <jsp:include page="../../template/breakcrumb__admin.jsp">
+                <jsp:param name="pageURL" value="${pageContext.request.contextPath}/admin/feedback/"/>
+                <jsp:param name="pageTitle" value="phản hồi"/>
+            </jsp:include>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12 col-md-12">
@@ -51,38 +40,36 @@
                         <table class="table table-hover table-striped" id="example">
                             <thead>
                             <tr>
-                                <th class="col-md-1 text-center">Trạng thái</th>
-                                <th class="col-md-2 text-center">Tên</th>
-                                <th class="col-md-5 text-center">Nội dung</th>
-                                <th class="col-md-2 text-center">Mã sản phẩm <br> Ngày đăng</th>
-                                <th class="col-md-2 text-center">Tùy chọn</th>
+
+                                <th class="text-center">Khách hàng</th>
+                                <th class="text-center">Nội dung nhận xét</th>
+                                <th class="text-center">Mã sản phẩm</th>
+                                <th class="text-center">Ngày đăng</th>
+                                <th class="text-center">Trạng thái</th>
+                                <th class="text-center">Tùy chọn</th>
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach var="feedback" items="${feedbacks}">
                             <tr>
-                                <c:if test="${feedback.approve}">
-                                    <td>Đã duyệt</td>
-                                </c:if>
-                                <c:if test="${!feedback.approve}">
-                                    <td>Đã hủy</td>
-                                </c:if>
-                                <c:if test="${feedback.approve == null}">
-                                    <td>Mới</td>
-                                </c:if>
                                 <td>${feedback.accountByUsername.fullname}</td>
+                                <td>${feedback.feedbackContent}</td>
                                 <td>
-                                        ${feedback.feedbackContent}
+                                    <a target="_blank" href="${pageContext.request.contextPath}/product/detail?id=${feedback.productId}">${feedback.productId}</a>
                                 </td>
-                                <td>
-                                    <a target="_blank" href="${pageContext.request.contextPath}/product/detail?id=${feedback.productId}">${feedback.productId}</a> | <fmt:formatDate value="${feedback.date}" pattern="dd/MM/yyyy HH:mm"/>
+                                <td><fmt:formatDate value="${feedback.date}" pattern="dd/MM/yyyy HH:mm"/></td>
+                                <td class="text-center">
+                                    <c:if test="${feedback.approve}"><i class="fa fa-eye" style="color: green" data-toggle="tooltip" title="Hiển thị"></i></c:if>
+                                    <c:if test="${!feedback.approve}"><i class="fa fa-eye-slash" style="color: red" data-toggle="tooltip" title="Ẩn"></i></c:if>
+                                    <c:if test="${feedback.approve == null}">Mới</c:if>
                                 </td>
                                 <td class="text-center">
                                     <c:if test="${!feedback.approve}">
-                                        <a href="${pageContext.request.contextPath}/admin/feedback/approve?id=${feedback.feedbackId}" class="badge bg-success">Chấp nhận</a>
+                                        <a href="${pageContext.request.contextPath}/admin/feedback/approve?id=${feedback.feedbackId}" class="btn btn-success btn-xs" data-toggle="tooltip" title="Đồng ý hiển thị"><i class="fa fa-check"></i></a>
+
                                     </c:if>
                                     <c:if test="${feedback.approve}">
-                                        <a href="${pageContext.request.contextPath}/admin/feedback/unapprove?id=${feedback.feedbackId}" class="badge bg-danger">Hủy</a>
+                                        <a href="${pageContext.request.contextPath}/admin/feedback/unapprove?id=${feedback.feedbackId}" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Không hiển thị"><i class="fa fa-eye-slash"></i></a>
                                     </c:if>
                                 </td>
                             </tr>
@@ -97,47 +84,8 @@
 
     </div>
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-
-    <!-- Datatables JavaScript -->
-    <script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
-    <script>
-
-        $(document).ready(function () {
-            var table = $('#example').DataTable({
-                'language': {
-                    "sProcessing": "Đang xử lý...",
-                    "sLengthMenu": "Xem _MENU_ mục",
-                    "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
-                    "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-                    "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-                    "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-                    "sInfoPostFix": "",
-                    "sSearch": "Tìm:",
-                    "sUrl": "",
-                    "oPaginate": {
-                        "sFirst": "Đầu",
-                        "sPrevious": "Trước",
-                        "sNext": "Tiếp",
-                        "sLast": "Cuối"
-                    }
-                },
-                'columnDefs': [
-                    {
-                        "targets": 2,
-                        render: $.fn.dataTable.render.number(',', '.')
-                    }]
-            });
-        });
-
-
-    </script>
+    <jsp:include page="../../template/script-tags__admin.jsp">
+        <jsp:param name="columnDefs" value=""/>
+    </jsp:include>
 </body>
 </html>

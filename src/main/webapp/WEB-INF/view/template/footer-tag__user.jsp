@@ -50,3 +50,10 @@
         </div>
     </div>
 </footer>
+<script src="${pageContext.request.contextPath}../assets/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}../assets/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}../assets/js/owl.carousel.min.js"></script>
+<script src="${pageContext.request.contextPath}../assets/js/main.js"></script>
+<script src="${pageContext.request.contextPath}../assets/js/myValidation.js"></script>
+<script src="${pageContext.request.contextPath}../assets/js/jquery.validate.js"></script>
+<script src="${pageContext.request.contextPath}../assets/js/messages_vi.js"></script>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="esanitary@localhost">
-  <database-model serializer="dbm" rdbms="MSSQL" format-version="4.9">
+  <database-model serializer="dbm" rdbms="MSSQL" format-version="4.11">
     <root id="1">
       <ServerVersion>14.0.100</ServerVersion>
       <ServerType>standalone</ServerType>
@@ -167,6 +167,7 @@
     </table>
     <routine id="40" parent="10" name="fn_diagramobjects">
       <ObjectId>1877581727</ObjectId>
+      <SourceTextLength>1653</SourceTextLength>
       <CreatedTimestamp>2018-06-23.02:21:06.623</CreatedTimestamp>
       <ModifiedTimestamp>2018-06-23.02:21:06.623</ModifiedTimestamp>
       <RoutineKind>function</RoutineKind>
@@ -174,6 +175,7 @@
     </routine>
     <routine id="41" parent="10" name="sp_alterdiagram">
       <ObjectId>1845581613</ObjectId>
+      <SourceTextLength>1507</SourceTextLength>
       <CreatedTimestamp>2018-06-23.02:21:06.610</CreatedTimestamp>
       <ModifiedTimestamp>2018-06-23.02:21:06.610</ModifiedTimestamp>
       <RoutineKind>procedure</RoutineKind>
@@ -181,6 +183,7 @@
     </routine>
     <routine id="42" parent="10" name="sp_creatediagram">
       <ObjectId>1813581499</ObjectId>
+      <SourceTextLength>1229</SourceTextLength>
       <CreatedTimestamp>2018-06-23.02:21:06.603</CreatedTimestamp>
       <ModifiedTimestamp>2018-06-23.02:21:06.603</ModifiedTimestamp>
       <RoutineKind>procedure</RoutineKind>
@@ -188,6 +191,7 @@
     </routine>
     <routine id="43" parent="10" name="sp_dropdiagram">
       <ObjectId>1861581670</ObjectId>
+      <SourceTextLength>902</SourceTextLength>
       <CreatedTimestamp>2018-06-23.02:21:06.620</CreatedTimestamp>
       <ModifiedTimestamp>2018-06-23.02:21:06.620</ModifiedTimestamp>
       <RoutineKind>procedure</RoutineKind>
@@ -195,6 +199,7 @@
     </routine>
     <routine id="44" parent="10" name="sp_helpdiagramdefinition">
       <ObjectId>1797581442</ObjectId>
+      <SourceTextLength>927</SourceTextLength>
       <CreatedTimestamp>2018-06-23.02:21:06.600</CreatedTimestamp>
       <ModifiedTimestamp>2018-06-23.02:21:06.600</ModifiedTimestamp>
       <RoutineKind>procedure</RoutineKind>
@@ -202,6 +207,7 @@
     </routine>
     <routine id="45" parent="10" name="sp_helpdiagrams">
       <ObjectId>1781581385</ObjectId>
+      <SourceTextLength>664</SourceTextLength>
       <CreatedTimestamp>2018-06-23.02:21:06.570</CreatedTimestamp>
       <ModifiedTimestamp>2018-06-23.02:21:06.570</ModifiedTimestamp>
       <RoutineKind>procedure</RoutineKind>
@@ -209,6 +215,7 @@
     </routine>
     <routine id="46" parent="10" name="sp_renamediagram">
       <ObjectId>1829581556</ObjectId>
+      <SourceTextLength>1727</SourceTextLength>
       <CreatedTimestamp>2018-06-23.02:21:06.607</CreatedTimestamp>
       <ModifiedTimestamp>2018-06-23.02:21:06.607</ModifiedTimestamp>
       <RoutineKind>procedure</RoutineKind>
@@ -216,6 +223,7 @@
     </routine>
     <routine id="47" parent="10" name="sp_upgraddiagrams">
       <ObjectId>1717581157</ObjectId>
+      <SourceTextLength>1469</SourceTextLength>
       <CreatedTimestamp>2018-06-23.02:21:06.563</CreatedTimestamp>
       <ModifiedTimestamp>2018-06-23.02:21:06.563</ModifiedTimestamp>
       <RoutineKind>procedure</RoutineKind>

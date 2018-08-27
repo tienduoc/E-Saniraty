@@ -1,8 +1,4 @@
 /* Class for a solver - Lớp mô tả cho bộ giải
- * @author SuTV
-* To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
  */
 package com.fpt.esanitary.controller.user.proposal;
 
@@ -91,7 +87,7 @@ public class Solver_Bactrack {
         for (Variable var: prob){
             cost += var.getDomain().get(0).cost;
         }
-//        mayBeSolved = cost <= prob.maxCost;
+        mayBeSolved = cost <= prob.maxCost;
         return mayBeSolved;
     }
 
@@ -108,12 +104,6 @@ public class Solver_Bactrack {
     }
 
     public Solutions getSoluList() {
-//        soluList.sort(new Comparator<Solution>() {
-//            @Override
-//            public int compare(Solution o1, Solution o2) {
-//                return Double.compare(o1.evaluatedValue, o2.evaluatedValue);
-//            }
-//        });
         Collections.shuffle(soluList);
         return soluList;
     }

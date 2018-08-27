@@ -45,7 +45,7 @@
                     </div>
                     <p class="text-center" style="font-size:20px;color:#5C5C5C;">Không có sản phẩm nào trong giỏ hàng của bạn.</p>
                     <br><br>
-                    <a href="${pageContext.request.contextPath}/" class="button button--black">Tiếp tục mua hàng</a>
+                    <a href="${pageContext.request.contextPath}/" class="btn btn--dark">Tiếp tục mua hàng</a>
                     <br><br>
                 </aside>
             </div>
@@ -54,8 +54,5 @@
     </section>
 </main>
 <%@ include file="../template/footer-tag__user.jsp" %>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -25,24 +25,12 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Chi tiết sản phẩm
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i> Tổng quan
-                        </li>
-                        <li>
-                            <i class="fa fa-archive"></i> Sản phẩm
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-list"></i> Chi tiết sản phẩm
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <jsp:include page="../../template/breakcrumb--child__admin.jsp">
+                <jsp:param name="parentURL" value="${pageContext.request.contextPath}/admin/product/"/>
+                <jsp:param name="parentTitle" value="sản phẩm"/>
+                <jsp:param name="pageURL" value="${pageContext.request.contextPath}/admin/product/detail"/>
+                <jsp:param name="pageTitle" value="Chi tiết sản phẩm"/>
+            </jsp:include>
             <!-- /.row -->
 
             <div class="row">
@@ -97,33 +85,16 @@
                                     <form:input class="form-control" value="${sp}" path="salePrice" disabled="true"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>Min ratio</label>
-                                    <form:input path="minRatio" class="form-control" disabled="true"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Ratio Contractor</label>
-                                    <form:input path="raitoForContractor" class="form-control" disabled="true"/>
-                                </div>
-                                <div class="form-group">
                                     <label>Tình trạng</label>
                                     <form:input path="enabled" class="form-control" disabled="true"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>Outlet</label>
-                                    <form:input path="outlet" class="form-control" disabled="true"/>
+                                    <label>Mô tả</label>
+                                    <form:textarea path="description" class="form-control" rows="6" disabled="true"/>
                                 </div>
                                 <div class="form-group">
-                                    <label>Outlet enable</label>
-                                    <form:input path="outletEnable" class="form-control" disabled="true"/>
-                                </div>
-
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <form:textarea path="description" class="form-control" disabled="true"/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Review</label>
-                                    <form:textarea path="review" class="form-control" rows="5" disabled="true"/>
+                                    <label>Giới thiệu sản phẩm</label>
+                                    <form:textarea path="review" class="form-control" rows="6" disabled="true"/>
                                 </div>
                             </form:form>
                         </div>
@@ -178,9 +149,8 @@
             }
         });
     });
-
-
 </script>
-
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=rfoicmvrd1t2oqkkhsvwn39ekcbk2o0dt0slvklxbrdrva1j"></script>
+<script>tinymce.init({ selector:'textarea' });</script>
 </body>
 </html>

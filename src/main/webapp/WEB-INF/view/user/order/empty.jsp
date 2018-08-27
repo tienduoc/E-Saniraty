@@ -59,7 +59,7 @@
                     </div>
                     <p class="text-center" style="font-size:20px;color:#5C5C5C;">Lịch sử đơn hàng trống.Vui lòng thực hiện lại.</p>
                     <br><br>
-                    <a href="${pageContext.request.contextPath}/" class="button button--black">Tiếp tục mua hàng</a>
+                    <a href="${pageContext.request.contextPath}/" class="btn btn--dark">Tiếp tục mua hàng</a>
                     <br><br>
                 </aside>
             </div>
@@ -67,8 +67,6 @@
         </div>
     </section>
 </main>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/main.js"></script>
+<%@ include file="../../template/footer-tag__user.jsp" %>
 </body>
 </html>

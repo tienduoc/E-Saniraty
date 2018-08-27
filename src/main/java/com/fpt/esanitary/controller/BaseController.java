@@ -1,6 +1,5 @@
 package com.fpt.esanitary.controller;
 
-import com.fpt.esanitary.entities.Product;
 import com.fpt.esanitary.service.CategoryService;
 import com.fpt.esanitary.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +14,6 @@ public class BaseController {
     @Autowired
     private CategoryService categoryService;
 
-    @Autowired
-    private MailService mailService;
-
     @RequestMapping("*")
     public void menu(Model model) {
         model.addAttribute("menu", categoryService.findAll());
@@ -31,11 +27,6 @@ public class BaseController {
     @GetMapping("/thanks")
     public String showThanksPage() {
         return "user/thanks";
-    }
-
-    @GetMapping("/test")
-    public String testForm() throws InterruptedException {
-        return "admin/feedback/index";
     }
 
 }

@@ -13,6 +13,7 @@
     <jsp:param name="title" value="Đăng ký" />
 </jsp:include>
 <body>
+<%@ include file="../template/header-tag__user.jsp" %>
 <main>
     <section class="section-register">
         <div class="container">
@@ -51,7 +52,7 @@
                             <input type="text" name="phone" class="form__input" placeholder="Điện thoại">
                         </p>
                         <p style="padding-top: 1rem;">
-                            <input type="submit" value="Đăng ký" name="register" class="btn button--black col-md-12" onsubmit="return valid.Apply()">
+                            <input type="submit" value="Đăng ký" name="register" class="btn btn--dark col-md-12 btn-group-justified" onsubmit="return valid.Apply()">
                         </p>
                         <p class="pull-right" style="padding-top: 20px;">
                             <a href="${pageContext.request.contextPath}/login">Đăng nhập</a> |
@@ -66,13 +67,7 @@
 
 </main>
 
-<script type="text/javascript" src="/assets/js/jquery.min.js"></script>
-<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
-
-<script type="text/javascript" src="/assets/js/jquery.validate.js"></script>
-<script type="text/javascript" src="/assets/js/messages_vi.js"></script>
-<script type="text/javascript" src="/assets/js/main.js"></script>
-<script type="text/javascript" src="/assets/js/myValidation.js"></script>
+<%@ include file="../template/footer-tag__user.jsp" %>
 </body>
 
 </html>

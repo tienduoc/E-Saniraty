@@ -15,6 +15,7 @@
 </jsp:include>
 
 <body>
+<%@ include file="../template/header-tag__user.jsp" %>
 <main>
     <div class="container">
         <div class="row text-center">
@@ -42,9 +43,7 @@
     </div>
 </main>
 
-<script src="/assets/js/jquery.min.js"></script>
-<script src="/assets/js/bootstrap.min.js"></script>
-<script src="/assets/js/main.js"></script>
+<%@ include file="../template/footer-tag__user.jsp" %>
 </body>
 
 </html>

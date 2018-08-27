@@ -9,7 +9,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="${pageContext.request.contextPath}/">THE SANI</a>
+        <a target="_blank" class="navbar-brand" href="${pageContext.request.contextPath}/">THE SANI</a>
     </div>
     <!-- Top Menu Items -->
     <ul class="nav navbar-right top-nav">

@@ -26,24 +26,12 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Bài viết
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i> Tổng quan
-                        </li>
-                        <li>
-                            <i class="fa fa-archive"></i> Bài viết
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-pencil"></i> Cập nhật bài viết
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <jsp:include page="../../template/breakcrumb--child__admin.jsp">
+                <jsp:param name="parentURL" value="${pageContext.request.contextPath}/admin/article/"/>
+                <jsp:param name="parentTitle" value="bài viết"/>
+                <jsp:param name="pageURL" value="${pageContext.request.contextPath}/admin/article/update"/>
+                <jsp:param name="pageTitle" value="Cập nhật bài viết"/>
+            </jsp:include>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">

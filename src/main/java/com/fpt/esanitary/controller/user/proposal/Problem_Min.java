@@ -1,6 +1,5 @@
 /* Class for a problem minimizing the objective function
 Bài toán tối thiểu hóa hàm mục tiêu
-* @author SuTV 
 */
 package com.fpt.esanitary.controller.user.proposal;
 // It is a subclass of array of variable

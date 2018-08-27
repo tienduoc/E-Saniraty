@@ -60,7 +60,6 @@ public class DebtController {
                                     @RequestParam String orderId) {
         payHistory.setOrderId(orderId);
         payHistory.setDate(new Date());
-        System.out.println(payHistory);
         payHistoryService.save(payHistory);
         Order order = orderService.findById(payHistory.getOrderId());
         if (order.getTotalPaid() == null) {

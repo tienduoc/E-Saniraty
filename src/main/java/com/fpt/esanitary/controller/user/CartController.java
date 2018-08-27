@@ -54,36 +54,40 @@ public class CartController {
                             @RequestParam(value = "quantity", required = false) Integer qty,
                             HttpSession session,
                             RedirectAttributes redirectAttributes) {
-        if (session.getAttribute("cart") == null) {
-            List<Item> cart = new ArrayList<Item>();
-            if (qty != null) {
-                cart.add(new Item(productService.findById(id), qty));
-            } else {
-                cart.add(new Item(productService.findById(id), 1));
-            }
-            session.setAttribute("cart", cart);
-            return "redirect:/cart";
-        } else {
-            List<Item> cart = (List<Item>) session.getAttribute("cart");
-            int index = isExits(id, session);
-            if (index == -1) {
+        try {
+            if (session.getAttribute("cart") == null) {
+                List<Item> cart = new ArrayList<Item>();
                 if (qty != null) {
                     cart.add(new Item(productService.findById(id), qty));
                 } else {
                     cart.add(new Item(productService.findById(id), 1));
                 }
+                session.setAttribute("cart", cart);
+                return "redirect:/cart";
             } else {
-                if (qty != null) {
-                    int quantity = cart.get(index).getQuantity();
-                    quantity += qty;
-                    cart.get(index).setQuantity(quantity);
+                List<Item> cart = (List<Item>) session.getAttribute("cart");
+                int index = isExits(id, session);
+                if (index == -1) {
+                    if (qty != null) {
+                        cart.add(new Item(productService.findById(id), qty));
+                    } else {
+                        cart.add(new Item(productService.findById(id), 1));
+                    }
                 } else {
-                    int quantity = cart.get(index).getQuantity();
-                    quantity++;
-                    cart.get(index).setQuantity(quantity);
+                    if (qty != null) {
+                        int quantity = cart.get(index).getQuantity();
+                        quantity += qty;
+                        cart.get(index).setQuantity(quantity);
+                    } else {
+                        int quantity = cart.get(index).getQuantity();
+                        quantity++;
+                        cart.get(index).setQuantity(quantity);
+                    }
                 }
+                session.setAttribute("cart", cart);
             }
-            session.setAttribute("cart", cart);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return "redirect:/cart";
     }
@@ -94,7 +98,7 @@ public class CartController {
                              RedirectAttributes redirectAttributes) {
         List<Item> cart = (List<Item>) session.getAttribute("cart");
         for (int i = 0; i < cart.size(); i++) {
-                cart.get(i).setQuantity(Integer.parseInt(quantity[i]));
+            cart.get(i).setQuantity(Integer.parseInt(quantity[i]));
         }
         session.setAttribute("cart", cart);
         return "redirect:/cart";
@@ -102,15 +106,19 @@ public class CartController {
 
     @GetMapping("remove")
     public String removeItemInCart(@RequestParam String id, HttpSession session, Model model) {
-        List<Item> cart = (List<Item>) session.getAttribute("cart");
-        int index = isExits(id, session);
-        if (id.equals(cart.get(index).getProduct().getId())) {
-            cart.remove(index);
-            session.setAttribute("cart", cart);
-            if (cart.size() < 1) {
-                session.removeAttribute("cart");
-                return "user/cartEmpty";
+        try {
+            List<Item> cart = (List<Item>) session.getAttribute("cart");
+            int index = isExits(id, session);
+            if (id.equals(cart.get(index).getProduct().getId())) {
+                cart.remove(index);
+                session.setAttribute("cart", cart);
+                if (cart.size() < 1) {
+                    session.removeAttribute("cart");
+                    return "user/cartEmpty";
+                }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return "redirect:/cart";
     }
@@ -126,7 +134,7 @@ public class CartController {
     }
 
     @PostMapping("buy")
-    public String buy(@RequestParam Double totalPrice,
+    public String buy(@RequestParam("totalPrice") Double totalPrice,
                       HttpSession session,
                       Model model,
                       RedirectAttributes redirectAttributes) {
@@ -142,36 +150,35 @@ public class CartController {
             model.addAttribute("msg", "Giỏ hàng trống");
             return "user/cart";
         } else {
-            Order order = new Order();
-            Calendar cal = Calendar.getInstance();
-            final String orderId = "TS" + "-" +
-                    cal.get(Calendar.DAY_OF_MONTH) +
-                    cal.get(Calendar.MONTH) +
-                    cal.get(Calendar.YEAR) +
-                    "-" + UUID.randomUUID().toString().substring(0, 7).toUpperCase(); // Tạo mã ID cho Order
-            order.setId(orderId);
-            order.setDate(new Date());
-            order.setUsername(accountService.find(acc).getUsername());
-            order.setClosed(false);
-            order.setTotalPrice(totalPrice);
-            orderService.save(order); // Lưu
+            try {
+                Order order = new Order();
+                Calendar cal = Calendar.getInstance();
+                final String orderId = "TS" + "-" +
+                        cal.get(Calendar.DAY_OF_MONTH) +
+                        cal.get(Calendar.MONTH) +
+                        cal.get(Calendar.YEAR) +
+                        "-" + UUID.randomUUID().toString().substring(0, 7).toUpperCase();
+                order.setId(orderId);
+                order.setDate(new Date());
+                order.setUsername(accountService.find(acc).getUsername());
+                order.setClosed(false);
+                order.setTotalPrice(totalPrice);
+                orderService.save(order);
 
-            // Duyệt từng sản phẩm thêm vào Order detail
-            List<Item> cart = (List<Item>) session.getAttribute("cart");
-            for (int i = 0; i < cart.size(); i++) {
-                OrderDetail orderDetail = new OrderDetail();
-                orderDetail.setOrderId(orderId);
-                orderDetail.setProductId(cart.get(i).getProduct().getId());
-                orderDetail.setUnitPrice(cart.get(i).getProduct().getSalePrice());
-                orderDetail.setQuantity(cart.get(i).getQuantity());
-                orderDetailService.save(orderDetail); // Lưu
-
-//                Product product = productService.findById(cart.get(i).getProduct().getId()); // Tìm sản phẩm
-//                product.setUnitInStock(cart.get(i).getProduct().getUnitInStock() - cart.get(i).getQuantity()); // Lấy UnitInStock - số lượng đã bỏ vào giỏ
-//                productService.update(product); // Cập nhật
+                List<Item> cart = (List<Item>) session.getAttribute("cart");
+                for (int i = 0; i < cart.size(); i++) {
+                    OrderDetail orderDetail = new OrderDetail();
+                    orderDetail.setOrderId(orderId);
+                    orderDetail.setProductId(cart.get(i).getProduct().getId());
+                    orderDetail.setUnitPrice(cart.get(i).getProduct().getSalePrice());
+                    orderDetail.setQuantity(cart.get(i).getQuantity());
+                    orderDetailService.save(orderDetail); // Lưu
+                }
+                session.removeAttribute("cart"); // Xóa đối tượng cart trong session sau khi order, vô giỏ hàng sẽ trống trơn
+                redirectAttributes.addFlashAttribute("orderId", orderId);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            session.removeAttribute("cart"); // Xóa đối tượng cart trong session sau khi order, vô giỏ hàng sẽ trống trơn
-            redirectAttributes.addFlashAttribute("orderId", orderId);
             return "redirect:/thanks";
         }
     }

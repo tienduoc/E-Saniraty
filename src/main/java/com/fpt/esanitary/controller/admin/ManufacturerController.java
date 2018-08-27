@@ -37,8 +37,6 @@ public class ManufacturerController {
             manufacturerService.create(manufacturer);
             return "redirect:/admin/manufacturer";
         } else {
-        //todo hiển thị trùng id
-            System.out.println("trung");
             model.addAttribute("manExisted", "Trùng mã nhà sản xuất.");
             return "admin/manufacturer/create";
         }

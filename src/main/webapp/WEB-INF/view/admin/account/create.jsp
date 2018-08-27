@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<jsp:include page="../../template/head-admin_tag.jsp">
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/template/head-admin_tag.jsp">
     <jsp:param name="title" value="Tạo tài khoản"/>
 </jsp:include>
 
@@ -20,31 +20,19 @@
 <div id="wrapper">
 
     <!-- Navigation -->
-    <jsp:include page="../../template/nav-tag__admin.jsp" />
+    <jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/template/nav-tag__admin.jsp" />
 
     <div id="page-wrapper">
 
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Tạo tài khoản
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i> Tổng quan
-                        </li>
-                        <li>
-                            <i class="fa fa-user"></i> Tài khoản
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-plus"></i> Tạo tài khoản
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/template/breakcrumb--child__admin.jsp">
+                <jsp:param name="parentURL" value="${pageContext.request.contextPath}/admin/account/"/>
+                <jsp:param name="parentTitle" value="tài khoản"/>
+                <jsp:param name="pageURL" value="${pageContext.request.contextPath}/admin/account/create"/>
+                <jsp:param name="pageTitle" value="Tạo tài khoản"/>
+            </jsp:include>
             <!-- /.row -->
 
 
@@ -114,16 +102,9 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery -->
-<script src="/assets/js/jquery.min.js"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="/assets/js/bootstrap.min.js"></script>
-
-<!-- Morris Charts JavaScript -->
-<script src="/assets/js/raphael.min.js"></script>
-<script src="/assets/js/morris.min.js"></script>
-<script src="/assets/js/morris-data.js"></script>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/view/template/script-tags__admin.jsp">
+    <jsp:param name="columnDefs" value=""/>
+</jsp:include>
 
 </body>
 

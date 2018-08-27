@@ -1,6 +1,5 @@
 /* Class for a domain. 
    This class is an ArrayList to access each element using an integral index
-* @author SuTV
  */
 package com.fpt.esanitary.controller.user.proposal;
 
@@ -14,7 +13,7 @@ public class Domain extends ArrayList<Element> {
     }
     public Domain(List<Element> collection){
         super();
-        // sort tang dan ve cost- muon sort giam dan thi tu viet code thay dong nay
+        // sort tang dan ve cost
         Collections.sort(collection);
         this.addAll(collection);
     }

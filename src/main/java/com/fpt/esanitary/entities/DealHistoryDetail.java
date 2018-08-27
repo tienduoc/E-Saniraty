@@ -85,7 +85,7 @@ public class DealHistoryDetail implements Serializable {
     return Objects.hash(dealHistoryId, productId, originalPrice, contractorPrice, newPrice);
   }
 
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "DealHistoryID", referencedColumnName = "Id", nullable = false, insertable = false, updatable = false)
   public DealHistory getDealHistoryByDealHistoryId() {
     return dealHistoryByDealHistoryId;

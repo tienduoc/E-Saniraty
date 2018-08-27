@@ -179,8 +179,10 @@
                                                                 </div>
                                                                 <div class="col-md-2 text-right" style="padding-right: 3rem; font-size: 14px;">
                                                                     <c:set var="sum" value="0"/>
+                                                                    <c:set var="i" value="0"/>
                                                                     <c:forEach var="cp" items="${deal.dealHistoryDetailsById}">
-                                                                        <c:set var="sum" value="${sum + cp.contractorPrice}"/>
+                                                                        <c:set var="sum" value="${sum + cp.contractorPrice * deal.orderByOrderId.orderDetailsById[i].quantity}"/>
+                                                                        <c:set var="i" value="${i+1}"/>
                                                                     </c:forEach>
                                                                     <fmt:formatNumber value="${sum}" pattern="###,###"/>
                                                                 </div>

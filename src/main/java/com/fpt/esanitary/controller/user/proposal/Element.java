@@ -1,5 +1,4 @@
 /* Lớp mô tả cho phần tử trong domain
- * @author SuTV
  */
 package com.fpt.esanitary.controller.user.proposal;
 

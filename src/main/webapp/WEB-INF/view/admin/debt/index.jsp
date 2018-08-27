@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="../../template/head-admin_tag.jsp">
-    <jsp:param name="title" value="Trang quản lý đơn hàng"/>
+    <jsp:param name="title" value="Trang quản lý công nợ"/>
 </jsp:include>
 <style>
     .modal-dialog{
@@ -32,25 +32,14 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Quản lý công nợ
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i> Tổng quan
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-archive"></i> Công nợ
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <jsp:include page="../../template/breakcrumb__admin.jsp">
+                <jsp:param name="pageURL" value="${pageContext.request.contextPath}/admin/debt/"/>
+                <jsp:param name="pageTitle" value="công nợ"/>
+            </jsp:include>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12 col-md-12">
-                    <h4>Danh sách đơn đặt hàng</h4>
+                    <h4>Danh sách khách hàng chưa thanh toán đủ</h4>
                     <div class="table-responsive">
                         <table class="table table-hover table-striped" id="example">
                             <thead>
@@ -61,7 +50,7 @@
                                 <th class="text-center">Còn nợ</th>
                                 <th class="text-center">SĐT</th>
                                 <th class="text-center">Email</th>
-                                <th class="text-center">Chi tiết</th>
+                                <th class="text-center">Tùy chọn</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -85,7 +74,7 @@
                                             <td class="text-right">${acc.phone}</td>
                                             <td class="text-left">${acc.email}</td>
                                             <td class="text-center">
-                                                <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#myModal${i}">Chi tiết</button>
+                                                <button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModal${i}" title="Xem chi tiết"><i class="fa fa-eye"></i></button>
                                             </td>
 
                                             <!-- Modal -->
@@ -143,53 +132,10 @@
     <!-- /#page-wrapper -->
 </div>
 <!-- /#wrapper -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<!-- Datatables JavaScript -->
-<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
-<script>
-    function format(dataSource) {
-        var html = '<table class="table table-hover" cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;" id="childRowTable"><tbody>';
-        for (var key in dataSource) {
-            html += '<tr>' +
-                '<td>' + key + '</td>' +
-                '<td>' + dataSource[key] + '</td>' +
-                '</tr>';
-        }
-        return html += '</tbody></table>';
-    }
 
-    $(document).ready(function () {
-        var table = $('#example').DataTable({
-            columnDefs: [{
-                targets: 1, // the target for this configuration, 0 it's the first column
-                render: function (data, type, row) {
-                    return data.length > 100 ?
-                        data.substr(0, 100) + '…' :
-                        data;
-                }
-            }],
-            "language": {
-                "sProcessing": "Đang xử lý...",
-                "sLengthMenu": "Xem _MENU_ mục",
-                "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
-                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-                "sInfoPostFix": "",
-                "sSearch": "Tìm:",
-                "sUrl": "",
-                "oPaginate": {
-                    "sFirst": "Đầu",
-                    "sPrevious": "Trước",
-                    "sNext": "Tiếp",
-                    "sLast": "Cuối"
-                }
-            }
-        });
-    });
-</script>
+
+<jsp:include page="../../template/script-tags__admin.jsp">
+    <jsp:param name="columnDefs" value=""/>
+</jsp:include>
 </body>
 </html>

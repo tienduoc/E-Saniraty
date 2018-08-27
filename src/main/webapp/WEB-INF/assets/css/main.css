@@ -58,7 +58,7 @@ textarea {
     min-height: 4rem;
     height: 4rem;
     color: #171616;
-    background-color: #EEEEEE;
+    background-color: #FFFFFF !important;
     outline: 0;
     max-width: 100%;
     border: 1px solid #EEEEEE;

@@ -94,4 +94,6 @@
 
     </div>
 </body>
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=rfoicmvrd1t2oqkkhsvwn39ekcbk2o0dt0slvklxbrdrva1j"></script>
+<script>tinymce.init({ selector:'textarea' });</script>
 </html>

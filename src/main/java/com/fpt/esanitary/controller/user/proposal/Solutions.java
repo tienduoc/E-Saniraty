@@ -1,5 +1,4 @@
 /* set of solutions
-* @author ADMIN 
 */
 package com.fpt.esanitary.controller.user.proposal;
 import java.util.ArrayList;

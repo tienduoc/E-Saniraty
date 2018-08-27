@@ -81,11 +81,11 @@ public class DealController {
 
         List<DealHistoryDetail> dealHistoryDetails = dealHistoryDetailService.findByDealHistoryId(dealHistory.getId());
         for (int i = 0; i < dealHistoryDetails.size(); i++) {
-            if (newPrice[i].trim() == null || newPrice[i].isEmpty()) {
+            if (newPrice.length == 0 || newPrice[i].trim() == null || newPrice[i].isEmpty()) {
                 double buyerPrice = dealHistoryDetails.get(i).getContractorPrice();
                 dealHistoryDetails.get(i).setNewPrice(buyerPrice);
             } else {
-                dealHistoryDetails.get(i).setNewPrice(Double.parseDouble(newPrice[i]));
+                dealHistoryDetails.get(i).setNewPrice(Double.valueOf(newPrice[i]));
             }
             dealHistoryDetailService.update(dealHistoryDetails.get(i));
         }
@@ -102,7 +102,7 @@ public class DealController {
         String userMail = accountService.find(customerUsername).getEmail();
         if (!userMail.trim().isEmpty()) {
             String msgBody = "<p>K&iacute;nh ch&agrave;o qu&yacute; kh&aacute;ch</p>\n" +
-                    "<p>ELUX xin th&ocirc;ng b&aacute;o t&igrave;nh trạng thương lượng gi&aacute; của qu&yacute; kh&aacute;ch như sau</p>\n" +
+                    "<p>THE SANI xin th&ocirc;ng b&aacute;o t&igrave;nh trạng thương lượng gi&aacute; của qu&yacute; kh&aacute;ch như sau</p>\n" +
                     "<ul>\n" +
                     "<li>M&atilde; thương lượng: <strong>" + dealHistory.getId() + "</strong></li>\n" +
                     "<li>M&atilde; h&oacute;a đơn: <strong>" + dealHistory.getOrderId() + "</strong></li>\n" +
@@ -110,7 +110,7 @@ public class DealController {
                     "</ul>\n" +
                     "<p>Qu&yacute; kh&aacute;ch vui l&ograve;ng truy cập website để biết th&ecirc;m chi tiết, xin ch&acirc;n th&agrave;nh cảm ơn.</p>";
 
-            mailService.sendMail("ELUX", userMail, "Thương lượng", msgBody);
+            mailService.sendMail("THE SANI", userMail, "Thương lượng", msgBody);
         }
         return "redirect:/supervisor/deal";
     }
@@ -151,14 +151,14 @@ public class DealController {
         String userMail = accountService.find(customerUsername).getEmail();
         if (!userMail.trim().isEmpty()) {
             String msgBody = "<p>K&iacute;nh ch&agrave;o qu&yacute; kh&aacute;ch</p>\n" +
-                    "<p>ELUX xin th&ocirc;ng b&aacute;o t&igrave;nh trạng thương lượng gi&aacute; của qu&yacute; kh&aacute;ch như sau</p>\n" +
+                    "<p>THE SANI xin th&ocirc;ng b&aacute;o t&igrave;nh trạng thương lượng gi&aacute; của qu&yacute; kh&aacute;ch như sau</p>\n" +
                     "<ul>\n" +
                     "<li>M&atilde; thương lượng: <strong>" + dealHistory.getId() + "</strong></li>\n" +
                     "<li>M&atilde; h&oacute;a đơn: <strong>" + dealHistory.getOrderId() + "</strong></li>\n" +
                     "<li>Trạng th&aacute;i: <strong><span style=\"color: #0000ff;\">đ&atilde; chấp nhận</span></strong></li>\n" +
                     "</ul>\n" +
                     "<p>Qu&yacute; kh&aacute;ch vui l&ograve;ng truy cập website để biết th&ecirc;m chi tiết, xin ch&acirc;n th&agrave;nh cảm ơn.</p>";
-            mailService.sendMail("ELUX", userMail, "Thương lượng", msgBody);
+            mailService.sendMail("THE SANI", userMail, "Thương lượng", msgBody);
         }
 
         return "redirect:/supervisor/deal";
@@ -189,7 +189,7 @@ public class DealController {
         String userMail = accountService.find(customerUsername).getEmail();
         if (!userMail.trim().isEmpty()) {
             String msgBody = "<p>K&iacute;nh ch&agrave;o qu&yacute; kh&aacute;ch</p>\n" +
-                    "<p>ELUX xin th&ocirc;ng b&aacute;o t&igrave;nh trạng thương lượng gi&aacute; của qu&yacute; kh&aacute;ch như sau</p>\n" +
+                    "<p>THE SANI xin th&ocirc;ng b&aacute;o t&igrave;nh trạng thương lượng gi&aacute; của qu&yacute; kh&aacute;ch như sau</p>\n" +
                     "<ul>\n" +
                     "<li>M&atilde; thương lượng: <strong>" + dealHistory.getId() + "</strong></li>\n" +
                     "<li>M&atilde; h&oacute;a đơn: <strong>" + dealHistory.getOrderId() + "</strong></li>\n" +
@@ -197,7 +197,7 @@ public class DealController {
                     "</ul>\n" +
                     "<p>Qu&yacute; kh&aacute;ch vui l&ograve;ng truy cập website để biết th&ecirc;m chi tiết, xin ch&acirc;n th&agrave;nh cảm ơn.</p>";
 
-            mailService.sendMail("ELUX", userMail, "Thương lượng", msgBody);
+            mailService.sendMail("THE SANI", userMail, "Thương lượng", msgBody);
         }
 
         return "redirect:/supervisor/deal";

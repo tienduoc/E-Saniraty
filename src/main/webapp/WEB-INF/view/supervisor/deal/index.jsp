@@ -33,7 +33,7 @@
             <!-- /.row -->
             <div class="row">
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped" id="table1">
+                    <table class="table table-hover table-striped" id="example">
                         <thead>
                         <tr>
                             <th class="text-center">Mã</th>
@@ -71,21 +71,25 @@
                                     </td>
                                     <td class="text-right">
                                         <c:set var="sum" value="0"/>
+                                        <c:set var="i" value="0"/>
                                         <c:forEach var="cp" items="${deal.dealHistoryDetailsById}">
                                             <c:if test="${cp.dealHistoryId.equals(deal.id)}">
-                                                <c:set var="sum" value="${sum + cp.contractorPrice}"/>
+                                                <c:set var="sum" value="${sum + cp.contractorPrice * deal.orderByOrderId.orderDetailsById[i].quantity}"/>
+                                                <c:set var="i" value="${i+1}"/>
                                             </c:if>
                                         </c:forEach>
                                         <fmt:formatNumber value="${sum}" type="number"/>
                                     </td>
-                                    <c:choose>
-                                        <c:when test="${deal.contructorApprove == true && (deal.bossApprove == false || deal.bossApprove == null)}">
-                                            <td class="text-center text-primary">Thương lượng</td>
-                                        </c:when>
-                                        <c:when test="${deal.contructorApprove == false && deal.bossApprove == true}">
-                                            <td class="text-center">Đã trả lời</td>
-                                        </c:when>
-                                    </c:choose>
+                                    <td class="text-center">
+                                        <c:choose>
+                                            <c:when test="${deal.contructorApprove == true && (deal.bossApprove == false || deal.bossApprove == null)}">
+                                                <i class="fa fa-exchange" style="color: darkorange" data-toggle="tooltip" title="Đang thương lượng"></i>
+                                            </c:when>
+                                            <c:when test="${deal.contructorApprove == false && deal.bossApprove == true}">
+                                                <i class="fa fa-hourglass" style="color: darkorange" data-toggle="tooltip" title="Chờ phản hồi"></i>
+                                            </c:when>
+                                        </c:choose>
+                                    </td>
                                     <td class="text-right">
                                         <c:if test="${deal.contructorApprove == true && (deal.bossApprove == false || deal.bossApprove == null)}">
                                         <a href="${pageContext.request.contextPath}/supervisor/deal/update?dealHistoryId=${deal.id}" class="btn btn-warning btn-xs" data-toggle="tooltip"
@@ -93,7 +97,6 @@
                                         </c:if>
                                         <a href="${pageContext.request.contextPath}/supervisor/deal/acceptDeal?orderId=${deal.orderId}&dealHistoryId=${deal.id}" class="btn btn-success btn-xs" data-toggle="tooltip"
                                            title="Đồng ý với giá nhà thầu đưa ra"><i class="fa fa-check"></i></a>
-                                        <%--todo hiển thị: giới hạn ô message còn khoảng 250 ký tự vì phương thức get chỉ chấp nhận URL tối đa 2048 ký tự--%>
                                         <a href="${pageContext.request.contextPath}/supervisor/deal/cancelDeal?dealHistoryId=${deal.id}&orderId=${deal.orderId}&message=${mesage}" class="btn btn-danger btn-xs" data-toggle="tooltip"
                                            title="Không thương lượng nữa"><i class="fa fa-ban"></i></a>
                                     </td>
@@ -109,7 +112,7 @@
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped" id="table2">
+                    <table class="table table-hover table-striped" id="example2">
                         <thead>
                         <tr>
                             <th class="text-center">Mã</th>
@@ -152,17 +155,20 @@
                                         </c:forEach>
                                         <fmt:formatNumber value="${sum}" type="number"/>
                                     </td>
-                                    <c:choose>
-                                        <c:when test="${deal.contructorApprove == true && deal.bossApprove == true}">
-                                            <td class="text-center text-success">Thành công</td>
-                                        </c:when>
-                                        <c:when test="${deal.contructorApprove == false && deal.bossApprove == false}">
-                                            <td class="text-center text-danger">Đã huỷ</td>
-                                        </c:when>
-                                    </c:choose>
+                                    <td class="text-center">
+                                        <c:choose>
+                                            <c:when test="${deal.contructorApprove == true && deal.bossApprove == true}">
+                                                <i class="fa fa-check" style="color: green" data-toggle="tooltip" title="Thương lượng thành công"></i>
+                                            </c:when>
+                                            <c:when test="${deal.contructorApprove == false && deal.bossApprove == false}">
+                                                <i class="fa fa-close" style="color: red" data-toggle="tooltip" title="Đã huỷ thương lượng"></i>
+                                            </c:when>
+                                        </c:choose>
+                                    </td>
+
                                     <td class="text-center">
                                         <a href="" class="btn btn-xs btn-info" data-toggle="tooltip"
-                                           title="Xem thương lượng"><i class="fa fa-eye"></i></a>
+                                           title="Xem chi tiết thương lượng"><i class="fa fa-eye"></i></a>
                                     </td>
                                 </tr>
                             </c:if>
@@ -177,20 +183,19 @@
 </div>
 <!-- /#wrapper -->
 <!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-<!-- Datatables JavaScript -->
-<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
+<jsp:include page="../../template/script-tags__admin.jsp">
+    <jsp:param name="columnDefs" value="
+        order: [[ 3, 'desc' ]],
+    "/>
+</jsp:include>
+
 <script>
     $(document).ready(function () {
-        var table = $('#table1').DataTable({
-            "order": [[ 3, "asc" ]],
-            "language": {
+        $('[data-toggle="tooltip"]').tooltip({animation: false});
+
+        $('#example2').DataTable({
+            order: [[ 3, 'desc' ]],
+            language: {
                 "sProcessing": "Đang xử lý...",
                 "sLengthMenu": "Xem _MENU_ mục",
                 "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
@@ -208,35 +213,6 @@
                 }
             }
         });
-    });
-    $(document).ready(function () {
-        var table = $('#table2').DataTable({
-            "order": [[ 3, "asc" ]],
-            "language": {
-                "sProcessing": "Đang xử lý...",
-                "sLengthMenu": "Xem _MENU_ mục",
-                "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
-                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-                "sInfoPostFix": "",
-                "sSearch": "Tìm:",
-                "sUrl": "",
-                "oPaginate": {
-                    "sFirst": "Đầu",
-                    "sPrevious": "Trước",
-                    "sNext": "Tiếp",
-                    "sLast": "Cuối"
-                }
-            }
-        });
-    });
-</script>
-<script>
-    $(document).ready(function () {
-        $('[data-toggle="tooltip"]').tooltip(
-            {animation: false}
-        );
     });
 </script>
 </body>

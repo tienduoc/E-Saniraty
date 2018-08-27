@@ -23,21 +23,10 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Trang quản lý hình ảnh
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i> Tổng quan
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-archive"></i> Hình ảnh
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <jsp:include page="../../template/breakcrumb__admin.jsp">
+                <jsp:param name="pageURL" value="${pageContext.request.contextPath}/admin/image/"/>
+                <jsp:param name="pageTitle" value="hình ảnh sản phẩm"/>
+            </jsp:include>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12 col-md-12">
@@ -51,34 +40,34 @@
                             <tr>
                                 <th class="text-center">Mã</th>
                                 <th class="text-center">Hình ảnh</th>
-                                <th class="text-center">Sản phẩm</th>
-                                <th class="text-center">Tên tập tin</th>
-                                <th class="text-center">Ảnh chính</th>
+                                <th class="text-center">Mã sản phẩm</th>
+                                <th class="text-center">Tập tin</th>
+                                <th class="text-center">Là ảnh chính</th>
                                 <th class="text-center">Tuỳ chọn</th>
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach var="img" items="${images}">
                                 <tr>
-                                    <td class="text-center">${img.id}</td>
-                                    <td class="text-center">
-                                        <img src="${pageContext.request.contextPath}/assets/img/products/${img.url}" alt="" style="width: 7rem; height:auto; align-self: auto;">
+                                    <td>${img.id}</td>
+                                    <td>
+                                        <img src="${pageContext.request.contextPath}/assets/img/products/${img.url}" alt="${img.url}" style="width: 10rem; height:auto;">
                                     </td>
-                                    <td class="text-center">${img.productId}</td>
+                                    <td>${img.productId}</td>
                                     <td>
                                         <a href="${pageContext.request.contextPath}/assets/img/products/${img.url}">${img.url}</a>
                                     </td>
                                     <td class="text-center">
                                         <c:if test="${img.mainPhoto}">
-                                            <img src="${pageContext.request.contextPath}/assets/img/green_tick.png" alt="">
+                                            <i class="fa fa-check" style="color: green"></i>
                                         </c:if>
                                     </td>
                                     <td class="text-right">
                                         <c:if test="${!img.mainPhoto}">
-                                            <a href="${pageContext.request.contextPath}/admin/image/setMainPhoto?img_url=${img.url}&product_id=${img.productId}" class="btn btn-primary btn-xs">Ảnh đại diện</a>
+                                            <a href="${pageContext.request.contextPath}/admin/image/setMainPhoto?img_url=${img.url}&product_id=${img.productId}" class="btn btn-primary btn-xs" data-toggle="tooltip" title="Đặt làm ảnh chính"><i class="fa fa-home"></i></a>
                                         </c:if>
-                                        <a href="${pageContext.request.contextPath}/admin/image/update?img_url=${img.url}" class="btn btn-warning btn-xs">Sửa</a>
-                                        <a href="${pageContext.request.contextPath}/admin/image/delete?img_url=${img.url}" class="btn btn-danger btn-xs">Xóa</a>
+                                        <a href="${pageContext.request.contextPath}/admin/image/update?img_url=${img.url}" class="btn btn-warning btn-xs" data-toggle="tooltip" title="Thay đổi ảnh"><i class="fa fa-pencil"></i></a>
+                                        <a href="${pageContext.request.contextPath}/admin/image/delete?img_url${img.url}" class="btn btn-danger btn-xs" data-toggle="tooltip" title="Xoá ảnh"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -94,39 +83,18 @@
 </div>
 <!-- /#wrapper -->
 
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<jsp:include page="../../template/script-tags__admin.jsp">
+    <jsp:param name="columnDefs" value="
+    columnDefs: [
+            { width: '50px', targets: 0 },
+            { width: '100px', targets: 2 },
+         { width: '30px', targets: 4 },
+         { width: '80px', targets: 5 }
 
-<!-- Bootstrap Core JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+         ],
+         fixedColumns: true,
 
-<!-- Datatables JavaScript -->
-<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
-
-<script>
-    $(document).ready(function () {
-        var table = $('#example').DataTable({
-            "order": [[1, "desc"]],
-            "language": {
-                "sProcessing": "Đang xử lý...",
-                "sLengthMenu": "Xem _MENU_ mục",
-                "sZeroRecords": "Không tìm thấy dòng nào phù hợp",
-                "sInfo": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-                "sInfoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-                "sInfoFiltered": "(được lọc từ _MAX_ mục)",
-                "sInfoPostFix": "",
-                "sSearch": "Tìm:",
-                "sUrl": "",
-                "oPaginate": {
-                    "sFirst": "Đầu",
-                    "sPrevious": "Trước",
-                    "sNext": "Tiếp",
-                    "sLast": "Cuối"
-                }
-            }
-        });
-    });
-</script>
+    "/>
+</jsp:include>
 </body>
 </html>

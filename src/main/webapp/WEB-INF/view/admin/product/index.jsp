@@ -21,24 +21,14 @@
 <div id="wrapper">
     <!-- Navigation -->
     <jsp:include page="../../template/nav-tag__admin.jsp"/>
+
     <div id="page-wrapper">
         <div class="container-fluid">
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Trang quản lý sản phẩm
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i> Tổng quan
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-archive"></i> Sản phẩm
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <jsp:include page="../../template/breakcrumb__admin.jsp">
+                <jsp:param name="pageURL" value="${pageContext.request.contextPath}/admin/product/"/>
+                <jsp:param name="pageTitle" value="sản phẩm"/>
+            </jsp:include>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-12 col-md-12">
@@ -50,43 +40,42 @@
                         <table class="table table-hover table-striped" id="example">
                             <thead>
                             <tr>
-                                <th class="text-center">Mã</th>
+                                <th class="text-center">Mã SP</th>
                                 <th class="text-center">Tên sản phẩm</th>
                                 <th class="text-center">Thuộc nhóm</th>
                                 <th class="text-center">Hãng sản xuất</th>
                                 <th class="text-center">Số lượng</th>
                                 <th class="text-center">Giá bán</th>
-                                <th class="text-center">Trạng thái</th>
+                                <th class="text-center">Tình trạng</th>
                                 <th class="text-center">Tuỳ chọn</th>
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach var="p" items="${allProduct}">
                                 <tr>
-                                    <td class="text-left">
-                                        <a target="_blank" href="${pageContext.request.contextPath}/product/detail?id=${p.id}">${p.id}</a>
-                                    </td>
+                                    <td class="text-left">${p.id}</td>
                                     <td class="text-left">${p.name}</td>
                                     <td class="text-left">${p.categoryByCategoryId.name}</td>
-                                    <td class="text-center">${p.manufacturerByManufacturerId.name}</td>
-                                    <td class="text-center">${p.unitInStock}</td>
-                                    <td class="text-right" id="price">
-                                        ${p.salePrice}
+                                    <td class="text-left">${p.manufacturerByManufacturerId.name}</td>
+                                    <td class="text-right">${p.unitInStock}</td>
+                                    <td class="text-right" id="price"><fmt:formatNumber value="${p.salePrice}"/></td>
+                                    <td class="text-center">
+                                        <c:choose>
+                                            <c:when test="${p.enabled}">
+                                            <i class="fa fa-check" style="color: green" data-toggle="tooltip" title="Đang còn hàng"></i>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <i class="fa fa-close" style="color: red" data-toggle="tooltip" title="Hết hàng"></i>
+                                            </c:otherwise>
+                                        </c:choose>
                                     </td>
-                                    <c:choose>
-                                        <c:when test="${p.enabled}">
-                                            <td class="text-center" style="color: green">Hiển thị</td>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <td class="text-center" style="color: red">Ẩn</td>
-                                        </c:otherwise>
-                                    </c:choose>
-                                    <td class="text-right">
+                                    <td class="text-center">
                                         <c:url value="" var="product_id">
                                             <c:param name="id" value="${p.id}" />
                                         </c:url>
-                                        <a href="${pageContext.request.contextPath}/admin/product/update${product_id}" class="btn btn-warning btn-xs">Sửa</a>
-                                        <a href="${pageContext.request.contextPath}/admin/product/detail${product_id}" class="btn btn-success btn-xs">Chi tiết</a>
+                                        <a href="${pageContext.request.contextPath}/admin/product/update${product_id}" class="btn btn-warning btn-xs" data-toggle="tooltip" title="Cập nhật thông tin"><i class="fa fa-pencil"></i></a>
+                                        <a href="${pageContext.request.contextPath}/admin/product/detail${product_id}" class="btn btn-success btn-xs" data-toggle="tooltip" title="Xem chi tiết"><i class="fa fa-eye"></i></a>
+
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -95,54 +84,23 @@
                     </div>
                 </div>
             </div>
+
         </div>
-        <!-- /.container-fluid -->
     </div>
-    <!-- /#page-wrapper -->
 </div>
-<!-- /#wrapper -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-<!-- Datatables JavaScript -->
-<script src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap.min.js"></script>
 
+<jsp:include page="../../template/script-tags__admin.jsp">
+    <jsp:param name="columnDefs" value="
+    columnDefs: [
+            { width: '200px', targets: 1 },
+         { width: '150px', targets: 2 },
+         { width: '50px', targets: 3 },
+         { width: '80px', targets: 5 }
+         ],
+         fixedColumns: true,
 
-<script>
-    $(document).ready(function () {
-        var table = $('#example').DataTable({
-            columnDefs: [
-                {
-                    targets: 1, render: function (data, type, row) {
-                        return data.length > 37 ? data.substr(0, 37) + '…' : data;
-                    }
-                },
-                {
-                    targets: 5, render: $.fn.dataTable.render.number(',', '.')
-                }
-            ],
-            "language": {
-                "decimal": ",",
-                "thousands": ".",
-                "processing": "Đang xử lý...",
-                "lengthMenu": "Xem _MENU_ mục",
-                "zeroRecords": "Không tìm thấy dòng nào phù hợp",
-                "info": "Đang xem _START_ đến _END_ trong tổng số _TOTAL_ mục",
-                "infoEmpty": "Đang xem 0 đến 0 trong tổng số 0 mục",
-                "infoFiltered": "(được lọc từ _MAX_ mục)",
-                "infoPostFix": "",
-                "search": "Tìm:",
-                "url": "",
-                "paginate": {
-                    "first": "Đầu",
-                    "previous": "Trước",
-                    "next": "Tiếp",
-                    "last": "Cuối"
-                }
-            }
-        });
-    });
-</script>
+    "/>
+</jsp:include>
+
 </body>
 </html>

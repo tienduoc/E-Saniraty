@@ -73,31 +73,11 @@
                 </div>
                 </c:forEach>
             </div>
-
-            <div class="clear"></div>
-            <div class="col-md-12">
-                <!-- Paging -->
-                <div class="styled-pagination padB30 text-center">
-                    <ul>
-                        <li><a class="prev" href="#"><i class="fa fa-angle-left"></i></a></li>
-                        <li><a href="#">1</a></li>
-                        <li><a href="#" class="active">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a class="next" href="#"><i class="fa fa-angle-right"></i></a></li>
-                    </ul>
-                </div>
-                <!--//==Pagination End==//-->
-            </div>
         </div>
     </section>
 </main>
 
 <%@ include file="../template/footer-tag__user.jsp" %>
-<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/owl.carousel.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 
 <script>
     //CAROUSEL

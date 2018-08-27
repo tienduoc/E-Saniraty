@@ -79,37 +79,6 @@
 </main>
 
 <%@ include file="../template/footer-tag__user.jsp" %>
-<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/owl.carousel.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
 
-<script>
-    //CAROUSEL
-
-    $('.owl-carousel').owlCarousel({
-        autoplay: true,
-        autoplayTimeout: 5000,
-        autoplayHoverPause: true,
-        loop: true,
-        margin: 100,
-        slideTransition: 'ease-in-out',
-        touchDrag: true,
-        autoWidth: true,
-        dotsContainer: '#carousel-custom-dots',
-        center: true,
-        responsive: {
-            0: {
-                items: 1
-            },
-            600: {
-                items: 1
-            },
-            1000: {
-                items: 1
-            }
-        }
-    })
-</script>
 </body>
 </html>

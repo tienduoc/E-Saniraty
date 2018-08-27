@@ -34,47 +34,86 @@
         </div>
     </section>
 
-    ${noSolution}
 
     <%--Input--%>
     <section class="section-product">
         <div class="container">
-            <div class="row">
+            <form action="/getProposal/result" method="post" id="form-getProposal">
+                <form>
+                <div class="row">
 
-                <form action="/getProposal/result" method="get" id="getProposal">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="product-sorting">
-                            <div class="col-md-10 col-sm-10 col-xs-12">
-                                <div class="row">
-                                    <form>
-                                        <div class="col-md-10 col-sm-6 col-xs-12">
-                                            <div class="custom-control custom-checkbox">
-                                                <c:forEach var="cat" items="${menu}">
-                                                    <c:if test="${cat.parentId != null}">
-                                                        <input type="checkbox" name="cat" value="${cat.id}"> <label for="">${cat.name}</label>
-                                                    </c:if>
-                                                </c:forEach>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-2 col-sm-6 col-xs-12">
-                                            <input type="number" name="maxCost" id="">
-                                        </div>
-                                    </form>
-                                </div>
+
+                        <c:forEach begin="1" end="5">
+                            <div class="col-md-8">
+                                <label>Chọn mặt hàng</label>
+                            <select name="cat" required style="display:block">
+                                <option value="0">None</option>
+                                <c:forEach var="cat" items="${menu}">
+                                    <c:if test="${cat.parentId != null && cat.id != 29 && cat.id != 34 && cat.id != 40 && cat.id != 44 && cat.id != 49}">
+                                        <option value="${cat.id}">${cat.name}</option>
+                                    </c:if>
+                                </c:forEach>
+                            </select>
                             </div>
-                            <div class="col-md-2 col-sm-2 col-xs-12">
-                                <input type="submit" onclick="document.getElementById('getProposal').submit();" class="btn btn-primary btn-block">Xin đề xuất</input>
-                            </div>
-                        </div>
+                            <div class="col-md-4">
+                                <label>Số lượng</label>
+                            <input type="number" name="quantity" class="col-md-6" value="0"></div>
+                        </c:forEach>
+
+
+                </div>
+                <div class="row form-group u-padTB-small">
+                    <div class="col-md-2 col-md-offset-8">
+                        <label>Nhập số tiền: </label>
+                        <input type="number" name="maxCost" id="js-input-price" min="1" max="999999999" class="text-right">
                     </div>
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                        <label>&nbsp;</label>
+                        <button type="button" class="btn btn--dark btn-group-justified col-xs-12"
+                                id="btn-getProposal">Nhận đề xuất
+                        </button>
+                    </div>
+                </div>
                 </form>
-            </div>
+            </form>
         </div>
     </section>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="heading-primary">
+                <h2 class="heading-primary--title"> ${noSolution}</h2>
+            </div>
+        </div>
+    </div>
 
     <%--Output--%>
     <section class="section-product">
         <div class="container">
+            Kết quả gợi ý với số tiền tối đa:
+            <strong>
+                <fmt:formatNumber value="${maxCost}" pattern="###,###"/>
+            </strong>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered table-responsive">
+                        <thead>
+                        <tr>
+                            <th style="width: 80%" class="text-center">Tên mặt hàng</th>
+                            <th class="text-center">Số lượng</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="catQty" items="${catQty}">
+                            <tr>
+                                <td style="width: 80%">${catQty.getKey()}</td>
+                                <td class="text-center">${catQty.getValue()}</td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
             <!-- Products -->
             <c:set var="numOfSol" value="1"/>
@@ -107,7 +146,7 @@
                                         <div class="quick-add__wrap">
                                             <ul class="quick-add__list">
                                                 <li>
-                                                    <a id="add" href="${pageContext.request.contextPath}/cart/add?id=${p.getValue().getId()}" title="Add to cart">
+                                                    <a target="_blank" id="add" href="${pageContext.request.contextPath}/cart/add?id=${p.getValue().getId()}" title="Thêm vào giỏ">
                                                         <i class="fa fa-shopping-basket"></i>
                                                     </a>
                                                 </li>
@@ -133,15 +172,37 @@
         </div>
     </section>
 </main>
-<script src="${pageContext.request.contextPath}/assets/js/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/bootstrap.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/owl.carousel.min.js"></script>
-<script src="${pageContext.request.contextPath}/assets/js/main.js"></script>
+<%@ include file="../template/footer-tag__user.jsp" %>
 <script>
-    var limit = 3;
-    $('input[type=checkbox]').on('change', function (evt) {
-        if ($(this).siblings(':checked').length >= limit) {
-            this.checked = false;
+    // var limit = 5;
+    // $('input[type=checkbox]').on('change', function (evt) {
+    //     if ($(this).siblings(':checked').length >= limit) {
+    //         this.checked = false;
+    //     }
+    // });
+
+    //
+    // function isChecked() {
+    //     if ((!$("input[type=checkbox]").is(":checked"))) {
+    //         alert("Chọn tối đa 5 danh mục");
+    //         return false;
+    //     }
+    //     return true;
+    // }
+
+    function isValidNumber() {
+        let input = document.getElementById('js-input-price');
+
+        if (input.value < 1000000 || input.value == '' || input.value > 1000000000) {
+            alert("Số tiền tối thiểu: 1 triệu đồng, tối đa: 1 tỷ đồng");
+            return false;
+        }
+        return true;
+    };
+
+    $('#btn-getProposal').on('click', function () {
+        if(isValidNumber()) {
+        document.getElementById('form-getProposal').submit();
         }
     });
 </script>

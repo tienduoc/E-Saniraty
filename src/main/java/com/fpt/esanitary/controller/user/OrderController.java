@@ -106,7 +106,7 @@ public class OrderController {
                 dealMessageService.save(dealMessage);
             }
         }
-
+        redirectAttributes.addFlashAttribute("updateSuccess","<strong>Thông báo:</strong> Đơn hàng đã được cập nhật");
         redirectAttributes.addAttribute("orderId", orderId);
         return "redirect:/order/update";
     }

@@ -1,5 +1,4 @@
 /* A solution is a set of values assigned to problem's variables
- * @author SuTV
  */
 package com.fpt.esanitary.controller.user.proposal;
 

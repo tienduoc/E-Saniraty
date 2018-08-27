@@ -29,7 +29,7 @@
                 <p style="font-size:20px;color:#5C5C5C;">Hệ thống đã tiếp nhận yêu cầu của quý khách!</p>
                 <br>
                 <br>
-                <a href="${pageContext.request.contextPath}/deal" class="button button--black">Quay về
+                <a href="${pageContext.request.contextPath}/deal" class="btn btn--dark btn-group-justified">Quay về
                 </a>
                 <br>
                 <br>

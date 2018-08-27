@@ -26,24 +26,12 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Bài viết
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i> Tổng quan
-                        </li>
-                        <li>
-                            <i class="fa fa-archive"></i> Bài viết
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-pencil"></i> Tạo bài viết
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <jsp:include page="../../template/breakcrumb--child__admin.jsp">
+                <jsp:param name="parentURL" value="${pageContext.request.contextPath}/admin/article/"/>
+                <jsp:param name="parentTitle" value="bài viết"/>
+                <jsp:param name="pageURL" value="${pageContext.request.contextPath}/admin/article/create"/>
+                <jsp:param name="pageTitle" value="Tạo bài viết"/>
+            </jsp:include>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3">
@@ -52,33 +40,32 @@
                             <h4 class="panel-title">Tạo bài viết</h4>
                         </div>
                         <div class="panel-body">
-                            <form method="post">
+                            <form:form action="/admin/article/create" modelAttribute="article" method="post">
 
                                 <div class="form-group">
                                     <label>Tiêu đề</label>
-                                    <input type="text" class="form-control" value="Tiêu đề" required="required">
-                                </div>
-                                <div class="form-group">
-                                    <label>Ngày viết</label>
-                                    <input type="date" class="form-control" value="Ngày viết" required="required">
+                                    <form:input path="title" type="text" class="form-control" placeholder="Tiêu đề" required="required"/>
                                 </div>
                                 <div class="form-group">
                                     <label>Đường dẫn</label>
-                                    <input type="text" class="form-control" value="URL" required="required">
+                                    <form:input path="aricleUrl" type="text" class="form-control" placeholder="URL" required="required"/>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Nhà sản xuất</label>
-                                    <select name="" style="display:block">
-                                        <option name="" value="">Thiết bị vệ sinh</option>
-                                        <option name="" value="">Bình nước nóng lạnh</option>
-                                    </select>
+                                    <form:select path="manufacturerId" required = "true"
+                                            style="display:block; height: 3.5rem; width: 100%;">
+                                        <option value="">Chọn nhà sản xuất</option>
+                                        <c:forEach var="m" items="${manufacturers}">
+                                            <option value="${m.id}">${m.name}</option>
+                                        </c:forEach>
+                                    </form:select>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" class="btn btn-primary" value="Lưu lại">
                                     <a href="${pageContext.request.contextPath}/admin/article" class="btn btn-default">Quay lại</a>
                                 </div>
-                            </form>
+                            </form:form>
                         </div>
                     </div>
                 </div>

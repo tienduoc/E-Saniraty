@@ -51,7 +51,6 @@
                                 <c:forEach var="cat0" items="${menu}">
                                     <c:if test="${cat0.parentId == null}">
                                         <li>
-                                            <%--<a href="${pageContext.request.contextPath}/category?id=${cat0.id}">${cat0.name}</a>--%>
                                             <a>${cat0.name}</a>
                                             <ul class="nav-dropdown">
                                                 <c:forEach var="cat1" items="${menu}">

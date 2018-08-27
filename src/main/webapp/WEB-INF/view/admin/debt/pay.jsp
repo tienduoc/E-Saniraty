@@ -13,7 +13,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <jsp:include page="../../template/head-admin_tag.jsp">
-    <jsp:param name="title" value="Trang quản lý đơn hàng"/>
+    <jsp:param name="title" value="Trang thanh toán"/>
 </jsp:include>
 <body>
 <!-- Navigation -->
@@ -28,24 +28,12 @@
         <div class="container-fluid">
 
             <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Trang thanh toán
-                    </h1>
-                    <ol class="breadcrumb">
-                        <li>
-                            <i class="fa fa-dashboard"></i> Tổng quan
-                        </li>
-                        <li>
-                            <i class="fa fa-archive"></i> Thanh toán
-                        </li>
-                        <li class="active">
-                            <i class="fa fa-pencil"></i> Phiếu thanh toán
-                        </li>
-                    </ol>
-                </div>
-            </div>
+            <jsp:include page="../../template/breakcrumb--child__admin.jsp">
+                <jsp:param name="parentURL" value="${pageContext.request.contextPath}/admin/debt/"/>
+                <jsp:param name="parentTitle" value="công nợ"/>
+                <jsp:param name="pageURL" value="${pageContext.request.contextPath}/admin/debt/pay"/>
+                <jsp:param name="pageTitle" value="Phiếu thanh toán"/>
+            </jsp:include>
             <!-- /.row -->
 
             <div class="row">
@@ -102,14 +90,13 @@
 
                                     <div class="col-md-12 col-md-offset-0">
                                         <div class="panel panel-default">
-                                            <div class="panel-heading">Đơn hàng</div>
+                                            <div class="panel-heading">Đơn hàng: ${order.id} | Ngày tạo: <fmt:formatDate value="${order.date}" pattern=" dd/MM/yyyy"/></div>
                                             <div class="panel-body">
-
                                                 <table class="table table-striped table-responsive">
                                                     <input type="hidden" name="orderId" value="${order.id}">
                                                     <thead>
-                                                    <tr>
-                                                        <th>Mã sản phẩm</th>
+                                                    <tr>Lịch sử thanh toán
+                                                        <th>Mã SP</th>
                                                         <th>Tên sản phẩm</th>
                                                         <th class="text-right">Số lượng</th>
                                                         <th class="text-right">Đơn giá</th>
@@ -188,6 +175,7 @@
                                                 <div class="col-md-2">
                                                     <label>Tuỳ chọn</label>
                                                     <button type="button" class="btn btn-success btn-group-justified" id="paidAll">Trả hết</button>
+
                                                 </div>
                                             </div>
                                         </div>
@@ -205,6 +193,9 @@
                             <button  class="btn btn-default" onclick="goBack()">Quay lại</button>
                         </div>
                     </div>
+
+
+
                 </div>
 
                 <div class="col-md-12 col-md-offset-0">
@@ -218,7 +209,7 @@
                                     <div class="col-md-2">Số phiếu</div>
                                     <div class="col-md-4">Mã hóa đơn</div>
                                     <div class="col-md-3">Ngày thanh toán</div>
-                                    <div class="col-md-3 text-right">Số tiền</div>
+                                    <div class="col-md-3">Số tiền</div>
                                 </div>
                             </strong>
                             <c:forEach var="payHistory" items="${payHistories}">
@@ -229,8 +220,10 @@
                                     <div class="col-md-3 text-right"><fmt:formatNumber value="${payHistory.paid}" pattern="###,###"/></div>
                                 </div>
                             </c:forEach>
+
                         </div>
                     </div>
+
                 </div>
 
             </div>
@@ -254,6 +247,7 @@
 <script>
     function goBack() {
         window.history.go(-1);
+        return false;
     }
 </script>
 </html>
