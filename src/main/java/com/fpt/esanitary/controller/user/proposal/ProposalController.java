@@ -48,17 +48,14 @@ public class ProposalController {
 
             int numEmptyDomain = 0;
             for (j = 0; j < arrDomain.length; j++) {
-                List<Product> products = productService.findByCategory(arrDomain[j]); //D1 tra ve litst product của D1
+                List<Product> products = productService.findByCategory(arrDomain[j]);
                 if (products.size() == 0) numEmptyDomain++;
-    //            Collections.shuffle(products);
 
-                for (int k = 0; k < products.size(); k++) { //C1
+                for (int k = 0; k < products.size(); k++) {
                     el = new Element<>();
-                    el.setValue(products.get(k)); //C1
-                    el.setCost(products.get(k).getSalePrice()); //C1.price
-    //                for (i = 0; i < arrDomain.length; i++) { //D1-3
+                    el.setValue(products.get(k));
+                    el.setCost(products.get(k).getSalePrice());
                         D[j].add(el);
-    //                }
                 }
             }
 
@@ -93,14 +90,14 @@ public class ProposalController {
             // Giải bái toán
             Solver_Bactrack solver = new Solver_Bactrack(prob);
 //       solver.backtrack();
-            solver.backtrack(5000);
+            solver.backtrack(6000);
 
             // xuất kết quả
             if (solver.isMayBeSolved() == false) {
                 model.addAttribute("noSolution", "Không tìm thấy gợi ý phù hợp với số tiền đưa ra");
             } else {
                 List<Solution> solutions = solver.getSoluList();
-    //            Collections.shuffle(solutions);
+                Collections.shuffle(solutions);
                 if (solutions.size() > 10) {
                     model.addAttribute("solutionList", solutions.subList(0, 10));
                 } else if (solutions.size() == 0) {

@@ -191,24 +191,25 @@
                                 <div class="form-group row">
                                     <div class="col-md-2 col-md-offset-6">
                                         <c:if test="${deal.bossApprove == true && deal.contructorApprove == false}">
-                                            <input type="submit" class="btn btn--dark btn-group-justified" value="Gửi">
+                                            <input type="submit" class="btn btn-primary btn-group-justified" value="Gửi">
                                         </c:if>
                                     </div>
-                                    <div class="col-md-2">
-                                        <c:if test="${deal.bossApprove == true}">
-                                            <c:if test="${!(deal.bossApprove == true && deal.contructorApprove == true)}">
+                                    <c:if test="${deal.bossApprove == true}">
+                                        <c:if test="${!(deal.bossApprove == true && deal.contructorApprove == true)}">
+                                            <div class="col-md-2">
                                                 <a href="${pageContext.request.contextPath}/deal/confirm?orderId=${deal.orderId}&dealHistoryId=${deal.id}" class="btn btn-success">Đồng ý</a>
-                                            </c:if>
+                                            </div>
                                         </c:if>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <c:if test="${!waitResponse && !approved && !canceled}">
+                                    </c:if>
+                                    <c:if test="${!waitResponse && !approved && !canceled  && (!deal.bossApprove && !deal.contructorApprove)}">
+                                        <div class="col-md-2">
                                             <a href="${pageContext.request.contextPath}/deal/cancelDeal?orderId=${deal.orderId}&dealHistoryId=${deal.id}" class="btn btn--dark btn-group-justified">Huỷ</a>
-                                        </c:if>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <a href="${pageContext.request.contextPath}/deal" class="btn btn--light btn-group-justified">Quay lại</a>
-                                    </div>
+                                        </div>
+                                    </c:if>
+
+                                        <%--<div class="col-md-2">--%>
+                                        <%--<a href="${pageContext.request.contextPath}/deal" class="btn btn--light btn-group-justified">Quay lại</a>--%>
+                                        <%--</div>--%>
                                 </div>
                             </div>
                         </div>

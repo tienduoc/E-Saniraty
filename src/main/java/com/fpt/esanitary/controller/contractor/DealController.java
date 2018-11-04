@@ -168,6 +168,7 @@ public class DealController {
             orderDetailService.update(orderDetails.get(i));
         }
         DealHistory dealHistory = dealHistoryService.findById(dealHistoryId);
+        dealHistory.setBossApprove(dealHistory.getBossApprove());
         dealHistory.setContructorApprove(true);
         dealHistoryService.update(dealHistory);
 

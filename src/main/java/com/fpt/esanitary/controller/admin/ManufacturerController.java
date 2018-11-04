@@ -16,7 +16,6 @@ public class ManufacturerController {
 
     @GetMapping
     public String getAllManufacturer (Model model) {
-
         model.addAttribute("manufacturers", manufacturerService.findAll());
         return "admin/manufacturer/index";
 
@@ -24,12 +23,12 @@ public class ManufacturerController {
 
     @GetMapping("create")
     public String showFormCreateManufacturer(Model model){
-        model.addAttribute("manufacturer", new Manufacturer());
+        model.addAttribute("newManufacturer", new Manufacturer());
         return "admin/manufacturer/create";
     }
 
     @PostMapping("create")
-    public String createManufacturer(@ModelAttribute("manufacturer") Manufacturer manufacturer, Model model) {
+    public String createManufacturer(@ModelAttribute("newManufacturer") Manufacturer manufacturer, Model model) {
 
         Manufacturer existedManufacturer = manufacturerService.find(manufacturer.getId());
 
@@ -45,7 +44,7 @@ public class ManufacturerController {
     @GetMapping("detail")
     public String showManufacturerDetail (@RequestParam("id") String id, Model model) {
 
-        model.addAttribute("manufacturer", manufacturerService.find(id));
+        model.addAttribute("manufacturerDetail", manufacturerService.find(id));
         return "admin/manufacturer/detail";
 
     }

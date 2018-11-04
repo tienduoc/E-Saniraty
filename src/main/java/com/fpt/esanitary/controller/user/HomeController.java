@@ -33,12 +33,12 @@ public class HomeController {
     public String showHome(Model model, HttpSession session) {
         model.addAttribute("title1", categoryService.find(44).getName());
         model.addAttribute("title2", categoryService.find(29).getName());
-        model.addAttribute("title3", categoryService.find(44).getName());
-        model.addAttribute("title4", categoryService.find(61).getName());
+        model.addAttribute("title3", categoryService.find(51).getName());
+        model.addAttribute("title4", categoryService.find(41).getName());
         model.addAttribute("listProduct1", productService.getLastestByCategory(46, 8));
         model.addAttribute("listProduct2", productService.getLastestByCategory(30, 8));
-        model.addAttribute("listProduct3", productService.getLastestByCategory(46, 8));
-        model.addAttribute("listProduct4", productService.getLastestByCategory(64, 8));
+        model.addAttribute("listProduct3", productService.getLastestByCategory(51, 8));
+        model.addAttribute("listProduct4", productService.getLastestByCategory(41, 8));
         return "user/index";
     }
 

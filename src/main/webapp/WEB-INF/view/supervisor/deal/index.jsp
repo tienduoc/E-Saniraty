@@ -123,7 +123,7 @@
                             <th class="text-right">Giá đơn hàng</th>
                             <th class="text-right">Giá nhà thầu</th>
                             <th class="text-center">Trạng thái</th>
-                            <th class="text-center">Tuỳ chọn</th>
+                            <%--<th class="text-center">Tuỳ chọn</th>--%>
                         </tr>
                         </thead>
                         <tbody>
@@ -166,10 +166,10 @@
                                         </c:choose>
                                     </td>
 
-                                    <td class="text-center">
-                                        <a href="" class="btn btn-xs btn-info" data-toggle="tooltip"
-                                           title="Xem chi tiết thương lượng"><i class="fa fa-eye"></i></a>
-                                    </td>
+                                    <%--<td class="text-center">--%>
+                                        <%--<a href="" class="btn btn-xs btn-info" data-toggle="tooltip"--%>
+                                           <%--title="Xem chi tiết thương lượng"><i class="fa fa-eye"></i></a>--%>
+                                    <%--</td>--%>
                                 </tr>
                             </c:if>
                         </c:forEach>

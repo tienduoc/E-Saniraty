@@ -48,7 +48,7 @@
                             <h4 class="panel-title">Thông tin về nhà sản xuất</h4>
                         </div>
                         <div class="panel-body">
-                            <form:form action="/admin/manufacturer/detail" modelAttribute="manufacturer" method="get">
+                            <form:form action="/admin/manufacturer/detail" modelAttribute="manufacturerDetail" method="get">
                                 <div class="form-group">
                                     <label>Mã</label>
                                     <input value="${manufacturer.id}" type="text" class="form-control" name="id" disabled="true">

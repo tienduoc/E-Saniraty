@@ -49,7 +49,7 @@
                             <select name="cat" required style="display:block">
                                 <option value="0">None</option>
                                 <c:forEach var="cat" items="${menu}">
-                                    <c:if test="${cat.parentId != null && cat.id != 29 && cat.id != 34 && cat.id != 40 && cat.id != 44 && cat.id != 49}">
+                                    <c:if test="${cat.parentId != null && cat.id != 29 && cat.id != 34 && cat.id != 40 && cat.id != 44 && cat.id != 49 && cat.id != 61}">
                                         <option value="${cat.id}">${cat.name}</option>
                                     </c:if>
                                 </c:forEach>
@@ -57,7 +57,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label>Số lượng</label>
-                            <input type="number" name="quantity" class="col-md-6" value="0"></div>
+                            <input type="number" name="quantity" class="col-md-6" value="0" min="0" max="100"></div>
                         </c:forEach>
 
 

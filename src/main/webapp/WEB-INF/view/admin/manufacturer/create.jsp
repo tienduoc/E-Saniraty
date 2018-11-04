@@ -57,7 +57,7 @@
 
                         <div class="panel-body">
 
-                            <form:form action="create" modelAttribute="manufacturer" method="post">
+                            <form:form action="/admin/manufacturer/create" modelAttribute="newManufacturer" method="post">
 
                                 <div class="form-group">
                                     <label for="id">Mã NSX</label>

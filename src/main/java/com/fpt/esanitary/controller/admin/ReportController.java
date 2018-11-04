@@ -91,31 +91,35 @@ public class ReportController {
 
     @GetMapping("print")
     public String printReport(HttpSession session ,ModelMap modelMap) {
-        List<Map<String, ?>> listOrders = new ArrayList<Map<String, ?>>();
+        try {
+            List<Map<String, ?>> listOrders = new ArrayList<Map<String, ?>>();
 //        List<Order> orders = orderService.findAll();
-        List<Order> orders = (List<Order>) session.getAttribute("reportResult");
-        for (Order o : orders) {
-            Map<String, Object> m = new HashMap<String, Object>();
-            m.put("orderId", o.getId());
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            String date = sdf.format(o.getDate());
-            m.put("date", date);
-            BigDecimal totalPrice = new BigDecimal(o.getTotalPrice());
-            m.put("totalPrice", totalPrice);
-            m.put("fullname", o.getAccountByUsername().getFullname());
-            String status;
-            if (o.getAccountByUsername().getRoleId().equals("CU") && !o.getClosed()){
-                status = "Đang xử lý";
-            } else if (o.getAccountByUsername().getRoleId().equals("CO") && !o.getClosed()){
-                BigDecimal debt = new BigDecimal(o.getTotalPrice() - o.getTotalPaid());
-                status = "Nợ: " + (debt) + "đ";
-            } else {
-                status = "Đã đóng";
+            List<Order> orders = (List<Order>) session.getAttribute("reportResult");
+            for (Order o : orders) {
+                Map<String, Object> m = new HashMap<String, Object>();
+                m.put("orderId", o.getId());
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                String date = sdf.format(o.getDate());
+                m.put("date", date);
+                BigDecimal totalPrice = new BigDecimal(o.getTotalPrice());
+                m.put("totalPrice", totalPrice);
+                m.put("fullname", o.getAccountByUsername().getFullname());
+                String status;
+                if (o.getAccountByUsername().getRoleId().equals("CU") && !o.getClosed()){
+                    status = "Đang xử lý";
+                } else if (o.getAccountByUsername().getRoleId().equals("CO") && !o.getClosed()){
+                    BigDecimal debt = new BigDecimal(o.getTotalPrice() - o.getTotalPaid());
+                    status = "Nợ: " + (debt) + "đ";
+                } else {
+                    status = "Đã đóng";
+                }
+                m.put("status", status);
+                listOrders.add(m);
             }
-            m.put("status", status);
-            listOrders.add(m);
+            modelMap.put("listProducts", listOrders);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        modelMap.put("listProducts", listOrders);
         return "admin/report/print";
     }
 }
